@@ -20,4 +20,8 @@ button {
 input {
   outline: none;
   border: none;
+}
+
+.inner {
+  width: 940px;
 }/*# sourceMappingURL=common.css.map */
