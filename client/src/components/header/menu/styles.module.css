@@ -1,0 +1,51 @@
+.menuWrap {
+  margin: 0 25.5% 0 18%;
+}
+
+.menuContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menuBox {
+  display: block;
+  font-size: 20px;
+  letter-spacing: -1px;
+  color: #333;
+  position: relative;
+  text-align: center;
+  width: auto;
+  margin: 0 2.5%;
+  height: 90px;
+  line-height: 90px;
+}
+
+.menuItem {
+  display: block;
+  font-size: 20px;
+  letter-spacing: -1px;
+  color: #333;
+  position: relative;
+  text-align: center;
+}
+.menuItem:hover {
+  font-weight: 700;
+  color: #000;
+}
+
+.active {
+  font-weight: 700;
+  color: #000;
+}
+.active::after {
+  content: "";
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  background: #000;
+  border-radius: 100%;
+  position: absolute;
+  right: -11px;
+  top: 33px;
+}/*# sourceMappingURL=styles.module.css.map */
