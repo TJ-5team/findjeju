@@ -4,8 +4,11 @@ import Main from "./Main";
 import MainContents from "./pages/MainContents";
 import Recommand from "./components/main/recommand/Recommand";
 
+
+
+
 const router = createBrowserRouter([
-  
+
   {
     path: "/",
     element: <Main />,
@@ -14,7 +17,7 @@ const router = createBrowserRouter([
         path:"/",
         element:
         <MainContents>
-          <Recommand/>
+          <Recommand />
         </MainContents>
       }
     ]

@@ -1,3 +1,15 @@
 div.wrap {
-  border: 1px solid #000;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+h3.title {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+span.more {
+  font-size: 24px;
+  color: var(--fontDarkColor);
 }/*# sourceMappingURL=styles.module.css.map */

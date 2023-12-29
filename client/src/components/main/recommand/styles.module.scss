@@ -5,11 +5,12 @@
 
 div.inner {
   border: 1px solid #000;
-  min-height: 800px;
   display: flex;
+  flex-wrap: wrap;
 }
 
 h2.title {
+  width: 50%;
   em {
     font-weight: bold;
     font-size: 30px;
@@ -22,7 +23,40 @@ h2.title {
   }
 }
 
-div.iconwrap {
+div.rightWrap {
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+  fieldset.iconWrap {
+    text-align: center;
+    > div {
+      width: 75px;
+      height: 75px;
+      background-image: url("http://localhost:3000/images/icon_area.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+      margin-bottom: 10px;
+    }
+    &:nth-child(1) {
+      div.icon {
+        background-position: 0 0;
+      }
+    }
+    &:nth-child(2) {
+      div.icon {
+        background-position: 0 -75px;
+      }
+    }
+  }
+}
+
+div.imgWrap {
   border: 1px solid #000;
-  height: 100px;
+  width: 100%;
+  height: 270px;
+  display: flex;
+}
+div.imgBox {
+  border: 1px solid #000;
+  width: 33%;
 }
