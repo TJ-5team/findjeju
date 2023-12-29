@@ -6,9 +6,7 @@ export default function Header() {
   return (
     <>
       <header className={style.wrap} >
-        <div className={`${style.wrap} inner`}>
-          start
-        </div>
+        header
       </header>
     </>
   );
