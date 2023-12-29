@@ -5,4 +5,24 @@
 
 div.inner {
   border: 1px solid #000;
+  min-height: 800px;
+  display: flex;
+}
+
+h2.title {
+  em {
+    font-weight: bold;
+    font-size: 30px;
+    color: var(--fontDarkColor);
+  }
+  p {
+    font-size: 30px;
+    font-weight: 400;
+    color: var(--fontLightColor);
+  }
+}
+
+div.iconwrap {
+  border: 1px solid #000;
+  height: 100px;
 }

@@ -1,8 +1,14 @@
+*,
+body {
+  font-family: "Noto Sans KR", "돋움", Dotum, AppleGothic, sans-serif;
+}
+
 :root {
   --bgColor: #424242;
   --iconColor: #bb2121;
   --navColor: #eeb934;
-  --fontColor: #878787;
+  --fontDarkColor: #000000;
+  --fontLightColor: #333333;
   --pointColor: rgb(106, 149, 40);
   --activeColor: #5de750;
   --orange: orange;
