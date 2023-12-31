@@ -1,59 +1,45 @@
 .wrap {
   background-color: var(--bluelight);
-  min-height: 800px;
+  padding: 50px 0px;
 }
 
-div.inner {
-  border: 1px solid #000;
+div.titleWrap {
   display: flex;
-  flex-wrap: wrap;
+  margin-bottom: 20px;
+  align-items: center;
 }
-
-h2.title {
+div.titleWrap h2.title {
   width: 50%;
 }
-h2.title em {
+div.titleWrap h2.title em {
   font-weight: bold;
   font-size: 30px;
   color: var(--fontDarkColor);
 }
-h2.title p {
+div.titleWrap h2.title p {
   font-size: 30px;
   font-weight: 400;
   color: var(--fontLightColor);
 }
-
-div.rightWrap {
+div.titleWrap div.rightWrap {
   width: 50%;
   display: flex;
   justify-content: space-around;
 }
-div.rightWrap fieldset.iconWrap {
+div.titleWrap div.rightWrap fieldset.iconWrap {
   text-align: center;
 }
-div.rightWrap fieldset.iconWrap > div {
+div.titleWrap div.rightWrap fieldset.iconWrap > div {
   width: 75px;
   height: 75px;
-  background-image: url("http://localhost:3000/images/icon_area.png");
+  background-image: url("http://localhost:3000/images/recommand/icon_area.png");
   background-repeat: no-repeat;
   background-size: cover;
   margin-bottom: 10px;
 }
-div.rightWrap fieldset.iconWrap:nth-child(1) div.icon {
+div.titleWrap div.rightWrap fieldset.iconWrap:nth-child(1) div.icon {
   background-position: 0 0;
 }
-div.rightWrap fieldset.iconWrap:nth-child(2) div.icon {
+div.titleWrap div.rightWrap fieldset.iconWrap:nth-child(2) div.icon {
   background-position: 0 -75px;
-}
-
-div.imgWrap {
-  border: 1px solid #000;
-  width: 100%;
-  height: 270px;
-  display: flex;
-}
-
-div.imgBox {
-  border: 1px solid #000;
-  width: 33%;
 }/*# sourceMappingURL=styles.module.css.map */

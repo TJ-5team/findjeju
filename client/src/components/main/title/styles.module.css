@@ -6,7 +6,22 @@ div.wrap {
 
 h3.title {
   font-size: 25px;
+}
+h3.title em {
   font-weight: bold;
+}
+h3.title span {
+  font-weight: normal;
+}
+
+h3.subTitle {
+  font-size: 20px;
+}
+h3.subTitle em {
+  font-weight: bold;
+}
+h3.subTitle span {
+  font-weight: normal;
 }
 
 span.more {

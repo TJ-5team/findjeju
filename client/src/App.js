@@ -4,21 +4,18 @@ import Main from "./Main";
 import MainContents from "./pages/MainContents";
 import Recommand from "./components/main/recommand/Recommand";
 
-
-
-
 const router = createBrowserRouter([
 
   {
     path: "/",
     element: <Main />,
-    children:[
+    children: [
       {
-        path:"/",
+        path: "/",
         element:
-        <MainContents>
-          <Recommand />
-        </MainContents>
+          <MainContents>
+            <Recommand />
+          </MainContents>
       }
     ]
   }
