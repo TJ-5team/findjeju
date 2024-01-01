@@ -1,0 +1,114 @@
+div.wrap {
+    border: 1px solid #c9c9c9;
+    div.joinBox {
+        padding: 80px;
+        box-sizing: border-box;
+        h2.title {
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 50px;
+        }
+        form.joinForm {
+            ul.joinList {
+                li.joinLi {
+                    margin: 30px 0px;
+                    * {
+                        font-size: 20px;
+                    }
+                    > span {
+                        font-size: 16px;
+                        color: red;
+                    }
+                    label {
+                        font-size: 20px;
+                        font-weight: bold;
+                        width: 100%;
+                        display: block;
+                        margin-bottom: 15px;
+                    }
+                    input {
+                        display: block;
+                        width: 100%;
+                        box-sizing: border-box;
+                        border-bottom: 1px solid #c9c9c9;
+                        padding: 5px;
+                        margin-bottom: 10px;
+                        &.emailInput {
+                            width: 45%;
+                            margin-bottom: 0px;
+                        }
+                    }
+                    div.emailWrap {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        select {
+                            width: 45%;
+                            border: 1px solid #c9c9c9;
+                            padding: 5px;
+                        }
+                        > div {
+                            width: 45%;
+                            position: relative;
+                            span.emailClose {
+                                position: absolute;
+                                width: 20px;
+                                height: 20px;
+                                right: 0px;
+                                top: 0px;
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                    button.emailBtn {
+                        width: 100%;
+                        margin: 20px 0px;
+                        padding: 20px 0px;
+                        border: 1px solid #c9c9c9;
+                    }
+                    div.emailCodeBox {
+                        padding: 10px;
+                        position: relative;
+                        border: 1px solid #c9c9c9;
+                        p {
+                            font-size: 16px;
+                            margin: 10px 0px;
+                            span {
+                                font-size: 16px;
+                                text-decoration: underline;
+                            }
+                        }
+                        div {
+                            position: relative;
+                            button {
+                                position: absolute;
+                                right: 0px;
+                                top: 0px;
+                                border-radius: 5px;
+                                padding: 5px 15px;
+                                box-sizing: border-box;
+                            }
+                        }
+                    }
+                    div.phoneWrap {
+                        display: flex;
+                    }
+                    div.postalWrap {
+                        position: relative;
+                        > button {
+                            position: absolute;
+                            right: 0px;
+                            top: 0px;
+                        }
+                    }
+                    div.addressWrap {
+                        input {
+                            width: 100%;
+                            border: 1px solid #c9c9c9;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
