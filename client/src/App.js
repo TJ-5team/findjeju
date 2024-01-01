@@ -16,7 +16,7 @@ const router = createBrowserRouter([
         element:
         <MainContents>
           <VisualSlide/>
-          <Recommand/>
+          {/* <Recommand/> */}
         </MainContents>
       }
     ]

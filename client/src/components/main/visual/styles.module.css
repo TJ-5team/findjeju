@@ -1,3 +1,224 @@
+div {
+  box-sizing: border-box;
+}
+
 .wrap {
   padding: 140px 0 0;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s;
+  box-sizing: border-box;
+}
+.wrap::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 160px;
+  background: #fff;
+  left: 0;
+  bottom: 0;
+  position: absolute;
+}
+
+.cont {
+  width: 940px;
+  position: absolute;
+  left: 50%;
+  margin-left: -470px;
+  top: 140px;
+}
+
+.titleWrap {
+  margin: 90px 0 0;
+}
+.titleWrap em {
+  display: inline-block;
+  padding: 0 15px;
+  height: 30px;
+  line-height: 28px;
+  color: #fff;
+  background: #000;
+  border-radius: 15px 15px 15px 0;
+  font-size: 16px;
+  font-weight: 300;
+}
+.titleWrap strong {
+  color: #3d3d3d;
+  margin: 50px 0 23px;
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 50px;
+  letter-spacing: -3px;
+  overflow: hidden;
+  max-height: 150px;
+  display: -webkit-box;
+  word-break: keep-all;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.leftSwiper {
+  width: 370px;
+  margin: 0 0 !important;
+}
+
+.imgWrap {
+  position: relative;
+  width: 54%;
+  padding-left: 80px;
+  float: right;
+  margin-top: -20px;
+}
+.imgWrap img {
+  max-width: 100%;
+  border-radius: 5px;
+}
+
+.pageBox {
+  position: absolute;
+  left: 50%;
+  margin-left: -470px;
+  width: 940px;
+  bottom: 80px;
+  z-index: 5;
+}
+
+.rightSwiper {
+  position: static !important;
+  padding: 20px 0 80px 20px !important;
+}
+
+.page {
+  width: 370px;
+  height: 80px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.btns {
+  position: absolute;
+  right: 0;
+  top: 33px;
+  width: 105px;
+  text-align: center;
+}
+
+.prevBtn {
+  position: absolute;
+  left: 10px;
+  right: auto;
+  text-indent: -9999px;
+  top: 0 !important;
+  margin: 0;
+  width: 17px;
+  height: 16px;
+  background: url(https://korean.visitkorea.or.kr/resources/images/main/btn_showcase_arw.png) no-repeat;
+  cursor: pointer;
+}
+
+.nextBtn {
+  position: absolute;
+  right: 12px;
+  left: auto;
+  background-position: 0 -16px !important;
+  text-indent: -9999px;
+  top: 0;
+  margin: 0;
+  width: 17px;
+  height: 16px;
+  background: url(https://korean.visitkorea.or.kr/resources/images/main/btn_showcase_arw.png) no-repeat;
+  cursor: pointer;
+}
+
+.autoPlay {
+  overflow: hidden;
+  width: 15px;
+  height: 17px;
+  background: url(https://korean.visitkorea.or.kr/resources/images/main/btn_slide_play02.png) no-repeat;
+  text-indent: -9999px;
+  vertical-align: top;
+  cursor: pointer;
+}
+
+.autoStop {
+  overflow: hidden;
+  width: 15px;
+  height: 17px;
+  background: url(https://korean.visitkorea.or.kr/resources/images/main/btn_slidem_stop02.png) no-repeat;
+  text-indent: -9999px;
+  vertical-align: top;
+  cursor: pointer;
+}
+
+.auto {
+  display: none;
+}
+
+.progressBarWrap {
+  position: relative;
+  width: 150px;
+  display: inline-block;
+  z-index: 1;
+  height: 2px;
+}
+
+.progressBar {
+  position: absolute;
+  height: 2px;
+  background: #b2b2b2;
+  width: auto;
+  opacity: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 1;
+}
+
+@keyframes move {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+.progressFill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #000;
+  height: 100%;
+  transition: none;
+  animation: move 5s linear;
+  animation-fill-mode: forwards;
+}
+
+.pause {
+  animation-play-state: paused;
+}
+
+.pagination {
+  position: static;
+  width: auto;
+  display: inline-block;
+  font-size: 16px;
+  color: #000;
+  font-weight: 300;
+  margin-left: 10px;
+}
+
+.currentPage {
+  font-size: 16px;
+  color: #000;
+  font-weight: 800;
+  text-align: center;
+}
+
+.totalPage {
+  font-size: 16px;
+  color: #000;
+  font-weight: 300;
+  text-align: center;
 }/*# sourceMappingURL=styles.module.css.map */
