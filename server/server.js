@@ -1,8 +1,11 @@
 import express from "express";
 import cors from "cors";
+import path from 'path';
+import joinRouter from "./router/joinRouter.js";
+import uploadRouter from "./router/uploadRouter.js";
 
-const server = express();
 const PORT = 8000;
+const server = express();
 
 server.use(cors());
 server.use(express.json());

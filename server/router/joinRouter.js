@@ -1,8 +1,10 @@
 import express from 'express';
-import * as controller from '../controller/memberController.js';
+import * as controller from '../controller/member/memberController.js';
+
 
 const router = express.Router();
 
-router.post('/', controller.upload);
+router.get('/', controller.getMember);
+
 
 export default router;

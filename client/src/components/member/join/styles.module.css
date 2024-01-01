@@ -12,6 +12,7 @@ div.wrap div.joinBox h2.title {
 }
 div.wrap div.joinBox form.joinForm ul.joinList li.joinLi {
   margin: 30px 0px;
+  position: relative;
 }
 div.wrap div.joinBox form.joinForm ul.joinList li.joinLi * {
   font-size: 20px;
@@ -19,6 +20,9 @@ div.wrap div.joinBox form.joinForm ul.joinList li.joinLi * {
 div.wrap div.joinBox form.joinForm ul.joinList li.joinLi > span {
   font-size: 16px;
   color: red;
+}
+div.wrap div.joinBox form.joinForm ul.joinList li.joinLi span.success {
+  color: green;
 }
 div.wrap div.joinBox form.joinForm ul.joinList li.joinLi label {
   font-size: 20px;
@@ -38,6 +42,10 @@ div.wrap div.joinBox form.joinForm ul.joinList li.joinLi input {
 div.wrap div.joinBox form.joinForm ul.joinList li.joinLi input.emailInput {
   width: 45%;
   margin-bottom: 0px;
+}
+div.wrap div.joinBox form.joinForm ul.joinList li.joinLi button.idCheckBtn {
+  position: absolute;
+  right: 0px;
 }
 div.wrap div.joinBox form.joinForm ul.joinList li.joinLi div.emailWrap {
   display: flex;
@@ -105,4 +113,18 @@ div.wrap div.joinBox form.joinForm ul.joinList li.joinLi div.postalWrap > button
 div.wrap div.joinBox form.joinForm ul.joinList li.joinLi div.addressWrap input {
   width: 100%;
   border: 1px solid #c9c9c9;
+}
+div.wrap div.joinBox form.joinForm ul.joinList li.joinLi div.terms input {
+  width: 30px;
+  display: inline;
+}
+div.wrap div.joinBox form.joinForm button.joinBtn {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  height: 50px;
+  background-color: rgb(203, 203, 203);
+  color: #000;
+  font-size: 20px;
+  font-weight: bold;
 }/*# sourceMappingURL=styles.module.css.map */
