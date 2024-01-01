@@ -1,13 +1,46 @@
 .wrap {
   min-height: 600px;
+  margin-bottom: 80px;
+}
+.wrap div.restTitle {
+  margin-bottom: 15px;
+  height: 35px;
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--blue);
 }
 .wrap ul.tab {
   margin-bottom: 20px;
   display: flex;
+  justify-content: space-between;
   background-color: var(--blue);
+  border-radius: 5px;
 }
 .wrap ul.tab li.menuList {
-  padding: 10px 0;
+  position: relative;
+  width: 50%;
+  height: 50px;
+  text-align: center;
+  box-sizing: border-box;
+}
+.wrap ul.tab li.menuList:hover {
+  cursor: pointer;
+}
+.wrap ul.tab li.menuList::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  top: 17px;
+  width: 1px;
+  height: 16px;
+  opacity: 0.5;
+  background-color: var(--white);
+}
+.wrap ul.tab span {
+  position: relative;
+  display: inline-block;
+  width: 100%;
   height: 50px;
   line-height: 50px;
   font-size: 20px;
@@ -15,10 +48,57 @@
   color: var(--white);
   opacity: 0.5;
 }
-.wrap ul.tab li.menuList:first-of-type ::after {
-  content: "|";
-  display: block;
-  width: 1px;
-  color: var(--white);
-  opacity: 0.5;
+.wrap ul.tab span.active {
+  opacity: 1;
+}
+.wrap ul.tab span.active::after {
+  opacity: 1;
+}
+.wrap ul.tab span::after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  transform: rotate(45deg);
+  width: 12px;
+  height: 12px;
+  bottom: -5px;
+  left: 230px;
+  background-color: var(--blue);
+  z-index: -10;
+  opacity: 0;
+}
+.wrap div.recommandSection {
+  display: flex;
+}
+.wrap div.recommandSection div.recommandItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+.wrap div.recommandSection div.recommandItem:not(:first-of-type) {
+  margin-left: 20px;
+}
+.wrap div.recommandSection div.recommandItem div.imageWrap {
+  margin-bottom: 10px;
+  width: 220px;
+  height: 220px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.wrap div.recommandSection div.recommandItem div.imageWrap img {
+  width: 100%;
+  height: 100%;
+  transform: scale(1);
+}
+.wrap div.recommandSection div.recommandItem div.imageWrap img:hover {
+  transform: scale(1.2);
+  transition: 1s ease;
+}
+.wrap div.recommandSection div.recommandItem div.placeName {
+  margin-bottom: 5px;
+}
+
+li.menuList .active {
+  color: yellow;
 }/*# sourceMappingURL=styles.module.css.map */
