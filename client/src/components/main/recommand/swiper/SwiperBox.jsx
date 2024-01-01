@@ -43,6 +43,8 @@ export default function SwiperBox(props) {
 
     }, [props.area]);
 
+    
+
     return (
         <>
             <Swiper
@@ -55,6 +57,7 @@ export default function SwiperBox(props) {
                             let random = Math.floor(Math.random() * (10 - 1 + 1) + 1);
                             return <fieldset className={styles.imgBox}>
                                 <img src={lst.firstimage ? lst.firstimage : `./images/recommand/${props.state.imgArea}${random}.jpg`} alt="제주도이미지" />
+                                <span>{lst.title}</span>
                             </fieldset>
                         })}
                     </SwiperSlide>

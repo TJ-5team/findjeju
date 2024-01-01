@@ -5,7 +5,7 @@
 
 div.titleWrap {
   display: flex;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   align-items: center;
 }
 div.titleWrap h2.title {
@@ -28,6 +28,7 @@ div.titleWrap div.rightWrap {
 }
 div.titleWrap div.rightWrap fieldset.iconWrap {
   text-align: center;
+  cursor: pointer;
 }
 div.titleWrap div.rightWrap fieldset.iconWrap > div {
   width: 75px;

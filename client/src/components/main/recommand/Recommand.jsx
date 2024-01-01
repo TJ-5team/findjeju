@@ -14,6 +14,8 @@ export default function Recommand() {
     setArea(e.area)
   }
 
+      
+
   return (
     <>
       <div className={styles.wrap}>

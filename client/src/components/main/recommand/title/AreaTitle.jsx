@@ -16,7 +16,9 @@ export default function AreaTitle(props) {
 
         props.getState({ state: state, area: area })
 
-    }, [area])
+    }, [area]);
+
+    
 
     return (
         <>

@@ -15,9 +15,21 @@ fieldset.imgBox {
   width: 300px;
   height: 270px;
   border-radius: 5px;
+  position: relative;
 }
 fieldset.imgBox img {
   width: 100%;
   height: 100%;
   border-radius: 5px;
+}
+fieldset.imgBox span {
+  position: absolute;
+  left: 30px;
+  top: 30px;
+  text-align: center;
+  padding: 1px 10px;
+  line-height: 30px;
+  border-radius: 5px;
+  background-color: #333333;
+  color: #fff;
 }/*# sourceMappingURL=styles.module.css.map */
