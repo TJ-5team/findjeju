@@ -14,7 +14,7 @@ export default function Recommand() {
     setArea(e.area)
   }
 
-      
+
 
   return (
     <>

@@ -1,18 +1,10 @@
-import { configureStore, createSlice } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit'
+import  { area } from './reducer/areaReducer.js';
 
 
-let area = createSlice({
-  // name은 state이름 , initialState은 state값
-  name: 'area',
-  initialState: { name: '제주시', code: "&sigunguCode=4", imgArea: 'jeju' },
-  reducers: {
-    changeName(state, action) {
-      return state = action.payload
-    }
-  }
-});
 
 export default configureStore({
+  // configureStore는 내부적으로 combineReducers를 호출합니다. 
 
   reducer: {
     area: area.reducer

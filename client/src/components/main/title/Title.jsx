@@ -1,10 +1,11 @@
 import React from 'react';
 import styles from './styles.module.css';
 import { useSelector } from 'react-redux';
+import { getAreaData } from '../../../reselector/areaReselector';
 
 export default function Title(props) {
 
-  let state = useSelector((state) => state);
+  let state = useSelector(getAreaData);
 
   return (
     <>

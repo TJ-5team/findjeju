@@ -9,3 +9,5 @@ export async function getMember() {
         .then((rows) => rows[0]);
 
 }
+
+

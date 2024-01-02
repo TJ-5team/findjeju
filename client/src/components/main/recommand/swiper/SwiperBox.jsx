@@ -43,7 +43,6 @@ export default function SwiperBox(props) {
 
     }, [props.area]);
 
-    
 
     return (
         <>
