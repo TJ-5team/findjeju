@@ -9,6 +9,8 @@ export default function Join() {
     const [form, setForm] = useState({ name: '', id: '', pass: '', passcheck: '', nickname: '', email: '', echeck: '', eSelf: '', phone1: '', phone2: '', phone3: '' });
     const [image, setImage] = useState(null);
     const [emailToggle, setEmailToggle] = useState(false);
+    const [time, setTime] = useState(180);
+    const [isActive, setIsActive] = useState(false);
 
     let pattern_num = /[0-9]/;	// 숫자 
     let pattern_eng = /[a-zA-Z]/;	// 문자 
@@ -27,7 +29,7 @@ export default function Join() {
 
     const [check, setCheck] = useState({ name: '', id: '', pass: '', passcheck: '', nickname: '', email: '', echeck: '', eSelf: '' });
     const [focus, setFocus] = useState({ name: '', id: '', pass: '', passcheck: '', nickname: '', email: '', echeck: '', eSelf: '' });
-    const [validation, setValidation] = useState({ name: '필수 입력 항목입니다.', id: '필수 입력 항목입니다.', pass: '필수 입력 항목입니다.', passcheck: '필수 입력 항목입니다.', nickname: '필수 입력 항목입니다.', email: '필수 입력 항목입니다.', echeck: '필수 입력 항목입니다.', eSelf: '필수 입력 항목입니다.' });
+    const [validation, setValidation] = useState({ name: '필수 입력 항목입니다.', id: '필수 입력 항목입니다.', pass: '필수 입력 항목입니다.', passcheck: '필수 입력 항목입니다.', nickname: '필수 입력 항목입니다.', email: '이메일 형식에 맞지 않습니다.', echeck: '필수 입력 항목입니다.', eSelf: '필수 입력 항목입니다.' });
 
     const fnSubmit = (e) => {
 
@@ -48,6 +50,24 @@ export default function Join() {
         })
 
     }, []);
+
+    /*  useEffect(() => {
+ 
+         let interval = null;
+ 
+         if (isActive) {
+ 
+             interval = setInterval(() => {
+                 setTime(time => time - 1);
+             }, 1000);
+             clearInterval(interval);
+             return () => clearInterval(interval);
+         } else if (!isActive) {
+             clearInterval(interval);
+         }
+         return () => clearInterval(interval);
+ 
+     }, []); */
 
 
     const fnChange = (e) => {
@@ -155,6 +175,7 @@ export default function Join() {
             const emailSelfCheck = form.email + '@' + form.eSelf
             const search = userData.some((val) => val.email === emailCheck);
             const selfSearch = userData.some((val) => val.email === emailSelfCheck);
+            setIsActive(true);
             if (search || selfSearch) {
                 setValidation((validation) => ({ ...validation, email: '등록된 이메일입니다.' }));
             } else if (pattern_mail.test(emailCheck) || pattern_mail.test(emailSelfCheck)) {
@@ -166,7 +187,7 @@ export default function Join() {
 
         } else if (name === 'email' && !value) {
             setCheck((check) => ({ ...check, email: '' }));
-            setValidation((validation) => ({ ...validation, email: '필수 입력 항목입니다.' }));
+            setValidation((validation) => ({ ...validation, email: '이메일 형식에 맞지 않습니다.' }));
         }
 
         if (name === 'echeck') {
@@ -185,12 +206,14 @@ export default function Join() {
 
         } else if (name === 'email' && !value) {
             setCheck((check) => ({ ...check, email: '' }));
-            setValidation((validation) => ({ ...validation, email: '필수 입력 항목입니다.' }));
+            setValidation((validation) => ({ ...validation, email: '이메일 형식에 맞지 않습니다.' }));
         }
 
         /* 핸드폰번호 유효성 검사 */
 
         if (name === 'phone' && value) {
+
+
 
         }
 
@@ -215,6 +238,8 @@ export default function Join() {
             setValidation((validation) => ({ ...validation, email: '등록된 이메일입니다.' }));
         } else if (pattern_mail.test(emailCheck) || pattern_mail.test(emailSelfCheck)) {
             setValidation((validation) => ({ ...validation, email: '이메일을 인증해주세요.' }));
+        } else {
+            setValidation((validation) => ({ ...validation, email: '이메일 형식에 맞지 않습니다.' }));
         }
 
     }, [form.echeck, form.email, form.eSelf])
@@ -236,6 +261,19 @@ export default function Join() {
         setFocus((focus) => ({ ...focus, [name]: 'ok' }));
 
     }
+
+    const handleMail = () => {
+
+        setIsActive(true);
+
+    }
+
+    const handleMailCheck = (e) => {
+
+
+
+    }
+
 
     return (
         <>
@@ -301,7 +339,7 @@ export default function Join() {
                                         <div>
                                             <input type='text' name='eSelf' value={form.eSelf} onChange={fnChange} onFocus={handleFocus} />
                                             <span className={styles.emailClose} onClick={() => {
-                                                setForm((form) => ({ ...form, email: '' }));
+                                                setForm((form) => ({ ...form, email: '', echeck: '', eSelf: '' }));
                                             }}>x</span>
                                         </div>
                                         :
@@ -319,23 +357,25 @@ export default function Join() {
                                             <option value="manual">직접입력</option>
                                         </select>}
                                 </div>
-                                {focus.email === '' || check.email === 'email' || check.echeck === 'echeck'
-                                    ? validation.email === '이메일 형식에 맞지 않습니다.' || validation.email === '등록된 이메일입니다.'
+                                {(focus.email === 'ok' || focus.echeck === 'manual') && check.email === 'email' || check.echeck === 'echeck'
+                                    ? validation.email === '등록된 이메일입니다.' || validation.email === '이메일 형식에 맞지 않습니다.'
                                         ? <span>{validation.email}</span>
-                                        : validation.email === '필수 입력 항목입니다.' ? null : <span className={styles.success}>{validation.email}</span>
-                                    : <span>{validation.email}</span>
+                                        : validation.email === '필수 입력 항목입니다.' ? <span>{validation.email}</span> : <span className={styles.success}>{validation.email}</span>
+                                    : null
                                 }
-                                <button type='button' className={styles.emailBtn} disabled={validation.email === '이메일 형식에 맞지 않습니다.' || validation.email === '등록된 이메일입니다.'} onClick={() => {
-                                    setEmailToggle(!emailToggle)
+                                <button type='button' className={styles.emailBtn} disabled={(validation.email === '이메일 형식에 맞지 않습니다.' || validation.email === '등록된 이메일입니다.') && isActive === true} onClick={() => {
+                                    setEmailToggle(!emailToggle);
+                                    handleMail();
                                 }}>
                                     이메일 인증하기
                                 </button>
+                                <div>{Math.floor(time / 60)}:{time % 60 > 9 ? time % 60 : "0" + time % 60}</div>
                                 {emailToggle ?
                                     <div className={styles.emailCodeBox}>
                                         <p className={styles.desCode}>이메일로 전송된 인증코드를 입력해주세요.</p>
                                         <div>
                                             <input type="text" placeholder='인증코드 6자리 입력' />
-                                            <button>확인</button>
+                                            <button type="button" onClick={handleMailCheck}>확인</button>
                                         </div>
                                         <p>이메일을 받지 못하셨나요? <span>이메일 재전송하기</span></p>
                                     </div> : null}
