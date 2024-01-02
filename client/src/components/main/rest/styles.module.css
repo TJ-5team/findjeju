@@ -10,7 +10,7 @@
   color: var(--blue);
 }
 .wrap ul.tab {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   display: flex;
   justify-content: space-between;
   background-color: var(--blue);
@@ -80,23 +80,53 @@
   margin-left: 20px;
 }
 .wrap div.recommandSection div.recommandItem div.imageWrap {
-  margin-bottom: 10px;
+  position: relative;
+  height: 330px;
   width: 220px;
-  height: 220px;
-  border-radius: 5px;
   overflow: hidden;
 }
+.wrap div.recommandSection div.recommandItem div.imageWrap:hover {
+  cursor: pointer;
+  width: 420px;
+  transition: width 1s ease;
+}
+.wrap div.recommandSection div.recommandItem div.imageWrap.active {
+  width: 153px;
+}
+.wrap div.recommandSection div.recommandItem div.imageWrap svg {
+  position: absolute;
+  padding: 5px;
+  font-size: 22px;
+  top: 15px;
+  right: 15px;
+  background: var(--white);
+  border-radius: 50%;
+}
+.wrap div.recommandSection div.recommandItem div.imageWrap svg.active {
+  color: var(--likeColor);
+}
 .wrap div.recommandSection div.recommandItem div.imageWrap img {
-  width: 100%;
   height: 100%;
-  transform: scale(1);
+  -o-object-fit: cover;
+     object-fit: cover;
 }
-.wrap div.recommandSection div.recommandItem div.imageWrap img:hover {
-  transform: scale(1.2);
-  transition: 1s ease;
+.wrap div.recommandSection div.recommandItem div.imageWrap div.decriptionWrap {
+  position: absolute;
+  width: 100%;
+  bottom: 30px;
+  color: var(--white);
 }
-.wrap div.recommandSection div.recommandItem div.placeName {
-  margin-bottom: 5px;
+.wrap div.recommandSection div.recommandItem div.imageWrap div.decriptionWrap > p {
+  padding: 0 40px;
+  text-align: left;
+}
+.wrap div.recommandSection div.recommandItem div.imageWrap div.decriptionWrap > p:first-of-type {
+  margin-bottom: 10px;
+  font-weight: 500;
+  font-size: 18px;
+}
+.wrap div.recommandSection div.recommandItem div.imageWrap div.decriptionWrap > p:last-of-type {
+  font-size: 14px;
 }
 
 li.menuList .active {

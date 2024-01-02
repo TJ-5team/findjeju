@@ -9,7 +9,7 @@
     color: var(--blue);
   }
   ul.tab {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     display: flex;
     justify-content: space-between;
     background-color: var(--blue);
@@ -77,23 +77,52 @@
         margin-left: 20px;
       }
       div.imageWrap {
-        margin-bottom: 10px;
+        position: relative;
+        height: 330px;
         width: 220px;
-        height: 220px;
-        border-radius: 5px;
         overflow: hidden;
-        img {
-          width: 100%;
-          height: 100%;
-          transform: scale(1);
-          &:hover {
-            transform: scale(1.2);
-            transition: 1s ease;
+        &:hover {
+          cursor: pointer;
+          width: 420px;
+          transition: width 1s ease;
+        }      
+        &.active{
+          width:153px;
+        }
+        svg{
+          position: absolute;
+          padding: 5px;
+          font-size: 22px;
+          top: 15px;
+          right: 15px;
+          background: var(--white);
+          border-radius: 50%;
+          &.active{
+            color: var(--likeColor);
           }
         }
-      }
-      div.placeName {
-        margin-bottom: 5px;
+        img {
+          height: 100%;
+          object-fit: cover;
+        }
+        div.decriptionWrap {
+          position: absolute;
+          width: 100%;
+          bottom: 30px;
+          color: var(--white);
+          & > p{
+            padding: 0 40px;
+            text-align: left;
+          }
+          & > p:first-of-type{
+            margin-bottom: 10px;
+            font-weight: 500;
+            font-size: 18px;
+          }
+          & > p:last-of-type{
+            font-size: 14px;
+          }
+        }
       }
     }
   }
