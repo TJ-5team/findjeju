@@ -2,7 +2,7 @@ import * as repository from "../../repository/member/memberRepository.js";
 import nodemailer from 'nodemailer';
 
 
-const  mailer = nodemailer.createTransport({
+const mailer = nodemailer.createTransport({
     service: "gmail",
     auth: {
         user: "qmfntmchl123@gmail.com",
@@ -10,17 +10,18 @@ const  mailer = nodemailer.createTransport({
     }
 })
 
-export async function mailCheck(req, res){
-    const {eid, domain} = req.body;
-    const id = eid + "@" + domain;
+export async function mailCheck(req, res) {
+    const { email, echeck } = req.body;
+    const id = email + "@" + echeck;
+    console.log(req.body);
     const result = await repository.mailCheck(id);
-
+    // const number = Math.floor(Math.random() * 1E9);
+    const number = Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000;
     const mailOptions = {
-        from : "nodetest789@gmail.com",
+        from: "qmfntmchl123@gmail.com",
         to: id,
-        subject: '[오늘의집] 인증코드안내',
-        text: `인증코드를 확인해주세요.
-        ${number}`
+        subject: '[제주구석구석] 인증코드안내',
+        text: `인증코드를 확인해주세요. ${number}`
     }
     mailer.sendMail(mailOptions, (error, info) => {
         if (error) {
@@ -29,8 +30,8 @@ export async function mailCheck(req, res){
         } else {
             console.log('Email Sent : ', info);
         }
-        })
-    res.json({result});
+    })
+    res.json({ result, number });
 }
 
 

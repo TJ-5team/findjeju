@@ -88,6 +88,9 @@ div.wrap div.joinBox form.joinForm ul.joinList li.joinLi div.emailCodeBox p span
   font-size: 16px;
   text-decoration: underline;
 }
+div.wrap div.joinBox form.joinForm ul.joinList li.joinLi div.emailCodeBox div.countDown {
+  color: red;
+}
 div.wrap div.joinBox form.joinForm ul.joinList li.joinLi div.emailCodeBox div {
   position: relative;
 }
@@ -98,6 +101,12 @@ div.wrap div.joinBox form.joinForm ul.joinList li.joinLi div.emailCodeBox div bu
   border-radius: 5px;
   padding: 5px 15px;
   box-sizing: border-box;
+  background-color: #cbcbcb;
+  cursor: pointer;
+}
+div.wrap div.joinBox form.joinForm ul.joinList li.joinLi div.emailCodeBox span.check {
+  color: red;
+  font-size: 14px;
 }
 div.wrap div.joinBox form.joinForm ul.joinList li.joinLi div.phoneWrap {
   display: flex;

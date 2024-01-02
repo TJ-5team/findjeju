@@ -6,12 +6,12 @@ import axios from 'axios';
 export default function Join() {
 
     const [userData, setUserData] = useState([]);
-    const [form, setForm] = useState({ name: '', id: '', pass: '', passcheck: '', nickname: '', email: '', echeck: '', eSelf: '', phone1: '', phone2: '', phone3: '' });
+    const [form, setForm] = useState({ name: '', id: '', pass: '', passcheck: '', nickname: '', email: '', echeck: '', eSelf: '', confirm: '', phone1: '', phone2: '', phone3: '' });
     const [image, setImage] = useState(null);
     const [emailToggle, setEmailToggle] = useState(false);
     const [time, setTime] = useState(180);
     const [isActive, setIsActive] = useState(false);
-
+    const [number, setNumber] = useState(0);
     let pattern_num = /[0-9]/;	// 숫자 
     let pattern_eng = /[a-zA-Z]/;	// 문자 
     let pattern_spc = /[~!@#$%^&*()_+|<>?:{}]/; // 특수문자
@@ -27,9 +27,9 @@ export default function Join() {
     const pattern_mail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const pattern_emoji = /[\uD800-\uDBFF][\uDC00-\uDFFF]/; // 이모지체크
 
-    const [check, setCheck] = useState({ name: '', id: '', pass: '', passcheck: '', nickname: '', email: '', echeck: '', eSelf: '' });
-    const [focus, setFocus] = useState({ name: '', id: '', pass: '', passcheck: '', nickname: '', email: '', echeck: '', eSelf: '' });
-    const [validation, setValidation] = useState({ name: '필수 입력 항목입니다.', id: '필수 입력 항목입니다.', pass: '필수 입력 항목입니다.', passcheck: '필수 입력 항목입니다.', nickname: '필수 입력 항목입니다.', email: '이메일 형식에 맞지 않습니다.', echeck: '필수 입력 항목입니다.', eSelf: '필수 입력 항목입니다.' });
+    const [check, setCheck] = useState({ name: '', id: '', pass: '', passcheck: '', nickname: '', email: '', echeck: '', eSelf: '', confirm: '' });
+    const [focus, setFocus] = useState({ name: '', id: '', pass: '', passcheck: '', nickname: '', email: '', echeck: '', eSelf: '', confirm: '' });
+    const [validation, setValidation] = useState({ name: '필수 입력 항목입니다.', id: '필수 입력 항목입니다.', pass: '필수 입력 항목입니다.', passcheck: '필수 입력 항목입니다.', nickname: '필수 입력 항목입니다.', email: '이메일 형식에 맞지 않습니다.', echeck: '필수 입력 항목입니다.', eSelf: '필수 입력 항목입니다.', confirm: '' });
 
     const fnSubmit = (e) => {
 
@@ -51,23 +51,23 @@ export default function Join() {
 
     }, []);
 
-    /*  useEffect(() => {
- 
-         let interval = null;
- 
-         if (isActive) {
- 
-             interval = setInterval(() => {
-                 setTime(time => time - 1);
-             }, 1000);
-             clearInterval(interval);
-             return () => clearInterval(interval);
-         } else if (!isActive) {
-             clearInterval(interval);
-         }
-         return () => clearInterval(interval);
- 
-     }, []); */
+    useEffect(() => {
+
+        let interval = null;
+        if (isActive) {
+            interval = setInterval(() => {
+                setTime(time => time - 1);
+                if (time === 1) {
+                    setIsActive(false)
+                }
+            }, 1000);
+        } else if (!isActive && time !== 0) {
+            clearInterval(interval);
+        }
+        return () => clearInterval(interval);
+    }, [isActive, time]);
+
+
 
 
     const fnChange = (e) => {
@@ -175,11 +175,11 @@ export default function Join() {
             const emailSelfCheck = form.email + '@' + form.eSelf
             const search = userData.some((val) => val.email === emailCheck);
             const selfSearch = userData.some((val) => val.email === emailSelfCheck);
-            setIsActive(true);
             if (search || selfSearch) {
                 setValidation((validation) => ({ ...validation, email: '등록된 이메일입니다.' }));
             } else if (pattern_mail.test(emailCheck) || pattern_mail.test(emailSelfCheck)) {
                 setValidation((validation) => ({ ...validation, email: '이메일을 인증해주세요.' }));
+
             } else {
                 setCheck((check) => ({ ...check, email: 'email' }));
                 setValidation((validation) => ({ ...validation, email: '이메일 형식에 맞지 않습니다.' }));
@@ -209,6 +209,20 @@ export default function Join() {
             setValidation((validation) => ({ ...validation, email: '이메일 형식에 맞지 않습니다.' }));
         }
 
+        if (name === 'confirm' && value) {
+            if (!pattern_num.test(value)) {
+                return false
+            } else if (parseInt(value) !== number) {
+                setValidation((validation) => ({ ...validation, confirm: '올바른 코드가 아닙니다.' }));
+            } else if (parseInt(value) === number) {
+                setValidation((validation) => ({ ...validation, confirm: '올바른 코드입니다.' }));
+            } else if (time === 0) {
+                setValidation((validation) => ({ ...validation, confirm: '인증코드가 만료되었습니다.' }));
+            }
+            setCheck((check) => ({ ...check, confirm: 'confirm' }));
+
+        }
+
         /* 핸드폰번호 유효성 검사 */
 
         if (name === 'phone' && value) {
@@ -228,12 +242,11 @@ export default function Join() {
     }
 
     useEffect(() => {
+        setEmailToggle(false);
         const emailCheck = form.email + '@' + form.echeck
         const emailSelfCheck = form.email + '@' + form.eSelf
         const search = userData.some((val) => val.email === emailCheck);
         const selfSearch = userData.some((val) => val.email === emailSelfCheck);
-        console.log(emailSelfCheck);
-        console.log(selfSearch);
         if (search || selfSearch) {
             setValidation((validation) => ({ ...validation, email: '등록된 이메일입니다.' }));
         } else if (pattern_mail.test(emailCheck) || pattern_mail.test(emailSelfCheck)) {
@@ -262,9 +275,30 @@ export default function Join() {
 
     }
 
-    const handleMail = () => {
+    /* const startCountdown = () => {
 
         setIsActive(true);
+
+    } */
+
+    const resetCountdown = () => {
+        setTime(180);
+        setIsActive(false);
+    }
+
+    const handleMail = () => {
+
+        axios.post("http://127.0.0.1:8000/join/email", { email: form.email, echeck: form.echeck })
+            .then((result) => {
+
+                setNumber(result.data.number);
+                console.log(result.data.number);
+                resetCountdown();
+                setIsActive(true);
+
+                // startCountdown();
+            })
+
 
     }
 
@@ -273,7 +307,6 @@ export default function Join() {
 
 
     }
-
 
     return (
         <>
@@ -363,20 +396,21 @@ export default function Join() {
                                         : validation.email === '필수 입력 항목입니다.' ? <span>{validation.email}</span> : <span className={styles.success}>{validation.email}</span>
                                     : null
                                 }
-                                <button type='button' className={styles.emailBtn} disabled={(validation.email === '이메일 형식에 맞지 않습니다.' || validation.email === '등록된 이메일입니다.') && isActive === true} onClick={() => {
+                                <button type='button' className={styles.emailBtn} disabled={(validation.email === '이메일 형식에 맞지 않습니다.' || validation.email === '등록된 이메일입니다.') || emailToggle === true} onClick={() => {
                                     setEmailToggle(!emailToggle);
                                     handleMail();
                                 }}>
                                     이메일 인증하기
                                 </button>
-                                <div>{Math.floor(time / 60)}:{time % 60 > 9 ? time % 60 : "0" + time % 60}</div>
                                 {emailToggle ?
                                     <div className={styles.emailCodeBox}>
+                                        <div className={styles.countDown}>{Math.floor(time / 60)}:{time % 60 > 9 ? time % 60 : "0" + time % 60}</div>
                                         <p className={styles.desCode}>이메일로 전송된 인증코드를 입력해주세요.</p>
                                         <div>
-                                            <input type="text" placeholder='인증코드 6자리 입력' />
-                                            <button type="button" onClick={handleMailCheck}>확인</button>
+                                            <input type="text" name='confirm' id="confirm" value={form.confirm} maxLength={6} placeholder='인증코드 6자리 입력' onChange={fnChange} onFocus={handleFocus} />
+                                            <button type="button" onClick={handleMailCheck} disabled={time === 0 || parseInt(form.confirm) !== number}>확인</button>
                                         </div>
+                                        {validation.confirm === '올바른 코드가 아닙니다.' ? <span className={styles.check}>{validation.confirm}</span> : null}
                                         <p>이메일을 받지 못하셨나요? <span>이메일 재전송하기</span></p>
                                     </div> : null}
                             </li>
