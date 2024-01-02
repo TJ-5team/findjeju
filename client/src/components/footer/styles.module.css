@@ -1,1 +1,46 @@
-/*# sourceMappingURL=styles.module.css.map */
+.Wrap {
+  display: block;
+  width: 100%;
+  margin-top: 60px;
+  padding-bottom: 10px;
+  background: #f7f7f7;
+  box-sizing: border-box;
+}
+
+.footerContainer {
+  width: 940px;
+  margin: 0 auto;
+}
+.footerContainer::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.footerLogoWrap {
+  width: 100%;
+  padding-bottom: 16px;
+  border-top: 1px solid #e6e6e6;
+}
+
+.footLogo {
+  float: left;
+  width: 89px;
+  padding-top: 23px;
+}
+.footLogo img {
+  width: 89px;
+  height: 14px;
+}
+
+.logoListWrap {
+  float: right;
+  padding-top: 14px;
+}
+.logoListWrap li {
+  float: left;
+  margin-left: 20px;
+}
+.logoListWrap li a {
+  display: block;
+}/*# sourceMappingURL=styles.module.css.map */

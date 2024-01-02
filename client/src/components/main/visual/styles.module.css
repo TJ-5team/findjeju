@@ -71,8 +71,9 @@ div {
   margin-top: -20px;
 }
 .imgWrap img {
-  max-width: 100%;
+  max-width: 90%;
   border-radius: 5px;
+  box-shadow: 11px 10px 29px 0px rgba(0, 0, 0, 0.15);
 }
 
 .pageBox {
