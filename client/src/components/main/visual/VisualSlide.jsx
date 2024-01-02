@@ -28,7 +28,7 @@ export default function VisualSlide() {
   const bgColor = ['rgb(255, 244, 197)', 'rgb(239, 232, 255)', 'rgb(232, 235, 240)', 'rgb(218, 238, 255)', 'rgb(235, 247, 255)', 'rgb(235, 245, 250)', 'rgb(245, 240, 243)', 'rgb(242, 245, 255)', 'rgb(255, 230, 229)', 'rgb(218, 238, 255)', 'rgb(235, 247, 255)', 'rgb(242, 235, 255)']
   const handleColor = (activeIndex) => {
     setReset(!reset);
-    setColorNum(activeIndex)
+    setColorNum(activeIndex ? activeIndex : 0)
     /* if(colorNum === 11){
       setColorNum(0);
     }else{
@@ -60,7 +60,7 @@ export default function VisualSlide() {
           }}
           modules={[Controller, Navigation, Pagination, Autoplay]}
         >
-          {list.map((item) => <SwiperSlide>
+          {list.map((item) => <SwiperSlide key={item.contentid}>
             <div className={styles.titleWrap}>
               <em>
                 2023 트렌드 in 제주
@@ -88,7 +88,7 @@ export default function VisualSlide() {
           onSwiper={setSecondSwiper}
           controller={{ control: firstSwiper }}
         >
-          {list.map((item)=><SwiperSlide>
+          {list.map((item)=><SwiperSlide key={item.contentid}>
             <Link to={"/"}>
               <img src={item.firstimage} alt="" />
             </Link>

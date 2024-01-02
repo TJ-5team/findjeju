@@ -4,6 +4,7 @@ import Main from "./Main";
 import MainContents from "./pages/MainContents";
 import Recommand from "./components/main/recommand/Recommand";
 import VisualSlide from "./components/main/visual/VisualSlide";
+import SearchModal from "./components/modal/SearchModal";
 
 const router = createBrowserRouter([
   
@@ -14,10 +15,13 @@ const router = createBrowserRouter([
       {
         path:"/",
         element:
-        <MainContents>
-          <VisualSlide/>
-          {/* <Recommand/> */}
-        </MainContents>
+        <>
+          <SearchModal/>
+          <MainContents>
+            <VisualSlide/>
+            {/* <Recommand/> */}
+          </MainContents>
+        </>
       }
     ]
   }
