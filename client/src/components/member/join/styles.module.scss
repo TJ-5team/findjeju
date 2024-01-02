@@ -86,6 +86,9 @@ div.wrap {
                                 text-decoration: underline;
                             }
                         }
+                        div.countDown {
+                            color: red;
+                        }
                         div {
                             position: relative;
                             button {
@@ -95,7 +98,13 @@ div.wrap {
                                 border-radius: 5px;
                                 padding: 5px 15px;
                                 box-sizing: border-box;
+                                background-color: #cbcbcb;
+                                cursor: pointer;
                             }
+                        }
+                        span.check {
+                            color: red;
+                            font-size: 14px;
                         }
                     }
                     div.phoneWrap {
