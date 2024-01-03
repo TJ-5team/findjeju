@@ -5,6 +5,7 @@ import MainContents from "./pages/MainContents";
 import Recommand from "./components/main/recommand/Recommand";
 import VisualSlide from "./components/main/visual/VisualSlide";
 import SearchModal from "./components/modal/SearchModal";
+import SearchPage from "./pages/SearchPage";
 
 const router = createBrowserRouter([
   
@@ -15,13 +16,16 @@ const router = createBrowserRouter([
       {
         path:"/",
         element:
-        <>
+        <MainContents>
           <SearchModal/>
-          <MainContents>
-            <VisualSlide/>
-            {/* <Recommand/> */}
-          </MainContents>
-        </>
+          <VisualSlide/>
+          <Recommand/>
+        </MainContents>
+      },
+      {
+        path:"/search/:keyword",
+        element:
+        <SearchPage/>
       }
     ]
   }
