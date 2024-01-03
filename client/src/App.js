@@ -5,6 +5,9 @@ import MainContents from "./pages/MainContents";
 import Recommand from "./components/main/recommand/Recommand";
 import Join from "./pages/JoinPage";
 import Rest from "./components/main/rest/Rest";
+import VisualSlide from "./components/main/visual/VisualSlide";
+import SearchModal from "./components/modal/SearchModal";
+import SearchPage from "./pages/SearchPage";
 
 const router = createBrowserRouter([
 
@@ -16,6 +19,8 @@ const router = createBrowserRouter([
         path: "/",
         element:
           <MainContents>
+            <SearchModal/>
+            <VisualSlide/>
             <Recommand />
             <Rest />
           </MainContents>
@@ -24,6 +29,11 @@ const router = createBrowserRouter([
         path: "/join",
         element:
           <Join />
+      },
+      {
+        path:"/search/:keyword",
+        element:
+        <SearchPage/>
       }
     ]
   }

@@ -1,0 +1,32 @@
+.wrap {
+  width: 980px;
+  margin: 0 auto;
+  padding: 130px 20px 27px 20px;
+}
+
+.container {
+  box-sizing: border-box;
+}
+
+.leftBox {
+  float: left;
+  width: 600px;
+}
+
+.rightMenu {
+  box-sizing: border-box;
+}
+.rightMenu .rightBox {
+  float: right;
+  width: 300px;
+}
+
+.float {
+  box-sizing: border-box;
+}
+.float::after {
+  content: "";
+  display: block;
+  overflow: hidden;
+  clear: both;
+}/*# sourceMappingURL=styles.module.css.map */
