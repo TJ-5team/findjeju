@@ -13,8 +13,7 @@ import { changeList } from "../../../store";
 export default function Rest() {
   const dispatch = useDispatch();
 
-  const [num, setNum] = useState(Math.floor(Math.random() * 3));
-  const [contentId, setContentId] = useState(39)
+  //const [num, setNum] = useState(Math.floor(Math.random() * 3));
   /* useEffect(()=>{
     setNum(Math.floor(Math.random()*9))
     console.log(num);
@@ -23,11 +22,10 @@ export default function Rest() {
 
   const state = useSelector(getAreaData);
   const data = useSelector(getListData);
-  const [list] = useGetList(`http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=4&pageNo=${num}&MobileOS=ETC&MobileApp=AppTest&ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&listYN=Y&arrange=Q&contentTypeId=${data.list.contentTypeId}&areaCode=39${state.area.code}&${data.list.category}&cat3=&_type=json`);  
+  const [list] = useGetList(`http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=4&pageNo=${data.list.num}&MobileOS=ETC&MobileApp=AppTest&ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&listYN=Y&arrange=Q&contentTypeId=${data.list.contentTypeId}&areaCode=39${state.area.code}&${data.list.category}&cat3=&_type=json`);  
   
-  
-  console.log(state);
-  console.log(list);
+  // console.log(state);
+  // console.log(list);
 
   // const [url, setUrl] = useState(`http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=4&pageNo=${num}&MobileOS=ETC&MobileApp=AppTest&ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&listYN=Y&arrange=Q&contentTypeId=32&areaCode=39${state.area.code}&cat1=B02&cat2=B0201&cat3=&_type=json`);
   // console.log(url);
@@ -59,11 +57,11 @@ export default function Rest() {
         setActive("restaurant");
         // setUrl(`http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=4&pageNo=${num}1&MobileOS=ETC&MobileApp=AppTest&ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&listYN=Y&arrange=Q&contentTypeId=39&areaCode=39${state.area.code}&cat1=A05&cat2=A0502&cat3=&_type=json`)
         // dispatch(changeName({ name: "제주시", code: "&sigunguCode=4", imgArea: 'jeju' }));
-        dispatch(changeList({ contentTypeId: 39, category: 'cat1=A05&cat2=A0502' }))
+        dispatch(changeList({ num : Math.floor(Math.random()*10), contentTypeId: 39, category: 'cat1=A05&cat2=A0502' }))
       } else {
         setActive("stay");
         // setUrl(`http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=4&pageNo=${num}&MobileOS=ETC&MobileApp=AppTest&ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&listYN=Y&arrange=Q&contentTypeId=32&areaCode=39${state.area.code}&cat1=B02&cat2=B0201&cat3=&_type=json`)
-        dispatch(changeList({ contentTypeId: 32, category: 'cat1=B02&cat2=B0201' }))
+        dispatch(changeList({ num : Math.floor(Math.random()*3), contentTypeId: 32, category: 'cat1=B02&cat2=B0201' }))
       }
     }
   };

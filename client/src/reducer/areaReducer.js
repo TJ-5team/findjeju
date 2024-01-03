@@ -37,7 +37,7 @@ export const area = createSlice({
 export const list = createSlice({
 
   name: 'list',
-  initialState: { contentTypeId: 32, category: 'cat1=B02&cat2=B0201' },
+  initialState: { num : 0, contentTypeId: 32, category: 'cat1=B02&cat2=B0201' },
   reducers: {
     changeList(state, action) {
       return state = action.payload
