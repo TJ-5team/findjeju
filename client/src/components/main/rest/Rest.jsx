@@ -4,20 +4,29 @@ import styles from "./styles.module.css";
 import { PiAirplaneTiltLight } from "react-icons/pi";
 import { PiHeartLight } from "react-icons/pi";
 import { PiHeartFill } from "react-icons/pi";
+import { Link } from "react-router-dom";
 
 export default function Rest() {
 
-  const [num, setNum] = useState(Math.floor(Math.random() * 9));
+  const [num, setNum] = useState(Math.floor(Math.random() * 3));
   /* useEffect(()=>{
     setNum(Math.floor(Math.random()*9))
     console.log(num);
   },[]) */
-  // console.log(num);
+  //console.log(num);
 
-  //const [list] = useGetList(`http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=4&pageNo=${num}&MobileOS=ETC&MobileApp=AppTest&ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&listYN=Y&arrange=A&contentTypeId=39&areaCode=39&sigunguCode=4&cat1=A05&cat2=A0502&cat3=&_type=json`);
+  const [list] = useGetList(`http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=4&pageNo=${num}&MobileOS=ETC&MobileApp=AppTest&ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&listYN=Y&arrange=A&contentTypeId=39&areaCode=39&sigunguCode=4&cat1=A05&cat2=A0502&cat3=&_type=json`);
   //console.log(list);
 
-  const [list, setList] = useState([]);
+  /* 
+  숙소API
+  http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=4&pageNo=${num}&MobileOS=ETC&MobileApp=AppTest&ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&listYN=Y&arrange=A&contentTypeId=39&areaCode=39&sigunguCode=4&cat1=A05&cat2=A0502&cat3=&_type=json
+  
+  맛집API
+  http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=12&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&listYN=Y&arrange=A&contentTypeId=32&areaCode=39&sigunguCode=4&cat1=B02&cat2=B0201&cat3=B02010100&_type=json
+  */
+
+  /* const [list, setList] = useState([]);
   useEffect(() => {
     fetch('./data/restData.json')
       .then(res => res.json())
@@ -25,37 +34,43 @@ export default function Rest() {
         setList(result)
       })
       .catch(console.error)
-  }, [])
+  }, []) */
 
   const [active, setActive] = useState("stay");
+  const [url, setUrl] = useState(`http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=4&pageNo=${num}&MobileOS=ETC&MobileApp=AppTest&ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&listYN=Y&arrange=A&contentTypeId=39&areaCode=39&sigunguCode=4&cat1=A05&cat2=A0502&cat3=&_type=json`);
+
   const handleClick = (e) => {
+    console.log(e.target.dataset.id);
     if (!e.target.className.includes("active")) {
       if (active === "stay") {
         setActive("restaurant");
+        setUrl(`http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=4&pageNo=${num}&MobileOS=ETC&MobileApp=AppTest&ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&listYN=Y&arrange=A&contentTypeId=39&areaCode=39&sigunguCode=4&cat1=A05&cat2=A0502&cat3=&_type=json`)
       } else {
         setActive("stay");
+        setUrl(`http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=4&pageNo=${num}&MobileOS=ETC&MobileApp=AppTest&ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&listYN=Y&arrange=A&contentTypeId=32&areaCode=39&sigunguCode=4&cat1=B02&cat2=B0201&cat3=B02010100&_type=json`)
       }
     }
   };
 
+  //console.log(url);
+
   const [like, setLike] = useState(10);
   const handleLike = (e, idx) => {
-    if(like != idx){
+    console.log(e.target);
+    if (like != idx) {
       setLike(idx)
       alert('좋아요를 누르셨습니다!')
-    }else{
+    } else {
       setLike(!idx)
+      alert('좋아요를 취소하였습니다.')
     }
   }
 
-  const [hover, setHover] = useState(false);
-  const handleMouseEnter = (e,idx) => {
+  /* const handleMouseEnter = (e) => {
     console.log(e.currentTarget);
-    console.log(e.target.value);
-    if(e.target.value != idx){
-      e.currentTarget.classList.add(styles.active);
-    }
-  }
+    //console.log(e.target.value);
+    //e.currentTarget.classList.add(styles.active);
+  } */
 
   return (
     <>
@@ -68,10 +83,10 @@ export default function Rest() {
             <ul className={styles.tab}>
               {/* <li onClick={handleClick} className={active ? styles.menuList.active : styles.menuList}>숙소</li> */}
               <li className={styles.menuList}>
-                <span onClick={(e) => handleClick(e)} className={active === "stay" ? styles.active : ""}>숙소</span>
+                <span onClick={handleClick} className={active === "stay" ? styles.active : ""} data-id="accomodation">숙소</span>
               </li>
               <li className={styles.menuList}>
-                <span onClick={(e) => handleClick(e)} className={active === "restaurant" ? styles.active : ""}>맛집</span>
+                <span onClick={handleClick} className={active === "restaurant" ? styles.active : ""} data-id="goodPlace">맛집</span>
               </li>
             </ul>
           </div>
@@ -87,20 +102,20 @@ export default function Rest() {
               </div>
             )} */}
             {list.map((item, idx) =>
-              <div className={`${styles.recommandItem} ${styles.active}`} key={item.contentid} onMouseEnter={(e)=>handleMouseEnter(e,idx)} value={idx}>
-                <div className={styles.imageWrap}>
+              <div className={`${styles.recommandItem} ${styles.active}`} key={item.contentid}>
+                <Link to="/" className={styles.imageWrap}>
                   <span onClick={(e) => handleLike(e, idx)}>
                     {like === idx
                       ? <PiHeartFill className={styles.active} />
-                      : <PiHeartLight className={styles.likebtn}/>
+                      : <PiHeartLight className={styles.likebtn} />
                     }
                   </span>
                   <img src={item.firstimage} alt="장소추천" className={styles.placeimage} />
-                  <div className={styles.decriptionWrap}>
-                    <p className={styles.description1}>{item.title}</p>
-                    <p className={styles.description2}>{item.addr1}</p>
-                  </div>
-                </div>
+                  <span className={styles.decriptionWrap}>
+                    <p className={styles.description}>{item.title}</p>
+                    <p className={styles.description}>{item.addr1}</p>
+                  </span>
+                </Link>
               </div>
             )}
 

@@ -1,5 +1,5 @@
 .wrap {
-  min-height: 600px;
+  min-height: 500px;
   margin-bottom: 80px;
 }
 .wrap div.restTitle {
@@ -74,26 +74,31 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex-wrap: nowrap;
+  height: 330px;
+  width: 25%;
+  transform: scale(1);
+  overflow: hidden;
+  transition: width 1s ease;
 }
 .wrap div.recommandSection div.recommandItem:not(:first-of-type) {
   margin-left: 20px;
 }
-.wrap div.recommandSection div.recommandItem div.imageWrap {
+.wrap div.recommandSection div.recommandItem:hover {
+  cursor: pointer;
+  width: 600px;
+}
+.wrap div.recommandSection div.recommandItem:hover img {
+  transform: scale(1.1);
+  transition: all 0.5s ease;
+}
+.wrap div.recommandSection div.recommandItem .imageWrap {
+  display: inline-block;
   position: relative;
-  height: 330px;
-  width: 220px;
+  height: 100%;
+  width: 100%;
   overflow: hidden;
 }
-.wrap div.recommandSection div.recommandItem div.imageWrap:hover {
-  cursor: pointer;
-  width: 420px;
-  transition: width 1s ease;
-}
-.wrap div.recommandSection div.recommandItem div.imageWrap.active {
-  width: 153px;
-}
-.wrap div.recommandSection div.recommandItem div.imageWrap svg {
+.wrap div.recommandSection div.recommandItem .imageWrap svg {
   position: absolute;
   padding: 5px;
   font-size: 22px;
@@ -101,31 +106,37 @@
   right: 15px;
   background: var(--white);
   border-radius: 50%;
+  z-index: 2;
 }
-.wrap div.recommandSection div.recommandItem div.imageWrap svg.active {
+.wrap div.recommandSection div.recommandItem .imageWrap svg.active {
   color: var(--likeColor);
 }
-.wrap div.recommandSection div.recommandItem div.imageWrap img {
+.wrap div.recommandSection div.recommandItem .imageWrap img {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  z-index: -1;
 }
-.wrap div.recommandSection div.recommandItem div.imageWrap div.decriptionWrap {
+.wrap div.recommandSection div.recommandItem .imageWrap span.decriptionWrap {
+  display: inline-block;
   position: absolute;
   width: 100%;
   bottom: 30px;
   color: var(--white);
 }
-.wrap div.recommandSection div.recommandItem div.imageWrap div.decriptionWrap > p {
+.wrap div.recommandSection div.recommandItem .imageWrap span.decriptionWrap > p {
   padding: 0 40px;
   text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
-.wrap div.recommandSection div.recommandItem div.imageWrap div.decriptionWrap > p:first-of-type {
+.wrap div.recommandSection div.recommandItem .imageWrap span.decriptionWrap > p:first-of-type {
   margin-bottom: 10px;
   font-weight: 500;
   font-size: 18px;
 }
-.wrap div.recommandSection div.recommandItem div.imageWrap div.decriptionWrap > p:last-of-type {
+.wrap div.recommandSection div.recommandItem .imageWrap span.decriptionWrap > p:last-of-type {
   font-size: 14px;
 }
 

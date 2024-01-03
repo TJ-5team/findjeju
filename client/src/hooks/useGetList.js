@@ -7,6 +7,6 @@ export default function useGetList(baseUrl){
     axios
     .get(baseUrl)
     .then(result => setList(result.data.response.body.items.item))
-  }, []);
+  }, [baseUrl]);
   return [list]
 }

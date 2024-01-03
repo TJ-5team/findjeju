@@ -1,5 +1,5 @@
 .wrap {
-  min-height: 600px;
+  min-height: 500px;
   margin-bottom: 80px;
   div.restTitle {
     margin-bottom: 15px;
@@ -72,24 +72,29 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      flex-wrap: nowrap;
+      height: 330px;
+      width: 25%;
+      transform: scale(1);
+      overflow: hidden;
+      transition: width 1s ease;
       &:not(:first-of-type) {
         margin-left: 20px;
       }
-      div.imageWrap {
-        position: relative;
-        height: 330px;
-        width: 220px;
-        overflow: hidden;
-        &:hover {
-          cursor: pointer;
-          width: 420px;
-          transition: width 1s ease;
-        }      
-        &.active{
-          width:153px;
+      &:hover {
+        cursor: pointer;
+        width: 600px;
+        img {
+          transform: scale(1.1);
+          transition: all 0.5s ease;
         }
-        svg{
+      }
+      .imageWrap {
+        display: inline-block;
+        position: relative;
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        svg {
           position: absolute;
           padding: 5px;
           font-size: 22px;
@@ -97,30 +102,36 @@
           right: 15px;
           background: var(--white);
           border-radius: 50%;
-          &.active{
+          z-index: 2;
+          &.active {
             color: var(--likeColor);
           }
         }
         img {
           height: 100%;
           object-fit: cover;
+          z-index: -1;
         }
-        div.decriptionWrap {
+        span.decriptionWrap {
+          display: inline-block;
           position: absolute;
           width: 100%;
           bottom: 30px;
           color: var(--white);
-          & > p{
+          & > p {
             padding: 0 40px;
             text-align: left;
-          }
-          & > p:first-of-type{
-            margin-bottom: 10px;
-            font-weight: 500;
-            font-size: 18px;
-          }
-          & > p:last-of-type{
-            font-size: 14px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            &:first-of-type {
+              margin-bottom: 10px;
+              font-weight: 500;
+              font-size: 18px;
+            }
+            &:last-of-type {
+              font-size: 14px;
+            }
           }
         }
       }
