@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import useGetList from "../../../hooks/useGetList";
 import styles from "./styles.module.css";
-import { PiAirplaneTiltLight } from "react-icons/pi";
+import { PiAirplaneTiltLight, PiCarLight } from "react-icons/pi";
 import { PiHeartLight } from "react-icons/pi";
 import { PiHeartFill } from "react-icons/pi";
 import { Link } from "react-router-dom";
+import Title from './../title/Title';
+import { useSelector } from 'react-redux';
+import { getAreaData } from './../../../reselector/areaReselector';
 
 export default function Rest() {
 
@@ -15,15 +18,21 @@ export default function Rest() {
   },[]) */
   //console.log(num);
 
-  const [list] = useGetList(`http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=4&pageNo=${num}&MobileOS=ETC&MobileApp=AppTest&ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&listYN=Y&arrange=A&contentTypeId=39&areaCode=39&sigunguCode=4&cat1=A05&cat2=A0502&cat3=&_type=json`);
+  const state = useSelector(getAreaData);
+
+  const [url, setUrl] = useState(`http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=4&pageNo=${num}&MobileOS=ETC&MobileApp=AppTest&ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&listYN=Y&arrange=Q&contentTypeId=32&areaCode=39&sigunguCode=4&cat1=B02&cat2=B0201&cat3=&_type=json`);
+
+  const [list] = useGetList(url);
+
   console.log(list);
 
   /* 
-  숙소API
+  맛집API
   http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=4&pageNo=${num}&MobileOS=ETC&MobileApp=AppTest&ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&listYN=Y&arrange=A&contentTypeId=39&areaCode=39&sigunguCode=4&cat1=A05&cat2=A0502&cat3=&_type=json
   
-  맛집API
-  http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=12&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&listYN=Y&arrange=A&contentTypeId=32&areaCode=39&sigunguCode=4&cat1=B02&cat2=B0201&cat3=B02010100&_type=json
+  숙소API
+  http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=12&pageNo=${num}&MobileOS=ETC&MobileApp=AppTest&ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&listYN=Y&arrange=Q&contentTypeId=32&areaCode=39&sigunguCode=4&cat1=B02&cat2=B0201&cat3=&_type=json
+  http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=12&pageNo=${num}&MobileOS=ETC&MobileApp=AppTest&ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&listYN=Y&arrange=Q&contentTypeId=32&areaCode=39&sigunguCode=4&cat1=B02&cat2=B0201&cat3=&_type=json
   */
 
   /* const [list, setList] = useState([]);
@@ -37,26 +46,27 @@ export default function Rest() {
   }, []) */
 
   const [active, setActive] = useState("stay");
-  const [url, setUrl] = useState(`http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=4&pageNo=${num}&MobileOS=ETC&MobileApp=AppTest&ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&listYN=Y&arrange=A&contentTypeId=39&areaCode=39&sigunguCode=4&cat1=A05&cat2=A0502&cat3=&_type=json`);
 
   const handleClick = (e) => {
-    console.log(e.target.dataset.id);
+    //console.log(e.target.dataset.id);
     if (!e.target.className.includes("active")) {
       if (active === "stay") {
         setActive("restaurant");
         setUrl(`http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=4&pageNo=${num}&MobileOS=ETC&MobileApp=AppTest&ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&listYN=Y&arrange=A&contentTypeId=39&areaCode=39&sigunguCode=4&cat1=A05&cat2=A0502&cat3=&_type=json`)
       } else {
         setActive("stay");
-        setUrl(`http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=4&pageNo=${num}&MobileOS=ETC&MobileApp=AppTest&ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&listYN=Y&arrange=A&contentTypeId=32&areaCode=39&sigunguCode=4&cat1=B02&cat2=B0201&cat3=B02010100&_type=json`)
+        setUrl(`http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=4&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&listYN=Y&arrange=Q&contentTypeId=32&areaCode=39&sigunguCode=4&cat1=B02&cat2=B0201&cat3=&_type=json`)
       }
     }
   };
 
   //console.log(url);
 
-  const [like, setLike] = useState(10);
+  const [like, setLike] = useState(undefined);
+  //undefined 로 수정하기!
+
   const handleLike = (e, idx) => {
-    console.log(e.target);
+    //console.log(e.target);
     if (like != idx) {
       setLike(idx)
       alert('좋아요를 누르셨습니다!')
@@ -66,18 +76,18 @@ export default function Rest() {
     }
   }
 
-  /* const handleMouseEnter = (e) => {
-    console.log(e.currentTarget);
-    //console.log(e.target.value);
-    //e.currentTarget.classList.add(styles.active);
-  } */
+  const [width, setWidth] = useState(undefined);
+  const handleMouseEnter = (e,idx) => {
+    console.log(e.currentTarget.parentNode.childNodes);
+  }
 
   return (
     <>
       <div className={styles.wrap}>
         <div className="inner">
           <div className={styles.restTitle}>
-            <PiAirplaneTiltLight style={{ verticalAlign: "top" }} />제주시 여행콕콕
+            <PiAirplaneTiltLight style={{ verticalAlign: "top" }} />
+            <Title info={'여행콕콕'} newStyle={true}/>
           </div>
           <div>
             <ul className={styles.tab}>
@@ -102,7 +112,7 @@ export default function Rest() {
               </div>
             )} */}
             {list.map((item, idx) =>
-              <div className={`${styles.recommandItem} ${styles.active}`} key={item.contentid}>
+              <div className={styles.recommandItem} key={item.contentid} onMouseEnter={(e)=>handleMouseEnter(e,idx)}>
                 <Link to="/" className={styles.imageWrap}>
                   <span onClick={(e) => handleLike(e, idx)}>
                     {like === idx

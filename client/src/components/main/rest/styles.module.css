@@ -3,7 +3,8 @@
   margin-bottom: 80px;
 }
 .wrap div.restTitle {
-  margin-bottom: 15px;
+  display: flex;
+  padding: 10px 0;
   height: 35px;
   font-size: 32px;
   font-weight: 800;
