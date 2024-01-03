@@ -49,9 +49,11 @@ export default function Rest() {
   }, []) */
 
   const [active, setActive] = useState("stay");
+  const [width, setWidth] = useState(undefined);
 
   const handleClick = (e) => {
     //console.log(e.target.dataset.id);
+    setWidth(undefined)
     if (!e.target.className.includes("active")) {
       if (active === "stay") {
         setActive("restaurant");
@@ -69,7 +71,6 @@ export default function Rest() {
   //console.log(url);
 
   const [like, setLike] = useState(undefined);
-  //undefined 로 수정하기!
 
   const handleLike = (e, idx) => {
     //console.log(e.target);
@@ -82,9 +83,9 @@ export default function Rest() {
     }
   }
 
-  const [width, setWidth] = useState(undefined);
   const handleMouseEnter = (e,idx) => {
     //console.log(e.currentTarget.parentNode.childNodes);
+    width!==idx ? setWidth(idx) : setWidth(!idx)
   }
 
   return (
@@ -99,10 +100,10 @@ export default function Rest() {
             <ul className={styles.tab}>
               {/* <li onClick={handleClick} className={active ? styles.menuList.active : styles.menuList}>숙소</li> */}
               <li className={styles.menuList}>
-                <span onClick={handleClick} className={active === "stay" ? styles.active : ""} data-id="accomodation">숙소</span>
+                <span onClick={handleClick} className={active === "stay" ? styles.active : ""}>숙소</span>
               </li>
               <li className={styles.menuList}>
-                <span onClick={handleClick} className={active === "restaurant" ? styles.active : ""} data-id="goodPlace">맛집</span>
+                <span onClick={handleClick} className={active === "restaurant" ? styles.active : ""}>맛집</span>
               </li>
             </ul>
           </div>
@@ -118,7 +119,7 @@ export default function Rest() {
               </div>
             )} */}
             {list.map((item, idx) =>
-              <div className={styles.recommandItem} key={item.contentid} onMouseEnter={(e)=>handleMouseEnter(e,idx)}>
+              <div className={width === idx ? `${styles.recommandItem} ${styles.active}` : styles.recommandItem} key={item.contentid} onMouseEnter={(e)=>handleMouseEnter(e,idx)}>
                 <Link to="/" className={styles.imageWrap}>
                   <span onClick={(e) => handleLike(e, idx)}>
                     {like === idx

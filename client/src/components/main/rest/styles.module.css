@@ -89,6 +89,14 @@
   width: 600px;
 }
 .wrap div.recommandSection div.recommandItem:hover img {
+  transform: scale(1.2);
+  transition: all 0.5s ease;
+}
+.wrap div.recommandSection div.recommandItem.active {
+  cursor: pointer;
+  width: 600px;
+}
+.wrap div.recommandSection div.recommandItem.active img {
   transform: scale(1.1);
   transition: all 0.5s ease;
 }
