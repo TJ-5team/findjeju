@@ -1,0 +1,145 @@
+.wrap {
+  min-height: 500px;
+  margin-bottom: 80px;
+}
+.wrap div.restTitle {
+  margin-bottom: 15px;
+  height: 35px;
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--blue);
+}
+.wrap ul.tab {
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--blue);
+  border-radius: 5px;
+}
+.wrap ul.tab li.menuList {
+  position: relative;
+  width: 50%;
+  height: 50px;
+  text-align: center;
+  box-sizing: border-box;
+}
+.wrap ul.tab li.menuList:hover {
+  cursor: pointer;
+}
+.wrap ul.tab li.menuList::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  top: 17px;
+  width: 1px;
+  height: 16px;
+  opacity: 0.5;
+  background-color: var(--white);
+}
+.wrap ul.tab span {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--white);
+  opacity: 0.5;
+}
+.wrap ul.tab span.active {
+  opacity: 1;
+}
+.wrap ul.tab span.active::after {
+  opacity: 1;
+}
+.wrap ul.tab span::after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  transform: rotate(45deg);
+  width: 12px;
+  height: 12px;
+  bottom: -5px;
+  left: 230px;
+  background-color: var(--blue);
+  z-index: -10;
+  opacity: 0;
+}
+.wrap div.recommandSection {
+  display: flex;
+}
+.wrap div.recommandSection div.recommandItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 330px;
+  width: 25%;
+  transform: scale(1);
+  overflow: hidden;
+  transition: width 1s ease;
+}
+.wrap div.recommandSection div.recommandItem:not(:first-of-type) {
+  margin-left: 20px;
+}
+.wrap div.recommandSection div.recommandItem:hover {
+  cursor: pointer;
+  width: 600px;
+}
+.wrap div.recommandSection div.recommandItem:hover img {
+  transform: scale(1.1);
+  transition: all 0.5s ease;
+}
+.wrap div.recommandSection div.recommandItem .imageWrap {
+  display: inline-block;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+.wrap div.recommandSection div.recommandItem .imageWrap svg {
+  position: absolute;
+  padding: 5px;
+  font-size: 22px;
+  top: 15px;
+  right: 15px;
+  background: var(--white);
+  border-radius: 50%;
+  z-index: 2;
+}
+.wrap div.recommandSection div.recommandItem .imageWrap svg.active {
+  color: var(--likeColor);
+}
+.wrap div.recommandSection div.recommandItem .imageWrap img {
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  z-index: -1;
+}
+.wrap div.recommandSection div.recommandItem .imageWrap span.decriptionWrap {
+  display: inline-block;
+  position: absolute;
+  width: 100%;
+  bottom: 30px;
+  color: var(--white);
+}
+.wrap div.recommandSection div.recommandItem .imageWrap span.decriptionWrap > p {
+  padding: 0 40px;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.wrap div.recommandSection div.recommandItem .imageWrap span.decriptionWrap > p:first-of-type {
+  margin-bottom: 10px;
+  font-weight: 500;
+  font-size: 18px;
+}
+.wrap div.recommandSection div.recommandItem .imageWrap span.decriptionWrap > p:last-of-type {
+  font-size: 14px;
+}
+
+li.menuList .active {
+  color: yellow;
+}/*# sourceMappingURL=styles.module.css.map */

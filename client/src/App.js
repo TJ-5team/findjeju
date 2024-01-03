@@ -4,6 +4,7 @@ import Main from "./Main";
 import MainContents from "./pages/MainContents";
 import Recommand from "./components/main/recommand/Recommand";
 import Join from "./pages/JoinPage";
+import Rest from "./components/main/rest/Rest";
 
 const router = createBrowserRouter([
 
@@ -16,6 +17,7 @@ const router = createBrowserRouter([
         element:
           <MainContents>
             <Recommand />
+            <Rest />
           </MainContents>
       },
       {
