@@ -6,12 +6,15 @@ import { PiHeartLight } from "react-icons/pi";
 import { PiHeartFill } from "react-icons/pi";
 import { Link } from "react-router-dom";
 import Title from './../title/Title';
-import { useSelector } from 'react-redux';
-import { getAreaData } from './../../../reselector/areaReselector';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAreaData, getListData } from './../../../reselector/areaReselector';
+import { changeList } from "../../../store";
 
 export default function Rest() {
+  const dispatch = useDispatch();
 
   const [num, setNum] = useState(Math.floor(Math.random() * 3));
+  const [contentId, setContentId] = useState(39)
   /* useEffect(()=>{
     setNum(Math.floor(Math.random()*9))
     console.log(num);
@@ -19,20 +22,22 @@ export default function Rest() {
   //console.log(num);
 
   const state = useSelector(getAreaData);
-
-  const [url, setUrl] = useState(`http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=4&pageNo=${num}&MobileOS=ETC&MobileApp=AppTest&ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&listYN=Y&arrange=Q&contentTypeId=32&areaCode=39&sigunguCode=4&cat1=B02&cat2=B0201&cat3=&_type=json`);
-
-  const [list] = useGetList(url);
-
+  const data = useSelector(getListData);
+  const [list] = useGetList(`http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=4&pageNo=${num}&MobileOS=ETC&MobileApp=AppTest&ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&listYN=Y&arrange=Q&contentTypeId=${data.list.contentTypeId}&areaCode=39${state.area.code}&${data.list.category}&cat3=&_type=json`);  
+  
+  
+  console.log(state);
   console.log(list);
+
+  // const [url, setUrl] = useState(`http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=4&pageNo=${num}&MobileOS=ETC&MobileApp=AppTest&ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&listYN=Y&arrange=Q&contentTypeId=32&areaCode=39${state.area.code}&cat1=B02&cat2=B0201&cat3=&_type=json`);
+  // console.log(url);
 
   /* 
   맛집API
-  http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=4&pageNo=${num}&MobileOS=ETC&MobileApp=AppTest&ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&listYN=Y&arrange=A&contentTypeId=39&areaCode=39&sigunguCode=4&cat1=A05&cat2=A0502&cat3=&_type=json
+  http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=4&pageNo=${num}1&MobileOS=ETC&MobileApp=AppTest&ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&listYN=Y&arrange=Q&contentTypeId=39&areaCode=39${state.area.code}&cat1=A05&cat2=A0502&cat3=&_type=json
   
   숙소API
-  http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=12&pageNo=${num}&MobileOS=ETC&MobileApp=AppTest&ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&listYN=Y&arrange=Q&contentTypeId=32&areaCode=39&sigunguCode=4&cat1=B02&cat2=B0201&cat3=&_type=json
-  http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=12&pageNo=${num}&MobileOS=ETC&MobileApp=AppTest&ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&listYN=Y&arrange=Q&contentTypeId=32&areaCode=39&sigunguCode=4&cat1=B02&cat2=B0201&cat3=&_type=json
+  http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=4&pageNo=${num}&MobileOS=ETC&MobileApp=AppTest&ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&listYN=Y&arrange=Q&contentTypeId=32&areaCode=39${state.area.code}&cat1=B02&cat2=B0201&cat3=&_type=json
   */
 
   /* const [list, setList] = useState([]);
@@ -52,10 +57,13 @@ export default function Rest() {
     if (!e.target.className.includes("active")) {
       if (active === "stay") {
         setActive("restaurant");
-        setUrl(`http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=4&pageNo=${num}&MobileOS=ETC&MobileApp=AppTest&ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&listYN=Y&arrange=A&contentTypeId=39&areaCode=39&sigunguCode=4&cat1=A05&cat2=A0502&cat3=&_type=json`)
+        // setUrl(`http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=4&pageNo=${num}1&MobileOS=ETC&MobileApp=AppTest&ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&listYN=Y&arrange=Q&contentTypeId=39&areaCode=39${state.area.code}&cat1=A05&cat2=A0502&cat3=&_type=json`)
+        // dispatch(changeName({ name: "제주시", code: "&sigunguCode=4", imgArea: 'jeju' }));
+        dispatch(changeList({ contentTypeId: 39, category: 'cat1=A05&cat2=A0502' }))
       } else {
         setActive("stay");
-        setUrl(`http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=4&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&listYN=Y&arrange=Q&contentTypeId=32&areaCode=39&sigunguCode=4&cat1=B02&cat2=B0201&cat3=&_type=json`)
+        // setUrl(`http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=4&pageNo=${num}&MobileOS=ETC&MobileApp=AppTest&ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&listYN=Y&arrange=Q&contentTypeId=32&areaCode=39${state.area.code}&cat1=B02&cat2=B0201&cat3=&_type=json`)
+        dispatch(changeList({ contentTypeId: 32, category: 'cat1=B02&cat2=B0201' }))
       }
     }
   };
@@ -78,7 +86,7 @@ export default function Rest() {
 
   const [width, setWidth] = useState(undefined);
   const handleMouseEnter = (e,idx) => {
-    console.log(e.currentTarget.parentNode.childNodes);
+    //console.log(e.currentTarget.parentNode.childNodes);
   }
 
   return (
