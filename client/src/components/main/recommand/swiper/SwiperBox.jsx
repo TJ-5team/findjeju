@@ -4,17 +4,22 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+import { useSelector } from 'react-redux';
+import { getAreaData } from '../../../../reselector/areaReselector';
 
-export default function SwiperBox(props) {
+export default function SwiperBox({ area }) {
     const [arr, setArr] = useState([]);
 
+
     let res = [];
+
+    const state = useSelector(getAreaData);
 
     useEffect(() => {
 
         let tempArr = [];
 
-        props.area.forEach((val, key) => {
+        area.forEach((val, key) => {
 
             /* 
             개선 전 코드
@@ -31,17 +36,17 @@ export default function SwiperBox(props) {
             const startIndex = key * 3;
             const endIndex = startIndex + 3;
 
-            res = props.area.filter((v, i) => i >= startIndex && i < endIndex);
+            res = area.filter((v, i) => i >= startIndex && i < endIndex);
 
             if (!tempArr.some(arr => arr === res) && res.length >= 1) {
                 tempArr.push(res);
             }
 
-        })
+        });
 
         setArr(tempArr);
 
-    }, [props.area]);
+    }, [area]);
 
 
     return (
@@ -55,7 +60,7 @@ export default function SwiperBox(props) {
                         {val.map((lst, idx) => {
                             let random = Math.floor(Math.random() * (10 - 1 + 1) + 1);
                             return <fieldset className={styles.imgBox}>
-                                <img src={lst.firstimage ? lst.firstimage : `./images/recommand/${props.state.imgArea}${random}.jpg`} alt="제주도이미지" />
+                                <img src={lst.firstimage ? lst.firstimage : `./images/recommand/${state.area.imgArea}${random}.jpg`} alt="제주도이미지" />
                                 <span>{lst.title}</span>
                             </fieldset>
                         })}

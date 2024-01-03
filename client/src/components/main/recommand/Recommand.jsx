@@ -6,23 +6,22 @@ import AreaTitle from './title/AreaTitle';
 
 export default function Recommand() {
 
+
   const [area, setArea] = useState([]);
-  const [state, setState] = useState([]);
 
-  const getState = (e) => {
-    setState(e.state);
-    setArea(e.area)
+  const getArea = (e) => {
+
+    setArea(e);
+
   }
-
-
 
   return (
     <>
       <div className={styles.wrap}>
         <div className={`${styles.inner} inner`}>
-          <AreaTitle getState={getState} />
+          <AreaTitle getArea={getArea} />
           <Title info={'추천 여행지'} more={'+'} />
-          <SwiperBox area={area} state={state.area} />
+          <SwiperBox area={area} />
         </div>
       </div >
     </>
