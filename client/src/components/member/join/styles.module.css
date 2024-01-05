@@ -87,6 +87,7 @@ div.wrap div.joinBox form.joinForm ul.joinList li.joinLi div.emailCodeBox p {
 div.wrap div.joinBox form.joinForm ul.joinList li.joinLi div.emailCodeBox p span {
   font-size: 16px;
   text-decoration: underline;
+  cursor: pointer;
 }
 div.wrap div.joinBox form.joinForm ul.joinList li.joinLi div.emailCodeBox div.countDown {
   color: red;
