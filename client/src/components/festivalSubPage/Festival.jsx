@@ -42,7 +42,7 @@ export default function Festival(){
               <div className={styles.textBox}>
                 <h4 className={styles.title}>{list.title}</h4>
                 <p className={styles.date}>{list.eventstartdate} ~ {list.eventenddate}</p>
-                <p className={styles.address}>{list.addr1}</p>
+                <p className={styles.address}>{`${list.addr1.split(" ")[0]}, ${list.addr1.split(" ")[1]}`}</p>
               </div>
             </Link>
           </div>

@@ -14,6 +14,9 @@ body {
   --activeColor: #5de750;
   --orange: orange;
   --bluelight: #cedcff;
+  --blue: #567ff2;
+  --white: #FFF;
+  --likeColor: #fe5d63;
   --darknite: #1A1A24;
   --gray: #666670;
 }
@@ -25,11 +28,16 @@ a {
 
 button {
   border: none;
+  margin: 0;
+  padding: 0;
+  background: none;
 }
 
 input {
   outline: none;
   border: none;
+  margin: 0;
+  padding: 0;
 }
 
 .inner {
@@ -38,7 +46,7 @@ input {
 }
 
 div.wrap {
-  margin-top: 30px;
+  margin-top: 130px;
 }
 div.wrap div.relative {
   position: relative;
