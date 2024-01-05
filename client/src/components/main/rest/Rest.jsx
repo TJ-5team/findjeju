@@ -20,9 +20,8 @@ export default function Rest() {
   },[]) */
   //console.log(num);
 
-  const state = useSelector(getAreaData);
   const data = useSelector(getListData);
-  const [list] = useGetList(`http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=4&pageNo=${data.list.num}&MobileOS=ETC&MobileApp=AppTest&ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&listYN=Y&arrange=Q&contentTypeId=${data.list.contentTypeId}&areaCode=39${state.area.code}&${data.list.category}&cat3=&_type=json`);  
+  const [list] = useGetList(`http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=4&pageNo=${data.list.num}&MobileOS=ETC&MobileApp=AppTest&ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&listYN=Y&arrange=Q&contentTypeId=${data.list.contentTypeId}&areaCode=39${data.area.code}&${data.list.category}&cat3=&_type=json`);  
   
   // console.log(state);
   // console.log(list);

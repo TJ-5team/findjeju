@@ -19,8 +19,9 @@ export const getAreaData = createSelector(
 );
 
 export const getListData = createSelector(
-  [getList],
-  (list)=>({
-    list
+  [getList, getArea],
+  (list, area)=>({
+    list,
+    area
   })
 );
