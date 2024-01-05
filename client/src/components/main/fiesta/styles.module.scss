@@ -1,0 +1,224 @@
+@use "../../../css/common/common" as m;
+
+div.wrap{
+  min-height: 900px;
+    h3.title{
+      margin-bottom: 28px;
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: -1px;
+      color: var(--fontDarkColor);
+      line-height: 25px;
+      a{
+        float: right;
+        svg{
+          text-align: center;
+          width: 17px;
+          height: 17px;
+        }
+      }
+    }
+    div.toDate{
+      color: var(--fontDarkColor);
+    }
+    div.dayList{
+      display: flex;
+      width: 940px;
+      border-top: 1px solid #e6e6e6;
+      border-bottom: 1px solid #e6e6e6;
+      margin-bottom: 30px;
+      padding: 20px 0;
+      button.day{
+        user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -webkit-user-select: none;
+        background: #fff;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: column;
+        cursor: pointer;
+        margin:  0 10px;
+        &:hover{
+          border-radius: 20%;
+          background-color: lightgray;
+        }
+        span.date{
+          margin-bottom: 10px;
+          text-align: center;
+          font-size: 17px;
+          letter-spacing: -0.5px;
+          color: var(--fontDarkColor);
+        }
+        span.text{
+          text-align: center;
+          font-size: 17px;
+          letter-spacing: -0.5px;
+          color: var(--fontDarkColor);
+        }
+      }
+      button.active{
+        background-color: var(--fontLightColor);
+        color: white !important;
+        border-radius: 20%;
+        span{
+          color: white !important;
+        }
+      }
+    }
+  div.swiperWrap{
+    position: relative;
+    div.festival{
+      position: relative;
+      width: 300px !important;
+      height: 424px;
+      border: 1px solid #f0f0f0;
+      border-radius: 5px;
+      overflow: hidden;
+      &:hover{
+        div.cont{
+          bottom: 0;
+          transition: all 0.5s;
+        }
+      }
+      img{
+        width: 100%;
+        height: 100%;
+      }
+      div.cont{
+        width: 100%;
+        color: #fff;
+        position: absolute;
+        bottom: -263px;
+        height: 263px;
+        background: rgba(0,0,0,.8);
+        transition: all 0.5s;
+        text-align: center;
+        strong.subject{
+          display: block;
+          margin: 40px 30px 8px;
+          font-weight: 700;
+          font-size: 20px;
+          letter-spacing: -0.8px;
+          line-height: 23px;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+        }
+        span.addr{
+          display: block;
+          font-size: 14px;
+          font-weight: 300;
+          line-height: 16px;
+        }
+        em.start{
+          display: block;
+          margin: 17px 0 40px;
+          font-size: 16px;
+          font-weight: 300;
+          line-height: 18px;
+        }
+        a.link{
+          display: inline-block;
+        width: 63px;
+        height: 63px;
+        line-height: 63px;
+        font-size: 14px;
+        font-weight: 300;
+        border: 1px solid #fff;
+        border-radius: 100%;
+        color: #fff;
+        letter-spacing: -0.5px;
+        }
+      }
+    }
+    div.noImg{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f4f6f8;
+      img{
+        width: 141px;
+        height: 140px;
+      }
+    }
+    button.festivalPrevBtn{
+      position: absolute;
+      top: 200px;
+      left: -30px;
+      width: 30px;
+      height: 30px;
+      border: 1px solid var(--fontDarkColor);
+      border-radius: 50%;
+      background-color: #fff;
+      svg{
+        width: 100%;
+        height: 100%;
+      }
+    }
+    button.festivalNextBtn{
+      position: absolute;
+      top: 200px;
+      right: -30px;
+      width: 30px;
+      height: 30px;
+      border: 1px solid var(--fontDarkColor);
+      border-radius: 50%;
+      background-color: #fff;
+      svg{
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+  div.festivalLink{
+    margin-top: 25px;
+    text-align: center;
+    a{
+      display: inline-block;
+      width: 260px;
+      height: 45px;
+      line-height: 42px;
+      border: 1px solid var(--fontLightColor);
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: 300;
+      letter-spacing: -0.5px;
+      color: var(--fontLightColor);
+      box-sizing: border-box;
+      strong{
+        font-weight: 700;
+      }
+      svg{
+        vertical-align: middle;
+        width: 25px;
+        height: 25px;
+      }
+    }
+  }
+  div.noData{
+    text-align: center;
+    min-height: 424px;
+    background: #f4f6f8;
+    img.noImg{
+      margin-top: 100px;
+      margin-bottom: 30px;
+    }
+    h4.noTitle{
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.8px;
+      line-height: 23px;
+      color: #333;
+    }
+    p.noText{
+      margin: 7px 0 18px;
+      font-size: 16px;
+      letter-spacing: -0.5px;
+      line-height: 19px;
+      color: #666;
+    }
+  }
+}

@@ -8,6 +8,9 @@ import Rest from "./components/main/rest/Rest";
 import VisualSlide from "./components/main/visual/VisualSlide";
 import SearchModal from "./components/modal/SearchModal";
 import SearchPage from "./pages/SearchPage";
+import Fiesta from "./components/main/fiesta/Fiesta";
+import FestivalSubPage from "./pages/FestivalSubPage";
+import FestivalDetailPage from "./pages/FestivalDetailPage";
 
 const router = createBrowserRouter([
 
@@ -23,6 +26,7 @@ const router = createBrowserRouter([
             <VisualSlide/>
             <Recommand />
             <Rest />
+            <Fiesta/>
           </MainContents>
       },
       {
@@ -34,7 +38,21 @@ const router = createBrowserRouter([
         path:"/search/:keyword",
         element:
         <SearchPage/>
-      }
+      },
+      {
+        path:"/festival",
+        element:
+        <MainContents>
+          <FestivalSubPage/>
+        </MainContents>
+      },
+      {
+        path:"/festival/:contentid",
+        element:
+        <MainContents>
+          <FestivalDetailPage/>
+        </MainContents>
+      },
     ]
   }
 

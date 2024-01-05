@@ -1,0 +1,89 @@
+@use "../../css/common/common" as m;
+
+div.wrap{
+  margin-top: 30px;
+  div.relative{
+    position: relative;
+    width: 225px;
+    height: 50px;
+    margin-bottom: 40px;
+    svg.svg{
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      top: 12px;
+      left: 18px;
+    }
+    select.select{
+      width: 100%;
+      height: 100%;
+      padding: 0 0 0 52px;
+      border: 1px solid #000;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 400;
+      color: #00000A;
+      &:focus{
+        outline: none;
+      }
+    }
+  }
+  div.noResult{
+    margin-top: 100px;
+    min-height: 600px;
+    text-align: center;
+    h4.noTitle{
+      padding-top: 40px;
+      font-size: 20px;
+      font-weight: 600;
+      color:var(--darknite);
+    }
+    p.noText{
+      padding-top: 7px;
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--gray);
+    }
+  }
+  div.flex{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    min-height: 650px;
+    div.festival{
+      margin-right: 13px;
+      height: 350px;
+      border-radius: 8px;
+      &:nth-of-type(3n+3){
+        margin-right: 0;
+      }
+      img.img{
+        width: 300px;
+        border-radius: 8px;
+        height: 212px;
+      }
+      div.textBox{
+        margin-left: 5px;
+        width: 284px;
+        h4.title{
+          width: 100%;
+          margin-top: 14px;
+          font-size: 20px;
+          font-weight: 700;
+          color: var(--darknite);
+        }
+        p.date{
+          padding: 12px 0 10px 0;
+          font-size: 16px;
+          font-weight: 400;
+          color: var(--darknite);
+        }
+        p.address{
+          color: var(--gray);
+          font-size: 16px;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}
