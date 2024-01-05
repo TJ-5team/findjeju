@@ -13,12 +13,140 @@
   width: 600px;
 }
 
+.listTopMenu {
+  position: relative;
+  height: 72px;
+  background: #f4f6f8;
+  border-top: 1px solid #e6e6e6;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.topMenuContainer {
+  padding: 17px 20px 5px;
+  position: static;
+}
+
+.topMenuBox {
+  display: flex;
+}
+
+.topMenuItem {
+  width: auto;
+  margin-right: 10px;
+}
+.topMenuItem button {
+  display: block;
+  height: 36px;
+  padding: 0 14px;
+  line-height: 36px;
+  font-size: 16px;
+  border-radius: 50px;
+  box-shadow: 0px 2px 0px 0px rgba(51, 51, 51, 0.1);
+  background: #fff;
+  color: #666;
+  cursor: pointer;
+}
+.topMenuItem button.active {
+  color: #fff;
+  background: #666;
+  font-weight: 700;
+  box-shadow: none;
+}
+
+.filterWrap {
+  margin-top: 40px;
+  min-height: 55px;
+  position: relative;
+  width: 600px;
+  padding: 15px 0 13px;
+  font-weight: 700;
+  border-top: 1px solid #999;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.filter {
+  position: absolute;
+  top: 13px;
+  right: 0;
+  color: #767676;
+}
+.filter button {
+  background: none;
+  overflow: hidden;
+  display: inline-block;
+  padding: 0 15px;
+  font-size: 16px;
+  line-height: 22px;
+  cursor: pointer;
+}
+.filter button:first-child {
+  margin-right: 10px;
+}
+.filter button.active {
+  color: #000;
+  font-weight: 700;
+}
+
+.searchType {
+  font-size: 13px;
+  color: #666;
+  font-weight: bold;
+}
+
+.searchResultBanner {
+  margin: 20px 0 0;
+}
+
 .rightMenu {
   box-sizing: border-box;
 }
-.rightMenu .rightBox {
+.rightMenu .rightWrap {
   float: right;
   width: 300px;
+}
+.rightMenu .rightWrap .rightContainer .rightBox {
+  float: right;
+  width: 300px;
+  border: 1px solid #e6e6e6;
+  background-color: #f7f7f7;
+}
+.rightMenu .rightWrap .rightContainer .rightBox .popularKeyword {
+  border-top: none;
+  margin: 36px 40px;
+}
+.rightMenu .rightWrap .rightContainer .rightBox .popularKeyword h3 {
+  margin-top: 35px;
+  font-weight: 400;
+  font-size: 18px;
+  color: #000;
+}
+.rightMenu .rightWrap .rightContainer .rightBox .popularKeyword ul {
+  width: 100%;
+  margin-top: 13px;
+}
+.rightMenu .rightWrap .rightContainer .rightBox .popularKeyword ul li {
+  position: relative;
+}
+.rightMenu .rightWrap .rightContainer .rightBox .popularKeyword ul li a span {
+  position: absolute;
+  left: 0;
+  top: -1px;
+  width: 16px;
+  height: 16px;
+  margin-top: 5px;
+  text-align: center;
+  color: #fff;
+  font-size: 10px;
+  background: #666;
+  border-radius: 3px;
+  line-height: 1.6;
+  vertical-align: top;
+}
+.rightMenu .rightWrap .rightContainer .rightBox .popularKeyword ul li a em {
+  margin-left: 20px;
+  color: #666;
+  font-size: 16px;
+  letter-spacing: -0.25px;
 }
 
 .float {

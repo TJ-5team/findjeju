@@ -2,7 +2,6 @@ import React from 'react';
 import style from "./styles.module.css";
 import { Link, useLocation } from 'react-router-dom';
 export default function HeaderMenu() {
-  console.log(useLocation().pathname);
   const path = useLocation().pathname;
   return (
     <>
