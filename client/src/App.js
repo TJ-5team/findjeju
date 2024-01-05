@@ -16,7 +16,7 @@ const router = createBrowserRouter([
         element:
         <MainContents>
           <Recommand/>
-          <Weather />
+          <Weather/>
         </MainContents>
       }
     ]

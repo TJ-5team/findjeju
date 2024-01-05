@@ -8,5 +8,5 @@ export default function useGetList(baseUrl){
     .get(baseUrl)
     .then(result => setList(result.data.response.body.items.item))
   }, []);
-  return [list]
+  return [list,baseUrl]
 }
