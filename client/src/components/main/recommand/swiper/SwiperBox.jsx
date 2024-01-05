@@ -56,10 +56,10 @@ export default function SwiperBox({ area }) {
                 className={styles.swiper}
             >
                 {arr.map((val, key) => {
-                    return <SwiperSlide className={styles.slide}>
+                    return <SwiperSlide className={styles.slide} key={key}>
                         {val.map((lst, idx) => {
                             let random = Math.floor(Math.random() * (10 - 1 + 1) + 1);
-                            return <fieldset className={styles.imgBox}>
+                            return <fieldset key={idx} className={styles.imgBox}>
                                 <img src={lst.firstimage ? lst.firstimage : `./images/recommand/${state.area.imgArea}${random}.jpg`} alt="제주도이미지" />
                                 <span>{lst.title}</span>
                             </fieldset>

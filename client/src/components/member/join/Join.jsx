@@ -8,7 +8,7 @@ export default function Join() {
 
     const [userData, setUserData] = useState([]);
     const [form, setForm] = useState({ name: '', id: '', pass: '', passcheck: '', nickname: '', email: '', echeck: '', eSelf: '', confirm: '', phone1: '', phone2: '', phone3: '' });
-    const [image, setImage] = useState(null);
+    const [image, setImage] = useState('');
     const [emailToggle, setEmailToggle] = useState(false);
     const [time, setTime] = useState(180);
     const [isActive, setIsActive] = useState(false);
@@ -338,7 +338,6 @@ export default function Join() {
                 // startCountdown();
             })
 
-
     }
 
 
@@ -491,7 +490,7 @@ export default function Join() {
                             <li className={styles.joinLi}>
                                 <label id="address">* 주소</label>
                                 <div className={styles.addressWrap}>
-                                    <input type="text" name="address" id="address" value={address} />
+                                    <input type="text" name="address" id="address" value={address} onChange={fnChange} />
                                     <input type="text" name="address" id="address" value={form.address} onChange={fnChange} placeholder='상세주소입력' />
                                 </div>
                             </li>
