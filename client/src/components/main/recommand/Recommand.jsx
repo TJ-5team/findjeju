@@ -21,7 +21,7 @@ export default function Recommand() {
         <div className={`${styles.inner} inner`}>
           <AreaTitle getArea={getArea} />
           <Title info={'추천 여행지'} more={'+'} />
-          <SwiperBox area={area} />
+          {<SwiperBox area={area} />}
         </div>
       </div >
     </>

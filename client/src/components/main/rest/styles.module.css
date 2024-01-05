@@ -3,8 +3,9 @@
   margin-bottom: 80px;
 }
 .wrap div.restTitle {
-  margin-bottom: 15px;
-  height: 35px;
+  display: flex;
+  padding: 10px 0;
+  height: 50px;
   font-size: 32px;
   font-weight: 800;
   color: var(--blue);
@@ -88,6 +89,14 @@
   width: 600px;
 }
 .wrap div.recommandSection div.recommandItem:hover img {
+  transform: scale(1.2);
+  transition: all 0.5s ease;
+}
+.wrap div.recommandSection div.recommandItem.active {
+  cursor: pointer;
+  width: 600px;
+}
+.wrap div.recommandSection div.recommandItem.active img {
   transform: scale(1.1);
   transition: all 0.5s ease;
 }

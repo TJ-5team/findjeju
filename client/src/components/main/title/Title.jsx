@@ -10,7 +10,7 @@ export default function Title(props) {
   return (
     <>
       <div className={styles.wrap}>
-        <h3 className={props.style ? styles.subTitle : styles.title}>
+        <h3 className={props.style ? styles.subTitle : props.newStyle ? styles.newStyle : styles.title}>
           <em>{state.area.name} </em>
           <span>{props.info ? props.info : null}</span>
         </h3>
