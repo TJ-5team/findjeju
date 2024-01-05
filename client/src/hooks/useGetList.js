@@ -6,7 +6,7 @@ export default function useGetList(baseUrl){
   useEffect(()=>{
     axios
     .get(baseUrl)
-    .then(result => setList(result.data.response.body.items.item))
-  }, []);
-  return [list]
+    .then(result => setList(result.data.response.body.items.item));
+  }, [baseUrl]);
+  return [list];
 }
