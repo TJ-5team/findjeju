@@ -11,6 +11,7 @@ import SearchPage from "./pages/SearchPage";
 import Fiesta from "./components/main/fiesta/Fiesta";
 import FestivalSubPage from "./pages/FestivalSubPage";
 import FestivalDetailPage from "./pages/FestivalDetailPage";
+import DetailPage from "./pages/DetailPage";
 
 const router = createBrowserRouter([
 
@@ -51,6 +52,13 @@ const router = createBrowserRouter([
         element:
         <MainContents>
           <FestivalDetailPage/>
+        </MainContents>
+      },
+      {
+        path:"/detail/:contentid/:contenttypeid",
+        element:
+        <MainContents>
+          <DetailPage/>
         </MainContents>
       },
     ]

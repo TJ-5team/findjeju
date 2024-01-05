@@ -119,7 +119,7 @@ export default function Rest() {
             )} */}
             {list.map((item, idx) =>
               <div className={width === idx ? `${styles.recommandItem} ${styles.active}` : styles.recommandItem} key={item.contentid} onMouseEnter={(e)=>handleMouseEnter(e,idx)}>
-                <Link to="/" className={styles.imageWrap}>
+                <Link to={`/detail/${item.contentid}/${item.contenttypeid}`} className={styles.imageWrap}>
                   <span onClick={(e) => handleLike(e, idx)}>
                     {like === idx
                       ? <PiHeartFill className={styles.active} />
