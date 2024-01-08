@@ -1,9 +1,17 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import styles from './styles.module.css'
 import {Link} from 'react-router-dom'
+import {useDispatch, useSelector} from 'react-redux'
+import { getSearch } from '../../reselector/searchReselector';
+import { clickOthers } from '../../reducer/searchReducer';
+
 export default function SearchModal() {
   const [isFocus,setIsFocus] = useState(false);
   const [length,setLength] = useState(false);
+  const {searchFlag} = useSelector(getSearch)
+  const dispatch = useDispatch();
+  const wrapTarget = useRef(null);
+  console.log(searchFlag);
   function handleChange(e){
     if(e.target.value.length > 0){
       setLength(true)
@@ -11,8 +19,18 @@ export default function SearchModal() {
       setLength(false)
     }
   }
+  function handleClick(e){
+    console.log(e.currentTarget);
+    console.log(e);
+    console.log(wrapTarget);
+    if(e.target === wrapTarget.current){
+      dispatch(clickOthers())
+    }else{
+      return
+    }
+  }
   return (
-      <div className={styles.wrap} style={{ "display": "none" }}>
+      <div className={styles.wrap} style={searchFlag ? { "display": "block" } :{ "display": "none" }} onClick={(e)=>handleClick(e)} ref={wrapTarget}>
         <div className={styles.container}>
           <div className={styles.box}>
             <span className={styles.logo}>
@@ -56,7 +74,7 @@ export default function SearchModal() {
                   </ul>
                 </div>
               </div>
-              <button className={styles.searchClose} type="button">닫기</button>
+              <button className={styles.searchClose} type="button" onClick={()=>dispatch(clickOthers())}>닫기</button>
             </div>
           </div>
         </div>
