@@ -8,21 +8,24 @@ import { Link } from 'react-router-dom';
 import useGetList from '../../../hooks/useGetList';
 
 export default function VisualSlide() {
-  const [list] = useGetList("http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=12&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey=CU%2BXIQukCNW8VDOOJDU8QzHHPgrsOso%2FEiDhpWTlD8Lb9q1SYmll5Qp9YK4UsjFNOYVQoLCrMi2s0mfnEPr0iA%3D%3D&listYN=Y&arrange=D&contentTypeId=12&areaCode=39&sigunguCode=&cat1=&cat2=A0101&cat3=&_type=json")
+  const [list] = useGetList("http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=11&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey=CU%2BXIQukCNW8VDOOJDU8QzHHPgrsOso%2FEiDhpWTlD8Lb9q1SYmll5Qp9YK4UsjFNOYVQoLCrMi2s0mfnEPr0iA%3D%3D&listYN=Y&arrange=D&contentTypeId=12&areaCode=39&sigunguCode=&cat1=&cat2=A0101&cat3=&_type=json")
   const [firstSwiper, setFirstSwiper] = useState(null);
   const [secondSwiper, setSecondSwiper] = useState(null);
   const [auto, setAuto] = useState(false);
   const [reset, setReset] = useState(false);
   const [colorNum, setColorNum] = useState(0);
   const visualSwiper = useRef(null)
+  const titleSwiper = useRef(null)
   const progressFill = useRef(null)
   const handlePlay = () => {
     visualSwiper.current.swiper.autoplay.resume();
+    // titleSwiper.current.swiper.autoplay.resume();
     setAuto(false)
     // setAuto(visualSwiper.current.swiper.autoplay.running)
   }
   const handleStop = () => {
     visualSwiper.current.swiper.autoplay.pause();
+    // titleSwiper.current.swiper.autoplay.pause();
     setAuto(visualSwiper.current.swiper.autoplay.paused)
   }
   const bgColor = ['rgb(255, 244, 197)', 'rgb(239, 232, 255)', 'rgb(232, 235, 240)', 'rgb(218, 238, 255)', 'rgb(235, 247, 255)', 'rgb(235, 245, 250)', 'rgb(245, 240, 243)', 'rgb(242, 245, 255)', 'rgb(255, 230, 229)', 'rgb(218, 238, 255)', 'rgb(235, 247, 255)', 'rgb(242, 235, 255)']
@@ -36,6 +39,7 @@ export default function VisualSlide() {
     } */
   }
   useEffect(() => {
+    // titleSwiper.current.swiper.autoplay.start();
     visualSwiper.current.swiper.autoplay.start();
     setAuto(false);
   }, [reset])
@@ -60,10 +64,22 @@ export default function VisualSlide() {
           }}
           modules={[Controller, Navigation, Pagination, Autoplay]}
         >
+          <SwiperSlide key={0}>
+            <div className={styles.titleWrap}>
+              <em>
+                제주도의 여행지
+              </em>
+              <strong>
+                {"태웃개"}
+              </strong>
+              <Link>
+              </Link>
+            </div>
+          </SwiperSlide>
           {list.map((item) => <SwiperSlide key={item.contentid}>
             <div className={styles.titleWrap}>
               <em>
-                2023 트렌드 in 제주
+                제주도의 여행지
               </em>
               <strong>
                 {item.title}
@@ -77,8 +93,10 @@ export default function VisualSlide() {
 
       <div className={styles.imgWrap}>
         <Swiper
+          ref={titleSwiper}
           className={styles.rightSwiper}
-          modules={[Controller]}
+          modules={[Controller, Autoplay]}
+          autoplay={false}
           loop={true}
           spaceBetween={30}
           slidesPerView={1}
@@ -88,11 +106,17 @@ export default function VisualSlide() {
           onSwiper={setSecondSwiper}
           controller={{ control: firstSwiper }}
         >
-          {list.map((item)=><SwiperSlide key={item.contentid}>
+          <SwiperSlide key={0}>
+            <Link to={"/"}>
+              <img src={"http://tong.visitkorea.or.kr/cms/resource/45/3015645_image2_1.jpg"} alt="" />
+            </Link>
+          </SwiperSlide>
+          {list.map((item) => <SwiperSlide key={item.contentid}>
             <Link to={"/"}>
               <img src={item.firstimage} alt="" />
             </Link>
           </SwiperSlide>)}
+
         </Swiper>
       </div>
 
