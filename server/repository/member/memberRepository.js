@@ -19,3 +19,14 @@ export async function mailCheck(id) {
 
 }
 
+export async function signUp({name,id,hpass,nickname,email,phone,totalAddr,image,checked}){
+
+    const sql = `insert into fj_member(name,id,password,nickname,email,phone,address,user_img,sms_check) values(?,?,?,?,?,?,?,?,?)`;
+
+    return db.execute(sql,[name,id,hpass,nickname,email,phone,totalAddr,image,checked])
+        .then((result)=>'ok');
+
+}
+
+
+

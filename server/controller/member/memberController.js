@@ -1,6 +1,7 @@
 import * as repository from "../../repository/member/memberRepository.js";
 import nodemailer from 'nodemailer';
-
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 
 const mailer = nodemailer.createTransport({
     service: "gmail",
@@ -42,6 +43,20 @@ export async function getMember(req, res) {
     res.json(rows);
 
 }
+
+export async function signUp(req,res){
+
+    const {name,id,pass,nickname,phone1,phone2,phone3,postal,addr,address,image,email,checked} = req.body
+
+    const phone = phone1 + phone2 + phone3;
+    const totalAddr = `(${postal})${addr}${address}`;
+    const hpass = bcrypt.hashSync(pass, 10);
+
+    const result = await repository.signUp({name,id,hpass,nickname,email,phone,totalAddr,image,checked});
+
+    res.json(result);
+
+};
 
 
 

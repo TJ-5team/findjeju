@@ -6,6 +6,6 @@ const router = express.Router();
 
 router.get('/', controller.getMember);
 router.post('/email', controller.mailCheck);
-
+router.post('/signup', controller.signUp);
 
 export default router;

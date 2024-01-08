@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from './styles.module.css';
 import ImageUpload from '../../imageUpload/ImageUpload';
 import axios from 'axios';
@@ -8,6 +8,8 @@ export default function Join() {
 
     const [userData, setUserData] = useState([]);
     const [form, setForm] = useState({ name: '', id: '', pass: '', passcheck: '', nickname: '', email: '', echeck: '', eSelf: '', confirm: '', phone1: '', phone2: '', phone3: '' });
+    const [checked, setChecked] = useState({ terms1: false, terms2: false, terms3: false });
+    const [email, setEmail] = useState({ email: '', echeck: '' });
     const [image, setImage] = useState('');
     const [emailToggle, setEmailToggle] = useState(false);
     const [time, setTime] = useState(180);
@@ -16,6 +18,7 @@ export default function Join() {
     const [postal, setPostal] = useState(false);
     const [address, setAddress] = useState('');
     const [zoneCode, setZoneCode] = useState('');
+    const [allCheck, setAllCheck] = useState(false);
 
     let pattern_num = /[0-9]/;	// 숫자 
     let pattern_eng = /[a-zA-Z]/;	// 문자 
@@ -34,19 +37,104 @@ export default function Join() {
     const pattern_phone = /^(01[016789]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
 
     const [mailCheck, setMailCheck] = useState(false);
+
     const [check, setCheck] = useState({ name: '', id: '', pass: '', passcheck: '', nickname: '', email: '', echeck: '', eSelf: '', confirm: '', phone1: '' });
     const [focus, setFocus] = useState({ name: '', id: '', pass: '', passcheck: '', nickname: '', email: '', echeck: '', eSelf: '', confirm: '', phone1: '' });
     const [validation, setValidation] = useState({ name: '필수 입력 항목입니다.', id: '필수 입력 항목입니다.', pass: '필수 입력 항목입니다.', passcheck: '필수 입력 항목입니다.', nickname: '필수 입력 항목입니다.', email: '이메일 형식에 맞지 않습니다.', echeck: '필수 입력 항목입니다.', eSelf: '필수 입력 항목입니다.', confirm: '', phone: '필수 입력 항목입니다.' });
 
+    const nameRef = useRef(null);
+    const idRef = useRef(null);
+    const passRef = useRef(null);
+    const pcheckRef = useRef(null);
+    const nickRef = useRef(null);
+    const emailRef = useRef(null);
+    const phoneRef1 = useRef(null);
+    const phoneRef2 = useRef(null);
+    const phoneRef3 = useRef(null);
+    const teRef1 = useRef(null);
+    const teRef2 = useRef(null);
+
+    /*서브밋함수 */
     const fnSubmit = (e) => {
 
+        e.preventDefault();
 
+        if (validation.name === '최소 두글자 이상입니다.' || validation.name === '최대 다섯글자 입니다.' || validation.name === '동일한 이름이 존재합니다.' || validation.name === '필수 입력 항목입니다.') {
+            nameRef.current.focus();
+            return false
+        }
 
+        if (validation.id === '최소 5자 이상, 최대 12글자 입니다.' || validation.id === '동일한 아이디가 존재합니다.' || validation.id === '필수 입력 항목입니다.') {
+            idRef.current.focus();
+            return false
+        }
+
+        if (validation.pass === '최대 12글자 입니다.' || validation.pass === '필수 입력 항목입니다.') {
+            passRef.current.focus();
+            return false
+        }
+
+        if (validation.passcheck === '입력하신 비밀번호와 다릅니다.' || validation.passcheck === '필수 입력 항목입니다.') {
+            pcheckRef.current.focus();
+            return false
+        }
+
+        if (validation.nickname === '최소 두글자 이상입니다.' || validation.nickname === '최대 8글자 입니다.' || validation.nickname === '동일한 닉네임이 존재합니다.' || validation.nickname === '필수 입력 항목입니다.') {
+            nickRef.current.focus();
+            return false
+        }
+
+        if (validation.email === '이메일을 인증해주세요.' || validation.email === '이메일 형식에 맞지 않습니다.') {
+            emailRef.current.focus();
+            return false
+        }
+
+        if (validation.phone === '번호 형식에 맞지 않습니다.' || validation.phone === '필수 입력 항목입니다.' || validation.phone === '이미 사용 중인 번호입니다.') {
+            phoneRef1.current.focus();
+            return false
+        }
+
+        if (!checked.terms1) {
+            teRef1.current.focus();
+            return false
+        }
+        if (!checked.terms2) {
+            teRef2.current.focus();
+            return false
+        }
+
+        const formData = new FormData(e.target);
+        const formDataObject = {};
+
+        formData.forEach((value, key) => {
+            formDataObject[key] = value;
+        });
+
+        formDataObject['addr'] = address;
+        formDataObject['email'] = email.email + "@" + email.echeck
+        formDataObject['checked'] = checked.terms3
+
+        axios({
+
+            method: 'post',
+            url: 'http://127.0.0.1:8000/join/signup',
+            data: formDataObject
+
+        }).then((result) => {
+
+            if (result.data === 'ok') {
+
+                window.location.reload();
+
+            }
+
+        })
+
+        console.log(formDataObject);
     }
 
+    /*데이터 가져와서 회원비교*/
     useEffect(() => {
-
-
 
         axios({
 
@@ -60,25 +148,7 @@ export default function Join() {
 
     }, []);
 
-    useEffect(() => {
-
-        let interval = null;
-        if (isActive) {
-            interval = setInterval(() => {
-                setTime(time => time - 1);
-                if (time === 1) {
-                    setIsActive(false)
-                }
-            }, 1000);
-        } else if (!isActive && time !== 0) {
-            clearInterval(interval);
-        }
-        return () => clearInterval(interval);
-    }, [isActive, time]);
-
-
-
-
+    /*유효성검사 */
     const fnChange = (e) => {
 
         const { name, value } = e.target
@@ -104,7 +174,6 @@ export default function Join() {
             setCheck((check) => ({ ...check, name: '' }));
             setValidation((validation) => ({ ...validation, name: '필수 입력 항목입니다.' }));
         }
-
         /* 아이디 유효성 검사 */
         if (name === 'id' && value) {
             setCheck((check) => ({ ...check, id: 'id' }));
@@ -139,7 +208,6 @@ export default function Join() {
             setValidation((validation) => ({ ...validation, pass: '필수 입력 항목입니다.' }));
 
         }
-
         /* 패스워드 체크 유효성 검사 */
         if (name === 'passcheck' && value) {
             setCheck((check) => ({ ...check, passcheck: 'passcheck' }));
@@ -176,9 +244,7 @@ export default function Join() {
             setCheck((check) => ({ ...check, nickname: '' }));
             setValidation((validation) => ({ ...validation, nickname: '필수 입력 항목입니다.' }));
         }
-
         /* 이메일 유효성 검사 */
-
         if (name === 'email' && value) {
             const emailCheck = form.email + '@' + form.echeck
             const emailSelfCheck = form.email + '@' + form.eSelf
@@ -198,7 +264,6 @@ export default function Join() {
             setCheck((check) => ({ ...check, email: '' }));
             setValidation((validation) => ({ ...validation, email: '이메일 형식에 맞지 않습니다.' }));
         }
-
         if (name === 'echeck') {
             const emailCheck = form.email + '@' + form.echeck
             const emailSelfCheck = form.email + '@' + form.eSelf
@@ -217,7 +282,6 @@ export default function Join() {
             setCheck((check) => ({ ...check, email: '' }));
             setValidation((validation) => ({ ...validation, email: '이메일 형식에 맞지 않습니다.' }));
         }
-
         if (name === 'confirm' && value) {
             if (!pattern_num.test(value)) {
                 return false
@@ -231,20 +295,53 @@ export default function Join() {
             setCheck((check) => ({ ...check, confirm: 'confirm' }));
 
         }
-
-        /* 핸드폰번호 유효성 검사 */
-
-
         /* 이용약관 유효성 검사*/
-
-        if (name === 'terms' && value) {
-
-        }
 
         setForm({ ...form, [name]: value });
 
     }
 
+    const handleAllCheck = (e) => {
+        const { checked } = e.target;
+
+        setCheck((checks) => Object.keys(checks).reduce(
+            (newCheck, checkKey) => ({
+                ...newCheck,
+                [checkKey]: checked,
+            }),
+            {}
+        )
+        );
+        setAllCheck(checked);
+    }
+    /*이용약관토글체크 */
+    const handleCheck = (e) => {
+
+        const { name, checked } = e.target;
+
+        setChecked((checks) => ({ ...checks, [name]: checked }));
+
+        const allChecked = Object.values({ ...check, [name]: checked }).every((value) => value === true);
+        setAllCheck(allChecked);
+
+    }
+
+    /*포커스함수 */
+    const handleFocus = (e) => {
+
+        const { name, value } = e.target;
+
+        if (value) {
+
+            return false
+
+        }
+
+        setFocus((focus) => ({ ...focus, [name]: 'ok' }));
+
+    }
+
+    /*이메일 유효성검사 */
     useEffect(() => {
         setEmailToggle(false);
         const emailCheck = form.email + '@' + form.echeck
@@ -261,38 +358,63 @@ export default function Join() {
 
     }, [form.echeck, form.email, form.eSelf])
 
+    /*이메일 3분 setInterval */
     useEffect(() => {
 
-
-        const phoneTotal = `${form.phone1}-${form.phone2}-${form.phone3}`;
-
-        if (!pattern_phone.test(phoneTotal)) {
-            setValidation((validation) => ({ ...validation, phone: '번호 형식에 맞지 않습니다.' }));
-        } else if (pattern_phone.test(phoneTotal)) {
-            setCheck((check) => ({ ...check, phone: 'phone' }));
-            setValidation((validation) => ({ ...validation, phone: '사용 가능한 휴대폰번호입니다.' }));
+        let interval = null;
+        if (isActive) {
+            interval = setInterval(() => {
+                setTime(time => time - 1);
+                if (time === 1) {
+                    setIsActive(false)
+                }
+            }, 1000);
+        } else if (!isActive && time !== 0) {
+            clearInterval(interval);
         }
+        return () => clearInterval(interval);
+    }, [isActive, time]);
 
-    }, [form.phone1, form.phone2, form.phone3])
-
-    const getImage = (e, d) => {
-        setImage(e);
+    /*이메일 카운트다운 */
+    const resetCountdown = () => {
+        setTime(180);
+        setIsActive(false);
     }
 
-    const handleFocus = (e) => {
+    /*이메일전송 */
+    const handleMail = () => {
 
-        const { name, value } = e.target;
+        setTime(180);
 
-        if (value) {
+        axios.post("http://127.0.0.1:8000/join/email", { email: form.email, echeck: form.echeck })
+            .then((result) => {
 
-            return false
+                setNumber(result.data.number);
+                resetCountdown();
+                setIsActive(true);
 
-        }
-
-        setFocus((focus) => ({ ...focus, [name]: 'ok' }));
+                // startCountdown();
+            })
 
     }
 
+    /*이메일체크*/
+    const handleMailCheck = (e) => {
+
+        setEmail({ email: form.email, echeck: form.echeck })
+        setMailCheck(true);
+
+    }
+    /*이메일인증*/
+    useEffect(() => {
+
+        if (mailCheck) {
+            setValidation((validation) => ({ ...validation, email: '이메일 인증이 완료되었습니다.' }));
+        }
+
+    }, [mailCheck]) // 이메일인증 확인버튼
+
+    /*다음주소 */
     const completeHandler = (data) => {
 
         let fullAddress = data.address;
@@ -313,50 +435,31 @@ export default function Join() {
 
     }
 
-    /* const startCountdown = () => {
-
-        setIsActive(true);
-
-    } */
-
-    const resetCountdown = () => {
-        setTime(180);
-        setIsActive(false);
-    }
-
-    const handleMail = () => {
-
-        setTime(180);
-
-        axios.post("http://127.0.0.1:8000/join/email", { email: form.email, echeck: form.echeck })
-            .then((result) => {
-
-                setNumber(result.data.number);
-                resetCountdown();
-                setIsActive(true);
-
-                // startCountdown();
-            })
-
-    }
-
-
-    const handleMailCheck = (e) => {
-
-        setMailCheck(true);
-
-    }
-
+    /*휴대폰 유효성검사 */
     useEffect(() => {
 
-        if (mailCheck) {
-            setValidation((validation) => ({ ...validation, email: '이메일 인증이 완료되었습니다.' }));
+
+        const phoneTotal = `${form.phone1}-${form.phone2}-${form.phone3}`;
+        const phoneTot = `${form.phone1}${form.phone2}${form.phone3}`;
+        const search = userData.some((val) => val.phone === phoneTot);
+        console.log(search);
+        if (!pattern_phone.test(phoneTotal)) {
+            setValidation((validation) => ({ ...validation, phone: '번호 형식에 맞지 않습니다.' }));
+        } else if (search) {
+            setValidation((validation) => ({ ...validation, phone: '이미 사용 중인 번호입니다.' }));
+        } else if (pattern_phone.test(phoneTotal)) {
+            setCheck((check) => ({ ...check, phone: 'phone' }));
+            setValidation((validation) => ({ ...validation, phone: '사용 가능한 휴대폰번호입니다.' }));
         }
 
-    }, [mailCheck]) // 이메일인증 확인버튼
+    }, [form.phone1, form.phone2, form.phone3])
 
+    /*파일업로드 */
+    const getImage = (e, d) => {
+        setImage(e);
+    }
 
-
+    /*이용약관 유효성검사*/
 
     return (
         <>
@@ -367,55 +470,55 @@ export default function Join() {
                         <ul className={styles.joinList}>
                             <li className={styles.joinLi}>
                                 <label id="name">* 이름</label>
-                                <input type="text" name="name" id="name" value={form.name} onChange={fnChange} placeholder='이름' onFocus={handleFocus} />
+                                <input type="text" name="name" id="name" value={form.name} onChange={fnChange} placeholder='이름' onFocus={handleFocus} ref={nameRef} />
                                 {focus.name === '' || check.name === 'name'
                                     ? validation.name === '최소 두글자 이상입니다.' || validation.name === '최대 다섯글자 입니다.' || validation.name === '동일한 이름이 존재합니다.'
-                                        ? <span>{validation.name}</span>
+                                        ? <span className={styles.check}>{validation.name}</span>
                                         : validation.name === '필수 입력 항목입니다.' ? null : <span className={styles.success}>{validation.name}</span>
-                                    : <span>{validation.name}</span>}
+                                    : <span className={styles.check}>{validation.name}</span>}
                             </li>
                             <li className={styles.joinLi}>
                                 <label id="id">* 아이디</label>
-                                <input type="text" name="id" id="id" value={form.id} onChange={fnChange} placeholder='아이디' onFocus={handleFocus} />
+                                <input type="text" name="id" id="id" value={form.id} onChange={fnChange} placeholder='아이디' onFocus={handleFocus} ref={idRef} />
                                 {focus.id === '' || check.id === 'id'
                                     ? validation.id === '최소 5자 이상, 최대 12글자 입니다.' || validation.id === '동일한 아이디가 존재합니다.'
-                                        ? <span>{validation.id}</span>
+                                        ? <span className={styles.check}>{validation.id}</span>
                                         : validation.id === '필수 입력 항목입니다.' ? null : <span className={styles.success}>{validation.id}</span>
-                                    : <span>{validation.id}</span>}
+                                    : <span className={styles.check}>{validation.id}</span>}
                             </li>
                             <li className={styles.joinLi}>
                                 <label id="pass">* 비밀번호</label>
                                 <input type="password" name="pass" id="pass" value={form.pass} onChange={fnChange} placeholder='비밀번호' onFocus={handleFocus} />
                                 {focus.pass === '' || check.pass === 'pass'
                                     ? validation.pass === '한글을 제외한 특수문자,문자,숫자를 포함하여 8자 이상 입력해주세요.'
-                                        ? <span>{validation.pass}</span>
+                                        ? <span className={styles.check}>{validation.pass}</span>
                                         : validation.pass === '필수 입력 항목입니다.' ? null : <span className={styles.success}>{validation.pass}</span>
-                                    : <span>{validation.pass}</span>}
+                                    : <span className={styles.check}>{validation.pass}</span>}
                             </li>
                             <li className={styles.joinLi}>
                                 <label id="passcheck">* 비밀번호 체크</label>
-                                <input type="password" name="passcheck" id="passcheck" value={form.passcheck} onChange={fnChange} placeholder='비밀번호 확인' onFocus={handleFocus} />
+                                <input type="password" name="passcheck" id="passcheck" value={form.passcheck} onChange={fnChange} placeholder='비밀번호 확인' onFocus={handleFocus} ref={pcheckRef} />
                                 {focus.passcheck === '' || check.passcheck === 'passcheck'
                                     ? validation.passcheck === '입력하신 비밀번호와 다릅니다.'
-                                        ? <span>{validation.passcheck}</span>
+                                        ? <span className={styles.check}>{validation.passcheck}</span>
                                         : validation.passcheck === '필수 입력 항목입니다.' ? null : <span className={styles.success}>{validation.passcheck}</span>
-                                    : <span>{validation.passcheck}</span>
+                                    : <span className={styles.check}>{validation.passcheck}</span>
                                 }
                             </li>
                             <li className={styles.joinLi}>
                                 <label id="nickname">* 닉네임</label>
-                                <input type="text" name="nickname" id="nickname" value={form.nickname} onChange={fnChange} placeholder='닉네임' onFocus={handleFocus} />
+                                <input type="text" name="nickname" id="nickname" value={form.nickname} onChange={fnChange} placeholder='닉네임' onFocus={handleFocus} ref={nickRef} />
                                 {focus.nickname === '' || check.nickname === 'nickname'
                                     ? validation.nickname === '최소 두글자 이상입니다.' || validation.nickname === '최대 8글자 입니다.' || validation.nickname === '동일한 닉네임이 존재합니다.'
-                                        ? <span>{validation.nickname}</span>
+                                        ? <span className={styles.check}>{validation.nickname}</span>
                                         : validation.nickname === '필수 입력 항목입니다.' ? null : <span className={styles.success}>{validation.nickname}</span>
-                                    : <span>{validation.nickname}</span>
+                                    : <span className={styles.check}>{validation.nickname}</span>
                                 }
                             </li>
                             <li className={styles.joinLi}>
                                 <label id="email">* 이메일</label>
                                 <div className={styles.emailWrap}>
-                                    <input type="text" name="email" id="email" className={styles.emailInput} value={form.email} onChange={fnChange} placeholder='이메일' onFocus={handleFocus} disabled={mailCheck} />
+                                    <input type="text" name="email" id="email" className={styles.emailInput} value={form.email} onChange={fnChange} placeholder='이메일' onFocus={handleFocus} disabled={mailCheck} ref={emailRef} />
                                     <span>@</span>
                                     {form.echeck === 'manual'
                                         ?
@@ -442,8 +545,8 @@ export default function Join() {
                                 </div>
                                 {(focus.email === 'ok' || focus.echeck === 'manual') && check.email === 'email' || check.echeck === 'echeck'
                                     ? validation.email === '등록된 이메일입니다.' || validation.email === '이메일 형식에 맞지 않습니다.'
-                                        ? <span>{validation.email}</span>
-                                        : validation.email === '이메일을 인증해주세요.' ? <span>{validation.email}</span> : <span className={styles.success}>{validation.email}</span>
+                                        ? <span className={styles.check}>{validation.email}</span>
+                                        : validation.email === '이메일을 인증해주세요.' ? <span className={styles.check}>{validation.email}</span> : <span className={styles.success}>{validation.email}</span>
                                     : null
                                 }
                                 <button type='button' className={styles.emailBtn} disabled={(validation.email === '이메일 형식에 맞지 않습니다.' || validation.email === '등록된 이메일입니다.') || emailToggle === true} onClick={() => {
@@ -467,13 +570,13 @@ export default function Join() {
                             <li className={styles.joinLi}>
                                 <label id="phone">* 핸드폰번호</label>
                                 <div className={styles.phoneWrap}>
-                                    <input type="text" name="phone1" id="phone" value={form.phone1} onChange={fnChange} placeholder='010' onFocus={handleFocus} maxLength={3} />
+                                    <input type="text" name="phone1" id="phone" value={form.phone1} onChange={fnChange} placeholder='010' onFocus={handleFocus} maxLength={3} ref={phoneRef1} />
                                     <span>-</span>
-                                    <input type="text" name="phone2" id="phone" value={form.phone2} onChange={fnChange} placeholder='1234' maxLength={4} />
+                                    <input type="text" name="phone2" id="phone" value={form.phone2} onChange={fnChange} placeholder='1234' maxLength={4} ref={phoneRef2} />
                                     <span>-</span>
-                                    <input type="text" name="phone3" id="phone" value={form.phone3} onChange={fnChange} placeholder='5678' maxLength={4} />
+                                    <input type="text" name="phone3" id="phone" value={form.phone3} onChange={fnChange} placeholder='5678' maxLength={4} ref={phoneRef3} />
                                 </div>
-                                {check.phone1 === 'phone' || focus.phone1 === 'ok' ? validation.phone === '번호 형식에 맞지 않습니다.' ? <span> {validation.phone}</span> : <span className={styles.success}> {validation.phone}</span> : null}
+                                {check.phone1 === 'phone' || focus.phone1 === 'ok' ? validation.phone === '번호 형식에 맞지 않습니다.' || validation.phone === '이미 사용 중인 번호입니다.' ? <span className={styles.check}> {validation.phone}</span> : <span className={styles.success}> {validation.phone}</span> : null}
                             </li>
                             <li className={styles.joinLi}>
                                 <label id="postal">* 우편번호</label>
@@ -495,16 +598,19 @@ export default function Join() {
                                 </div>
                             </li>
                             <li className={styles.joinLi}>
-                                <label id="upload">* 사진 업로드</label>
-                                <input type="hidden" name="upload" placeholder="image" value={image} />
+                                <label id="image">* 사진 업로드</label>
+                                <input type="hidden" name="image" placeholder="image" value={image} />
                                 <ImageUpload getImage={getImage} />
                             </li>
                             <li className={styles.joinLi}>
                                 <label id="terms">* 약관동의</label>
                                 <div className={styles.terms}>
-                                    <p><input type="checkbox" name="terms1" value={form.terms1} onChange={fnChange} /><span>개인정보 수집이용 동의 (필수)</span></p>
-                                    <p><input type="checkbox" name="terms2" value={form.terms2} onChange={fnChange} /><span>전자금융거래 이용약관 동의 (필수)</span></p>
-                                    <p><input type="checkbox" name="terms3" value={form.terms3} onChange={fnChange} /><span>마케팅 정보 메일, SMS 수신동의 (선택)</span></p>
+                                    <p><input type="checkbox" name="termsAll" checked={checked.termsAll} onChange={handleAllCheck} onFocus={handleFocus} /><span>전체선택</span></p>
+                                    <p><input type="checkbox" name="terms1" checked={checked.terms1} onChange={handleCheck} onFocus={handleFocus} ref={teRef1} /><span>개인정보 수집이용 동의 (필수)</span></p>
+                                    {checked.terms1 ? null : <span className={styles.check}>필수 체크 항목입니다.</span>}
+                                    <p><input type="checkbox" name="terms2" checked={checked.terms2} onChange={handleCheck} onFocus={handleFocus} ref={teRef2} /><span>전자금융거래 이용약관 동의 (필수)</span></p>
+                                    {checked.terms2 ? null : <span className={styles.check}>필수 체크 항목입니다.</span>}
+                                    <p><input type="checkbox" name="terms3" checked={checked.terms3} onChange={handleCheck} onFocus={handleFocus} /><span>마케팅 정보 메일, SMS 수신동의 (선택)</span></p>
                                 </div>
                             </li>
                         </ul>
