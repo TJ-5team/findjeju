@@ -87,12 +87,6 @@
   font-weight: 700;
 }
 
-.searchType {
-  font-size: 13px;
-  color: #666;
-  font-weight: bold;
-}
-
 .searchResultBanner {
   margin: 20px 0 0;
 }
@@ -157,4 +151,192 @@
   display: block;
   overflow: hidden;
   clear: both;
+}
+
+.listMidMenu ul {
+  display: flex;
+  padding: 12px 0 38px 5px;
+}
+.listMidMenu ul li button {
+  display: block;
+  font-size: 15px;
+  margin: 0 15px;
+  line-height: 18px;
+  color: #666;
+  cursor: pointer;
+}
+.listMidMenu ul li button.active {
+  font-weight: 700;
+  color: #333;
+}
+
+.section {
+  margin: 20px 0 0;
+  padding: 0 30px;
+  box-shadow: 0px 0px 6px 0px rgba(51, 51, 51, 0.1);
+  background: #fff;
+  border-radius: 5px;
+}
+.section::after {
+  content: "";
+  display: block;
+  overflow: hidden;
+  clear: both;
+}
+
+.scTitle {
+  padding: 30px 0 0;
+  font-size: 20px;
+  line-height: 23px;
+  font-weight: 800;
+  letter-spacing: -0.8px;
+  color: #333;
+}
+.scTitle::before {
+  content: "";
+  display: inline-block;
+  vertical-align: -3px;
+  margin-right: 8px;
+  width: 20px;
+  height: 22px;
+  background: url("https://korean.visitkorea.or.kr/resources/images/sub/ico_search_list.png") no-repeat;
+}
+.scTitle.festivalIcon::before {
+  background-position: 0 -44px;
+}
+.scTitle.showIcon::before {
+  background-position: 0 -66px;
+}
+.scTitle.courseIcon::before {
+  background-position: 0 -88px;
+}
+
+.commonList li {
+  padding: 20px 0;
+  border-bottom: 1px solid #e6e6e6;
+  display: flex;
+  position: relative;
+}
+
+.courseList li {
+  padding: 20px 0;
+  border-bottom: 1px solid #e6e6e6;
+  display: flex;
+  position: relative;
+}
+
+.searchImg {
+  flex-shrink: 0;
+  width: 180px;
+  height: 120px;
+  position: relative;
+}
+.searchImg img {
+  width: 100%;
+  height: 100%;
+}
+.searchImg .distance {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #fff;
+  font-size: 0;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.searchImg .distance span {
+  display: inline-block;
+  font-size: 20px;
+  text-align: center;
+}
+.searchImg .distance span strong {
+  display: block;
+  font-size: 14px;
+}
+
+.commonContents {
+  flex-grow: 1;
+  margin: 0 0 0 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.contentsTitle {
+  display: flex;
+  margin-right: 30px;
+  margin-top: -2px;
+}
+.contentsTitle a {
+  display: inline-block;
+  font-size: 20px;
+  line-height: 27px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  color: #000;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  position: relative;
+}
+.contentsTitle a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.contentsArea {
+  display: block;
+  padding: 12px 0 0;
+  font-size: 15px;
+  line-height: 17px;
+  color: #666;
+}
+
+.contentsTag {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  overflow: hidden;
+  display: -webkit-box;
+  max-height: 38px;
+  word-break: keep-all;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.contentsTag span {
+  display: inline-block;
+  vertical-align: top;
+  padding-right: 8px;
+  font-size: 15px;
+  line-height: 18px;
+  color: #666;
+}
+
+.courseTag {
+  clear: both;
+  padding-top: 10px;
+}
+.courseTag span {
+  display: inline-block;
+  vertical-align: top;
+  box-sizing: border-box;
+  font-weight: 300;
+  margin: 10px 10px 0 0;
+  max-width: 100%;
+  padding: 0 15px;
+  height: 24px;
+  line-height: 24px;
+  font-size: 14px;
+  background: #f4f6f8;
+  color: #666;
+  border-radius: 50px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }/*# sourceMappingURL=styles.module.css.map */

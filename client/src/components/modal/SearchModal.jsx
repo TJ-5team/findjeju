@@ -5,7 +5,6 @@ export default function SearchModal() {
   const [isFocus,setIsFocus] = useState(false);
   const [length,setLength] = useState(false);
   function handleChange(e){
-    console.log(e.target.value.length);
     if(e.target.value.length > 0){
       setLength(true)
     }else{
