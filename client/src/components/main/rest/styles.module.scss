@@ -71,6 +71,7 @@
   div.recommandSection {
     display: flex;
     div.recommandItem {
+      position: relative;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -98,25 +99,17 @@
           transition: all 0.5s ease;
         }
       }
+      > svg{
+        position: absolute;
+        top: 15px;
+        right: 15px;
+      }
       .imageWrap {
         display: inline-block;
         position: relative;
         height: 100%;
         width: 100%;
         overflow: hidden;
-        svg {
-          position: absolute;
-          padding: 5px;
-          font-size: 22px;
-          top: 15px;
-          right: 15px;
-          background: var(--white);
-          border-radius: 50%;
-          z-index: 2;
-          &.active {
-            color: var(--likeColor);
-          }
-        }
         img {
           height: 100%;
           object-fit: cover;

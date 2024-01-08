@@ -1,0 +1,42 @@
+.wrap {
+  margin-top: 130px;
+  padding: 20px 0;
+  div.inner {
+    text-align: center;
+    h2.title {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--fontLightColor);
+    }
+    p.description {
+      margin: 20px 0 30px;
+      color: var(--gray);
+    }
+    em.strongText {
+      padding: 0 10px;
+      font-size: 28px;
+      font-weight: 500;
+      color: var(--fontLightColor);
+      box-shadow: inset 0 -12px var(--pinkline);
+    }
+    div.iconMenuWrap {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      div.iconMenu {
+        display: flex;
+        align-items: center;
+        svg:first-of-type {
+          font-size: 25px;
+        }
+        > span {
+          margin: 0 15px 0 5px;
+          vertical-align: middle;
+          font-size: 15px;
+          color: var(--fontGray);
+        }
+      }
+    }
+  }
+}

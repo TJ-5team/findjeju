@@ -1,0 +1,11 @@
+svg {
+  padding: 5px;
+  font-size: 22px;
+  background: var(--white);
+  border-radius: 50%;
+  z-index: 2;
+  &.active {
+    color: var(--likeColor);
+    background: var(--white);
+  }
+}
