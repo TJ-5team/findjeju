@@ -2,6 +2,7 @@
   margin-top: 130px;
   padding: 20px 0;
   div.inner {
+    height: 5000px;
     text-align: center;
     h2.title {
       font-size: 36px;
@@ -10,7 +11,7 @@
     }
     p.description {
       margin: 20px 0 30px;
-      color: var(--gray);
+      color: var(--fontGray);
     }
     em.strongText {
       padding: 0 10px;
@@ -24,6 +25,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      margin: 40px 0 15px;
       div.iconMenu {
         display: flex;
         align-items: center;
@@ -36,6 +38,62 @@
           font-size: 15px;
           color: var(--fontGray);
         }
+      }
+    }
+    ul.tabMenuWrap {
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid var(--borderline);
+      border-bottom: 1px solid var(--borderline);
+      li.tabMenu {
+        position: relative;
+        padding: 20px;
+        width: 200px;
+        font-size: 18px;
+        color: var(--fontGray);
+        cursor: pointer;
+        &.active{
+          font-weight: 600;
+          color: var(--fontLightColor);
+          &::after {
+            content: "";
+            display: inline-block;
+            position: absolute;
+            bottom: 0;
+            left: 40px;
+            width: 150px;
+            height: 3px;
+            background-color: var(--fontLightColor);
+          }
+        }
+        &:not(:first-child){
+          &::before {
+            content: "";
+            display: inline-block;
+            position: absolute;
+            top: 20px;
+            left: 0;
+            width: 1.5px;
+            height: 16px;
+            background-color: var(--borderline);
+          }
+        }
+      }
+    }
+    .scrollTopBtn{
+      position: fixed;
+      padding: 10px;
+      right: 30px;
+      bottom: 30px;
+      border-radius: 50%;
+      box-shadow: 0 0 2px 3px var(--borderline);
+      background-color: var(--pinkline);
+      cursor: pointer;
+      opacity: 0;
+      transition: all 0.5s ease-in;
+      &.active{
+        opacity: 1;
       }
     }
   }

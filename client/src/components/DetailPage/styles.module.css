@@ -3,6 +3,7 @@
   padding: 20px 0;
 }
 .wrap div.inner {
+  height: 5000px;
   text-align: center;
 }
 .wrap div.inner h2.title {
@@ -12,7 +13,7 @@
 }
 .wrap div.inner p.description {
   margin: 20px 0 30px;
-  color: var(--gray);
+  color: var(--fontGray);
 }
 .wrap div.inner em.strongText {
   padding: 0 10px;
@@ -26,6 +27,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 40px 0 15px;
 }
 .wrap div.inner div.iconMenuWrap div.iconMenu {
   display: flex;
@@ -39,4 +41,58 @@
   vertical-align: middle;
   font-size: 15px;
   color: var(--fontGray);
+}
+.wrap div.inner ul.tabMenuWrap {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid var(--borderline);
+  border-bottom: 1px solid var(--borderline);
+}
+.wrap div.inner ul.tabMenuWrap li.tabMenu {
+  position: relative;
+  padding: 20px;
+  width: 200px;
+  font-size: 18px;
+  color: var(--fontGray);
+  cursor: pointer;
+}
+.wrap div.inner ul.tabMenuWrap li.tabMenu.active {
+  font-weight: 600;
+  color: var(--fontLightColor);
+}
+.wrap div.inner ul.tabMenuWrap li.tabMenu.active::after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  bottom: 0;
+  left: 40px;
+  width: 150px;
+  height: 3px;
+  background-color: var(--fontLightColor);
+}
+.wrap div.inner ul.tabMenuWrap li.tabMenu:not(:first-child)::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 20px;
+  left: 0;
+  width: 1.5px;
+  height: 16px;
+  background-color: var(--borderline);
+}
+.wrap div.inner .scrollTopBtn {
+  position: fixed;
+  padding: 10px;
+  right: 30px;
+  bottom: 30px;
+  border-radius: 50%;
+  box-shadow: 0 0 2px 3px var(--borderline);
+  background-color: var(--pinkline);
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.5s ease-in;
+}
+.wrap div.inner .scrollTopBtn.active {
+  opacity: 1;
 }/*# sourceMappingURL=styles.module.css.map */

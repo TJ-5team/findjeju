@@ -1,0 +1,54 @@
+.wrap {
+  position: relative;
+  .swiperSlide{
+    width: 940px;
+    height: 627px;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  .pagination {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 65px;
+    padding: 10px 20px;
+    text-align: center;
+    color: var(--white);
+    background-color: var(--fontDarkColor);
+    border-radius: 30px;
+    z-index: 10;
+    span {
+      font-size: 16px;
+      &:last-child {
+        opacity: 0.5;
+      }
+    }
+  }
+
+  .prevBtn,
+  .nextBtn {
+    position: absolute;
+    padding: 0;
+    top: 50%;
+    width: 40px;
+    height: 40px;
+    z-index: 10;
+    cursor: pointer;
+    img{
+      height: 100%;
+    }
+    &.prevBtn {
+      left: 20px;
+    }
+    &.nextBtn {
+      right: 20px;
+      img{
+        transform: scaleX(-1);
+      }
+    }
+  }
+}
