@@ -1,26 +1,30 @@
 import React from 'react';
 import styles from '../styles.module.css'
 import { Link } from 'react-router-dom';
-export default function SearchCommon() {
+export default function SearchCommon({list}) {
+  if(!list){
+    return (
+      <div> loding </div>
+    );
+  }else{
   return (
       <ul className={styles.commonList}>
         <li>
-          <Link className={styles.searchImg}>
-            <img src="https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=918bc12a-8e86-4cb9-bee3-477b37bf8a41" alt="" />
+          <Link to={list.contentid} className={styles.searchImg}>
+            <img src={list.firstimage} alt="" />
             <span className={styles.distance}>
               <span></span>
             </span>
           </Link>
           <div className={styles.commonContents}>
             <div className={styles.contentsTitle}>
-              <Link>
-                남파랑길(부산)
+              <Link to={list.contentid}>
+                {list.title}
               </Link>
             </div>
-            <span className={styles.contentsArea}>부산 남구</span>
+            <span className={styles.contentsArea}>{list.addr1.split(" ")[0]} {list.addr1.split(" ")[1]}</span>
             <div className={styles.contentsTag}>
               <span>
-                #레포츠
               </span>
             </div>
           </div>
@@ -28,5 +32,6 @@ export default function SearchCommon() {
         </li>
       </ul>
   );
+  }
 }
 

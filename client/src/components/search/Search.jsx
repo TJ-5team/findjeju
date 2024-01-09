@@ -1,17 +1,35 @@
 import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css"
-import { Link } from "react-router-dom";
-import useGetList from "../../hooks/useGetList";
+import { Link, useParams } from "react-router-dom";
 import SearchCommon from "./searchCommon/SearchCommon";
 import SearchCourse from "./searchCourse/SearchCourse";
+import { useDispatch, useSelector } from "react-redux";
+import { getKeyword, getSearchListData } from "../../reselector/searchReselector";
+import { SearchApiData } from "../../api/searchAPI";
 export default function Search() {
   const [active, setActive] = useState("전체")
   const [filter, setFilter] = useState("제목")
   const [subfilter, setSubFilter] = useState("전체")
-  const [list] = useGetList("http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=12&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey=CU%2BXIQukCNW8VDOOJDU8QzHHPgrsOso%2FEiDhpWTlD8Lb9q1SYmll5Qp9YK4UsjFNOYVQoLCrMi2s0mfnEPr0iA%3D%3D&listYN=Y&arrange=Q&contentTypeId=&areaCode=39&sigunguCode=&cat1=&cat2=&cat3=&_type=json")
+  let keyword = useParams().keyword;
+  const dispatch = useDispatch();
+  const {firstList,secondList,thirdList} = useSelector(getSearchListData)
+  const {key} = useSelector(getKeyword);
   useEffect(() => {
     setSubFilter("전체")
   }, [active])
+
+  useEffect(()=>{
+    if(filter === "최신"){
+      let filter = "Q"
+      dispatch(SearchApiData({keyword,filter}))
+    }else{
+
+      dispatch(SearchApiData({keyword}))
+      console.log(firstList);
+    }
+  },[filter,key])
+
+
   return (
     <div className={styles.wrap}>
       <div className={styles.container}>
@@ -71,7 +89,17 @@ export default function Search() {
                 <h3 className={`${styles.scTitle} ${styles.infoIcon}`}>
                   여행정보
                 </h3>
-                <SearchCommon></SearchCommon>
+                {
+                  firstList && firstList.map((list,idx)=>{
+                    if(idx > 2){
+                      return
+                    }
+                    return <SearchCommon
+                    list={list}
+                    key={idx}
+                    ></SearchCommon>
+                  })
+                }
               </div>
 
             </div>
@@ -80,7 +108,17 @@ export default function Search() {
                 <h3 className={`${styles.scTitle} ${styles.festivalIcon}`}>
                   축제
                 </h3>
-                <SearchCommon></SearchCommon>
+                {
+                  secondList && secondList.map((list,idx)=>{
+                    if(idx > 3){
+                      return
+                    }
+                    return <SearchCommon
+                    list={list}
+                    key={idx}
+                    ></SearchCommon>
+                  })
+                }
               </div>
             </div>
             <div className={`${styles.section}`}>
@@ -88,7 +126,17 @@ export default function Search() {
                 <h3 className={`${styles.scTitle} ${styles.showIcon}`}>
                   공연 / 행사
                 </h3>
-                <SearchCommon></SearchCommon>
+                {
+                  thirdList && thirdList.map((list,idx)=>{
+                    if(idx > 3){
+                      return
+                    }
+                    return <SearchCommon
+                    list={list}
+                    key={idx}
+                    ></SearchCommon>
+                  })
+                }
               </div>
             </div>
             <div className={`${styles.section}`}>

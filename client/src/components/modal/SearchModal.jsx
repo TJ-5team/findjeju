@@ -1,18 +1,20 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from './styles.module.css'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import { getSearch } from '../../reselector/searchReselector';
-import { clickOthers } from '../../reducer/searchReducer';
+import { clickOthers, inputChange } from '../../reducer/searchReducer';
 
 export default function SearchModal() {
+  const dispatch = useDispatch();
   const [isFocus,setIsFocus] = useState(false);
   const [length,setLength] = useState(false);
-  const {searchFlag} = useSelector(getSearch)
-  const dispatch = useDispatch();
+  const {searchFlag} = useSelector(getSearch);
+  const [form,setForm] = useState({keyword:""})
   const wrapTarget = useRef(null);
-  console.log(searchFlag);
+  const navigate = useNavigate();
   function handleChange(e){
+    setForm({...form,keyword:e.target.value})
     if(e.target.value.length > 0){
       setLength(true)
     }else{
@@ -20,14 +22,25 @@ export default function SearchModal() {
     }
   }
   function handleClick(e){
-    console.log(e.currentTarget);
-    console.log(e);
-    console.log(wrapTarget);
     if(e.target === wrapTarget.current){
       dispatch(clickOthers())
     }else{
       return
     }
+  }
+  function handleSubmit(e){
+    e.preventDefault()
+
+    let keyword = form.keyword
+    console.log(keyword.length);
+    if(keyword.length < 2){
+      alert("2글자 이상 검색 가능합니다.")
+      return
+    }
+    dispatch(inputChange(keyword))
+    dispatch(clickOthers())
+    navigate(`/search/${keyword}`)
+
   }
   return (
       <div className={styles.wrap} style={searchFlag ? { "display": "block" } :{ "display": "none" }} onClick={(e)=>handleClick(e)} ref={wrapTarget}>
@@ -39,12 +52,12 @@ export default function SearchModal() {
               </Link>
             </span>
             <div className={styles.searchWrap}>
-              <div className={`${styles.form} ${isFocus ? styles.on : ''}`}>
+              <form className={`${styles.form} ${isFocus ? styles.on : ''}`} onSubmit={(e)=>handleSubmit(e)}>
                 <input className={styles.searchInput} onChange={(e)=>handleChange(e)} onFocus={()=>setIsFocus(true)} onBlur={()=>setIsFocus(false)} type="text" placeholder="어디로, 어떤 여행을 떠날 예정인가요?" />
-                <button className={styles.deleteBtn} style={length ? {"display":"block"} : {"display":"none"}}></button>
+                <button className={styles.deleteBtn} style={length ? {"display":"block"} : {"display":"none"}} onClick={()=>{}}></button>
                 <button className={styles.searchBtn}></button>
                 <span className={styles.widthCheck}></span>
-              </div>
+              </form>
               <div className={styles.recentSearch}>
                 <h2>최근 검색어</h2>
                 <ul>

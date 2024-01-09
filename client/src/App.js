@@ -6,7 +6,6 @@ import Recommand from "./components/main/recommand/Recommand";
 import Join from "./pages/JoinPage";
 import Rest from "./components/main/rest/Rest";
 import VisualSlide from "./components/main/visual/VisualSlide";
-import SearchModal from "./components/modal/SearchModal";
 import SearchPage from "./pages/SearchPage";
 import Fiesta from "./components/main/fiesta/Fiesta";
 import FestivalSubPage from "./pages/FestivalSubPage";
@@ -22,7 +21,6 @@ const router = createBrowserRouter([
         path: "/",
         element:
           <MainContents>
-            <SearchModal/>
             <VisualSlide/>
             <Recommand />
             <Rest />
