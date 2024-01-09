@@ -6,7 +6,6 @@ import AreaTitle from './title/AreaTitle';
 
 export default function Recommand() {
 
-
   const [area, setArea] = useState([]);
 
   const getArea = (e) => {

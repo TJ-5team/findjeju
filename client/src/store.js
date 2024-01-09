@@ -11,6 +11,4 @@ export default configureStore({
 
 });
 
-export let { changeName } = area.actions
-export let { changeList } = list.actions
 
