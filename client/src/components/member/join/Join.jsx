@@ -37,10 +37,9 @@ export default function Join() {
     const pattern_phone = /^(01[016789]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
 
     const [mailCheck, setMailCheck] = useState(false);
-
     const [check, setCheck] = useState({ name: '', id: '', pass: '', passcheck: '', nickname: '', email: '', echeck: '', eSelf: '', confirm: '', phone1: '' });
     const [focus, setFocus] = useState({ name: '', id: '', pass: '', passcheck: '', nickname: '', email: '', echeck: '', eSelf: '', confirm: '', phone1: '' });
-    const [validation, setValidation] = useState({ name: '필수 입력 항목입니다.', id: '필수 입력 항목입니다.', pass: '필수 입력 항목입니다.', passcheck: '필수 입력 항목입니다.', nickname: '필수 입력 항목입니다.', email: '이메일 형식에 맞지 않습니다.', echeck: '필수 입력 항목입니다.', eSelf: '필수 입력 항목입니다.', confirm: '', phone: '필수 입력 항목입니다.' });
+    const [validation, setValidation] = useState({ name: '필수 입력 항목입니다.', id: '필수 입력 항목입니다.', pass: '필수 입력 항목입니다.', passcheck: '필수 입력 항목입니다.', nickname: '필수 입력 항목입니다.', email: '이메일 형식에 맞지 않습니다.', echeck: '필수 입력 항목입니다.', eSelf: '필수 입력 항목입니다.', confirm: '', phone: '필수 입력 항목입니다.', terms1: '', terms2: '' });
 
     const nameRef = useRef(null);
     const idRef = useRef(null);
@@ -84,7 +83,7 @@ export default function Join() {
             return false
         }
 
-        if (validation.email === '이메일을 인증해주세요.' || validation.email === '이메일 형식에 맞지 않습니다.') {
+        if (validation.email === '이메일을 인증해주세요.' || validation.email === '이메일 형식에 맞지 않습니다.' || validation.email === '등록된 이메일입니다.') {
             emailRef.current.focus();
             return false
         }
@@ -95,10 +94,12 @@ export default function Join() {
         }
 
         if (!checked.terms1) {
+            setValidation((validation) => ({ ...validation, terms1: '필수 입력 사항입니다.' }))
             teRef1.current.focus();
             return false
         }
         if (!checked.terms2) {
+            setValidation((validation) => ({ ...validation, terms2: '필수 입력 사항입니다.' }))
             teRef2.current.focus();
             return false
         }
@@ -130,7 +131,6 @@ export default function Join() {
 
         })
 
-        console.log(formDataObject);
     }
 
     /*데이터 가져와서 회원비교*/
@@ -304,7 +304,7 @@ export default function Join() {
     const handleAllCheck = (e) => {
         const { checked } = e.target;
 
-        setCheck((checks) => Object.keys(checks).reduce(
+        setChecked((checks) => Object.keys(checks).reduce(
             (newCheck, checkKey) => ({
                 ...newCheck,
                 [checkKey]: checked,
@@ -607,9 +607,9 @@ export default function Join() {
                                 <div className={styles.terms}>
                                     <p><input type="checkbox" name="termsAll" checked={checked.termsAll} onChange={handleAllCheck} onFocus={handleFocus} /><span>전체선택</span></p>
                                     <p><input type="checkbox" name="terms1" checked={checked.terms1} onChange={handleCheck} onFocus={handleFocus} ref={teRef1} /><span>개인정보 수집이용 동의 (필수)</span></p>
-                                    {checked.terms1 ? null : <span className={styles.check}>필수 체크 항목입니다.</span>}
+                                    {validation.terms1 !== "필수 입력 사항입니다." ? null : <span className={styles.check}>{validation.terms1}</span>}
                                     <p><input type="checkbox" name="terms2" checked={checked.terms2} onChange={handleCheck} onFocus={handleFocus} ref={teRef2} /><span>전자금융거래 이용약관 동의 (필수)</span></p>
-                                    {checked.terms2 ? null : <span className={styles.check}>필수 체크 항목입니다.</span>}
+                                    {validation.terms2 !== "필수 입력 사항입니다." ? null : <span className={styles.check}>{validation.terms2}</span>}
                                     <p><input type="checkbox" name="terms3" checked={checked.terms3} onChange={handleCheck} onFocus={handleFocus} /><span>마케팅 정보 메일, SMS 수신동의 (선택)</span></p>
                                 </div>
                             </li>
