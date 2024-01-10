@@ -4,12 +4,12 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+import { Navigation } from 'swiper/modules';
 import { useSelector } from 'react-redux';
 import { getAreaData } from '../../../../reselector/areaReselector';
 
 export default function SwiperBox({ area }) {
     const [arr, setArr] = useState([]);
-
 
     let res = [];
 
@@ -54,6 +54,8 @@ export default function SwiperBox({ area }) {
             <Swiper
                 slidesPerView={1}
                 className={styles.swiper}
+                navigation={true}
+                modules={[Navigation]}
             >
                 {arr.map((val, key) => {
                     return <SwiperSlide className={styles.slide} key={key}>

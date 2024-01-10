@@ -1,4 +1,4 @@
-import * as repository from "../../repository/member/memberRepository.js";
+import * as repository from "../../repository/member/joinRepository.js";
 import nodemailer from 'nodemailer';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';

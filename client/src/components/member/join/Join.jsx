@@ -76,7 +76,7 @@ export default function Join() {
         axios({
 
             method: 'get',
-            url: 'http://127.0.0.1:8000/join'
+            url: 'http://127.0.0.1:8000/member/'
 
         }).then((result) => {
 
@@ -164,6 +164,8 @@ export default function Join() {
         })
 
     }
+
+
 
     /*유효성검사 */
     const fnChange = (e) => {
