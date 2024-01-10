@@ -12,22 +12,21 @@ export default function Search() {
   const [subfilter, setSubFilter] = useState("전체")
   let keyword = useParams().keyword;
   const dispatch = useDispatch();
-  const {firstList,secondList,thirdList} = useSelector(getSearchListData)
-  const {key} = useSelector(getKeyword);
+  const { firstList, secondList, thirdList, forthList } = useSelector(getSearchListData)
+  const { key } = useSelector(getKeyword);
   useEffect(() => {
     setSubFilter("전체")
   }, [active])
 
-  useEffect(()=>{
-    if(filter === "최신"){
+  useEffect(() => {
+    if (filter === "최신") {
       let filter = "Q"
-      dispatch(SearchApiData({keyword,filter}))
-    }else{
+      dispatch(SearchApiData({ keyword, filter }))
+    } else {
 
-      dispatch(SearchApiData({keyword}))
-      console.log(firstList);
+      dispatch(SearchApiData({ keyword }))
     }
-  },[filter,key])
+  }, [filter, key, keyword])
 
 
   return (
@@ -84,70 +83,88 @@ export default function Search() {
           </div>
           <div className={styles.searchResultBanner}></div>
           <div className={styles.searchAllWrap} style={active === "전체" ? { display: "block" } : { display: "none" }}>
-            <div className={`${styles.section}`}>
+            {firstList && <div className={`${styles.section}`}>
               <div className={styles.searchInfo}>
                 <h3 className={`${styles.scTitle} ${styles.infoIcon}`}>
                   여행정보
                 </h3>
                 {
-                  firstList && firstList.map((list,idx)=>{
-                    if(idx > 2){
+                  firstList && firstList.map((list, idx) => {
+                    if (idx > 2) {
                       return
                     }
                     return <SearchCommon
-                    list={list}
-                    key={idx}
+                      list={list}
+                      key={idx}
                     ></SearchCommon>
                   })
                 }
               </div>
-
-            </div>
-            <div className={`${styles.section}`}>
+            </div>}
+            {secondList && <div className={`${styles.section}`}>
               <div className={styles.searchFestival}>
                 <h3 className={`${styles.scTitle} ${styles.festivalIcon}`}>
                   축제
                 </h3>
                 {
-                  secondList && secondList.map((list,idx)=>{
-                    if(idx > 3){
+                  secondList && secondList.map((list, idx) => {
+                    if (idx > 2) {
                       return
                     }
                     return <SearchCommon
-                    list={list}
-                    key={idx}
+                      list={list}
+                      key={idx}
                     ></SearchCommon>
                   })
                 }
               </div>
-            </div>
-            <div className={`${styles.section}`}>
+            </div>}
+            {thirdList && <div className={`${styles.section}`}>
               <div className={styles.searchShow}>
                 <h3 className={`${styles.scTitle} ${styles.showIcon}`}>
                   공연 / 행사
                 </h3>
                 {
-                  thirdList && thirdList.map((list,idx)=>{
-                    if(idx > 3){
+                  thirdList && thirdList.map((list, idx) => {
+                    if (idx > 2) {
                       return
                     }
                     return <SearchCommon
-                    list={list}
-                    key={idx}
+                      list={list}
+                      key={idx}
                     ></SearchCommon>
                   })
                 }
               </div>
-            </div>
-            <div className={`${styles.section}`}>
+            </div>}
+            {forthList && <div className={`${styles.section}`}>
               <div className={styles.searchCourse}>
                 <h3 className={`${styles.scTitle} ${styles.courseIcon}`}>
                   여행 코스
                 </h3>
-                <SearchCourse></SearchCourse>
+                {
+                  forthList && forthList.map((list, idx)=>{
+                    if (idx > 2) {
+                      return
+                    }
+                    return <SearchCourse
+                    cosList={list}
+                      key={idx}
+                    ></SearchCourse>
+                  })
+                }
               </div>
-            </div>
+            </div>}
+            {!firstList && !secondList && !thirdList && !forthList && <div className={styles.noResultWrap}>
+              <p className={styles.noResult}>
+                <strong>“{keyword}”</strong>
+                에 대한 검색결과가 없습니다.
+                <br />
+                다른 검색어를 입력하시거나 철자와 띄어쓰기를 확인해 보세요.
+              </p>
+            </div>}
           </div>
+
           <div className={styles.searchResultWrap} style={active === "전체" ? { display: "none" } : { display: "block" }}>
             <SearchCommon></SearchCommon>
           </div>
@@ -160,9 +177,33 @@ export default function Search() {
                   <h3>최근 인기 검색어</h3>
                   <ul>
                     <li>
-                      <Link>
+                      <Link to={"/search/제주"}>
                         <span>1</span>
-                        <em>부산</em>
+                        <em>제주</em>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to={"/search/서귀포"}>
+                        <span>2</span>
+                        <em>서귀포</em>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to={"/search/올레"}>
+                        <span>3</span>
+                        <em>올레</em>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to={"/search/한라산"}>
+                        <span>4</span>
+                        <em>한라산</em>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to={"/search/우도"}>
+                        <span>5</span>
+                        <em>우도</em>
                       </Link>
                     </li>
                   </ul>

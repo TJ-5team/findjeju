@@ -120,11 +120,12 @@
 }
 .rightMenu .rightWrap .rightContainer .rightBox .popularKeyword ul li {
   position: relative;
+  margin-top: 14px;
 }
 .rightMenu .rightWrap .rightContainer .rightBox .popularKeyword ul li a span {
   position: absolute;
   left: 0;
-  top: -1px;
+  top: -4px;
   width: 16px;
   height: 16px;
   margin-top: 5px;
@@ -339,4 +340,21 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+}
+
+.noResultWrap {
+  text-align: center;
+}
+
+.noResult {
+  padding: 140px 0 76px;
+  margin: 0 0 20px;
+  border-bottom: 1px solid #e6e6e6;
+  font-size: 18px;
+  color: #767676;
+  background: url("https://korean.visitkorea.or.kr/resources/images/sub/bg_search_result.gif") 50% 80px no-repeat;
+}
+.noResult strong {
+  font-weight: 700;
+  color: #000;
 }/*# sourceMappingURL=styles.module.css.map */

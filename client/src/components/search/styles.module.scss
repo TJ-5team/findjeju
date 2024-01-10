@@ -117,11 +117,12 @@ display: flex;
             margin-top: 13px;
             li{
               position: relative;
+              margin-top: 14px;
               a{
                 span{
                   position: absolute;
                   left: 0;
-                  top: -1px;
+                  top: -4px;
                   width: 16px;
                   height: 16px;
                   margin-top: 5px;
@@ -354,4 +355,20 @@ display: flex;
 
 .searchResultWrap{
   
+}
+
+.noResultWrap{
+  text-align: center;
+}
+.noResult{
+  padding: 140px 0 76px;
+  margin: 0 0 20px;
+  border-bottom: 1px solid #e6e6e6;
+  font-size: 18px;
+  color: #767676;
+  background: url("https://korean.visitkorea.or.kr/resources/images/sub/bg_search_result.gif") 50% 80px no-repeat;
+  strong{
+    font-weight: 700;
+    color: #000;
+  }
 }

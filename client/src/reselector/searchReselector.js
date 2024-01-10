@@ -5,6 +5,7 @@ const getSearchKeyword = (state) => state.inputControll.keyword;
 const getFirstList = (state) => state.searchListSlice.firstList;
 const getSecondList = (state) => state.searchListSlice.secondList;
 const getThirdList = (state) => state.searchListSlice.thirdList;
+const getForthList = (state) => state.searchListSlice.forthList;
 export const getSearch = createSelector(
   [getSearchFlag],
   (searchFlag)=>({
@@ -20,12 +21,13 @@ export const getKeyword = createSelector(
 )
 
 export const getSearchListData = createSelector(
-  [getFirstList,getSecondList,getThirdList],
-  (firstList,secondList,thirdList)=>{
+  [getFirstList,getSecondList,getThirdList,getForthList],
+  (firstList,secondList,thirdList,forthList)=>{
     return {
       firstList,
       secondList,
-      thirdList
+      thirdList,
+      forthList
     }
   }
 )
