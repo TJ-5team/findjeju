@@ -1,5 +1,6 @@
 .wrap {
   position: relative;
+  margin-bottom: 50px;
 }
 .wrap .swiperSlide {
   width: 940px;

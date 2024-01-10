@@ -81,6 +81,81 @@
   height: 16px;
   background-color: var(--borderline);
 }
+.wrap div.inner .titleSub {
+  padding-bottom: 15px;
+  text-align: start;
+  font-size: 25px;
+  font-weight: 800;
+  color: var(--fontLightColor);
+  border-bottom: 2px solid var(--fontLightColor);
+}
+.wrap div.inner div.descriptionWrap {
+  margin: 30px 0;
+}
+.wrap div.inner div.descriptionWrap p.descriptionDetail {
+  text-align: start;
+  font-size: 18px;
+  line-height: 1.7;
+  letter-spacing: -1;
+}
+.wrap div.inner ul.detailInfo {
+  display: inline-block;
+  margin: 30px 0;
+  height: auto;
+}
+.wrap div.inner ul.detailInfo li {
+  display: table;
+  padding: 7px 0;
+  float: left;
+  width: 50%;
+  height: auto;
+  font-size: 15px;
+  text-align: start;
+}
+.wrap div.inner ul.detailInfo li strong {
+  position: relative;
+  display: table-cell;
+  padding-left: 15px;
+  line-height: 1.3;
+  font-weight: 500;
+  width: 30%;
+  color: var(--fontLightColor);
+}
+.wrap div.inner ul.detailInfo li strong::before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 3px;
+  height: 3px;
+  line-height: 5px;
+  border-radius: 50%;
+  background: var(--fontDarkColor);
+}
+.wrap div.inner ul.detailInfo li span {
+  display: table-cell;
+  line-height: 1.3;
+  color: var(--fontGray);
+}
+.wrap div.inner h4.titleInfo {
+  padding: 10px;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 25px;
+  background: var(--borderline);
+  border-radius: 10px;
+}
+.wrap div.inner h4.titleInfo img {
+  margin-right: 10px;
+  height: 24px;
+  vertical-align: text-bottom;
+}
+.wrap div.inner div.comfortableImgWrap {
+  margin: 20px 0;
+  display: flex;
+  justify-content: space-evenly;
+}
 .wrap div.inner .scrollTopBtn {
   position: fixed;
   padding: 10px;

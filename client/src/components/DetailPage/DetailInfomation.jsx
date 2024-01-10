@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import useGetList from "../../hooks/useGetList";
 import styles from "./styles.module.css";
 import LikeButton from "../main/rest/likebutton/LikeButton";
@@ -7,15 +7,33 @@ import { PiEyeThin } from "react-icons/pi";
 import { PiBookmarkSimpleThin } from "react-icons/pi";
 import { PiShareNetworkThin } from "react-icons/pi";
 import { HiArrowSmallUp } from "react-icons/hi2";
-import { Swiper, SwiperSlide } from 'swiper/react';
 import DetailSwiper from "./Swiper/DetailSwiper";
+import Mapimage from "../Map/Mapimage";
 
 
 export default function DetailInformation() {
-  const { contentid, contenttypeid } = useParams();
-  const [list] = useGetList(`http://apis.data.go.kr/B551011/KorService1/detailIntro1?serviceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&numOfRows=10&pageNo=1&&MobileApp=APPTest&MobileOS=ETC&contentId=${contentid}&contentTypeId=${contenttypeid}&_type=json`);
-  //console.log(list);
-  //console.log(contentid, contenttypeid);
+  //const { contentid, contenttypeid } = useParams();
+
+  /* 예시로!! 삭제하기 !!!! */
+  const contenttypeid = 32;
+  const contentid = 2819964;
+
+  /* api링크 가져오기 */
+  // const [commonInfo] = useGetList(`http://apis.data.go.kr/B551011/KorService1/detailCommon1?ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&contentTypeId=32&contentId=2819964&MobileOS=ETC&MobileApp=AppTest&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y&_type=json`);
+  // const [detailInfo] = useGetList(`http://apis.data.go.kr/B551011/KorService1/detailIntro1?ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&contentTypeId=32&contentId=2819964&MobileOS=ETC&MobileApp=AppTest&_type=json`);
+  // const [facility] = useGetList(`http://apis.data.go.kr/B551011/KorService1/detailInfo1?ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&contentTypeId=32&contentId=2819964&MobileOS=ETC&MobileApp=AppTest&_type=json`);
+  // const [comfortable] = useGetList(`http://apis.data.go.kr/B551011/KorWithService1/detailWithTour1?serviceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&contentId=2819964&MobileOS=ETC&MobileApp=AppTest&_type=json`);
+
+  /*  
+  console.log(commonInfo);
+  console.log(detailInfo);
+  console.log(facility);
+  console.log(comfortable); */
+
+  const commonInfo = []
+  const detailInfo = []
+  const facility = []
+  const comfortable = []
 
   const tabMenulist = ["사진보기", "상세정보", "여행톡", "추천여행"]
   const [active, setActive] = useState(0);
@@ -27,14 +45,14 @@ export default function DetailInformation() {
   }
 
   const handleActive = (e, idx) => {
-    if (active != idx) {
+    if (active !== idx) {
       setActive(idx)
     }
-    if (idx == 1) {
+    if (idx === 1) {
       ScrollMove(800)
-    } else if (idx == 2) {
+    } else if (idx === 2) {
       ScrollMove(1500)
-    } else if (idx == 3) {
+    } else if (idx === 3) {
       ScrollMove(2000)
     }
   }
@@ -55,39 +73,187 @@ export default function DetailInformation() {
       }
     }
 
-    window.addEventListener('scroll',handleShowBtn)
+    window.addEventListener('scroll', handleShowBtn)
     return () => {
-    window.removeEventListener('scroll',handleShowBtn)
+      window.removeEventListener('scroll', handleShowBtn)
     }
-  },[])
+  }, [])
 
+  const changeText = (e) => {
+    const regex = /<a href="(.*?)" target="_blank"/;
+    return e.match(regex)[1]
+  }
+
+  const imgList = () => {
+    const result = [];
+    for (let index = 0; index < 12; index++) {
+      if(index < 10){
+        index = '0'+index
+        result.push(<img key={index} src={`http://localhost:3000/images/detailPage/icon_bfreesvc_${index}_on.png`} alt=""></img>);
+      }else{
+        result.push(<img key={index} src={`http://localhost:3000/images/detailPage/icon_bfreesvc_${index}_on.png`} alt=""></img>);
+      }
+    }
+    return result;
+  }
 
   return (
     <div className={styles.wrap}>
       <div className={`${styles.inner} inner`}>
-        <h2 className={styles.title}>제주도 관광특구</h2>
-        <p className={styles.description}>제주</p>
-        <em className={styles.strongText}>"이 곳 참말로 좋수다" 세계자연유산제주</em>
-        <div className={styles.iconMenuWrap}>
-          <div className={styles.iconMenu}>
-            <LikeButton idx={0} /> {/* 데이터테이블 만들어서 관리하기 */}
-            <span>1</span>
-            <PiEyeThin size="28" />
-            <span>1</span>
-          </div>
+        {commonInfo && commonInfo.map((commonList) =>
+          <>
+            <h2 className={styles.title} key={commonList.contentid}>{commonList.title}</h2>
+            <p className={styles.description}>{commonList.addr1.substring(0, 2)}</p>
+            <div className={styles.iconMenuWrap}>
+              <div className={styles.iconMenu}>
+                <LikeButton idx={0} /> {/* 데이터테이블 만들어서 관리하기 */}
+                <span>1</span>
+                <PiEyeThin size="28" />
+                <span>1</span>
+              </div>
+              <div>
+                <PiBookmarkSimpleThin size="28" />
+                <PiShareNetworkThin size="28" />
+              </div>
+            </div>
+            <ul className={styles.tabMenuWrap}>
+              {tabMenulist && tabMenulist.map((list, idx) =>
+                <li onClick={(e) => handleActive(e, idx)} className={active === idx ? `${styles.tabMenu} ${styles.active}` : styles.tabMenu} key={idx}>{list}</li>
+              )}
+            </ul>
+            <DetailSwiper />
+            <h3 className={styles.titleSub}>상세정보</h3>
+            <div className={styles.descriptionWrap}>
+              <p className={styles.descriptionDetail}>
+                {commonList.overview}
+              </p>
+            </div>
+            <Mapimage x={commonList.mapx} y={commonList.mapy} title={commonList.title} />
+            {detailInfo && detailInfo.map(detailList =>
+              <ul className={styles.detailInfo}>
+                <li>
+                  <strong>문의 및 안내</strong>
+                  <span>{detailList.infocenterlodging}</span>
+                </li>
+                <li>
+                  <strong>홈페이지</strong>
+                  <span><Link to={changeText(commonList.homepage)}>{changeText(commonList.homepage)}</Link></span>
+                </li>
+                <li>
+                  <strong>주소</strong>
+                  <span>{commonList.addr1}</span>
+                </li>
+                <li>
+                  <strong>주차</strong>
+                  <span>{detailList.parkinglodging}</span>
+                </li>
+                <li>
+                  <strong>입실시간</strong>
+                  <span>{detailList.checkintime}</span>
+                </li>
+                <li>
+                  <strong>퇴실시간</strong>
+                  <span>{detailList.checkouttime}</span>
+                </li>
+                <li>
+                  <strong>객실내 취사 여부</strong>
+                  <span>{detailList.chkcooking}</span>
+                </li>
+                <li>
+                  <strong>식음료장</strong>
+                  <span>{detailList.foodplace}</span>
+                </li>
+                <li>
+                  <strong>픽업서비스</strong>
+                  <span>{detailList.pickup}</span>
+                </li>
+                <li>
+                  <strong>객실수</strong>
+                  <span>{detailList.roomcount}</span>
+                </li>
+                <li>
+                  <strong>객실유형</strong>
+                  <span>{detailList.roomtype}</span>
+                </li>
+                <li>
+                  <strong>부대시설</strong>
+                  <span>{detailList.subfacility}</span>
+                </li>
+                {comfortable && comfortable.map(info =>
+                  <>
+                    <li>
+                      <strong>장애인 주차 안내</strong>
+                      <span>{info.parking}</span>
+                    </li>
+                    <li>
+                      <strong>접근로</strong>
+                      <span>{info.publictransport}</span>
+                    </li>
+                    <li>
+                      <strong>휠체어</strong>
+                      <span>{info.wheelchair}</span>
+                    </li>
+                    <li>
+                      <strong>출입통로</strong>
+                      <span>{info.exit}</span>
+                    </li>
+                    <li>
+                      <strong>엘리베이터</strong>
+                      <span>{info.elevator}</span>
+                    </li>
+                    <li>
+                      <strong>화장실</strong>
+                      <span>{info.restroom}</span>
+                    </li>
+                    <li>
+                      <strong>객실</strong>
+                      <span>{info.room}</span>
+                    </li>
+                    <li>
+                      <strong>점자블록</strong>
+                      <span>{info.braileblock}</span>
+                    </li>
+                    <li>
+                      <strong>보조견동반</strong>
+                      <span>{info.helpdog}</span>
+                    </li>
+                    <li>
+                      <strong>안내요원</strong>
+                      <span>{info.guidehuman}</span>
+                    </li>
+                    <li>
+                      <strong>점자홍보물 및 점자표지판</strong>
+                      <span>{info.brailepromotion}</span>
+                    </li>
+                    <li>
+                      <strong>유모차</strong>
+                      <span>{info.stroller}</span>
+                    </li>
+                    <li>
+                      <strong>수유실</strong>
+                      <span>{info.lactationroom}</span>
+                    </li>
+                  </>
+                )}
+              </ul >
+            )}
+          </>
+        )}
+
+        <h4 className={styles.titleInfo}>
           <div>
-            <PiBookmarkSimpleThin size="28" />
-            <PiShareNetworkThin size="28" />
+            <img src="http://localhost:3000/images/detailPage/ico_info.png" alt="" />
+            모두의 여행 '무장애여행'
           </div>
+        </h4>
+
+        <div className={styles.comfortableImgWrap}>
+          {imgList()}
         </div>
-        <ul className={styles.tabMenuWrap}>
-          {tabMenulist.map((list, idx) =>
-            <li onClick={(e) => handleActive(e, idx)} className={active === idx ? `${styles.tabMenu} ${styles.active}` : styles.tabMenu}>{list}</li>
-          )}
-        </ul>
-        <DetailSwiper />
+
+
         <HiArrowSmallUp size="23" className={showTopBtn ? `${styles.scrollTopBtn} ${styles.active}` : styles.scrollTopBtn} onClick={handleScrolltoTop} />
-      </div>
-    </div>
+      </div >
+    </div >
   )
 }
