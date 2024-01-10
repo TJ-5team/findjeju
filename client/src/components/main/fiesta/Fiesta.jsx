@@ -9,9 +9,9 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+import { Navigation } from 'swiper/modules';
 import { FaArrowLeft } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa";
-import { Navigation } from 'swiper/modules';
 
 export default function Fiesta() {
   const date = useGetDate(false,false,false,true,false);

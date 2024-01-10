@@ -76,7 +76,7 @@ div.wrap div.relative select.select:focus {
 }
 div.wrap div.noResult {
   margin-top: 100px;
-  min-height: 600px;
+  min-height: 520px;
   text-align: center;
 }
 div.wrap div.noResult h4.noTitle {

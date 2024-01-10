@@ -5,7 +5,7 @@ export default  function Mapimage ({x,y,title}){
   return (
     <Map 
     center={{ lat: y, lng: x}} 
-    style={{ width: '930px', height: '300px' }}
+    style={{ width: '930px', height: '300px', marginTop: "30px"}}
     level={3} 
     >
     <MapMarker position={{ lat: y, lng: x }}>{title}</MapMarker>

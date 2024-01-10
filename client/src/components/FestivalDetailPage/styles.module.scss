@@ -1,0 +1,102 @@
+div.wrap{
+  margin-top: 130px;
+  h1.subTitle{
+    margin-bottom: 20px;
+    font-size: 40px;
+    font-weight: 800;
+    color: var(--fontDarkColor);
+    line-height: 48px;
+    letter-spacing: -1px;
+  }
+  h2.addr{
+    margin-bottom: 16px;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--fontDarkColor);
+    line-height: 32px;
+    letter-spacing: -1px;
+    svg{
+    color: #E60A59;
+    }
+  }
+  div.swiper{
+    position: relative;
+    margin-bottom: 30px;
+    img.img{
+      width: 288px;
+      height: 288px;
+    }
+    button{
+      width: 48px;
+      height: 48px;
+      border: 1px solid var(--gray);
+      border-radius: 50%;
+      text-align: center;
+      svg{
+        width: 100%;
+        height: 100%;
+      }
+      &.festivalPrevBtn{
+        position: absolute;
+        top: 144px;
+        left: -60px;
+        svg{
+          margin-left: 7px;
+        }
+      }
+      &.festivalNextBtn{
+        position: absolute;
+        top: 144px;
+        right: -40px;
+      }
+    }
+  }
+  div.textBox{
+    border-bottom: 1px solid #E6E6EB;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 32px;
+    color: var(--fontLightColor);
+    p.text{
+      margin-bottom: 20px;
+    }
+  }
+  ul.info{
+    padding-top: 48px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid #E6E6EB;
+    li{
+      min-height: 48px;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 40px;
+      div {
+        margin-left: 53px;
+        &:nth-of-type(1) {
+          display: inline-block;
+          margin-left: 0;
+        }
+      }
+      svg{
+        vertical-align: middle;
+        font-size: 38px;
+        margin-right: 15px;
+        &.calendar{
+          color: red;
+        }
+        &.marker{
+          color: purple;
+        }
+        &.coin{
+          color: yellowgreen;
+        }
+        &.speaker{
+          color: red;
+        }
+        &.tel{
+          color: purple;
+        }
+      }
+    }
+  }
+}

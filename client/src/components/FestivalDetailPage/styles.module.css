@@ -1,0 +1,102 @@
+div.wrap {
+  margin-top: 130px;
+}
+div.wrap h1.subTitle {
+  margin-bottom: 20px;
+  font-size: 40px;
+  font-weight: 800;
+  color: var(--fontDarkColor);
+  line-height: 48px;
+  letter-spacing: -1px;
+}
+div.wrap h2.addr {
+  margin-bottom: 16px;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--fontDarkColor);
+  line-height: 32px;
+  letter-spacing: -1px;
+}
+div.wrap h2.addr svg {
+  color: #E60A59;
+}
+div.wrap div.swiper {
+  position: relative;
+  margin-bottom: 30px;
+}
+div.wrap div.swiper img.img {
+  width: 288px;
+  height: 288px;
+}
+div.wrap div.swiper button {
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--gray);
+  border-radius: 50%;
+  text-align: center;
+}
+div.wrap div.swiper button svg {
+  width: 100%;
+  height: 100%;
+}
+div.wrap div.swiper button.festivalPrevBtn {
+  position: absolute;
+  top: 144px;
+  left: -60px;
+}
+div.wrap div.swiper button.festivalPrevBtn svg {
+  margin-left: 7px;
+}
+div.wrap div.swiper button.festivalNextBtn {
+  position: absolute;
+  top: 144px;
+  right: -40px;
+}
+div.wrap div.textBox {
+  border-bottom: 1px solid #E6E6EB;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 32px;
+  color: var(--fontLightColor);
+}
+div.wrap div.textBox p.text {
+  margin-bottom: 20px;
+}
+div.wrap ul.info {
+  padding-top: 48px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid #E6E6EB;
+}
+div.wrap ul.info li {
+  min-height: 48px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 40px;
+}
+div.wrap ul.info li div {
+  margin-left: 53px;
+}
+div.wrap ul.info li div:nth-of-type(1) {
+  display: inline-block;
+  margin-left: 0;
+}
+div.wrap ul.info li svg {
+  vertical-align: middle;
+  font-size: 38px;
+  margin-right: 15px;
+}
+div.wrap ul.info li svg.calendar {
+  color: red;
+}
+div.wrap ul.info li svg.marker {
+  color: purple;
+}
+div.wrap ul.info li svg.coin {
+  color: yellowgreen;
+}
+div.wrap ul.info li svg.speaker {
+  color: red;
+}
+div.wrap ul.info li svg.tel {
+  color: purple;
+}/*# sourceMappingURL=styles.module.css.map */
