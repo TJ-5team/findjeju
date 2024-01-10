@@ -81,6 +81,7 @@ export default function Join() {
         }).then((result) => {
 
             setUserData(result.data);
+
         })
 
     }, []);
@@ -150,7 +151,7 @@ export default function Join() {
         axios({
 
             method: 'post',
-            url: 'http://127.0.0.1:8000/join/signup',
+            url: 'http://127.0.0.1:8000/member/signup',
             data: formDataObject
 
         }).then((result) => {
@@ -163,7 +164,7 @@ export default function Join() {
 
         })
 
-    }
+    };
 
 
 
@@ -179,7 +180,7 @@ export default function Join() {
                 alert("특수문자,이모티콘,영어는 입력 할 수 없습니다.")
                 return false
             } else if (value.length <= 2) {
-                setValidation((validation) => ({ ...validation, name: '최소 두글자 이상입니다.' }));
+                setValidation((validation) => ({ ...validation, name: '최소 세글자 이상입니다.' }));
             } else if (search) {
                 setValidation((validation) => ({ ...validation, name: '동일한 이름이 존재합니다.' }));
             } else if (value.length >= 6) {
@@ -241,7 +242,7 @@ export default function Join() {
                 return false
             }
             if (value.length <= 2) {
-                setValidation((validation) => ({ ...validation, nickname: '최소 두글자 이상입니다.' }));
+                setValidation((validation) => ({ ...validation, nickname: '최소 세글자 이상입니다.' }));
             } else if (search) {
                 setValidation((validation) => ({ ...validation, nickname: '동일한 닉네임이 존재합니다.' }));
             } else if (value.length >= 8) {
@@ -390,7 +391,7 @@ export default function Join() {
 
         setTime(180);
 
-        axios.post("http://127.0.0.1:8000/join/email", { email: form.email, echeck: form.echeck })
+        axios.post("http://127.0.0.1:8000/member/email", { email: form.email, echeck: form.echeck })
             .then((result) => {
 
                 setNumber(result.data.number);
@@ -475,7 +476,7 @@ export default function Join() {
                                 <label id="name">* 이름</label>
                                 <input type="text" name="name" id="name" value={form.name} onChange={fnChange} placeholder='이름' onFocus={handleFocus} ref={nameRef} />
                                 {focus.name === '' || form.name
-                                    ? validation.name === '최소 두글자 이상입니다.' || validation.name === '최대 다섯글자 입니다.' || validation.name === '동일한 이름이 존재합니다.'
+                                    ? validation.name === '최소 세글자 이상입니다.' || validation.name === '최대 다섯글자 입니다.' || validation.name === '동일한 이름이 존재합니다.'
                                         ? <span className={styles.check}>{validation.name}</span>
                                         : validation.name === '필수 입력 항목입니다.' ? null : <span className={styles.success}>{validation.name}</span>
                                     : <span className={styles.check}>{validation.name}</span>}
@@ -512,7 +513,7 @@ export default function Join() {
                                 <label id="nickname">* 닉네임</label>
                                 <input type="text" name="nickname" id="nickname" value={form.nickname} onChange={fnChange} placeholder='닉네임' onFocus={handleFocus} ref={nickRef} />
                                 {focus.nickname === '' || form.nickname
-                                    ? validation.nickname === '최소 두글자 이상입니다.' || validation.nickname === '최대 8글자 입니다.' || validation.nickname === '동일한 닉네임이 존재합니다.'
+                                    ? validation.nickname === '최소 세글자 이상입니다.' || validation.nickname === '최대 8글자 입니다.' || validation.nickname === '동일한 닉네임이 존재합니다.'
                                         ? <span className={styles.check}>{validation.nickname}</span>
                                         : validation.nickname === '필수 입력 항목입니다.' ? null : <span className={styles.success}>{validation.nickname}</span>
                                     : <span className={styles.check}>{validation.nickname}</span>

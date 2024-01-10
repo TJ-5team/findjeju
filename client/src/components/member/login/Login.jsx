@@ -1,16 +1,26 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styles from "./styles.module.css";
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
+import { setCookie } from '../../../utils/cookie';
+import { jwtDecode } from "jwt-decode";
+import { useDispatch, useSelector } from 'react-redux';
+import { loginData } from '../../../api/loginApi';
+import { getUserData } from '../../../reselector/memberReselector';
+import useLogout from '../../../hooks/useLogout';
 
 export default function Login() {
   // 회원데이터
   const [userData, setUserData] = useState([]);
   const [form, setForm] = useState({ id: '', pass: '' });
   const [validation, setValidation] = useState({ id: '', pass: '' });
-
-
+  const [user, setUser] = useState([]);
+  const navigate = useNavigate();
   const idRef = useRef(null);
   const passRef = useRef(null);
+  const dispatch = useDispatch();
+  const state = useSelector(getUserData);
+  const handleLogout = useLogout();
 
   /*데이터 가져와서 회원비교*/
   useEffect(() => {
@@ -18,11 +28,12 @@ export default function Login() {
     axios({
 
       method: 'get',
-      url: 'http://127.0.0.1:8000/join'
+      url: 'http://127.0.0.1:8000/member/'
 
     }).then((result) => {
 
       setUserData(result.data);
+
     })
 
   }, []);
@@ -39,12 +50,13 @@ export default function Login() {
 
     e.preventDefault();
 
-    const search = userData.some((val, idx) => val.id === form.id)
-    if (search) {
-      setValidation({ ...validation, id: '등록된 아이디입니다.' });
-      return idRef.current.focus();
-    } else if (form.id === '') {
+    if (form.id === '') {
       setValidation({ ...validation, id: '필수 입력 사항입니다.' });
+      return idRef.current.focus();
+    }
+
+    if (form.pass === '') {
+      setValidation({ ...validation, pass: '필수 입력 사항입니다.' });
       return passRef.current.focus();
     }
 
@@ -56,11 +68,25 @@ export default function Login() {
 
     }).then((result) => {
 
+      setUser(result.data);
 
-
-    })
-
-  }
+      if (result.data.login_result) {
+        alert("로그인에 성공하였습니다.");
+        navigate("/");
+        setCookie("x-auth-jwt", result.data.token);
+        const userInfo = jwtDecode(result.data.token);
+        dispatch(loginData(userInfo));
+      } else {
+        if (result.data.cnt === 1) {
+          alert("패스워드가 다릅니다.")
+          passRef.current.focus();
+        } else {
+          alert("아이디가 다릅니다.")
+          idRef.current.focus();
+        }
+      }
+    });
+  };
 
   return (
     <>
@@ -77,13 +103,14 @@ export default function Login() {
               </p>
               <p>
                 <label id="pass">비밀번호</label>
-                <input type="text" name="pass" placeholder='비밀번호를 입력하세요' onChange={fnChange} ref={passRef} />
+                <input type="password" name="pass" placeholder='비밀번호를 입력하세요' onChange={fnChange} ref={passRef} />
               </p>
               <button>로그인</button>
             </form>
+            <button type='button' onClick={handleLogout}>로그아웃</button>
           </div>
         </div>
-      </div>
+      </div >
     </>
   );
 }

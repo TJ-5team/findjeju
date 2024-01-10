@@ -2,7 +2,7 @@ div.wrap {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 800px;
+  height: 100vh;
 }
 div.wrap div.innerWrap {
   margin-top: 130px;

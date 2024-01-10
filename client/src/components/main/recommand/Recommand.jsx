@@ -3,6 +3,8 @@ import styles from './styles.module.css';
 import Title from '../title/Title';
 import SwiperBox from './swiper/SwiperBox';
 import AreaTitle from './title/AreaTitle';
+import { useSelector } from 'react-redux';
+import { getUserData } from '../../../reselector/memberReselector';
 
 export default function Recommand() {
 
@@ -13,6 +15,10 @@ export default function Recommand() {
     setArea(e);
 
   }
+
+  const state = useSelector((state) => state);
+
+  const dd = useSelector(getUserData);
 
   return (
     <>
