@@ -47,6 +47,40 @@ div.wrap div.contentWrap div.contentInner div.userBox div.userImage {
   height: 450px;
   border-radius: 10px;
   background-color: #022c6c;
+  position: relative;
+}
+div.wrap div.contentWrap div.contentInner div.userBox div.userImage button.moreBtn {
+  overflow: hidden;
+  float: right;
+  margin-top: 30px;
+  width: 24px;
+  height: 26px;
+  background: url("http://localhost:3000/images/mypage/dot.png") no-repeat;
+  text-indent: -9999px;
+  margin-bottom: 60px;
+}
+div.wrap div.contentWrap div.contentInner div.userBox div.userImage div.profileImg {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: red;
+  margin: 0 auto;
+  clear: both;
+}
+div.wrap div.contentWrap div.contentInner div.userBox div.userImage div.profileImg img {
+  width: 100%;
+  height: 100%;
+}
+div.wrap div.contentWrap div.contentInner div.userBox div.userImage p {
+  text-align: center;
+  padding: 27px 0px 10px;
+  color: #fff;
+}
+div.wrap div.contentWrap div.contentInner div.userBox div.userImage strong {
+  display: block;
+  text-align: center;
+  font-size: 30px;
+  color: #fff;
 }
 div.wrap div.contentWrap div.contentInner div.contentBox {
   border: 1px solid #000;
@@ -69,6 +103,9 @@ div.wrap div.contentWrap div.contentInner div.contentBox ul.contentList li {
   position: relative;
   padding: 20px 0px;
   box-sizing: border-box;
+}
+div.wrap div.contentWrap div.contentInner div.contentBox ul.contentList li div.banner {
+  margin-top: 20px;
 }
 div.wrap div.contentWrap div.contentInner div.contentBox ul.contentList li a {
   font-weight: 700;
@@ -110,21 +147,58 @@ div.wrap div.contentWrap div.contentInner div.contentBox ul.activeList {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+  padding: 40px 0px;
 }
 div.wrap div.contentWrap div.contentInner div.contentBox ul.activeList li {
   width: 33%;
+  height: 150px;
   text-align: center;
   box-sizing: border-box;
-  /* a {
-    position: relative;
-    display: block;
-    width: 40px;
-    height: 40px;
-    background-color: #c9c9c9;
-    em {
-      // position: absolute;
-      // right: 0px;
-      // top: 0px;
-    }
-  } */
+}
+div.wrap div.contentWrap div.contentInner div.contentBox ul.activeList li span {
+  display: block;
+  margin-top: 10px;
+}
+div.wrap div.contentWrap div.contentInner div.contentBox ul.activeList li a {
+  display: inline-block;
+  position: relative;
+}
+div.wrap div.contentWrap div.contentInner div.contentBox ul.activeList li a::before {
+  content: "";
+  display: inline-block;
+  width: 65px;
+  height: 65px;
+  border-radius: 10px;
+}
+div.wrap div.contentWrap div.contentInner div.contentBox ul.activeList li a em {
+  position: absolute;
+  left: 40px;
+  top: -4px;
+  height: 26px;
+  min-width: 26px;
+  line-height: 26px;
+  padding: 0 7px;
+  border-radius: 50px;
+  color: #fff;
+  font-size: 16px;
+  background: #4765cf;
+  box-sizing: border-box;
+}
+div.wrap div.contentWrap div.contentInner div.contentBox ul.activeList li:nth-child(1) a::before {
+  background: url("http://localhost:3000/images/mypage/icon_active.png") 0 0px no-repeat;
+}
+div.wrap div.contentWrap div.contentInner div.contentBox ul.activeList li:nth-child(2) a::before {
+  background: url("http://localhost:3000/images/mypage/icon_active.png") 0 -65px no-repeat;
+}
+div.wrap div.contentWrap div.contentInner div.contentBox ul.activeList li:nth-child(3) a::before {
+  background: url("http://localhost:3000/images/mypage/icon_active.png") 0 -130px no-repeat;
+}
+div.wrap div.contentWrap div.contentInner div.contentBox ul.activeList li:nth-child(4) a::before {
+  background: url("http://localhost:3000/images/mypage/icon_active.png") 0 -195px no-repeat;
+}
+div.wrap div.contentWrap div.contentInner div.contentBox ul.activeList li:nth-child(5) a::before {
+  background: url("http://localhost:3000/images/mypage/icon_active.png") 0 -260px no-repeat;
+}
+div.wrap div.contentWrap div.contentInner div.contentBox ul.activeList li:nth-child(6) a::before {
+  background: url("http://localhost:3000/images/mypage/icon_active.png") 0 -325px no-repeat;
 }/*# sourceMappingURL=styles.module.css.map */

@@ -37,11 +37,46 @@ div.wrap {
       div.userBox {
         border: 1px solid #000;
         margin-right: 30px;
+
         div.userImage {
           width: 340px;
           height: 450px;
           border-radius: 10px;
           background-color: #022c6c;
+          position: relative;
+          button.moreBtn {
+            overflow: hidden;
+            float: right;
+            margin-top: 30px;
+            width: 24px;
+            height: 26px;
+            background: url("http://localhost:3000/images/mypage/dot.png") no-repeat;
+            text-indent: -9999px;
+            margin-bottom: 60px;
+          }
+          div.profileImg {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: red;
+            margin: 0 auto;
+            clear: both;
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+          p {
+            text-align: center;
+            padding: 27px 0px 10px;
+            color: #fff;
+          }
+          strong {
+            display: block;
+            text-align: center;
+            font-size: 30px;
+            color: #fff;
+          }
         }
       }
       div.contentBox {
@@ -63,6 +98,9 @@ div.wrap {
             position: relative;
             padding: 20px 0px;
             box-sizing: border-box;
+            div.banner {
+              margin-top: 20px;
+            }
             a {
               font-weight: 700;
               font-size: 20px;
@@ -108,23 +146,84 @@ div.wrap {
           display: flex;
           align-items: center;
           flex-wrap: wrap;
+          padding: 40px 0px;
           li {
             width: 33%;
+            height: 150px;
             text-align: center;
             box-sizing: border-box;
 
-            /* a {
-              position: relative;
+            span {
               display: block;
-              width: 40px;
-              height: 40px;
-              background-color: #c9c9c9;
-              em {
-                // position: absolute;
-                // right: 0px;
-                // top: 0px;
+              margin-top: 10px;
+            }
+            a {
+              display: inline-block;
+              position: relative;
+              &::before {
+                content: "";
+                display: inline-block;
+                width: 65px;
+                height: 65px;
+                border-radius: 10px;
               }
-            } */
+              em {
+                position: absolute;
+                left: 40px;
+                top: -4px;
+                height: 26px;
+                min-width: 26px;
+                line-height: 26px;
+                padding: 0 7px;
+                border-radius: 50px;
+                color: #fff;
+                font-size: 16px;
+                background: #4765cf;
+                box-sizing: border-box;
+              }
+            }
+            &:nth-child(1) {
+              a {
+                &::before {
+                  background: url("http://localhost:3000/images/mypage/icon_active.png") 0 0px no-repeat;
+                }
+              }
+            }
+            &:nth-child(2) {
+              a {
+                &::before {
+                  background: url("http://localhost:3000/images/mypage/icon_active.png") 0 -65px no-repeat;
+                }
+              }
+            }
+            &:nth-child(3) {
+              a {
+                &::before {
+                  background: url("http://localhost:3000/images/mypage/icon_active.png") 0 -130px no-repeat;
+                }
+              }
+            }
+            &:nth-child(4) {
+              a {
+                &::before {
+                  background: url("http://localhost:3000/images/mypage/icon_active.png") 0 -195px no-repeat;
+                }
+              }
+            }
+            &:nth-child(5) {
+              a {
+                &::before {
+                  background: url("http://localhost:3000/images/mypage/icon_active.png") 0 -260px no-repeat;
+                }
+              }
+            }
+            &:nth-child(6) {
+              a {
+                &::before {
+                  background: url("http://localhost:3000/images/mypage/icon_active.png") 0 -325px no-repeat;
+                }
+              }
+            }
           }
         }
       }
