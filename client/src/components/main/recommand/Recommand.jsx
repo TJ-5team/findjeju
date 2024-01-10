@@ -16,10 +16,6 @@ export default function Recommand() {
 
   }
 
-  const state = useSelector((state) => state);
-
-  const dd = useSelector(getUserData);
-
   return (
     <>
       <div className={styles.wrap}>

@@ -1,0 +1,130 @@
+@charset "UTF-8";
+div.wrap {
+  margin-top: 120px;
+  min-height: 800px;
+  background-color: #fdfdfd;
+}
+div.wrap div.titleWrap {
+  background-color: #fff;
+}
+div.wrap div.titleWrap h2.title {
+  font-size: 36px;
+  font-weight: bold;
+  padding: 20px 0px;
+  color: #333333;
+  position: relative;
+}
+div.wrap div.titleWrap h2.title::before {
+  content: "";
+  display: block;
+  width: 26px;
+  height: 29px;
+  background-image: url("http://localhost:3000/images/mypage/mypage.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  left: -25px;
+  top: 8px;
+}
+div.wrap div.contentWrap {
+  background-color: #f3f5f7;
+  min-height: 1000px;
+}
+div.wrap div.contentWrap div.contentInner {
+  border: 1px solid #000;
+  min-height: 1000px;
+  padding: 50px 0px 100px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+}
+div.wrap div.contentWrap div.contentInner div.userBox {
+  border: 1px solid #000;
+  margin-right: 30px;
+}
+div.wrap div.contentWrap div.contentInner div.userBox div.userImage {
+  width: 340px;
+  height: 450px;
+  border-radius: 10px;
+  background-color: #022c6c;
+}
+div.wrap div.contentWrap div.contentInner div.contentBox {
+  border: 1px solid #000;
+  flex-grow: 1;
+}
+div.wrap div.contentWrap div.contentInner div.contentBox h3.contentTitle {
+  padding-bottom: 20px;
+  box-sizing: border-box;
+  font-weight: bold;
+  font-size: 22px;
+}
+div.wrap div.contentWrap div.contentInner div.contentBox ul.contentList {
+  padding: 0px 20px;
+  box-sizing: border-box;
+  background-color: #fff;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+div.wrap div.contentWrap div.contentInner div.contentBox ul.contentList li {
+  position: relative;
+  padding: 20px 0px;
+  box-sizing: border-box;
+}
+div.wrap div.contentWrap div.contentInner div.contentBox ul.contentList li a {
+  font-weight: 700;
+  font-size: 20px;
+  color: #333;
+}
+div.wrap div.contentWrap div.contentInner div.contentBox ul.contentList li a::before {
+  content: "";
+  display: inline-block;
+  width: 31px;
+  height: 32px;
+  margin-right: 10px;
+  vertical-align: -8px;
+}
+div.wrap div.contentWrap div.contentInner div.contentBox ul.contentList li a::after {
+  content: "▼";
+  position: absolute;
+  top: 20px;
+  right: 0px;
+  display: block;
+  color: #4a4a4a;
+}
+div.wrap div.contentWrap div.contentInner div.contentBox ul.contentList li:first-child {
+  border-bottom: 1px solid #e6e6e6;
+}
+div.wrap div.contentWrap div.contentInner div.contentBox ul.contentList li:first-child a::before {
+  background: url("http://localhost:3000/images/mypage/select.png") 0 0 no-repeat;
+}
+div.wrap div.contentWrap div.contentInner div.contentBox ul.contentList li:last-child a::before {
+  background: url("http://localhost:3000/images/mypage/select.png") 0 -60px no-repeat;
+}
+div.wrap div.contentWrap div.contentInner div.contentBox ul.contentList li:last-child a::after {
+  content: "▼";
+  display: none;
+}
+div.wrap div.contentWrap div.contentInner div.contentBox ul.activeList {
+  background-color: #fff;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+div.wrap div.contentWrap div.contentInner div.contentBox ul.activeList li {
+  width: 33%;
+  text-align: center;
+  box-sizing: border-box;
+  /* a {
+    position: relative;
+    display: block;
+    width: 40px;
+    height: 40px;
+    background-color: #c9c9c9;
+    em {
+      // position: absolute;
+      // right: 0px;
+      // top: 0px;
+    }
+  } */
+}/*# sourceMappingURL=styles.module.css.map */

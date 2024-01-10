@@ -12,6 +12,7 @@ import Fiesta from "./components/main/fiesta/Fiesta";
 import FestivalSubPage from "./pages/FestivalSubPage";
 import FestivalDetailPage from "./pages/FestivalDetailPage";
 import Login from "./pages/LoginPage";
+import Mypage from "./pages/Mypage";
 
 const router = createBrowserRouter([
 
@@ -39,6 +40,11 @@ const router = createBrowserRouter([
         path: "/login",
         element:
         <Login />
+      },
+      {
+        path: "/mypage",
+        element:
+        <Mypage />
       },
       {
         path:"/search/:keyword",
