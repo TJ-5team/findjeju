@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import styles from '../styles.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import useGetList from '../../../../hooks/useGetList';
-import { changeName } from '../../../../store';
+import { changeName } from '../../../../reducer/areaReducer';
 import { getAreaData } from '../../../../reselector/areaReselector';
 
 export default function AreaTitle({ getArea }) {

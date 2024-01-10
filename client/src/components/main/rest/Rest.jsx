@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import Title from './../title/Title';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAreaData, getListData } from './../../../reselector/areaReselector';
-import { changeList } from "../../../store";
+import { changeList } from "../../../reducer/areaReducer";
 
 export default function Rest() {
   const dispatch = useDispatch();

@@ -1,0 +1,46 @@
+import { createSlice } from "@reduxjs/toolkit";
+
+
+export const handleSearch = createSlice({
+  name : "handleSearch",
+  initialState: { searchFlag : false },
+  reducers : {
+    clickSearch(state,action){
+      state.searchFlag = true;
+    },
+    clickOthers(state,action){
+      state.searchFlag = false;
+    }
+  },
+
+})
+
+export const inputControll = createSlice({
+  name : "inputControll",
+  initialState: {keyword : ''},
+  reducers : {
+    inputChange(state,action){
+      state.keyword = action.payload
+    }
+  }
+})
+
+export const searchListSlice = createSlice({
+  name : "searchListSlice",
+  initialState: {firstList : null},
+  reducers : {
+    getApiDataList(state,action){
+      state.firstList = action.payload
+    },
+    getFestaDataList(state,action){
+      state.secondList = action.payload
+    },
+    getShowDataList(state,action){
+      state.thirdList = action.payload
+    }
+  }
+})
+
+export const {clickSearch,clickOthers} =  handleSearch.actions
+export const {inputChange} = inputControll.actions
+export const {getApiDataList,getFestaDataList,getShowDataList} = searchListSlice.actions
