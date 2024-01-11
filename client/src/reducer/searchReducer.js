@@ -27,7 +27,7 @@ export const inputControll = createSlice({
 
 export const searchListSlice = createSlice({
   name : "searchListSlice",
-  initialState: {firstList : null},
+  initialState: {},
   reducers : {
     getApiDataList(state,action){
       state.firstList = action.payload
@@ -37,10 +37,13 @@ export const searchListSlice = createSlice({
     },
     getShowDataList(state,action){
       state.thirdList = action.payload
+    },
+    getCourseDataList(state,action){
+      state.forthList = action.payload
     }
   }
 })
 
 export const {clickSearch,clickOthers} =  handleSearch.actions
 export const {inputChange} = inputControll.actions
-export const {getApiDataList,getFestaDataList,getShowDataList} = searchListSlice.actions
+export const {getApiDataList,getFestaDataList,getShowDataList, getCourseDataList} = searchListSlice.actions

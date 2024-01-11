@@ -12,6 +12,8 @@ export default function SearchModal() {
   const {searchFlag} = useSelector(getSearch);
   const [form,setForm] = useState({keyword:""})
   const wrapTarget = useRef(null);
+  const [keywordList,setKeywordList] = useState(JSON.parse(localStorage.getItem("keyword")) || [])
+  const [localList,setLocalList] = useState(keywordList || [])
   const navigate = useNavigate();
   function handleChange(e){
     setForm({...form,keyword:e.target.value})
@@ -30,9 +32,8 @@ export default function SearchModal() {
   }
   function handleSubmit(e){
     e.preventDefault()
-
     let keyword = form.keyword
-    console.log(keyword.length);
+    
     if(keyword.length < 2){
       alert("2글자 이상 검색 가능합니다.")
       return
@@ -40,10 +41,32 @@ export default function SearchModal() {
     dispatch(inputChange(keyword))
     dispatch(clickOthers())
     navigate(`/search/${keyword}`)
-
+    let keywords = JSON.parse(localStorage.getItem('keyword'))
+    if(keywords.includes(keyword)){
+      return
+    }
+    setKeywordList([...keywordList,keyword])
+    
   }
+  useEffect(()=>{
+    localStorage.setItem('keyword',JSON.stringify(keywordList))
+    const localKeyword = JSON.parse(localStorage.getItem('keyword'))
+    setLocalList(localKeyword)
+  },[keywordList.length])
+  
+  function handleRemove(keyword){
+    if(keyword === "all"){
+      localStorage.removeItem('keyword')
+      setKeywordList([]);
+    }else if(keyword !== "all"){
+      let localKeyword = JSON.parse(localStorage.getItem('keyword'))
+      let filterKeyword = localKeyword.filter((key)=>key !== keyword)
+      setKeywordList(filterKeyword)
+    }
+  }
+
   return (
-      <div className={styles.wrap} style={searchFlag ? { "display": "block" } :{ "display": "none" }} onClick={(e)=>handleClick(e)} ref={wrapTarget}>
+      <div className={styles.wrap} style={searchFlag ? { "display": "block" } :{ "display": "none" }} onClick={handleClick} ref={wrapTarget}>
         <div className={styles.container}>
           <div className={styles.box}>
             <span className={styles.logo}>
@@ -53,36 +76,51 @@ export default function SearchModal() {
             </span>
             <div className={styles.searchWrap}>
               <form className={`${styles.form} ${isFocus ? styles.on : ''}`} onSubmit={(e)=>handleSubmit(e)}>
-                <input className={styles.searchInput} onChange={(e)=>handleChange(e)} onFocus={()=>setIsFocus(true)} onBlur={()=>setIsFocus(false)} type="text" placeholder="어디로, 어떤 여행을 떠날 예정인가요?" />
-                <button className={styles.deleteBtn} style={length ? {"display":"block"} : {"display":"none"}} onClick={()=>{}}></button>
+                <input className={styles.searchInput} value={form.keyword} onChange={(e)=>handleChange(e)} onFocus={()=>setIsFocus(true)} onBlur={()=>setIsFocus(false)} type="text" placeholder="어디로, 어떤 여행을 떠날 예정인가요?" />
+                <button className={styles.deleteBtn} style={length ? {"display":"block"} : {"display":"none"}} onClick={()=>setForm({keyword:""})} type="button"></button>
                 <button className={styles.searchBtn}></button>
                 <span className={styles.widthCheck}></span>
               </form>
               <div className={styles.recentSearch}>
                 <h2>최근 검색어</h2>
                 <ul>
-                  <li>
-                    <Link to={"/"}>온천</Link>
-                    <button type="button" className={styles.deleteRSbtn}>삭제</button>
+                  {
+                  localList.map((keyword,idx)=>{
+                    return <li key={idx}>
+                    <Link to={`/search/${keyword}`} onClick={()=>dispatch(clickOthers())}>{keyword}</Link>
+                    <button type="button" className={styles.deleteRSbtn} onClick={()=>handleRemove(keyword)}>삭제</button>
                   </li>
+                  }
+                    )
+                  }
                 </ul>
-                <button type="button" className={styles.deleteAllBtn}>전체삭제</button>
+                <button type="button" className={styles.deleteAllBtn} onClick={()=>handleRemove("all")}>전체삭제</button>
                 <p className={styles.noData} style={{"display":"none"}}>최근 검색어 내역이 없습니다.</p>
               </div>
               <div className={styles.popularSearch}>
                 <h2>최근 인기 검색어</h2>
-                <em>조회일 직전 7일간의 인기 검색어</em>
+                <em>개발자가 임의로 선정한 검색어</em>
                 <div className={styles.popularKeyword}>
                   <ul>
                     <li>
                       <span className={styles.spanNum}>1</span>
-                      <Link to={"/"}>제주지역</Link>
+                      <Link to={"/search/제주"}>제주</Link>
                     </li>
-                  </ul>
-                  <ul>
                     <li>
                       <span className={styles.spanNum}>2</span>
-                      <Link to={"/"}>제주지역</Link>
+                      <Link to={"/search/서귀포"}>서귀포</Link>
+                    </li>
+                    <li>
+                      <span className={styles.spanNum}>3</span>
+                      <Link to={"/search/올레"}>올레</Link>
+                    </li>
+                    <li>
+                      <span className={styles.spanNum}>4</span>
+                      <Link to={"/search/한라산"}>한라산</Link>
+                    </li>
+                    <li>
+                      <span className={styles.spanNum}>5</span>
+                      <Link to={"/search/우도"}>우도</Link>
                     </li>
                   </ul>
                 </div>
