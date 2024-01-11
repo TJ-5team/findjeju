@@ -1,0 +1,252 @@
+@charset "UTF-8";
+div.wrap {
+  margin-top: 120px;
+  min-height: 800px;
+  background-color: #fdfdfd;
+}
+div.wrap div.titleWrap {
+  background-color: #fff;
+}
+div.wrap div.titleWrap h2.title {
+  font-size: 36px;
+  font-weight: bold;
+  padding: 20px 0px;
+  color: #333333;
+  position: relative;
+}
+div.wrap div.titleWrap h2.title::before {
+  content: "";
+  display: block;
+  width: 26px;
+  height: 29px;
+  background-image: url("http://localhost:3000/images/mypage/mypage.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  left: -25px;
+  top: 8px;
+}
+div.wrap div.contentWrap {
+  background-color: #f3f5f7;
+  min-height: 1000px;
+}
+div.wrap div.contentWrap div.contentInner {
+  border: 1px solid #000;
+  min-height: 1000px;
+  padding: 50px 0px 100px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+}
+div.wrap div.contentWrap div.contentInner div.userBox {
+  border: 1px solid #000;
+  margin-right: 30px;
+}
+div.wrap div.contentWrap div.contentInner div.userBox div.userImage {
+  width: 340px;
+  height: 450px;
+  border-radius: 10px;
+  background-color: #022c6c;
+  position: relative;
+}
+div.wrap div.contentWrap div.contentInner div.userBox div.userImage div.moreWrap {
+  position: relative;
+  float: right;
+  margin-top: 30px;
+  margin-bottom: 60px;
+}
+div.wrap div.contentWrap div.contentInner div.userBox div.userImage div.moreWrap button.moreBtn {
+  overflow: hidden;
+  width: 24px;
+  height: 26px;
+  background: url("http://localhost:3000/images/mypage/dot.png") no-repeat;
+  text-indent: -9999px;
+  cursor: pointer;
+}
+div.wrap div.contentWrap div.contentInner div.userBox div.userImage div.moreWrap ul.moreBox {
+  position: absolute;
+  right: 18px;
+  top: 35px;
+  width: 170px;
+  height: 120px;
+  padding: 10px 0px;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+div.wrap div.contentWrap div.contentInner div.userBox div.userImage div.moreWrap ul.moreBox li {
+  width: 100%;
+  height: 35px;
+}
+div.wrap div.contentWrap div.contentInner div.userBox div.userImage div.moreWrap ul.moreBox li:hover {
+  background-color: #dadcde;
+}
+div.wrap div.contentWrap div.contentInner div.userBox div.userImage div.moreWrap ul.moreBox li a {
+  margin-left: 20px;
+  display: block;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #333;
+}
+div.wrap div.contentWrap div.contentInner div.userBox div.userImage div.moreWrap ul.moreBox li a::before {
+  content: "";
+  display: block;
+  width: 22px;
+  height: 32px;
+  margin-right: 3px;
+  background-size: cover;
+}
+div.wrap div.contentWrap div.contentInner div.userBox div.userImage div.moreWrap ul.moreBox li:nth-child(1) a::before {
+  background-image: url("http://localhost:3000/images/mypage/ico_sprite.png");
+}
+div.wrap div.contentWrap div.contentInner div.userBox div.userImage div.moreWrap ul.moreBox li:nth-child(2) a::before {
+  background-image: url("http://localhost:3000/images/mypage/ico_sprite.png");
+  background-position: 0px 66px;
+}
+div.wrap div.contentWrap div.contentInner div.userBox div.userImage div.moreWrap ul.moreBox li:nth-child(3) a::before {
+  background-image: url("http://localhost:3000/images/mypage/ico_sprite.png");
+  background-position: 0px 30px;
+}
+div.wrap div.contentWrap div.contentInner div.userBox div.userImage div.profileImg {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: red;
+  margin: 0 auto;
+  clear: both;
+}
+div.wrap div.contentWrap div.contentInner div.userBox div.userImage div.profileImg img {
+  width: 100%;
+  height: 100%;
+}
+div.wrap div.contentWrap div.contentInner div.userBox div.userImage p {
+  text-align: center;
+  padding: 27px 0px 10px;
+  color: #fff;
+}
+div.wrap div.contentWrap div.contentInner div.userBox div.userImage strong {
+  display: block;
+  text-align: center;
+  font-size: 30px;
+  color: #fff;
+}
+div.wrap div.contentWrap div.contentInner div.contentBox {
+  border: 1px solid #000;
+  flex-grow: 1;
+}
+div.wrap div.contentWrap div.contentInner div.contentBox h3.contentTitle {
+  padding-bottom: 20px;
+  box-sizing: border-box;
+  font-weight: bold;
+  font-size: 22px;
+}
+div.wrap div.contentWrap div.contentInner div.contentBox ul.contentList {
+  padding: 0px 20px;
+  box-sizing: border-box;
+  background-color: #fff;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+div.wrap div.contentWrap div.contentInner div.contentBox ul.contentList li {
+  position: relative;
+  padding: 20px 0px;
+  box-sizing: border-box;
+}
+div.wrap div.contentWrap div.contentInner div.contentBox ul.contentList li div.banner {
+  margin-top: 20px;
+}
+div.wrap div.contentWrap div.contentInner div.contentBox ul.contentList li a {
+  font-weight: 700;
+  font-size: 20px;
+  color: #333;
+}
+div.wrap div.contentWrap div.contentInner div.contentBox ul.contentList li a::before {
+  content: "";
+  display: inline-block;
+  width: 31px;
+  height: 32px;
+  margin-right: 10px;
+  vertical-align: -8px;
+}
+div.wrap div.contentWrap div.contentInner div.contentBox ul.contentList li a::after {
+  content: "▼";
+  position: absolute;
+  top: 20px;
+  right: 0px;
+  display: block;
+  color: #4a4a4a;
+}
+div.wrap div.contentWrap div.contentInner div.contentBox ul.contentList li:first-child {
+  border-bottom: 1px solid #e6e6e6;
+}
+div.wrap div.contentWrap div.contentInner div.contentBox ul.contentList li:first-child a::before {
+  background: url("http://localhost:3000/images/mypage/select.png") 0 0 no-repeat;
+}
+div.wrap div.contentWrap div.contentInner div.contentBox ul.contentList li:last-child a::before {
+  background: url("http://localhost:3000/images/mypage/select.png") 0 -60px no-repeat;
+}
+div.wrap div.contentWrap div.contentInner div.contentBox ul.contentList li:last-child a::after {
+  content: "▼";
+  display: none;
+}
+div.wrap div.contentWrap div.contentInner div.contentBox ul.activeList {
+  background-color: #fff;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 40px 0px;
+}
+div.wrap div.contentWrap div.contentInner div.contentBox ul.activeList li {
+  width: 33%;
+  height: 150px;
+  text-align: center;
+  box-sizing: border-box;
+}
+div.wrap div.contentWrap div.contentInner div.contentBox ul.activeList li span {
+  display: block;
+  margin-top: 10px;
+}
+div.wrap div.contentWrap div.contentInner div.contentBox ul.activeList li a {
+  display: inline-block;
+  position: relative;
+}
+div.wrap div.contentWrap div.contentInner div.contentBox ul.activeList li a::before {
+  content: "";
+  display: inline-block;
+  width: 65px;
+  height: 65px;
+  border-radius: 10px;
+}
+div.wrap div.contentWrap div.contentInner div.contentBox ul.activeList li a em {
+  position: absolute;
+  left: 40px;
+  top: -4px;
+  height: 26px;
+  min-width: 26px;
+  line-height: 26px;
+  padding: 0 7px;
+  border-radius: 50px;
+  color: #fff;
+  font-size: 16px;
+  background: #4765cf;
+  box-sizing: border-box;
+}
+div.wrap div.contentWrap div.contentInner div.contentBox ul.activeList li:nth-child(1) a::before {
+  background: url("http://localhost:3000/images/mypage/icon_active.png") 0 0px no-repeat;
+}
+div.wrap div.contentWrap div.contentInner div.contentBox ul.activeList li:nth-child(2) a::before {
+  background: url("http://localhost:3000/images/mypage/icon_active.png") 0 -65px no-repeat;
+}
+div.wrap div.contentWrap div.contentInner div.contentBox ul.activeList li:nth-child(3) a::before {
+  background: url("http://localhost:3000/images/mypage/icon_active.png") 0 -130px no-repeat;
+}
+div.wrap div.contentWrap div.contentInner div.contentBox ul.activeList li:nth-child(4) a::before {
+  background: url("http://localhost:3000/images/mypage/icon_active.png") 0 -195px no-repeat;
+}
+div.wrap div.contentWrap div.contentInner div.contentBox ul.activeList li:nth-child(5) a::before {
+  background: url("http://localhost:3000/images/mypage/icon_active.png") 0 -260px no-repeat;
+}
+div.wrap div.contentWrap div.contentInner div.contentBox ul.activeList li:nth-child(6) a::before {
+  background: url("http://localhost:3000/images/mypage/icon_active.png") 0 -325px no-repeat;
+}/*# sourceMappingURL=styles.module.css.map */

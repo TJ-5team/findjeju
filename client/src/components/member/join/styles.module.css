@@ -1,5 +1,6 @@
 div.wrap {
   border: 1px solid #c9c9c9;
+  margin-top: 100px;
 }
 div.wrap div.joinBox {
   padding: 80px;
@@ -17,12 +18,13 @@ div.wrap div.joinBox form.joinForm ul.joinList li.joinLi {
 div.wrap div.joinBox form.joinForm ul.joinList li.joinLi * {
   font-size: 20px;
 }
-div.wrap div.joinBox form.joinForm ul.joinList li.joinLi > span {
+div.wrap div.joinBox form.joinForm ul.joinList li.joinLi span.check {
   font-size: 16px;
   color: red;
 }
 div.wrap div.joinBox form.joinForm ul.joinList li.joinLi span.success {
   color: green;
+  font-size: 16px;
 }
 div.wrap div.joinBox form.joinForm ul.joinList li.joinLi label {
   font-size: 20px;

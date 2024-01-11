@@ -1,4 +1,4 @@
-.Wrap{
+.Wrap {
   display: block;
   width: 100%;
   margin-top: 60px;
@@ -6,38 +6,38 @@
   background: #f7f7f7;
   box-sizing: border-box;
 }
-.footerContainer{
+.footerContainer {
   width: 940px;
   margin: 0 auto;
-  &::after{
-    content: '';
+  &::after {
+    content: "";
     display: block;
     clear: both;
   }
 }
-.footerLogoWrap{
+.footerLogoWrap {
   width: 100%;
   padding-bottom: 16px;
   border-top: 1px solid #e6e6e6;
 }
 
-.footLogo{
+.footLogo {
   float: left;
   width: 89px;
   padding-top: 23px;
-  img{
+  img {
     width: 89px;
     height: 14px;
   }
 }
 
-.logoListWrap{
+.logoListWrap {
   float: right;
   padding-top: 14px;
-  li{
+  li {
     float: left;
     margin-left: 20px;
-    a{
+    a {
       display: block;
     }
   }
