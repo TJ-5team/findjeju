@@ -44,15 +44,77 @@ div.wrap {
           border-radius: 10px;
           background-color: #022c6c;
           position: relative;
-          button.moreBtn {
-            overflow: hidden;
+          div.moreWrap {
+            position: relative;
             float: right;
             margin-top: 30px;
-            width: 24px;
-            height: 26px;
-            background: url("http://localhost:3000/images/mypage/dot.png") no-repeat;
-            text-indent: -9999px;
             margin-bottom: 60px;
+
+            button.moreBtn {
+              overflow: hidden;
+              width: 24px;
+              height: 26px;
+              background: url("http://localhost:3000/images/mypage/dot.png") no-repeat;
+              text-indent: -9999px;
+              cursor: pointer;
+            }
+            ul.moreBox {
+              position: absolute;
+              right: 18px;
+              top: 35px;
+              width: 170px;
+              height: 120px;
+              padding: 10px 0px;
+              box-sizing: border-box;
+              background-color: #fff;
+              li {
+                width: 100%;
+                height: 35px;
+                &:hover {
+                  background-color: #dadcde;
+                }
+                a {
+                  margin-left: 20px;
+                  display: block;
+                  display: flex;
+                  align-items: center;
+                  font-size: 14px;
+                  color: #333;
+
+                  &::before {
+                    content: "";
+                    display: block;
+                    width: 22px;
+                    height: 32px;
+                    margin-right: 3px;
+                    background-size: cover;
+                  }
+                }
+                &:nth-child(1) {
+                  a {
+                    &::before {
+                      background-image: url("http://localhost:3000/images/mypage/ico_sprite.png");
+                    }
+                  }
+                }
+                &:nth-child(2) {
+                  a {
+                    &::before {
+                      background-image: url("http://localhost:3000/images/mypage/ico_sprite.png");
+                      background-position: 0px 66px;
+                    }
+                  }
+                }
+                &:nth-child(3) {
+                  a {
+                    &::before {
+                      background-image: url("http://localhost:3000/images/mypage/ico_sprite.png");
+                      background-position: 0px 30px;
+                    }
+                  }
+                }
+              }
+            }
           }
           div.profileImg {
             width: 80px;

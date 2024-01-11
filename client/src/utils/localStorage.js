@@ -3,7 +3,7 @@ import React from "react";
 // 로컬스토리지에 저장이되어있는것은 브라우저요청이 끝나고 브라우저가 아예 종료가돼도 살아있음
 import {getCookie,removeCookie} from "./cookie.js";
 
-export const getUser = () =>{
+/* export const getUser = () =>{
 
   let userInfo = localStorage.getItem('userInfo') && getCookie("x-auth-jwt")
                   ? JSON.parse(localStorage.getItem('userInfo'))
@@ -13,7 +13,24 @@ export const getUser = () =>{
 
   return userInfo;
 
-};
+}; */
+
+export const getUser = () =>{
+
+  const allData = localStorage.getItem('persist:root');
+  const changeData = JSON.parse(allData)
+  const login = JSON.parse(changeData.login);
+  const member = JSON.parse(JSON.stringify(login));
+  const userInfo = member.member
+  // const userInfo = JSON.parse(login.member)
+  // const changeData = JSON.parse(JSON.stringify(allData));
+  // const login = JSON.parse(JSON.stringify(changeData).login);
+
+  return userInfo;
+
+
+
+}
 
 export const removeUser = () =>{
 

@@ -18,10 +18,7 @@ export default function AreaTitle({ getArea }) {
 
         getArea(area)
 
-    }, [area])
-
-
-
+    }, [area]);
 
     return (
         <>
