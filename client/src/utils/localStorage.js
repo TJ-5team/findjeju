@@ -21,7 +21,7 @@ export const getUser = () =>{
   const changeData = JSON.parse(allData)
   const login = JSON.parse(changeData.login);
   const member = JSON.parse(JSON.stringify(login));
-  const userInfo = member.member
+  const userInfo = JSON.parse(member.member)
   // const userInfo = JSON.parse(login.member)
   // const changeData = JSON.parse(JSON.stringify(allData));
   // const login = JSON.parse(JSON.stringify(changeData).login);
