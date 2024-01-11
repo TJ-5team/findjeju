@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import  { area, list } from './reducer/areaReducer.js';
-import  { handleSearch, inputControll, searchListSlice}  from './reducer/searchReducer.js'
+import  { handleSearch, inputControll, searchListSlice, serviceListSlice}  from './reducer/searchReducer.js'
 import { tripInfoSlice } from './reducer/tripInfoReducer.js';
 import { subSlice } from './reducer/subReducer';
 
@@ -15,6 +15,7 @@ export default configureStore({
     searchListSlice : searchListSlice.reducer,
     tripInfoSlice : tripInfoSlice.reducer,
     subSlice : subSlice.reducer,
+    serviceListSlice : serviceListSlice.reducer
   }
 
 });

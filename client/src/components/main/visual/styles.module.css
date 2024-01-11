@@ -57,6 +57,19 @@ div {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
+.titleWrap a {
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 300;
+  letter-spacing: -0.5px;
+  color: #000;
+}
+.titleWrap a:hover::after {
+  content: "";
+  display: block;
+  height: 1px;
+  background: #908f8f;
+}
 
 .leftSwiper {
   width: 370px;
@@ -88,6 +101,24 @@ div {
 .rightSwiper {
   position: static !important;
   padding: 20px 0 80px 20px !important;
+}
+.rightSwiper::after {
+  content: "";
+  display: inline-block;
+  width: 123px;
+  height: 126px;
+  position: absolute;
+  left: 38px;
+  top: -12px;
+  z-index: 10;
+  background: url("http://127.0.0.1:3000/images/visual1.png") no-repeat;
+  animation: rotate_image 20s linear infinite;
+  transform-origin: 50% 50%;
+}
+@keyframes rotate_image {
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .page {

@@ -40,6 +40,16 @@ export const searchListSlice = createSlice({
     },
     getCourseDataList(state,action){
       state.forthList = action.payload
+    },
+  }
+})
+
+export const serviceListSlice = createSlice({
+  name : "serviceListSlice",
+  initialState: {list : {list : null, totalCount : 0}},
+  reducers : {
+    getServiceDataList(state,action){
+      state.list = action.payload
     }
   }
 })
@@ -47,3 +57,4 @@ export const searchListSlice = createSlice({
 export const {clickSearch,clickOthers} =  handleSearch.actions
 export const {inputChange} = inputControll.actions
 export const {getApiDataList,getFestaDataList,getShowDataList, getCourseDataList} = searchListSlice.actions
+export const {getServiceDataList} = serviceListSlice.actions

@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css"
 import { Link, useParams } from "react-router-dom";
-import SearchCommon from "./searchCommon/SearchCommon";
-import SearchCourse from "./searchCourse/SearchCourse";
+import SearchCommonItem from "./searchCommon/SearchCommonItem";
 import { useDispatch, useSelector } from "react-redux";
-import { getKeyword, getSearchListData } from "../../reselector/searchReselector";
-import { SearchApiData } from "../../api/searchAPI";
+import { getKeyword, getSearchListData, getSeviceListData } from "../../reselector/searchReselector";
+import { SearchApiData, serviceApiData } from "../../api/searchAPI";
+import Pagination from 'rc-pagination';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'rc-pagination/assets/index.css'
+import NotFound from "./notFound/NotFound";
 export default function Search() {
   const [active, setActive] = useState("전체")
   const [filter, setFilter] = useState("제목")
@@ -14,21 +17,34 @@ export default function Search() {
   const dispatch = useDispatch();
   const { firstList, secondList, thirdList, forthList } = useSelector(getSearchListData)
   const { key } = useSelector(getKeyword);
+  const [currentPage, setCurrentPage] = useState(1);
+  const {serviceList, totalCount} = useSelector(getSeviceListData)
   useEffect(() => {
     setSubFilter("전체")
+    setCurrentPage(1)
   }, [active])
 
   useEffect(() => {
+    if(active !== "전체"){
+      return
+    }
     if (filter === "최신") {
       let filter = "Q"
       dispatch(SearchApiData({ keyword, filter }))
+      console.log();
     } else {
-
       dispatch(SearchApiData({ keyword }))
+      console.log();
     }
   }, [filter, key, keyword])
 
-
+  useEffect(()=> {
+    if(active === "전체"){
+      return
+    }
+      dispatch(serviceApiData({currentPage, subfilter, filter, keyword, active}))
+      console.log(serviceList);
+  },[currentPage,subfilter,filter,keyword,active])
   return (
     <div className={styles.wrap}>
       <div className={styles.container}>
@@ -52,7 +68,7 @@ export default function Search() {
                   </button>
                 </div>
                 <div className={styles.topMenuItem}>
-                  <button className={active === "공연/행사" ? styles.active : ""} onClick={() => { setActive("공연/행사") }}>
+                  <button className={active === "공연행사" ? styles.active : ""} onClick={() => { setActive("공연행사") }}>
                     공연/행사
                   </button>
                 </div>
@@ -67,7 +83,7 @@ export default function Search() {
           <div className={`${styles.listMidMenu}`} style={active === "여행정보" ? { display: "block" } : { display: "none" }}>
             <ul>
               <li><button className={subfilter === "전체" ? styles.active : ""} onClick={() => { setSubFilter("전체") }} >전체</button></li>
-              <li><button className={subfilter === "여행지" ? styles.active : ""} onClick={() => { setSubFilter("여행지") }} >여행지</button></li>
+              <li><button className={subfilter === "자연" ? styles.active : ""} onClick={() => { setSubFilter("자연") }} >자연</button></li>
               <li><button className={subfilter === "음식점" ? styles.active : ""} onClick={() => { setSubFilter("음식점") }} >음식점</button></li>
               <li><button className={subfilter === "숙박" ? styles.active : ""} onClick={() => { setSubFilter("숙박") }} >숙박</button></li>
               <li><button className={subfilter === "문화시설" ? styles.active : ""} onClick={() => { setSubFilter("문화시설") }} >문화시설</button></li>
@@ -76,6 +92,7 @@ export default function Search() {
             </ul>
           </div>
           <div className={styles.filterWrap}>
+            {totalCount ? <p>{`총 ${totalCount} 건`}</p> : ""}
             <div className={styles.filter}>
               <button className={filter === "제목" ? styles.active : ""} onClick={() => { setFilter("제목") }}>제목순</button>
               <button className={filter === "최신" ? styles.active : ""} onClick={() => { setFilter("최신") }}>최신순</button>
@@ -93,10 +110,10 @@ export default function Search() {
                     if (idx > 2) {
                       return
                     }
-                    return <SearchCommon
+                    return <SearchCommonItem
                       list={list}
                       key={idx}
-                    ></SearchCommon>
+                    ></SearchCommonItem>
                   })
                 }
               </div>
@@ -111,10 +128,10 @@ export default function Search() {
                     if (idx > 2) {
                       return
                     }
-                    return <SearchCommon
+                    return <SearchCommonItem
                       list={list}
                       key={idx}
-                    ></SearchCommon>
+                    ></SearchCommonItem>
                   })
                 }
               </div>
@@ -129,16 +146,16 @@ export default function Search() {
                     if (idx > 2) {
                       return
                     }
-                    return <SearchCommon
+                    return <SearchCommonItem
                       list={list}
                       key={idx}
-                    ></SearchCommon>
+                    ></SearchCommonItem>
                   })
                 }
               </div>
             </div>}
             {forthList && <div className={`${styles.section}`}>
-              <div className={styles.searchCourse}>
+              <div className={styles.courseList}>
                 <h3 className={`${styles.scTitle} ${styles.courseIcon}`}>
                   여행 코스
                 </h3>
@@ -147,27 +164,29 @@ export default function Search() {
                     if (idx > 2) {
                       return
                     }
-                    return <SearchCourse
-                    cosList={list}
+                    return <SearchCommonItem
+                    list={list}
                       key={idx}
-                    ></SearchCourse>
+                    ></SearchCommonItem>
                   })
                 }
               </div>
             </div>}
-            {!firstList && !secondList && !thirdList && !forthList && <div className={styles.noResultWrap}>
-              <p className={styles.noResult}>
-                <strong>“{keyword}”</strong>
-                에 대한 검색결과가 없습니다.
-                <br />
-                다른 검색어를 입력하시거나 철자와 띄어쓰기를 확인해 보세요.
-              </p>
-            </div>}
+            {!firstList && !secondList && !thirdList && !forthList && <NotFound keyword={keyword}/>}
           </div>
 
-          <div className={styles.searchResultWrap} style={active === "전체" ? { display: "none" } : { display: "block" }}>
-            <SearchCommon></SearchCommon>
-          </div>
+          {active !== "전체" && <div className={styles.searchResultWrap} style={active === "전체" ? { display: "none" } : { display: "block" }}>
+            { 
+              serviceList ? serviceList.map((list,idx)=>{
+                return <SearchCommonItem
+                  list={list}
+                  key={idx}
+                ></SearchCommonItem>
+              }) 
+              : <NotFound keyword={keyword}/>
+            }
+            { serviceList && <Pagination className="d-flex justify-content-center" current={currentPage} total={totalCount} pageSize={10} onChange={(page) => setCurrentPage(page)}/>}
+          </div>}
         </div>
         <div className={styles.rightMenu}>
           <div className={styles.rightWrap}>

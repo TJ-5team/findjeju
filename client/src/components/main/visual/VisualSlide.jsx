@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import useGetList from '../../../hooks/useGetList';
 
 export default function VisualSlide() {
-  const [list] = useGetList("http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=11&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey=CU%2BXIQukCNW8VDOOJDU8QzHHPgrsOso%2FEiDhpWTlD8Lb9q1SYmll5Qp9YK4UsjFNOYVQoLCrMi2s0mfnEPr0iA%3D%3D&listYN=Y&arrange=D&contentTypeId=12&areaCode=39&sigunguCode=&cat1=&cat2=A0101&cat3=&_type=json")
+  const [list] = useGetList("http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=11&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey=CU%2BXIQukCNW8VDOOJDU8QzHHPgrsOso%2FEiDhpWTlD8Lb9q1SYmll5Qp9YK4UsjFNOYVQoLCrMi2s0mfnEPr0iA%3D%3D&listYN=Y&arrange=R&contentTypeId=12&areaCode=39&sigunguCode=&cat1=&cat2=A0101&cat3=&_type=json")
   const [firstSwiper, setFirstSwiper] = useState(null);
   const [secondSwiper, setSecondSwiper] = useState(null);
   const [auto, setAuto] = useState(false);
@@ -28,7 +28,7 @@ export default function VisualSlide() {
     // titleSwiper.current.swiper.autoplay.pause();
     setAuto(visualSwiper.current.swiper.autoplay.paused)
   }
-  const bgColor = ['rgb(255, 244, 197)', 'rgb(239, 232, 255)', 'rgb(232, 235, 240)', 'rgb(218, 238, 255)', 'rgb(235, 247, 255)', 'rgb(235, 245, 250)', 'rgb(245, 240, 243)', 'rgb(242, 245, 255)', 'rgb(255, 230, 229)', 'rgb(218, 238, 255)', 'rgb(235, 247, 255)', 'rgb(242, 235, 255)']
+  const bgColor = ['rgb(255, 244, 197)', 'rgb(232, 235, 240)' , 'rgb(239, 232, 255)', 'rgb(218, 238, 255)', 'rgb(235, 247, 255)', 'rgb(235, 245, 250)', 'rgb(245, 240, 243)', 'rgb(242, 245, 255)', 'rgb(255, 230, 229)', 'rgb(218, 238, 255)', 'rgb(235, 247, 255)', 'rgb(242, 235, 255)']
   const handleColor = (activeIndex) => {
     setReset(!reset);
     setColorNum(activeIndex ? activeIndex : 0)
@@ -72,7 +72,8 @@ export default function VisualSlide() {
               <strong>
                 {"태웃개"}
               </strong>
-              <Link>
+              <Link to={"/detail/3015651/12"}>
+                자세히 보기
               </Link>
             </div>
           </SwiperSlide>
@@ -84,7 +85,8 @@ export default function VisualSlide() {
               <strong>
                 {item.title}
               </strong>
-              <Link>
+              <Link to={`/detail/${item.contentid}/${item.contenttypeid}`}>
+                자세히 보기
               </Link>
             </div>
           </SwiperSlide>)}
