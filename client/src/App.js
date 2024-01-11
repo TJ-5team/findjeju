@@ -41,7 +41,7 @@ const router = createBrowserRouter([
         <Login />
       },
       {
-        path: "/mypage",
+        path: "/mypage/:mid",
         element:
         <Mypage />
       },

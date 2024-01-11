@@ -3,8 +3,11 @@ import styles from './styles.module.css';
 import ImageUpload from '../../imageUpload/ImageUpload';
 import axios from 'axios';
 import DaumPostcode from 'react-daum-postcode';
+import { useNavigate } from 'react-router-dom';
 
 export default function Join() {
+
+    const navigate = useNavigate();
 
     // 회원데이터
     const [userData, setUserData] = useState([]);
@@ -38,6 +41,7 @@ export default function Join() {
     const [focus, setFocus] = useState({ name: '', id: '', pass: '', passcheck: '', nickname: '', email: '', echeck: '', eSelf: '', confirm: '', phone1: '' });
     // 유효성검사 내용
     const [validation, setValidation] = useState({ name: '필수 입력 항목입니다.', id: '필수 입력 항목입니다.', pass: '필수 입력 항목입니다.', passcheck: '필수 입력 항목입니다.', nickname: '필수 입력 항목입니다.', email: '이메일 형식에 맞지 않습니다.', echeck: '필수 입력 항목입니다.', eSelf: '필수 입력 항목입니다.', confirm: '', phone: '필수 입력 항목입니다.', terms1: '', terms2: '' });
+
 
     // 정규식
     let pattern_num = /[0-9]/;	// 숫자 
@@ -157,9 +161,8 @@ export default function Join() {
         }).then((result) => {
 
             if (result.data === 'ok') {
-
+                navigate("/");
                 window.location.reload();
-
             }
 
         })

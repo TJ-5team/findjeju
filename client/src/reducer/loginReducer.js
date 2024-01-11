@@ -20,9 +20,9 @@ export const login = createSlice({
       state.member = action.payload
     }
   },
-  /* extraReducers: builder => {
+  extraReducers: builder => {
     builder.addCase(PURGE, () => initialState);
-  } */
+  }
   //로그아웃을 하면 store를 purge하는 작업을 거쳐야 한다.
   //persistConfig에서 localStorage에 저장한 state들을 전부 초기화 시켜주는 과정이다.
 });

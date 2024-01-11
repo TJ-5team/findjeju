@@ -11,6 +11,7 @@ import useLogout from '../../../hooks/useLogout';
 import storage from 'redux-persist/lib/storage';
 import storageSession from 'redux-persist/lib/storage/session';
 import { persistor } from '../../../store';
+import { getUser } from '../../../utils/localStorage';
 
 export default function Login() {
 
@@ -25,6 +26,7 @@ export default function Login() {
   const dispatch = useDispatch();
   const state = useSelector(getUserData);
   // const handleLogout = useLogout();
+
   /*데이터 가져와서 회원비교*/
   useEffect(() => {
 
@@ -92,14 +94,11 @@ export default function Login() {
     });
   };
 
-  // 로그아웃에 사용
-  const purge = async () => {
-    window.location.reload();
-    await persistor.purge(); // persistStore의 데이터 전부 날림
-  };
+
 
   return (
     <>
+
       <div className={styles.wrap}>
         <div className={`${styles.innerWrap} inner`}>
           <h2 className={styles.title}>
@@ -117,7 +116,7 @@ export default function Login() {
               </p>
               <button>로그인</button>
             </form>
-            <button type='button' onClick={async () => { purge() }} >로그아웃</button>
+            <button type='button'>로그아웃</button>
           </div>
         </div>
       </div >

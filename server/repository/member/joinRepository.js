@@ -10,6 +10,7 @@ export async function getMember() {
 
 }
 
+
 export async function mailCheck(id) {
 
     const sql = `select name,id,password,nickname,email,phone,address,user_img,sms_check from fj_member`;

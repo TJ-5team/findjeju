@@ -30,3 +30,24 @@ export async function userLogin(req,res){
   res.json(result);
 
 }
+
+export async function getUser(req,res){
+
+  const mid = req.params.mid
+
+  const rows = await repository.getUser(mid);
+
+  res.json(rows);
+
+};
+
+export async function removeUser(req,res){
+
+  const mid = req.params.mid;
+
+  const rows = await repository.removeUser(mid);
+
+  res.json(rows);
+
+};
+

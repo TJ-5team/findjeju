@@ -26,7 +26,11 @@ export const getUser = () =>{
   // const changeData = JSON.parse(JSON.stringify(allData));
   // const login = JSON.parse(JSON.stringify(changeData).login);
 
-  return member;
+  if(member !== undefined){
+
+    return member;
+
+  }
 
 
 

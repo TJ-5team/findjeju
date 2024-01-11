@@ -13,4 +13,8 @@ router.post('/signup', joinController.signUp);
 /* login */
 router.post('/login', loginController.userLogin);
 
+/* member */
+router.get('/:mid', loginController.getUser);
+router.delete("/:mid", loginController.removeUser);
+
 export default router;

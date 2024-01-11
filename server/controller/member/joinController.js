@@ -44,6 +44,8 @@ export async function getMember(req, res) {
 
 }
 
+
+
 export async function signUp(req,res){
 
     const {name,id,pass,nickname,phone1,phone2,phone3,postal,addr,address,image,email,checked} = req.body

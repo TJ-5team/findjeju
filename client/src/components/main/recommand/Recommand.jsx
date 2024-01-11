@@ -17,11 +17,11 @@ export default function Recommand() {
   };
 
   const state = useSelector(getUserData);
-  const userInfo = getUser();
+  // const userInfo = getUser();
 
   useEffect(() => {
 
-    console.log(userInfo);
+    // console.log(userInfo);
 
   }, [])
 
