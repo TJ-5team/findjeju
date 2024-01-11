@@ -36,8 +36,8 @@ div.wrap div.swiper button {
   text-align: center;
 }
 div.wrap div.swiper button svg {
-  width: 100%;
-  height: 100%;
+  vertical-align: middle;
+  font-size: 30px;
 }
 div.wrap div.swiper button.festivalPrevBtn {
   position: absolute;

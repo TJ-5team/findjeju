@@ -17,6 +17,7 @@ import { TbSpeakerphone } from "react-icons/tb";
 import { BsTelephoneFill } from "react-icons/bs";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import Mapimage from "../Map/Mapimage";
+import TripInfo from "../tripInfo/TripInfo";
 
 export default function FestivalDetail(){
   const {contentid} = useParams();
@@ -24,14 +25,13 @@ export default function FestivalDetail(){
   const [info] = useGetList(`http://apis.data.go.kr/B551011/KorService1/detailIntro1?serviceKey=CJ%2FlY8Dc3dAVFPdMOF6t%2FHXVFUUjp5iNiBLNNPkrq7ROViBwSkb6oMVC4s5NZjEztVJWKm0beaKYDWMn7suxaQ%3D%3D&numOfRows=50&pageNo=1&MobileApp=APPTest&MobileOS=ETC&contentId=${contentid}&contentTypeId=15&_type=json`);
   const [overview] = useGetList(`http://apis.data.go.kr/B551011/KorService1/detailInfo1?serviceKey=CJ%2FlY8Dc3dAVFPdMOF6t%2FHXVFUUjp5iNiBLNNPkrq7ROViBwSkb6oMVC4s5NZjEztVJWKm0beaKYDWMn7suxaQ%3D%3D&numOfRows=50&pageNo=1&MobileOS=ETC&MobileApp=AppTest&contentId=${contentid}&contentTypeId=15&_type=json`);
   const [imgs] = useGetList(`http://apis.data.go.kr/B551011/KorService1/detailImage1?serviceKey=CJ%2FlY8Dc3dAVFPdMOF6t%2FHXVFUUjp5iNiBLNNPkrq7ROViBwSkb6oMVC4s5NZjEztVJWKm0beaKYDWMn7suxaQ%3D%3D&numOfRows=50&pageNo=1&MobileOS=ETC&MobileApp=AppTest&contentId=${contentid}&imageYN=Y&subImageYN=Y&_type=json`);
-
-
   
   const changeText = (e) => {
-    return e.split('<br>').map((line) => <>{line}<br/></>);
+    return e.split('<br>').map(line => <>{line}<br/></>);
   }
+
   const changeText1 = (e) => {
-    return e.split('<br>').map((line) => <div>{line}</div>);
+    return e.split('<br>').map(line => <div>{line}</div>);
   }
 
   const newDate = (date) => {
@@ -46,8 +46,8 @@ export default function FestivalDetail(){
       <div className="inner">
         {lists.map(list =>
         <>
-          <h1 className={styles.subTitle}>{list.title}</h1>
-          <h2 className={styles.addr}><FaMapMarkerAlt />{list.addr1}</h2>
+          <h1 key={list.subTitle} className={styles.subTitle}>{list.title}</h1>
+          <h2 key={list.addr} className={styles.addr}><FaMapMarkerAlt />{list.addr1}</h2>
         </>
         )}
         <div className={styles.swiper}>
@@ -74,22 +74,24 @@ export default function FestivalDetail(){
 
         <div className={styles.textBox}>
           {overview.map(i =>
-          <p className={styles.text}>{changeText(i.infotext)}</p>
+          <p key={i.serialnum} className={styles.text}>{changeText(i.infotext)}</p>
           )}
         </div>
         
         {info.map(i =>
-        <ul className={styles.info}>
+        <ul key={i.playtime} className={styles.info}>
           <li><BsCalendar2Heart className={styles.calendar}/>{newDate(i.eventstartdate)} ~ {(i.eventenddate)}</li>
-          <li><IoTimeOutline className={styles.marker}/>{i.playtime}</li>
+          <li key={i.playtime}><IoTimeOutline className={styles.marker}/>{i.playtime}</li>
           <li><TbCoin className={styles.coin}/>{changeText1(i.usetimefestival)}</li>
           <li><TbSpeakerphone className={styles.speaker}/> {i.sponsor1}</li>
           <li><BsTelephoneFill className={styles.tel}/> {i.sponsor1tel}</li>
         </ul>
         )}
         {lists.map(list =>
-        <Mapimage x={list.mapx} y={list.mapy}/>
+        <Mapimage x={list.mapx} y={list.mapy} title={list.title}/>
         )}
+
+        <TripInfo/>
       </div>
     </div>
   )

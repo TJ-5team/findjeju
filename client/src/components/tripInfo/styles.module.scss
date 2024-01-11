@@ -1,0 +1,29 @@
+h3.title{
+  margin-top: 55px;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--fontLightColor);
+}
+div.info{
+  margin-top: 25px;
+  display: flex;
+  a{
+    flex: 1;
+    div.box{
+      img.img{
+        width: 300px;
+        height: 212px;
+        border-radius: 8px;
+      }
+      h4.text{
+        margin-left: 10px;
+        margin-top: 14px;
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--darknite);
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}
