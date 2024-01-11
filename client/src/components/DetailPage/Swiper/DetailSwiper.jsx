@@ -18,6 +18,19 @@ export default function DetailSwiper() {
 
   //console.log(imgDetail);
 
+  const makeImgList = () => {
+    const imgList = [];
+    for (let index = 0; index < imgDetail.length; index++) {
+      if (index < 10) {
+        index = '0' + index
+        result.push(<img key={index} src={`http://localhost:3000/images/detailPage/icon_bfreesvc_${index}.png`} alt=""></img>);
+      } else {
+        result.push(<img key={index} src={`http://localhost:3000/images/detailPage/icon_bfreesvc_${index}.png`} alt=""></img>);
+      }
+    }
+    return result;
+  }
+
   return (
     <div className={styles.wrap}>
       <Swiper
@@ -28,10 +41,16 @@ export default function DetailSwiper() {
         modules={[Navigation]}
         className={styles.imgSwiper}
       >
-        {imgDetail && imgDetail.map(list=>
+        {/* {img.map(image=>
         <SwiperSlide className={styles.swiperSlide} >
-          <img src={list.originimgurl} alt="" />
+          <img src={image.firstimage} alt="상세이미지" />
         </SwiperSlide>
+        )} */}
+
+        {imgDetail && imgDetail.map(list =>
+          <SwiperSlide className={styles.swiperSlide} >
+            <img src={list.originimgurl} alt="상세이미지" />
+          </SwiperSlide>
         )}
 
         {/* <SwiperSlide className={styles.swiperSlide}>

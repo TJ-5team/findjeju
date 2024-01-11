@@ -24,5 +24,25 @@ http://apis.data.go.kr/B551011/KorService1/detailInfo1?ServiceKey=nyjoBggUlH0et5
 http://apis.data.go.kr/B551011/KorService1/detailImage1?ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&contentId=2819964&MobileOS=ETC&MobileApp=AppTest&imageYN=Y&subImageYN=Y&numOfRows=10&_type=json
 
 무장애여행
-http://apis.data.go.kr/B551011/KorWithService1/detailWithTour1?serviceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&contentId=2819964&MobileOS=ETC&MobileApp=AppTest&_type=json
+https://apis.data.go.kr/B551011/KorWithService1/detailWithTour1?serviceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&contentId=2819964&MobileOS=ETC&MobileApp=AppTest&_type=json
 */
+
+
+[
+  "parking",
+  "publictransport",
+  "wheelchair",
+  "exit",
+  "elevator",
+  "restroom",
+  "room",
+  "braileblock",
+  "helpdog",
+  "guidehuman",
+  "brailepromotion",
+  "stroller",
+  "lactationroom"
+]
+
+
+

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import useGetList from "../../hooks/useGetList";
 import styles from "./styles.module.css";
@@ -9,9 +9,12 @@ import { PiShareNetworkThin } from "react-icons/pi";
 import { HiArrowSmallUp } from "react-icons/hi2";
 import DetailSwiper from "./Swiper/DetailSwiper";
 import Mapimage from "../Map/Mapimage";
+import axios from "axios";
 
 
 export default function DetailInformation() {
+  const [reply, setReply] = useState("");
+  const [replyList, setReplyList] = useState([]);
   //const { contentid, contenttypeid } = useParams();
 
   /* 예시로!! 삭제하기 !!!! */
@@ -19,21 +22,21 @@ export default function DetailInformation() {
   const contentid = 2819964;
 
   /* api링크 가져오기 */
-  // const [commonInfo] = useGetList(`http://apis.data.go.kr/B551011/KorService1/detailCommon1?ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&contentTypeId=32&contentId=2819964&MobileOS=ETC&MobileApp=AppTest&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y&_type=json`);
-  // const [detailInfo] = useGetList(`http://apis.data.go.kr/B551011/KorService1/detailIntro1?ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&contentTypeId=32&contentId=2819964&MobileOS=ETC&MobileApp=AppTest&_type=json`);
-  // const [facility] = useGetList(`http://apis.data.go.kr/B551011/KorService1/detailInfo1?ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&contentTypeId=32&contentId=2819964&MobileOS=ETC&MobileApp=AppTest&_type=json`);
-  // const [comfortable] = useGetList(`http://apis.data.go.kr/B551011/KorWithService1/detailWithTour1?serviceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&contentId=2819964&MobileOS=ETC&MobileApp=AppTest&_type=json`);
+  const [commonInfo] = useGetList(`http://apis.data.go.kr/B551011/KorService1/detailCommon1?ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&contentTypeId=32&contentId=2819964&MobileOS=ETC&MobileApp=AppTest&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y&_type=json`);
+  const [detailInfo] = useGetList(`http://apis.data.go.kr/B551011/KorService1/detailIntro1?ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&contentTypeId=32&contentId=2819964&MobileOS=ETC&MobileApp=AppTest&_type=json`);
+  const [comfortable] = useGetList(`http://apis.data.go.kr/B551011/KorWithService1/detailWithTour1?serviceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&contentId=2819964&MobileOS=ETC&MobileApp=AppTest&_type=json`);
 
   /*  
   console.log(commonInfo);
   console.log(detailInfo);
   console.log(facility);
-  console.log(comfortable); */
+  console.log(comfortable);*/
 
-  const commonInfo = []
+
+  /* const commonInfo = []
   const detailInfo = []
   const facility = []
-  const comfortable = []
+  const comfortable = [] */
 
   const tabMenulist = ["사진보기", "상세정보", "여행톡", "추천여행"]
   const [active, setActive] = useState(0);
@@ -43,18 +46,35 @@ export default function DetailInformation() {
       behavior: "smooth"
     })
   }
+  // console.log(window.scrollY)
+
+  
+  const contentRef1 = useRef(null);
+  const contentRef2 = useRef(null);
+  const contentRef3 = useRef(null);
+
+ /*  const onClickRef1 = () => {
+    contentRef1.current?.scrollIntoView({ behavior: 'smooth' });
+  }
+  const onClickRef2 = () => {
+    contentRef2.current?.scrollIntoView({ behavior: 'smooth' });
+  }
+  const onClickRef3 = () => {
+    contentRef3.current?.scrollIntoView({ behavior: 'smooth' });
+  } */
 
   const handleActive = (e, idx) => {
     if (active !== idx) {
       setActive(idx)
     }
     if (idx === 1) {
-      ScrollMove(800)
+      contentRef1.current?.scrollIntoView({ behavior: 'smooth' });
     } else if (idx === 2) {
-      ScrollMove(1500)
+      contentRef2.current?.scrollIntoView({ behavior: 'smooth' });
     } else if (idx === 3) {
-      ScrollMove(2000)
+      contentRef3.current?.scrollIntoView({ behavior: 'smooth' });
     }
+
   }
 
   const handleScrolltoTop = () => {
@@ -63,6 +83,7 @@ export default function DetailInformation() {
   }
 
   const [showTopBtn, SetShowTopBtn] = useState(false);
+  const [fixed, setFixed] = useState(false);
 
   useEffect(() => {
     const handleShowBtn = (e) => {
@@ -71,31 +92,91 @@ export default function DetailInformation() {
       } else {
         SetShowTopBtn(false)
       }
-    }
+    };
 
+    const handleMenuFixed = (e) => {
+      if(window.scrollY > 313){
+        setFixed(true)
+      }else{
+        setFixed(false)
+      }
+    };
+
+    window.addEventListener('scroll', handleMenuFixed)
     window.addEventListener('scroll', handleShowBtn)
     return () => {
+      window.removeEventListener('scroll', handleMenuFixed)
       window.removeEventListener('scroll', handleShowBtn)
     }
-  }, [])
+  }, [fixed])
+
+  // console.log(window.scrollY);
 
   const changeText = (e) => {
     const regex = /<a href="(.*?)" target="_blank"/;
     return e.match(regex)[1]
   }
 
+  const imgUrl = []
   const imgList = () => {
     const result = [];
-    for (let index = 0; index < 12; index++) {
-      if(index < 10){
-        index = '0'+index
-        result.push(<img key={index} src={`http://localhost:3000/images/detailPage/icon_bfreesvc_${index}_on.png`} alt=""></img>);
-      }else{
-        result.push(<img key={index} src={`http://localhost:3000/images/detailPage/icon_bfreesvc_${index}_on.png`} alt=""></img>);
+    for (let index = 1; index < 12; index++) {
+      if (index < 10) {
+        index = '0' + index
+        result.push(<img key={index} src={`http://localhost:3000/images/detailPage/icon_bfreesvc_${index}.png`} alt=""></img>);
+      } else {
+        result.push(<img key={index} src={`http://localhost:3000/images/detailPage/icon_bfreesvc_${index}.png`} alt=""></img>);
       }
     }
     return result;
   }
+
+  const check = [
+    "contentid",
+    "parking",
+    "publictransport",
+    "wheelchair",
+    "exit",
+    "elevator",
+    "restroom",
+    "room",
+    "braileblock",
+    "helpdog",
+    "guidehuman",
+    "brailepromotion",
+    "stroller",
+    "lactationroom",
+    "guidesystem"
+  ]
+
+
+  /* useEffect(()=>{
+    if(comfortable[0]){
+      console.log(comfortable[0]);
+      const targetObj = comfortable[0]
+      check.map((checkList)=>{
+        if(Object.keys(targetObj).find(key => targetObj[key] !== "")){}
+        else console.log('false')
+      })
+    }
+  },[]) */
+
+  const handleClick = (e) => {
+    if (reply !== "") {
+      axios.post("http://localhost:8000/review", { contentid: contentid, contenttypeid: contenttypeid, reply: reply, id: "try226" })
+        .then(result => {
+          if(result === "ok"){
+            window.location.reload();
+          }
+        });
+      }
+    };
+
+  useEffect(()=>{
+    axios.get(`http://localhost:8000/review/${contentid}/${contenttypeid}`)
+    .then(result => setReplyList(result.data));
+  },[replyList])
+
 
   return (
     <div className={styles.wrap}>
@@ -116,13 +197,13 @@ export default function DetailInformation() {
                 <PiShareNetworkThin size="28" />
               </div>
             </div>
-            <ul className={styles.tabMenuWrap}>
+            <ul className={fixed ? `${styles.tabMenuWrap} ${styles.active}`: styles.tabMenuWrap}>
               {tabMenulist && tabMenulist.map((list, idx) =>
                 <li onClick={(e) => handleActive(e, idx)} className={active === idx ? `${styles.tabMenu} ${styles.active}` : styles.tabMenu} key={idx}>{list}</li>
               )}
             </ul>
             <DetailSwiper />
-            <h3 className={styles.titleSub}>상세정보</h3>
+            <h3 ref={contentRef1} className={styles.titleSub}>상세정보</h3>
             <div className={styles.descriptionWrap}>
               <p className={styles.descriptionDetail}>
                 {commonList.overview}
@@ -240,17 +321,63 @@ export default function DetailInformation() {
           </>
         )}
 
-        <h4 className={styles.titleInfo}>
-          <div>
-            <img src="http://localhost:3000/images/detailPage/ico_info.png" alt="" />
-            모두의 여행 '무장애여행'
+        {/* <div>
+          <h4 className={styles.titleInfo}>
+            <div>
+              <img src="http://localhost:3000/images/detailPage/ico_info.png" alt="" />
+              모두의 여행 '무장애여행'
+            </div>
+          </h4>
+          <div className={styles.comfortableImgWrap}>
+            {imgList()}
           </div>
-        </h4>
+        </div> */}
 
-        <div className={styles.comfortableImgWrap}>
-          {imgList()}
+        <div>
+          <h3 ref={contentRef2} className={`${styles.titleSub} ${styles.reply}`}>
+            여행톡
+            {replyList && <span>{replyList.length}</span>}
+          </h3>
+          <div className={styles.replyWrap}>
+            {/* 로그인 기능 완료되면 삼항식 구현하기 */}
+            <textarea className={styles.replyText} type="text" placeholder="로그인 후 소중한 댓글을 남겨주세요." value={reply}
+              onChange={(e) => setReply(e.target.value)} />
+            <div className={styles.replyBtnWrap}>
+              <button>
+                <img src="http://localhost:3000/images\detailPage\btn_reply_file.gif" alt="" />
+              </button>
+              <button onClick={handleClick}>등록</button>
+            </div>
+          </div>
+
+          {replyList && replyList.map(reply =>
+            <div className={styles.reviewList}>
+              <div className={styles.userImg}>
+                <img src="https://item.kakaocdn.net/do/07e48e95accef30a19f445de4a857bce7154249a3890514a43687a85e6b6cc82" alt="프로필이미지" />
+              </div>
+              <div className={styles.reviewText}>
+                <div>{reply.review_text}</div>
+                <span>{reply.id}</span>
+                <span>|</span>
+                <span>{reply.rdate}</span>
+              </div>
+              <div className={styles.likebtnWrap}>
+                <LikeButton idx={0}/>
+              </div>
+            </div>
+          )}
         </div>
 
+        {/* <div className={styles.replyWrap}>
+          <input className={styles.replyText} type="text" placeholder="소중한 댓글을 남겨주세요." />
+          <div className={styles.replyBtnWrap}>
+            <button>
+              <img src="http://localhost:3000/images\detailPage\btn_reply_file.gif" alt="" />
+            </button>
+            <button>로그인</button>
+          </div>
+        </div>
+        <div className={styles.replyMore}>+ 댓글 더보기</div> */}
 
         <HiArrowSmallUp size="23" className={showTopBtn ? `${styles.scrollTopBtn} ${styles.active}` : styles.scrollTopBtn} onClick={handleScrolltoTop} />
       </div >

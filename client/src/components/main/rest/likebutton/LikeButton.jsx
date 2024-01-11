@@ -21,7 +21,7 @@ export default function LikeButton({ idx }) {
   return (
     <>
       {like === idx
-        ? <PiHeartFill className={styles.active} onClick={(e) => handleLike(e, idx)} />
+        ? <PiHeartFill className={`${styles.likebtn} ${styles.active}`} onClick={(e) => handleLike(e, idx)} />
         : <PiHeartLight className={styles.likebtn} onClick={(e) => handleLike(e, idx)} />
       }
     </>

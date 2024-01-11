@@ -1,11 +1,12 @@
-svg {
+svg.likebtn {
   padding: 5px;
   font-size: 22px;
   background: var(--white);
   border-radius: 50%;
   z-index: 2;
+  cursor: pointer;
 }
-svg.active {
+svg.likebtn.active {
   color: var(--likeColor);
   background: var(--white);
 }/*# sourceMappingURL=styles.module.css.map */

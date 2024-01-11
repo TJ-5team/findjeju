@@ -1,0 +1,15 @@
+[
+  {"facility": "parking"},
+  {"facility": "publictransport"},
+  {"facility": "wheelchair"},
+  {"facility": "exit"},
+  {"facility": "elevator"},
+  {"facility": "restroom"},
+  {"facility": "room"},
+  {"facility": "braileblock"},
+  {"facility": "helpdog"},
+  {"facility": "guidehuman"},
+  {"facility": "brailepromotion"},
+  {"facility": "stroller"},
+  {"facility": "lactationroom}"}
+]
