@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './styles.module.css';
 import Title from '../title/Title';
 import SwiperBox from './swiper/SwiperBox';
@@ -18,6 +18,12 @@ export default function Recommand() {
 
   const state = useSelector(getUserData);
   const userInfo = getUser();
+
+  useEffect(() => {
+
+    console.log(userInfo);
+
+  }, [])
 
   return (
     <>

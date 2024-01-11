@@ -18,15 +18,15 @@ import {getCookie,removeCookie} from "./cookie.js";
 export const getUser = () =>{
 
   const allData = localStorage.getItem('persist:root');
-  const changeData = JSON.parse(allData)
+  const changeData = JSON.parse(allData);
   const login = JSON.parse(changeData.login);
-  const member = JSON.parse(JSON.stringify(login));
-  const userInfo = JSON.parse(member.member)
+  const member = JSON.parse(JSON.stringify(login.member));
+  // const userInfo = JSON.parse(member.member);
   // const userInfo = JSON.parse(login.member)
   // const changeData = JSON.parse(JSON.stringify(allData));
   // const login = JSON.parse(JSON.stringify(changeData).login);
 
-  return userInfo;
+  return member;
 
 
 
