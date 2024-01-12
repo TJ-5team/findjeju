@@ -8,7 +8,7 @@ import { PiBookmarkSimpleThin } from "react-icons/pi";
 import { PiBookmarkSimpleFill } from "react-icons/pi";
 import { PiShareNetworkThin } from "react-icons/pi";
 import { HiArrowSmallUp } from "react-icons/hi2";
-import DetailSwiper from "./Swiper/DetailSwiper";
+import DetailSwiper from "./swiper/DetailSwiper";
 import Mapimage from "../Map/Mapimage";
 import axios from "axios";
 import ImageUpload from './../imageUpload/ImageUpload';
