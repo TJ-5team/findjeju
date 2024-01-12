@@ -9,13 +9,13 @@ import { useLocation } from "react-router-dom";
 import TripInfoComponents from "../tripInfo/TripInfoComponents";
 import styles from './styles.module.css';
 
-export default function Sub(){
+export default function Sub() {
   const path = useLocation().pathname;
   const [ContentTypeId, setContentTypeId] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [title, setTitle] = useState("");
   const dispatch = useDispatch();
-  const {list, totalCount, pageSize} = useSelector(subListData);
+  const { list, totalCount, pageSize } = useSelector(subListData);
 
   const contentTypes = {
     "/lodging": { id: 32, title: "숙소 추천" },
@@ -29,7 +29,7 @@ export default function Sub(){
 
   useEffect(() => {
     const contentType = contentTypes[path];
-    if(contentType) {
+    if (contentType) {
       setContentTypeId(contentType.id);
       setTitle(contentType.title);
       setCurrentPage(1)
@@ -37,15 +37,15 @@ export default function Sub(){
   }, [path]);
 
   useEffect(() => {
-    dispatch(SubData(currentPage, ContentTypeId,));
-  },[currentPage, ContentTypeId])
+    dispatch(SubData(currentPage, ContentTypeId));
+  }, [currentPage, ContentTypeId]);
 
-  return(
-    <div style={{marginTop : "130px"}}>
+  return (
+    <div style={{ marginTop: "130px" }}>
       <div className="inner">
-        <TripInfoComponents title={title} lists={list} addr={true}/>
+        <TripInfoComponents title={title} lists={list} addr={true} />
         {<Pagination className="d-flex justify-content-center" current={currentPage} total={totalCount}
-        pageSize={pageSize} onChange={(page) => setCurrentPage(page)}/>}
+          pageSize={pageSize} onChange={(page) => setCurrentPage(page)} />}
       </div>
     </div>
   );

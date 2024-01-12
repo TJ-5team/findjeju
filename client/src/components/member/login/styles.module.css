@@ -30,6 +30,9 @@ div.wrap div.innerWrap div.formWrap form.logForm > p input {
 div.wrap div.innerWrap div.formWrap form.logForm button {
   width: 100%;
   height: 35px;
-  margin-top: 30px;
   background-color: #c9c9c9;
+}
+div.wrap div.innerWrap div.formWrap form.logForm button.loginBtn {
+  margin-top: 30px;
+  margin-bottom: 10px;
 }/*# sourceMappingURL=styles.module.css.map */

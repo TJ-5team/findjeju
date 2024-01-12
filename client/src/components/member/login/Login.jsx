@@ -12,11 +12,12 @@ import storage from 'redux-persist/lib/storage';
 import storageSession from 'redux-persist/lib/storage/session';
 import { persistor } from '../../../store';
 import { getUser } from '../../../utils/localStorage';
+import { useGetMember } from '../../../hooks/useGetMember';
 
 export default function Login() {
 
   // 회원데이터
-  const [userData, setUserData] = useState([]);
+  // const [userData, setUserData] = useState([]);
   const [form, setForm] = useState({ id: '', pass: '' });
   const [validation, setValidation] = useState({ id: '', pass: '' });
   const [user, setUser] = useState([]);
@@ -28,20 +29,7 @@ export default function Login() {
   // const handleLogout = useLogout();
 
   /*데이터 가져와서 회원비교*/
-  useEffect(() => {
-
-    axios({
-
-      method: 'get',
-      url: 'http://127.0.0.1:8000/member/'
-
-    }).then((result) => {
-
-      setUserData(result.data);
-
-    })
-
-  }, []);
+  const [userData] = useGetMember();
 
   const fnChange = (e) => {
 
@@ -94,8 +82,6 @@ export default function Login() {
     });
   };
 
-
-
   return (
     <>
 
@@ -114,9 +100,9 @@ export default function Login() {
                 <label id="pass">비밀번호</label>
                 <input type="password" name="pass" placeholder='비밀번호를 입력하세요' onChange={fnChange} ref={passRef} />
               </p>
-              <button>로그인</button>
+              <button className={styles.loginBtn}>로그인</button>
+              <button type="button" onClick={() => { navigate("/join") }}>회원가입</button>
             </form>
-            <button type='button'>로그아웃</button>
           </div>
         </div>
       </div >

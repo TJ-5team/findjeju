@@ -2,6 +2,7 @@ import axios from "axios";
 import { getSubList } from "../reducer/subReducer";
 
 export const SubData = (currentPage, ContentTypeId) => {
+  
   let startindex = 0;
   let endindex = 0;
   const pageSize = 30;

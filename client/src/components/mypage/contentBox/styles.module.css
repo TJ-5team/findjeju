@@ -1,0 +1,120 @@
+@charset "UTF-8";
+div.contentBox {
+  flex-grow: 1;
+}
+div.contentBox h3.contentTitle {
+  padding-bottom: 20px;
+  box-sizing: border-box;
+  font-weight: bold;
+  font-size: 22px;
+}
+div.contentBox ul.contentList {
+  padding: 0px 20px;
+  box-sizing: border-box;
+  background-color: #fff;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+div.contentBox ul.contentList li {
+  position: relative;
+  padding: 20px 0px;
+  box-sizing: border-box;
+}
+div.contentBox ul.contentList li div.banner {
+  margin-top: 20px;
+}
+div.contentBox ul.contentList li a {
+  font-weight: 700;
+  font-size: 20px;
+  color: #333;
+}
+div.contentBox ul.contentList li a::before {
+  content: "";
+  display: inline-block;
+  width: 31px;
+  height: 32px;
+  margin-right: 10px;
+  vertical-align: -8px;
+}
+div.contentBox ul.contentList li a::after {
+  content: "▼";
+  position: absolute;
+  top: 20px;
+  right: 0px;
+  display: block;
+  color: #4a4a4a;
+}
+div.contentBox ul.contentList li:first-child {
+  border-bottom: 1px solid #e6e6e6;
+}
+div.contentBox ul.contentList li:first-child a::before {
+  background: url("http://localhost:3000/images/mypage/select.png") 0 0 no-repeat;
+}
+div.contentBox ul.contentList li:last-child a::before {
+  background: url("http://localhost:3000/images/mypage/select.png") 0 -60px no-repeat;
+}
+div.contentBox ul.contentList li:last-child a::after {
+  content: "▼";
+  display: none;
+}
+div.contentBox ul.activeList {
+  background-color: #fff;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 40px 0px;
+}
+div.contentBox ul.activeList li {
+  width: 33%;
+  height: 150px;
+  text-align: center;
+  box-sizing: border-box;
+}
+div.contentBox ul.activeList li span {
+  display: block;
+  margin-top: 10px;
+}
+div.contentBox ul.activeList li a {
+  display: inline-block;
+  position: relative;
+}
+div.contentBox ul.activeList li a::before {
+  content: "";
+  display: inline-block;
+  width: 65px;
+  height: 65px;
+  border-radius: 10px;
+}
+div.contentBox ul.activeList li a em {
+  position: absolute;
+  left: 40px;
+  top: -4px;
+  height: 26px;
+  min-width: 26px;
+  line-height: 26px;
+  padding: 0 7px;
+  border-radius: 50px;
+  color: #fff;
+  font-size: 16px;
+  background: #4765cf;
+  box-sizing: border-box;
+}
+div.contentBox ul.activeList li:nth-child(1) a::before {
+  background: url("http://localhost:3000/images/mypage/icon_active.png") 0 0px no-repeat;
+}
+div.contentBox ul.activeList li:nth-child(2) a::before {
+  background: url("http://localhost:3000/images/mypage/icon_active.png") 0 -65px no-repeat;
+}
+div.contentBox ul.activeList li:nth-child(3) a::before {
+  background: url("http://localhost:3000/images/mypage/icon_active.png") 0 -130px no-repeat;
+}
+div.contentBox ul.activeList li:nth-child(4) a::before {
+  background: url("http://localhost:3000/images/mypage/icon_active.png") 0 -195px no-repeat;
+}
+div.contentBox ul.activeList li:nth-child(5) a::before {
+  background: url("http://localhost:3000/images/mypage/icon_active.png") 0 -260px no-repeat;
+}
+div.contentBox ul.activeList li:nth-child(6) a::before {
+  background: url("http://localhost:3000/images/mypage/icon_active.png") 0 -325px no-repeat;
+}/*# sourceMappingURL=styles.module.css.map */

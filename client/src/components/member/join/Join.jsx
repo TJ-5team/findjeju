@@ -4,13 +4,15 @@ import ImageUpload from '../../imageUpload/ImageUpload';
 import axios from 'axios';
 import DaumPostcode from 'react-daum-postcode';
 import { useNavigate } from 'react-router-dom';
+import { useGetMember } from '../../../hooks/useGetMember';
+import Recaptcha from "react-google-recaptcha";
 
 export default function Join() {
 
     const navigate = useNavigate();
 
     // 회원데이터
-    const [userData, setUserData] = useState([]);
+    // const [userData, setUserData] = useState([]);
     // input 각폼요소
     const [form, setForm] = useState({ name: '', id: '', pass: '', passcheck: '', nickname: '', email: '', echeck: '', eSelf: '', confirm: '', phone1: '', phone2: '', phone3: '', address: '' });
     // 이메일 토글
@@ -41,7 +43,8 @@ export default function Join() {
     const [focus, setFocus] = useState({ name: '', id: '', pass: '', passcheck: '', nickname: '', email: '', echeck: '', eSelf: '', confirm: '', phone1: '' });
     // 유효성검사 내용
     const [validation, setValidation] = useState({ name: '필수 입력 항목입니다.', id: '필수 입력 항목입니다.', pass: '필수 입력 항목입니다.', passcheck: '필수 입력 항목입니다.', nickname: '필수 입력 항목입니다.', email: '이메일 형식에 맞지 않습니다.', echeck: '필수 입력 항목입니다.', eSelf: '필수 입력 항목입니다.', confirm: '', phone: '필수 입력 항목입니다.', terms1: '', terms2: '' });
-
+    // 리캡쳐
+    const [captcha, setCaptcha] = useState(null);
 
     // 정규식
     let pattern_num = /[0-9]/;	// 숫자 
@@ -75,20 +78,7 @@ export default function Join() {
     const teRef2 = useRef(null);
 
     /*데이터 가져와서 회원비교*/
-    useEffect(() => {
-
-        axios({
-
-            method: 'get',
-            url: 'http://127.0.0.1:8000/member/'
-
-        }).then((result) => {
-
-            setUserData(result.data);
-
-        })
-
-    }, []);
+    const [userData] = useGetMember();
 
     /*서브밋함수 */
     const fnSubmit = (e) => {
@@ -139,6 +129,11 @@ export default function Join() {
             setValidation((validation) => ({ ...validation, terms2: '필수 입력 사항입니다.' }))
             teRef2.current.focus();
             return false
+        }
+
+        if (!captcha) {
+            alert("로봇 체크해주세요.")
+            return
         }
 
         const formData = new FormData(e.target);
@@ -351,9 +346,15 @@ export default function Join() {
 
     /*이메일 유효성검사 */
     useEffect(() => {
+
+        if (!userData) {
+            return
+        }
+
         setEmailToggle(false);
         const emailCheck = form.email + '@' + form.echeck
         const emailSelfCheck = form.email + '@' + form.eSelf
+
         const search = userData.some((val) => val.email === emailCheck);
         const selfSearch = userData.some((val) => val.email === emailSelfCheck);
         if (search || selfSearch) {
@@ -364,7 +365,8 @@ export default function Join() {
             setValidation((validation) => ({ ...validation, email: '이메일 형식에 맞지 않습니다.' }));
         }
 
-    }, [form.echeck, form.email, form.eSelf])
+
+    }, [form.echeck, form.email, form.eSelf]);
 
     /*이메일 3분 setInterval */
     useEffect(() => {
@@ -385,9 +387,11 @@ export default function Join() {
 
     /*이메일 카운트다운 */
     const resetCountdown = () => {
+
         setTime(180);
         setIsActive(false);
-    }
+
+    };
 
     /*이메일전송 */
     const handleMail = () => {
@@ -446,7 +450,9 @@ export default function Join() {
 
     /*휴대폰 유효성검사 */
     useEffect(() => {
-
+        if (!userData) {
+            return
+        }
         const phoneTotal = `${form.phone1}-${form.phone2}-${form.phone3}`;
         const phoneTot = `${form.phone1}${form.phone2}${form.phone3}`;
         const search = userData.some((val) => val.phone === phoneTot);
@@ -459,14 +465,13 @@ export default function Join() {
             setValidation((validation) => ({ ...validation, phone: '사용 가능한 휴대폰번호입니다.' }));
         }
 
+
     }, [form.phone1, form.phone2, form.phone3])
 
     /*파일업로드 */
     const getImage = (e, d) => {
         setImage(e);
     }
-
-
 
     return (
         <>
@@ -619,6 +624,12 @@ export default function Join() {
                                     {validation.terms2 !== "필수 입력 사항입니다." ? null : <span className={styles.check}>{validation.terms2}</span>}
                                     <p><input type="checkbox" name="terms3" checked={checked.terms3} onChange={handleCheck} onFocus={handleFocus} /><span>마케팅 정보 메일, SMS 수신동의 (선택)</span></p>
                                 </div>
+                            </li>
+                            <li className={styles.joinLi}>
+                                <Recaptcha
+                                    sitekey="6Le3b04pAAAAAGD2R6tStUEK4LbSNvurS-8-NmDj"
+                                    onChange={value => setCaptcha(value)}
+                                />
                             </li>
                         </ul>
                         <button type='submit' className={styles.joinBtn}>회원가입</button>
