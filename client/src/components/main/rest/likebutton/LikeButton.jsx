@@ -8,7 +8,6 @@ export default function LikeButton({ idx }) {
   const [like, setLike] = useState(undefined);
 
   const handleLike = (e, idx) => {
-    console.log(e.target);
     if (like != idx) {
       setLike(idx)
       alert('좋아요를 누르셨습니다!')

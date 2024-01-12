@@ -1,15 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import useGetList from "../../hooks/useGetList";
 import styles from "./styles.module.css";
 import LikeButton from "../main/rest/likebutton/LikeButton";
 import { PiEyeThin } from "react-icons/pi";
 import { PiBookmarkSimpleThin } from "react-icons/pi";
+import { PiBookmarkSimpleFill } from "react-icons/pi";
 import { PiShareNetworkThin } from "react-icons/pi";
 import { HiArrowSmallUp } from "react-icons/hi2";
 import DetailSwiper from "./Swiper/DetailSwiper";
 import Mapimage from "../Map/Mapimage";
 import axios from "axios";
+import ImageUpload from './../imageUpload/ImageUpload';
 
 
 export default function DetailInformation() {
@@ -67,7 +69,9 @@ export default function DetailInformation() {
     if (active !== idx) {
       setActive(idx)
     }
-    if (idx === 1) {
+    if (idx === 0){
+      contentRef1.current?.scrollIntoView({ behavior: 'smooth', block: "end" });
+    } else if (idx === 1) {
       contentRef1.current?.scrollIntoView({ behavior: 'smooth' });
     } else if (idx === 2) {
       contentRef2.current?.scrollIntoView({ behavior: 'smooth' });
@@ -177,6 +181,28 @@ export default function DetailInformation() {
     .then(result => setReplyList(result.data));
   },[replyList])
 
+  const [scrap, setScrap] = useState(false);
+
+  const handleScrap = (e, idx) => {
+    if (scrap === false) {
+      setScrap(true)
+      alert('즐겨찾기에 추가되었습니다!')
+    } else {
+      setScrap(false)
+      alert('즐겨찾기를 취소하였습니다.')
+    }
+  }
+
+  const handleCopyClipBoard = async (text) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      alert("클립보드에 링크가 복사되었어요.");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const location = useLocation();
 
   return (
     <div className={styles.wrap}>
@@ -186,15 +212,17 @@ export default function DetailInformation() {
             <h2 className={styles.title} key={commonList.contentid}>{commonList.title}</h2>
             <p className={styles.description}>{commonList.addr1.substring(0, 2)}</p>
             <div className={styles.iconMenuWrap}>
-              <div className={styles.iconMenu}>
+              <div className={styles.iconMenuLeft}>
                 <LikeButton idx={0} /> {/* 데이터테이블 만들어서 관리하기 */}
                 <span>1</span>
                 <PiEyeThin size="28" />
                 <span>1</span>
               </div>
-              <div>
-                <PiBookmarkSimpleThin size="28" />
-                <PiShareNetworkThin size="28" />
+              <div className={styles.iconMenuRight}>
+                { scrap === true
+                ? <PiBookmarkSimpleFill size="28" onClick={handleScrap} className={styles.iconScrapOn} />
+                : <PiBookmarkSimpleThin size="28" onClick={handleScrap}/>}
+                <PiShareNetworkThin size="28" onClick={() => handleCopyClipBoard(`http://localhost:3000${location.pathname}`)} className={styles.iconShare} />
               </div>
             </div>
             <ul className={fixed ? `${styles.tabMenuWrap} ${styles.active}`: styles.tabMenuWrap}>
@@ -345,8 +373,10 @@ export default function DetailInformation() {
             <div className={styles.replyBtnWrap}>
               <button>
                 <img src="http://localhost:3000/images\detailPage\btn_reply_file.gif" alt="" />
+                {/* <ImageUpload /> */}
               </button>
               <button onClick={handleClick}>등록</button>
+              <ImageUpload />
             </div>
           </div>
 

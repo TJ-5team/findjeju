@@ -26,7 +26,7 @@
       justify-content: space-between;
       align-items: center;
       margin: 40px 0 15px;
-      div.iconMenu {
+      div.iconMenuLeft {
         display: flex;
         align-items: center;
         svg:first-of-type {
@@ -37,6 +37,20 @@
           vertical-align: middle;
           font-size: 15px;
           color: var(--fontGray);
+        }
+      }
+      div.iconMenuRight{
+        svg{
+          cursor: pointer;
+          margin-right: 15px;
+          &.iconScrapOn{
+            color: var(--navColor);
+          }
+          &.iconShare{
+            &:hover{
+              color: var(--blue);
+            }
+          }
         }
       }
     }
@@ -251,7 +265,7 @@
       bottom: 30px;
       border-radius: 50%;
       box-shadow: 0 0 2px 3px var(--borderline);
-      background-color: var(--pinkline);
+      background-color: var(--blue);
       cursor: pointer;
       opacity: 0;
       transition: all 0.5s ease-in;

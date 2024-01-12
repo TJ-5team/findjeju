@@ -29,18 +29,28 @@
   align-items: center;
   margin: 40px 0 15px;
 }
-.wrap div.inner div.iconMenuWrap div.iconMenu {
+.wrap div.inner div.iconMenuWrap div.iconMenuLeft {
   display: flex;
   align-items: center;
 }
-.wrap div.inner div.iconMenuWrap div.iconMenu svg:first-of-type {
+.wrap div.inner div.iconMenuWrap div.iconMenuLeft svg:first-of-type {
   font-size: 25px;
 }
-.wrap div.inner div.iconMenuWrap div.iconMenu > span {
+.wrap div.inner div.iconMenuWrap div.iconMenuLeft > span {
   margin: 0 15px 0 5px;
   vertical-align: middle;
   font-size: 15px;
   color: var(--fontGray);
+}
+.wrap div.inner div.iconMenuWrap div.iconMenuRight svg {
+  cursor: pointer;
+  margin-right: 15px;
+}
+.wrap div.inner div.iconMenuWrap div.iconMenuRight svg.iconScrapOn {
+  color: var(--navColor);
+}
+.wrap div.inner div.iconMenuWrap div.iconMenuRight svg.iconShare:hover {
+  color: var(--blue);
 }
 .wrap div.inner ul.tabMenuWrap {
   margin-bottom: 20px;
@@ -248,7 +258,7 @@
   bottom: 30px;
   border-radius: 50%;
   box-shadow: 0 0 2px 3px var(--borderline);
-  background-color: var(--pinkline);
+  background-color: var(--blue);
   cursor: pointer;
   opacity: 0;
   transition: all 0.5s ease-in;
