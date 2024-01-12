@@ -1,5 +1,5 @@
 h3.title {
-  margin-top: 55px;
+  margin-top: 35px;
   font-size: 24px;
   font-weight: 700;
   color: var(--fontLightColor);
@@ -8,9 +8,13 @@ h3.title {
 div.info {
   margin-top: 25px;
   display: flex;
+  flex-wrap: wrap;
 }
 div.info a {
   flex: 1;
+  max-width: 33%;
+  margin-right: 8px;
+  text-decoration: none !important;
 }
 div.info a div.box img.img {
   width: 300px;
@@ -20,6 +24,7 @@ div.info a div.box img.img {
 div.info a div.box h4.text {
   margin-left: 10px;
   margin-top: 14px;
+  margin-bottom: 30px;
   font-size: 20px;
   font-weight: 700;
   color: var(--darknite);

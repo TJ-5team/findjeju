@@ -56,7 +56,7 @@ export default function Fiesta() {
             {festivalLists && festivalLists.map((list,index) =>
             <SwiperSlide key={index}> 
               <div className={styles.festival}>
-                <img className={styles.img} src={list.firstimage} alt="축제이미지" />
+                <img className={styles.img} src={list.firstimage ? list.firstimage : "http://localhost:3000/images/bg_no_festival.png"} alt="축제이미지" />
                 <div className={styles.cont}>
                   <strong className={styles.subject}>{list.title}</strong>
                   <span className={styles.addr}>{list.addr1.split(" ")[1]}</span>

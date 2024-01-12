@@ -106,6 +106,13 @@ const router = createBrowserRouter([
           <SubPage/>
         </MainContents>
       },
+      {
+        path:"/course",
+        element:
+        <MainContents>
+          <SubPage/>
+        </MainContents>
+      },
     ]
   }
 

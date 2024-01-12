@@ -35,10 +35,10 @@ export default function Festival(){
             <p className={styles.noText}>찾으시는 축제를 다시 검색해 주세요</p>
           </div> : 
           <div className={styles.flex}>
-          {festivalList.map(list =>
+          {festivalList && festivalList.map(list =>
           <div key={list.contentid} className={styles.festival}>
             <Link to={list.contentid}>
-              <img className={styles.img} src={list.firstimage} alt="축제이미지" />
+              <img className={styles.img} src={list.firstimage ? list.firstimage : "http://localhost:3000/images/bg_no_festival.png"} alt="축제이미지" />
               <div className={styles.textBox}>
                 <h4 className={styles.title}>{list.title}</h4>
                 <p className={styles.date}>{list.eventstartdate} ~ {list.eventenddate}</p>
