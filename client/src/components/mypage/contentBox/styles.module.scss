@@ -1,0 +1,147 @@
+div.contentBox {
+  flex-grow: 1;
+  h3.contentTitle {
+    padding-bottom: 20px;
+    box-sizing: border-box;
+    font-weight: bold;
+    font-size: 22px;
+  }
+  ul.contentList {
+    padding: 0px 20px;
+    box-sizing: border-box;
+    background-color: #fff;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    li {
+      position: relative;
+      padding: 20px 0px;
+      box-sizing: border-box;
+      div.banner {
+        margin-top: 20px;
+      }
+      a {
+        font-weight: 700;
+        font-size: 20px;
+        color: #333;
+
+        &::before {
+          content: "";
+          display: inline-block;
+          width: 31px;
+          height: 32px;
+          margin-right: 10px;
+          vertical-align: -8px;
+        }
+        &::after {
+          content: "▼";
+          position: absolute;
+          top: 20px;
+          right: 0px;
+          display: block;
+          color: #4a4a4a;
+        }
+      }
+      &:first-child {
+        border-bottom: 1px solid #e6e6e6;
+        a::before {
+          background: url("http://localhost:3000/images/mypage/select.png") 0 0 no-repeat;
+        }
+      }
+      &:last-child {
+        a::before {
+          background: url("http://localhost:3000/images/mypage/select.png") 0 -60px no-repeat;
+        }
+        a::after {
+          content: "▼";
+          display: none;
+        }
+      }
+    }
+  }
+  ul.activeList {
+    background-color: #fff;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 40px 0px;
+    li {
+      width: 33%;
+      height: 150px;
+      text-align: center;
+      box-sizing: border-box;
+
+      span {
+        display: block;
+        margin-top: 10px;
+      }
+      a {
+        display: inline-block;
+        position: relative;
+        &::before {
+          content: "";
+          display: inline-block;
+          width: 65px;
+          height: 65px;
+          border-radius: 10px;
+        }
+        em {
+          position: absolute;
+          left: 40px;
+          top: -4px;
+          height: 26px;
+          min-width: 26px;
+          line-height: 26px;
+          padding: 0 7px;
+          border-radius: 50px;
+          color: #fff;
+          font-size: 16px;
+          background: #4765cf;
+          box-sizing: border-box;
+        }
+      }
+      &:nth-child(1) {
+        a {
+          &::before {
+            background: url("http://localhost:3000/images/mypage/icon_active.png") 0 0px no-repeat;
+          }
+        }
+      }
+      &:nth-child(2) {
+        a {
+          &::before {
+            background: url("http://localhost:3000/images/mypage/icon_active.png") 0 -65px no-repeat;
+          }
+        }
+      }
+      &:nth-child(3) {
+        a {
+          &::before {
+            background: url("http://localhost:3000/images/mypage/icon_active.png") 0 -130px no-repeat;
+          }
+        }
+      }
+      &:nth-child(4) {
+        a {
+          &::before {
+            background: url("http://localhost:3000/images/mypage/icon_active.png") 0 -195px no-repeat;
+          }
+        }
+      }
+      &:nth-child(5) {
+        a {
+          &::before {
+            background: url("http://localhost:3000/images/mypage/icon_active.png") 0 -260px no-repeat;
+          }
+        }
+      }
+      &:nth-child(6) {
+        a {
+          &::before {
+            background: url("http://localhost:3000/images/mypage/icon_active.png") 0 -325px no-repeat;
+          }
+        }
+      }
+    }
+  }
+}
