@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import styles from "./styles.module.css"
 import { Link, useParams } from "react-router-dom";
 import SearchCommonItem from "./searchCommon/SearchCommonItem";
@@ -9,6 +9,8 @@ import Pagination from 'rc-pagination';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'rc-pagination/assets/index.css'
 import NotFound from "./notFound/NotFound";
+import useDebounce from "../../hooks/useDebounce";
+
 export default function Search() {
   const [active, setActive] = useState("전체")
   const [filter, setFilter] = useState("제목")
@@ -19,6 +21,7 @@ export default function Search() {
   const { key } = useSelector(getKeyword);
   const [currentPage, setCurrentPage] = useState(1);
   const {serviceList, totalCount} = useSelector(getSeviceListData)
+  
   useEffect(() => {
     setSubFilter("전체")
     setCurrentPage(1)
@@ -42,8 +45,11 @@ export default function Search() {
     if(active === "전체"){
       return
     }
+    
       dispatch(serviceApiData({currentPage, subfilter, filter, keyword, active}))
-  },[currentPage,subfilter,filter,keyword,active])
+
+  },[useDebounce(currentPage,500),useDebounce(subfilter,500),useDebounce(filter,500),useDebounce(keyword,500),useDebounce(active,500)])
+
   return (
     <div className={styles.wrap}>
       <div className={styles.container}>
@@ -137,6 +143,9 @@ export default function Search() {
                   })
                 }
               </div>
+              <div className={styles.moreView}>
+                <button type="button" onClick={()=>{setActive("축제");window.scrollTo({top:0})}}>더보기</button>
+              </div>
             </div>}
             {thirdList && <div className={`${styles.section}`}>
               <div className={styles.searchShow}>
@@ -155,6 +164,9 @@ export default function Search() {
                   })
                 }
               </div>
+              <div className={styles.moreView}>
+                <button type="button" onClick={()=>{setActive("공연행사");window.scrollTo({top:0})}}>더보기</button>
+              </div>
             </div>}
             {forthList && <div className={`${styles.section}`}>
               <div className={styles.courseList}>
@@ -172,6 +184,9 @@ export default function Search() {
                     ></SearchCommonItem>
                   })
                 }
+              </div>
+              <div className={styles.moreView}>
+                <button type="button" onClick={()=>{setActive("여행코스");window.scrollTo({top:0})}}>더보기</button>
               </div>
             </div>}
             {!firstList && !secondList && !thirdList && !forthList && <NotFound keyword={keyword}/>}

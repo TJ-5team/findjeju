@@ -78,6 +78,7 @@ const tourUrl = `http://apis.data.go.kr/B551011/KorService1/searchKeyword1?numOf
     console.log(result);
     const serviceList = result.items.item
     const totalCount = result.totalCount
+    console.log(serviceList);
     dispatch(getServiceDataList({serviceList, totalCount}))
   }
 }
