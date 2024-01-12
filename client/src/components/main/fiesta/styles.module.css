@@ -86,6 +86,8 @@ div.wrap div.dayList button.day {
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
+  justify-content: center;
+  padding: 8px 0;
   cursor: pointer;
   margin: 0 10px;
 }

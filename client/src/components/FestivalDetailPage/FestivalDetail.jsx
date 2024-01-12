@@ -25,7 +25,7 @@ export default function FestivalDetail(){
   const [info] = useGetList(`http://apis.data.go.kr/B551011/KorService1/detailIntro1?serviceKey=CJ%2FlY8Dc3dAVFPdMOF6t%2FHXVFUUjp5iNiBLNNPkrq7ROViBwSkb6oMVC4s5NZjEztVJWKm0beaKYDWMn7suxaQ%3D%3D&numOfRows=50&pageNo=1&MobileApp=APPTest&MobileOS=ETC&contentId=${contentid}&contentTypeId=15&_type=json`);
   const [overview] = useGetList(`http://apis.data.go.kr/B551011/KorService1/detailInfo1?serviceKey=CJ%2FlY8Dc3dAVFPdMOF6t%2FHXVFUUjp5iNiBLNNPkrq7ROViBwSkb6oMVC4s5NZjEztVJWKm0beaKYDWMn7suxaQ%3D%3D&numOfRows=50&pageNo=1&MobileOS=ETC&MobileApp=AppTest&contentId=${contentid}&contentTypeId=15&_type=json`);
   const [imgs] = useGetList(`http://apis.data.go.kr/B551011/KorService1/detailImage1?serviceKey=CJ%2FlY8Dc3dAVFPdMOF6t%2FHXVFUUjp5iNiBLNNPkrq7ROViBwSkb6oMVC4s5NZjEztVJWKm0beaKYDWMn7suxaQ%3D%3D&numOfRows=50&pageNo=1&MobileOS=ETC&MobileApp=AppTest&contentId=${contentid}&imageYN=Y&subImageYN=Y&_type=json`);
-  
+  console.log(lists, info, overview, imgs);
   const changeText = (e) => {
     return e.split('<br>').map(line => <>{line}<br/></>);
   }
@@ -62,7 +62,7 @@ export default function FestivalDetail(){
             modules={[Navigation, Pagination]}
             className="mySwiper">
             
-            {imgs.map(img =>
+            {imgs && imgs.map(img =>
             <SwiperSlide key={img.originimgurl}> 
               <img className={styles.img} src={img.originimgurl} alt="행사이미지" />
             </SwiperSlide>
@@ -73,12 +73,12 @@ export default function FestivalDetail(){
         </div>
 
         <div className={styles.textBox}>
-          {overview.map(i =>
+          {overview && overview.map(i =>
           <p key={i.serialnum} className={styles.text}>{changeText(i.infotext)}</p>
           )}
         </div>
         
-        {info.map(i =>
+        {info && info.map(i =>
         <ul key={i.playtime} className={styles.info}>
           <li><BsCalendar2Heart className={styles.calendar}/>{newDate(i.eventstartdate)} ~ {(i.eventenddate)}</li>
           <li key={i.playtime}><IoTimeOutline className={styles.marker}/>{i.playtime}</li>
@@ -87,7 +87,7 @@ export default function FestivalDetail(){
           <li><BsTelephoneFill className={styles.tel}/> {i.sponsor1tel}</li>
         </ul>
         )}
-        {lists.map(list =>
+        {lists && lists.map(list =>
         <Mapimage x={list.mapx} y={list.mapy} title={list.title}/>
         )}
 
