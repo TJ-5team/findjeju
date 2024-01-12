@@ -12,21 +12,29 @@ import DetailSwiper from "./swiper/DetailSwiper";
 import Mapimage from "../Map/Mapimage";
 import axios from "axios";
 import ImageUpload from './../imageUpload/ImageUpload';
+import TripInfo from "../tripInfo/TripInfo";
+import { getUser } from "../../utils/localStorage";
+import DetailTitle from "./title/DetailTitle";
 
 
 export default function DetailInformation() {
+
+  const userInfo = getUser();
+  // console.log(userInfo);
+
   const [reply, setReply] = useState("");
   const [replyList, setReplyList] = useState([]);
-  //const { contentid, contenttypeid } = useParams();
+  const { contentid, contenttypeid } = useParams();
 
   /* 예시로!! 삭제하기 !!!! */
-  const contenttypeid = 32;
-  const contentid = 2819964;
+  /* const contenttypeid = 32;
+  const contentid = 2819964; */
 
   /* api링크 가져오기 */
-  const [commonInfo] = useGetList(`http://apis.data.go.kr/B551011/KorService1/detailCommon1?ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&contentTypeId=32&contentId=2819964&MobileOS=ETC&MobileApp=AppTest&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y&_type=json`);
-  const [detailInfo] = useGetList(`http://apis.data.go.kr/B551011/KorService1/detailIntro1?ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&contentTypeId=32&contentId=2819964&MobileOS=ETC&MobileApp=AppTest&_type=json`);
-  const [comfortable] = useGetList(`http://apis.data.go.kr/B551011/KorWithService1/detailWithTour1?serviceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&contentId=2819964&MobileOS=ETC&MobileApp=AppTest&_type=json`);
+  const [commonInfo] = useGetList(`http://apis.data.go.kr/B551011/KorService1/detailCommon1?ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&contentTypeId=${contenttypeid}&contentId=${contentid}&MobileOS=ETC&MobileApp=AppTest&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y&_type=json`);
+  const [detailInfo] = useGetList(`http://apis.data.go.kr/B551011/KorService1/detailIntro1?ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&contentTypeId=${contenttypeid}&contentId=${contentid}&MobileOS=ETC&MobileApp=AppTest&_type=json`);
+  const [comfortable] = useGetList(`http://apis.data.go.kr/B551011/KorWithService1/detailWithTour1?serviceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&contentId=${contentid}&MobileOS=ETC&MobileApp=AppTest&_type=json`);
+  const [course] = useGetList(`http://apis.data.go.kr/B551011/KorService1/detailIntro1?ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&contentTypeId=${contenttypeid}&contentId=${contentid}&MobileOS=ETC&MobileApp=AppTest&_type=json`)
 
   /*  
   console.log(commonInfo);
@@ -39,6 +47,7 @@ export default function DetailInformation() {
   const detailInfo = []
   const facility = []
   const comfortable = [] */
+
 
   const tabMenulist = ["사진보기", "상세정보", "여행톡", "추천여행"]
   const [active, setActive] = useState(0);
@@ -67,6 +76,7 @@ export default function DetailInformation() {
 
   const handleActive = (e, idx) => {
     if (active !== idx) {
+      console.log(idx);
       setActive(idx)
     }
     if (idx === 0) {
@@ -76,7 +86,7 @@ export default function DetailInformation() {
     } else if (idx === 2) {
       contentRef2.current?.scrollIntoView({ behavior: 'smooth' });
     } else if (idx === 3) {
-      contentRef3.current?.scrollIntoView({ behavior: 'smooth' });
+      contentRef3.current?.scrollIntoView({ behavior: 'smooth'});
     }
 
   }
@@ -91,7 +101,7 @@ export default function DetailInformation() {
 
   useEffect(() => {
     const handleShowBtn = (e) => {
-      if (window.scrollY > 200 || window.scrollY < window.scroll.Height) {
+      if (window.scrollY > 313 || window.scrollY < window.scroll.Height) {
         SetShowTopBtn(true)
       } else {
         SetShowTopBtn(false)
@@ -112,12 +122,13 @@ export default function DetailInformation() {
       window.removeEventListener('scroll', handleMenuFixed)
       window.removeEventListener('scroll', handleShowBtn)
     }
-  }, [fixed])
+  }, [])
 
   // console.log(window.scrollY);
 
   const changeText = (e) => {
     const regex = /<a href="(.*?)" target="_blank"/;
+    console.log(e);
     return e.match(regex)[1]
   }
 
@@ -165,71 +176,36 @@ export default function DetailInformation() {
     }
   },[]) */
 
+  const [replyReload, setReplyReload] = useState(false);
+
   const handleClick = (e) => {
     if (reply !== "") {
       axios.post("http://localhost:8000/review", { contentid: contentid, contenttypeid: contenttypeid, reply: reply, id: "try226" })
         .then(result => {
-          if (result === "ok") {
-            window.location.reload();
+          if (result.data === "ok") {
+            setReplyReload(!replyReload)
+            setReply("")
           }
         });
     }
   };
-
+  
   useEffect(() => {
     axios.get(`http://localhost:8000/review/${contentid}/${contenttypeid}`)
-      .then(result => setReplyList(result.data));
-  }, [replyList])
-
-  const [scrap, setScrap] = useState(false);
-
-  const handleScrap = (e, idx) => {
-    if (scrap === false) {
-      setScrap(true)
-      alert('즐겨찾기에 추가되었습니다!')
-    } else {
-      setScrap(false)
-      alert('즐겨찾기를 취소하였습니다.')
-    }
-  }
-
-  const handleCopyClipBoard = async (text) => {
-    try {
-      await navigator.clipboard.writeText(text);
-      alert("클립보드에 링크가 복사되었어요.");
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const location = useLocation();
-
+    .then(result => setReplyList(result.data));
+  }, [replyReload])
+  
   return (
     <div className={styles.wrap}>
       <div className={`${styles.inner} inner`}>
         {commonInfo && commonInfo.map((commonList) =>
           <>
-            <h2 className={styles.title} key={commonList.contentid}>{commonList.title}</h2>
-            <p className={styles.description}>{commonList.addr1.substring(0, 2)}</p>
-            <div className={styles.iconMenuWrap}>
-              <div className={styles.iconMenuLeft}>
-                <LikeButton idx={0} /> {/* 데이터테이블 만들어서 관리하기 */}
-                <span>1</span>
-                <PiEyeThin size="28" />
-                <span>1</span>
-              </div>
-              <div className={styles.iconMenuRight}>
-                {scrap === true
-                  ? <PiBookmarkSimpleFill size="28" onClick={handleScrap} className={styles.iconScrapOn} />
-                  : <PiBookmarkSimpleThin size="28" onClick={handleScrap} />}
-                <PiShareNetworkThin size="28" onClick={() => handleCopyClipBoard(`http://localhost:3000${location.pathname}`)} className={styles.iconShare} />
-              </div>
-            </div>
+          <DetailTitle commonList={commonList} infoList={course}/>
             <ul className={fixed ? `${styles.tabMenuWrap} ${styles.active}` : styles.tabMenuWrap}>
               {tabMenulist && tabMenulist.map((list, idx) =>
                 <li onClick={(e) => handleActive(e, idx)} className={active === idx ? `${styles.tabMenu} ${styles.active}` : styles.tabMenu} key={idx}>{list}</li>
               )}
-            </ul>
+            </ul> 
             <DetailSwiper />
             <h3 ref={contentRef1} className={styles.titleSub}>상세정보</h3>
             <div className={styles.descriptionWrap}>
@@ -244,10 +220,11 @@ export default function DetailInformation() {
                   <strong>문의 및 안내</strong>
                   <span>{detailList.infocenterlodging}</span>
                 </li>
+                {/* {commonList.homepage && 
                 <li>
                   <strong>홈페이지</strong>
                   <span><Link to={changeText(commonList.homepage)}>{changeText(commonList.homepage)}</Link></span>
-                </li>
+                </li>} */}
                 <li>
                   <strong>주소</strong>
                   <span>{commonList.addr1}</span>
@@ -368,15 +345,14 @@ export default function DetailInformation() {
           </h3>
           <div className={styles.replyWrap}>
             {/* 로그인 기능 완료되면 삼항식 구현하기 */}
-            <textarea className={styles.replyText} type="text" placeholder="로그인 후 소중한 댓글을 남겨주세요." value={reply}
-              onChange={(e) => setReply(e.target.value)} />
+            <textarea className={styles.replyText} type="text" placeholder={userInfo.id ? "소중한 댓글을 남겨주세요." :"로그인 후 소중한 댓글을 남겨주세요."} 
+            value={reply} onChange={(e) => setReply(e.target.value)} disabled={userInfo.id ? false : true}/>
             <div className={styles.replyBtnWrap}>
-              <button>
+                <ImageUpload />
+              {/* <button>
                 <img src="http://localhost:3000/images\detailPage\btn_reply_file.gif" alt="" />
-                {/* <ImageUpload /> */}
-              </button>
-              <button onClick={handleClick}>등록</button>
-              <ImageUpload />
+              </button> */}
+              <button type="button" onClick={handleClick}>{userInfo.id ? "등록" : "로그인"}</button>
             </div>
           </div>
 
@@ -409,6 +385,9 @@ export default function DetailInformation() {
         </div>
         <div className={styles.replyMore}>+ 댓글 더보기</div> */}
 
+        <div ref={contentRef3}>
+          <TripInfo />
+        </div>
         <HiArrowSmallUp size="40" className={showTopBtn ? `${styles.scrollTopBtn} ${styles.active}` : styles.scrollTopBtn} onClick={handleScrolltoTop} />
       </div >
     </div >

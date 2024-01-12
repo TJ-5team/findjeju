@@ -1,5 +1,5 @@
 import React from "react";
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { RouterProvider, ScrollRestoration, createBrowserRouter } from 'react-router-dom';
 import Main from "./Main";
 import MainContents from "./pages/MainContents";
 import Recommand from "./components/main/recommand/Recommand";
@@ -14,12 +14,15 @@ import SubPage from './pages/SubPage';
 import Login from "./pages/LoginPage";
 import Mypage from "./pages/Mypage";
 import DetailPage from "./pages/DetailPage";
+import Weather from "./components/main/weather/Weather";
+import TripCourse from "./components/tripCourse/TripCourse";
+import CommonDetail from "./pages/CommonDetail";
 
 const router = createBrowserRouter([
 
   {
     path: "/",
-    element: <Main />,
+      element: <Main> <ScrollRestoration /> </Main>,
     children: [
       {
         path: "/",
@@ -29,6 +32,7 @@ const router = createBrowserRouter([
             <Recommand />
             <Rest />
             <Fiesta/>
+            <Weather />
           </MainContents>
       },
       {
@@ -118,7 +122,7 @@ const router = createBrowserRouter([
         path:"/detail/:contentid/:contenttypeid",
         element:
         <MainContents>
-          <DetailPage/>
+          <CommonDetail/>
         </MainContents>
       },
     ]

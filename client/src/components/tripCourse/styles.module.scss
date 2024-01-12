@@ -1,0 +1,247 @@
+.tripCourseContent {
+  .tripCourseTitle {
+    text-align: center;
+    margin-bottom: 35px;
+    .courseTitle {
+      text-align: center;
+      padding: 19px 0 10px;
+      em {
+        width: 65px;
+        height: 32px;
+        border-radius: 16px;
+        font-size: 18px;
+        line-height: 32px;
+        margin-right: 10px;
+      }
+      h2 {
+        font-size: 36px;
+        font-weight: 800;
+      }
+    }
+  }
+  .courseTitle,
+  .courseTapTitleWrap {
+    strong, h2, em {
+      display: inline-block;
+      vertical-align: middle;
+    }
+    em {
+      background: #ed4956;
+      color: #FFF;
+      font-weight: 700;
+    }
+  }// courseTitle, courseTapTitleWrap total
+  .courseSubAddr {
+    color: #666;
+    font-size: 16px;
+    span:first-child:after {
+      content: '';
+      width: 1px;
+      height: 14px;
+      background: #CCC;
+      display: inline-block;
+      margin: 0 10px;
+      vertical-align: middle;
+    }
+  }//courseSubAddr
+  .tripCourseInfo {
+    margin-bottom: 44px;
+    ul {
+      border-top: 1px solid #e6e6e6;
+      border-bottom: 1px solid #e6e6e6;
+      padding: 40px 150px;
+      display: flex;
+      flex-wrap: wrap;
+      li {
+        width: 50%;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        &:last-child {
+          width: 100%;
+        }
+        figure {
+          width: 80px;
+          height: 80px;
+        } //figure
+        > div {
+          margin-left: 18px;
+          p {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 3px;
+          }
+          strong {
+            font-size: 18px;
+            font-weight: 700;
+          }
+          .tripInfoHash a {
+            font-size: 16px;
+            font-weight: 700;
+            margin-right: 16px;
+          }//tripInfoHash a
+        }
+      }
+
+    }
+    .tripCourseText {
+      padding-top: 24px;
+    }//tripCourseText
+  }//tripCourseInfo
+  .tripCourseSlide {
+    width: 100%;
+    height: auto;
+    .courseSwiper {
+      width: 100%;
+      margin-top: 40px;
+      padding: 0 20px;
+      background: #EEE;
+      box-sizing: border-box;
+      position: relative;
+      .courseImg {
+        display: flex;
+        text-align: center;
+        .trip {
+          width: 200px;
+          height: auto;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          padding: 85px 0 39px;
+          position: relative;
+          &.on::after,
+          &.on100::after {
+            content: '';
+            width: 50%;
+            height: 4px;
+            background: #ed4956;
+            display: block;
+            position: absolute;
+            top: 49px;
+            left: 0px;
+          }
+          &.on100::after {
+            width: 100%;
+          }
+          &::before {
+            content: '';
+            width: 100%;
+            height: 4px;
+            background: radial-gradient(circle closest-side, #bfbfbf 90%, #0000) 
+            0/8px 100%;
+            position: absolute;
+            top: 49px;
+            left: 0px;
+          }
+          &.on,
+          &.on100 {
+            em {
+              color: #ed4956;
+              border-color: #ed4956;
+            }
+          }
+          em {
+            width: 30px;
+            height: 30px;
+            font-size: 16px;
+            font-weight: 700;
+            background: #FFF;
+            border: 2px solid #bfbfbf;
+            border-radius: 50%;
+            color: #767676;
+            line-height: 29px;
+            position: absolute;
+            left: 50%;
+            top: 34px;
+            transform: translateX(-50%);
+            z-index: 1;
+          }
+          .courseLink {
+            width: 100%;
+            height: 180px;
+            background: #FFF;
+            border-radius: 10px;
+            margin: 0px 10px;
+            box-shadow: 2px 2px 10px 0px rgba(150,150,150,1);
+            overflow: hidden;
+            a {
+              width: 100%;
+              height: 100%;
+              display: flex;
+              color: #FFF;
+              position: relative;
+              align-items: center;
+              justify-content: center;
+              span {
+                z-index: 1;
+              }
+              &::after {
+                content: '';
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,.3);
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+              }
+              &:hover::after {
+                background: rgba(237,73,86,.8);
+              }
+            }
+          }//courseLink
+        }
+      }//courseImg
+    }//courseSwiper
+  }//tripCourseSlide
+  .courseTap {
+    padding: 0 0 30px;
+    .courseTapContent {
+      width: 100%;
+      background: #FFF;
+      border: 1px solid #ed4956;
+      border-radius: 10px;
+      box-sizing: border-box;
+      box-shadow: 2px 2px 10px 0px rgba(150,150,150,1);
+      padding: 49px 29px 30px;
+      text-align: center;
+      .courseTapTitleWrap {
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: 3px;
+        em {
+          width: 30px;
+          height: 30px;
+          border-radius: 30px;
+          font-size: 16px;
+          line-height: 30px;
+          margin-right: 5px;
+        }
+      }//courseTapTitleWrap
+      .courseTapImgWrap{
+        display: flex;
+        justify-content: space-between;
+        margin: 24px 0 32px;
+        .courseTapImg {
+          width: 260px;
+          height: 260px;
+          background: cadetblue;
+          border-radius: 10px;
+          a {
+            width: 100%;
+            height: 100%;
+            display: block;
+          }
+        }//courseTapImg
+      }//courseTapImgWrap
+      ul {
+        text-align: left;
+        line-height: 24px;
+        li {
+          display: inline-block;
+          margin-right: 15px;
+        }
+      }//courseTapContent ul
+    }//courseTapContent
+  }//courseTap
+}//tripCourseContent

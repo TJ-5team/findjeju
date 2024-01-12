@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./styles.module.css";
 import useGetList from "../../../hooks/useGetList";
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -6,13 +6,17 @@ import { Navigation } from 'swiper/modules';
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
+import { getUser } from "../../../utils/localStorage";
+import { useParams } from "react-router";
 
 
 export default function DetailSwiper() {
-  /* 예시로!! 삭제하기 !!!! */
-  const contenttypeid = 32;
-  const contentid = 2819964;
+  const { contentid, contenttypeid } = useParams();
+  const userInfo = getUser();
 
+  /* 예시로!! 삭제하기 !!!! */
+  /* const contenttypeid = 32;
+  const contentid = 2819964; */
   const [img] = useGetList(`http://apis.data.go.kr/B551011/KorService1/detailImage1?ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&contentId=${contentid}&MobileOS=ETC&MobileApp=AppTest&imageYN=Y&subImageYN=Y&numOfRows=10&_type=json`)
   const [imgDetail] = useGetList(`http://apis.data.go.kr/B551011/KorService1/detailImage1?ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&contentId=${contentid}&MobileOS=ETC&MobileApp=AppTest&imageYN=Y&subImageYN=Y&numOfRows=10&_type=json`)
 
@@ -31,6 +35,8 @@ export default function DetailSwiper() {
     return result;
   }
 
+  const [num, setNum] = useState(0);
+
   return (
     <div className={styles.wrap}>
       <Swiper
@@ -40,6 +46,9 @@ export default function DetailSwiper() {
         }}
         modules={[Navigation]}
         className={styles.imgSwiper}
+        onRealIndexChange={realIndex => {
+          setNum(realIndex.realIndex)
+        }}
       >
         {/* {img.map(image=>
         <SwiperSlide className={styles.swiperSlide} >
@@ -77,9 +86,11 @@ export default function DetailSwiper() {
 
       {/* Pagination */}
       <div className={styles.pagination}>
-        <span>1</span>
-        <span>/</span>
-        <span>4</span>
+        <div>
+          <span>{num + 1}</span>
+          <span>/</span>
+          <span>{imgDetail.length}</span>
+        </div>
       </div>
 
     </div>

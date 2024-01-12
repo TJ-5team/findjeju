@@ -6,6 +6,9 @@ const getFirstList = (state) => state.searchListSlice.firstList;
 const getSecondList = (state) => state.searchListSlice.secondList;
 const getThirdList = (state) => state.searchListSlice.thirdList;
 const getForthList = (state) => state.searchListSlice.forthList;
+const getServiceList = (state) => state.serviceListSlice.list.serviceList;
+const getServiceTotal = (state) => state.serviceListSlice.list.totalCount;
+
 export const getSearch = createSelector(
   [getSearchFlag],
   (searchFlag)=>({
@@ -28,6 +31,16 @@ export const getSearchListData = createSelector(
       secondList,
       thirdList,
       forthList
+    }
+  }
+)
+
+export const getSeviceListData = createSelector(
+  [getServiceList,getServiceTotal],
+  (serviceList,totalCount)=>{
+      return {
+        serviceList,
+        totalCount
     }
   }
 )

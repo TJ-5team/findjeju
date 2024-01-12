@@ -14,20 +14,20 @@
 }
 .wrap .pagination {
   position: absolute;
+  padding: 10px 10px;
   top: 20px;
   right: 20px;
   width: 65px;
-  padding: 10px 20px;
   text-align: center;
   color: var(--white);
   background-color: var(--fontDarkColor);
   border-radius: 30px;
   z-index: 10;
 }
-.wrap .pagination span {
+.wrap .pagination div span {
   font-size: 16px;
 }
-.wrap .pagination span:last-child {
+.wrap .pagination div span:last-child {
   opacity: 0.5;
 }
 .wrap .prevBtn,
