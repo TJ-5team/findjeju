@@ -19,10 +19,10 @@ export default function Sub(){
 
   const contentTypes = {
     "/lodging": { id: 32, title: "숙소 추천" },
-    "/restaurant": { id: 39, title: "음식 추천" },
+    "/restaurant": { id: 39, title: "음식점 추천" },
     "/tourist": { id: 12, title: "여행지 추천" },
     "/cultural": { id: 14, title: "문화시설 추천" },
-    "/sports": { id: 28, title: "스포츠 추천" },
+    "/sports": { id: 28, title: "레포츠 추천" },
     "/shopping": { id: 38, title: "쇼핑 추천" },
     "/course": { id: 25, title: "여행코스" }
   };

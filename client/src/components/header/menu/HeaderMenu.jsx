@@ -20,7 +20,7 @@ export default function HeaderMenu() {
             <Link className={`${style.menuItem} ${path === "/restaurant" ? style.active : null}`} to="/restaurant">음식점</Link>
           </div>
           <div className={style.menuBox}>
-            <Link className={`${style.menuItem} ${path === "/tourist" ? style.active : null}`} to="/tourist">관광지</Link>
+            <Link className={`${style.menuItem} ${path === "/tourist" ? style.active : null}`} to="/tourist">여행지</Link>
           </div>
           <div className={style.menuBox}>
             <Link className={`${style.menuItem} ${path === "/cultural" ? style.active : null}`} to="/cultural">문화시설</Link>
