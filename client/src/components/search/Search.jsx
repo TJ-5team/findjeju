@@ -31,10 +31,10 @@ export default function Search() {
     if (filter === "최신") {
       let filter = "Q"
       dispatch(SearchApiData({ keyword, filter }))
-      console.log();
+      console.log(firstList, secondList, thirdList, forthList);
     } else {
       dispatch(SearchApiData({ keyword }))
-      console.log();
+      console.log(firstList, secondList, thirdList, forthList);
     }
   }, [filter, key, keyword])
 
@@ -43,7 +43,6 @@ export default function Search() {
       return
     }
       dispatch(serviceApiData({currentPage, subfilter, filter, keyword, active}))
-      console.log(serviceList);
   },[currentPage,subfilter,filter,keyword,active])
   return (
     <div className={styles.wrap}>
@@ -92,7 +91,7 @@ export default function Search() {
             </ul>
           </div>
           <div className={styles.filterWrap}>
-            {totalCount ? <p>{`총 ${totalCount} 건`}</p> : ""}
+            {active !== "전체" && totalCount ? <p>{`총 ${totalCount} 건`}</p> : ""}
             <div className={styles.filter}>
               <button className={filter === "제목" ? styles.active : ""} onClick={() => { setFilter("제목") }}>제목순</button>
               <button className={filter === "최신" ? styles.active : ""} onClick={() => { setFilter("최신") }}>최신순</button>
@@ -116,6 +115,9 @@ export default function Search() {
                     ></SearchCommonItem>
                   })
                 }
+              </div>
+              <div className={styles.moreView}>
+                <button type="button" onClick={()=>{setActive("여행정보");window.scrollTo({top:0})}}>더보기</button>
               </div>
             </div>}
             {secondList && <div className={`${styles.section}`}>

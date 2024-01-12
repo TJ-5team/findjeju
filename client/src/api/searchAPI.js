@@ -53,8 +53,6 @@ export const serviceApiData = ({currentPage, subfilter, filter, keyword, active}
   }else if(subfilter === "전체"){
     serviceCode = ""
   }
-  console.log(filter);
-  console.log(serviceCode);
 /* 
 A01 자연
 A02 인문
@@ -74,9 +72,7 @@ if(active === "여행정보"){
 }else if(active === "여행코스"){
   serviceCode = "C01"
 }
-console.log(middleCode);
 const tourUrl = `http://apis.data.go.kr/B551011/KorService1/searchKeyword1?numOfRows=10&pageNo=${currentPage}&MobileOS=ETC&MobileApp=AppTest&ServiceKey=${근상키}&listYN=Y&arrange=${filter}&areaCode=39&sigunguCode=&cat1=${serviceCode}&cat2=${middleCode}&cat3=&keyword=${keyword}&_type=json`;
-console.log(tourUrl);
   return async (dispatch) => {
     const result = await axios.get(tourUrl).then(result=> result.data.response.body);
     console.log(result);

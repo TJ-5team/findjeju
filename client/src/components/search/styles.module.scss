@@ -235,6 +235,9 @@ display: flex;
     border-bottom: 1px solid #e6e6e6;
     display: flex;
     position: relative;
+    &:last-child{
+      border-bottom: none;
+    }
   }
 }
 .searchImg{
@@ -370,5 +373,17 @@ display: flex;
   strong{
     font-weight: 700;
     color: #000;
+  }
+}
+
+.moreView{
+  padding: 5px 0 30px;
+  text-align: center;
+  clear: both;
+  button{
+    font-size: 16px;
+    font-weight: 600;
+    display: inline-block;
+    line-height: 18px;
   }
 }

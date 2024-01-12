@@ -225,6 +225,9 @@
   display: flex;
   position: relative;
 }
+.courseList li:last-child {
+  border-bottom: none;
+}
 
 .searchImg {
   flex-shrink: 0;
@@ -357,4 +360,16 @@
 .noResult strong {
   font-weight: 700;
   color: #000;
+}
+
+.moreView {
+  padding: 5px 0 30px;
+  text-align: center;
+  clear: both;
+}
+.moreView button {
+  font-size: 16px;
+  font-weight: 600;
+  display: inline-block;
+  line-height: 18px;
 }/*# sourceMappingURL=styles.module.css.map */
