@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAreaData, getListData } from './../../../reselector/areaReselector';
 import LikeButton from "./likebutton/LikeButton";
 import { changeList } from "../../../reducer/areaReducer";
+import { FaPlus } from "react-icons/fa6";
 
 export default function Rest() {
   const dispatch = useDispatch();
@@ -24,6 +25,8 @@ export default function Rest() {
 
   // console.log(state);
   // console.log(list);
+
+  console.log(data.list.contentTypeId);
 
   // const [url, setUrl] = useState(`http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=4&pageNo=${num}&MobileOS=ETC&MobileApp=AppTest&ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&listYN=Y&arrange=Q&contentTypeId=32&areaCode=39${state.area.code}&cat1=B02&cat2=B0201&cat3=&_type=json`);
   // console.log(url);
@@ -62,7 +65,7 @@ export default function Rest() {
         setActive("stay");
         // setUrl(`http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=4&pageNo=${num}&MobileOS=ETC&MobileApp=AppTest&ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&listYN=Y&arrange=Q&contentTypeId=32&areaCode=39${state.area.code}&cat1=B02&cat2=B0201&cat3=&_type=json`)
         dispatch(changeList({ num: Math.floor(Math.random() * 3), contentTypeId: 32, category: 'cat1=B02&cat2=B0201' }));
-        
+
       }
     }
   };
@@ -120,12 +123,6 @@ export default function Rest() {
             )} */}
             {list.map((item, idx) =>
               <div className={width === idx ? `${styles.recommandItem} ${styles.active}` : styles.recommandItem} key={item.contentid} onMouseEnter={(e) => handleMouseEnter(e, idx)}>
-                {/* <span onClick={(e) => handleLike(e, idx)} className={styles.scrapBtn}>
-                  {like === idx
-                    ? <PiHeartFill className={styles.active} />
-                    : <PiHeartLight className={styles.likebtn} />
-                  }
-                </span> */}
                 <Link to={`/detail/${item.contentid}/${item.contenttypeid}`} className={styles.imageWrap}>
                   <img src={item.firstimage} alt="장소추천" className={styles.placeimage} />
                   <span className={styles.decriptionWrap}>
@@ -133,11 +130,11 @@ export default function Rest() {
                     <p className={styles.description}>{item.addr1}</p>
                   </span>
                 </Link>
-                <LikeButton idx={idx}/>
+                <LikeButton idx={idx} />
               </div>
             )}
-
           </div>
+          <Link to={data.list.contentTypeId === 32 ? "/lodging" : "/restaurant"} className={styles.recommendMore}>더보기<FaPlus /></Link>
         </div>
       </div>
     </>

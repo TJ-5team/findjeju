@@ -140,6 +140,16 @@
       }
     }
   }
+  a.recommendMore{
+    display: block;
+    margin-top: 10px;
+    text-align: right;
+    cursor: pointer;
+    svg {
+      margin-left:10px;
+      width: 17px;
+    }
+  }
 }
 
 li.menuList .active {
