@@ -4,7 +4,11 @@ import ImageUpload from '../../imageUpload/ImageUpload';
 import axios from 'axios';
 import DaumPostcode from 'react-daum-postcode';
 import { useNavigate } from 'react-router-dom';
+<<<<<<< Updated upstream
 import { useGetMember } from '../../../hooks/useGetMember';
+=======
+import Recaptcha from "react-google-recaptcha";
+>>>>>>> Stashed changes
 
 export default function Join() {
 
@@ -42,7 +46,8 @@ export default function Join() {
     const [focus, setFocus] = useState({ name: '', id: '', pass: '', passcheck: '', nickname: '', email: '', echeck: '', eSelf: '', confirm: '', phone1: '' });
     // 유효성검사 내용
     const [validation, setValidation] = useState({ name: '필수 입력 항목입니다.', id: '필수 입력 항목입니다.', pass: '필수 입력 항목입니다.', passcheck: '필수 입력 항목입니다.', nickname: '필수 입력 항목입니다.', email: '이메일 형식에 맞지 않습니다.', echeck: '필수 입력 항목입니다.', eSelf: '필수 입력 항목입니다.', confirm: '', phone: '필수 입력 항목입니다.', terms1: '', terms2: '' });
-
+    // 리캡쳐
+    const [captcha, setCaptcha] = useState(null);
 
     // 정규식
     let pattern_num = /[0-9]/;	// 숫자 
@@ -127,6 +132,10 @@ export default function Join() {
             setValidation((validation) => ({ ...validation, terms2: '필수 입력 사항입니다.' }))
             teRef2.current.focus();
             return false
+        }
+
+        if (!captcha) {
+            return
         }
 
         const formData = new FormData(e.target);
@@ -617,6 +626,12 @@ export default function Join() {
                                     {validation.terms2 !== "필수 입력 사항입니다." ? null : <span className={styles.check}>{validation.terms2}</span>}
                                     <p><input type="checkbox" name="terms3" checked={checked.terms3} onChange={handleCheck} onFocus={handleFocus} /><span>마케팅 정보 메일, SMS 수신동의 (선택)</span></p>
                                 </div>
+                            </li>
+                            <li className={styles.joinLi}>
+                                <Recaptcha
+                                    sitekey="6Le3b04pAAAAAGD2R6tStUEK4LbSNvurS-8-NmDj"
+                                    onChange={value => setCaptcha(value)}
+                                />
                             </li>
                         </ul>
                         <button type='submit' className={styles.joinBtn}>회원가입</button>
