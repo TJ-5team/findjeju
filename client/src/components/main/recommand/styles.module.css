@@ -39,7 +39,7 @@ div.titleWrap div.rightWrap fieldset.iconWrap > div {
   margin-bottom: 10px;
 }
 div.titleWrap div.rightWrap fieldset.iconWrap:nth-child(1) div.icon {
-  background-position: 0 0;
+  background-position: 0 -225px;
 }
 div.titleWrap div.rightWrap fieldset.iconWrap:nth-child(2) div.icon {
   background-position: 0 -75px;
