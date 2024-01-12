@@ -109,9 +109,7 @@ export default function TripCourse(){
                           getNumber={getNumber}
                           number={number}
                         />
-                })}
-
-
+                  })}
                 {/* <SwiperSlide className={`${styles.trip} trip ${styles.on} on`}>
                   <em>1</em>
                   <div className={`${styles.courseLink} courseLink`}>

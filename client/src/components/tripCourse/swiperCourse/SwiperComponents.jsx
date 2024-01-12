@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './styles.module.css';
 import { SwiperSlide } from 'swiper/react';
 import { Link } from 'react-router-dom';
-import { WiCloudyGusts } from 'react-icons/wi';
 
 export default function SwiperComponents({list,getNumber,number}) {
 
@@ -20,9 +19,7 @@ export default function SwiperComponents({list,getNumber,number}) {
       <SwiperSlide className={`${styles.trip}`}>
         <em>{list}</em>
         <div className={`${styles.courseLink} courseLink`} onClick={()=>{swiperNumber(list)}}>
-          <Link to="#">
-            <span>제목</span>
-          </Link>
+          <span>제목</span>
         </div>
       </SwiperSlide>
     </>
