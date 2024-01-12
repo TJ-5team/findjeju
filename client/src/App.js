@@ -14,6 +14,9 @@ import SubPage from './pages/SubPage';
 import Login from "./pages/LoginPage";
 import Mypage from "./pages/Mypage";
 import DetailPage from "./pages/DetailPage";
+import Weather from "./components/main/weather/Weather";
+import TripCourse from "./components/tripCourse/TripCourse";
+import CommonDetail from "./pages/CommonDetail";
 
 const router = createBrowserRouter([
 
@@ -29,6 +32,7 @@ const router = createBrowserRouter([
             <Recommand />
             <Rest />
             <Fiesta/>
+            <Weather />
           </MainContents>
       },
       {
@@ -118,7 +122,7 @@ const router = createBrowserRouter([
         path:"/detail/:contentid/:contenttypeid",
         element:
         <MainContents>
-          <DetailPage/>
+          <CommonDetail/>
         </MainContents>
       },
     ]

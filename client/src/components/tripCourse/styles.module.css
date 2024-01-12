@@ -1,0 +1,240 @@
+.tripCourseContent .tripCourseTitle {
+  text-align: center;
+  margin-bottom: 35px;
+}
+.tripCourseContent .tripCourseTitle .courseTitle {
+  text-align: center;
+  padding: 19px 0 10px;
+}
+.tripCourseContent .tripCourseTitle .courseTitle em {
+  width: 65px;
+  height: 32px;
+  border-radius: 16px;
+  font-size: 18px;
+  line-height: 32px;
+  margin-right: 10px;
+}
+.tripCourseContent .tripCourseTitle .courseTitle h2 {
+  font-size: 36px;
+  font-weight: 800;
+}
+.tripCourseContent .courseTitle strong, .tripCourseContent .courseTitle h2, .tripCourseContent .courseTitle em,
+.tripCourseContent .courseTapTitleWrap strong,
+.tripCourseContent .courseTapTitleWrap h2,
+.tripCourseContent .courseTapTitleWrap em {
+  display: inline-block;
+  vertical-align: middle;
+}
+.tripCourseContent .courseTitle em,
+.tripCourseContent .courseTapTitleWrap em {
+  background: #ed4956;
+  color: #FFF;
+  font-weight: 700;
+}
+.tripCourseContent .courseSubAddr {
+  color: #666;
+  font-size: 16px;
+}
+.tripCourseContent .courseSubAddr span:first-child:after {
+  content: "";
+  width: 1px;
+  height: 14px;
+  background: #CCC;
+  display: inline-block;
+  margin: 0 10px;
+  vertical-align: middle;
+}
+.tripCourseContent .tripCourseInfo {
+  margin-bottom: 44px;
+}
+.tripCourseContent .tripCourseInfo ul {
+  border-top: 1px solid #e6e6e6;
+  border-bottom: 1px solid #e6e6e6;
+  padding: 40px 150px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.tripCourseContent .tripCourseInfo ul li {
+  width: 50%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+.tripCourseContent .tripCourseInfo ul li:last-child {
+  width: 100%;
+}
+.tripCourseContent .tripCourseInfo ul li figure {
+  width: 80px;
+  height: 80px;
+}
+.tripCourseContent .tripCourseInfo ul li > div {
+  margin-left: 18px;
+}
+.tripCourseContent .tripCourseInfo ul li > div p {
+  color: #777;
+  font-size: 14px;
+  margin-bottom: 3px;
+}
+.tripCourseContent .tripCourseInfo ul li > div strong {
+  font-size: 18px;
+  font-weight: 700;
+}
+.tripCourseContent .tripCourseInfo ul li > div .tripInfoHash a {
+  font-size: 16px;
+  font-weight: 700;
+  margin-right: 16px;
+}
+.tripCourseContent .tripCourseInfo .tripCourseText {
+  padding-top: 24px;
+}
+.tripCourseContent .tripCourseSlide {
+  width: 100%;
+  height: auto;
+}
+.tripCourseContent .tripCourseSlide .courseSwiper {
+  width: 100%;
+  margin-top: 40px;
+  padding: 0 20px;
+  background: #EEE;
+  box-sizing: border-box;
+  position: relative;
+}
+.tripCourseContent .tripCourseSlide .courseSwiper .courseImg {
+  display: flex;
+  text-align: center;
+}
+.tripCourseContent .tripCourseSlide .courseSwiper .courseImg .trip {
+  width: 200px;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 85px 0 39px;
+  position: relative;
+}
+.tripCourseContent .tripCourseSlide .courseSwiper .courseImg .trip.on::after, .tripCourseContent .tripCourseSlide .courseSwiper .courseImg .trip.on100::after {
+  content: "";
+  width: 50%;
+  height: 4px;
+  background: #ed4956;
+  display: block;
+  position: absolute;
+  top: 49px;
+  left: 0px;
+}
+.tripCourseContent .tripCourseSlide .courseSwiper .courseImg .trip.on100::after {
+  width: 100%;
+}
+.tripCourseContent .tripCourseSlide .courseSwiper .courseImg .trip::before {
+  content: "";
+  width: 100%;
+  height: 4px;
+  background: radial-gradient(circle closest-side, #bfbfbf 90%, rgba(0, 0, 0, 0)) 0/8px 100%;
+  position: absolute;
+  top: 49px;
+  left: 0px;
+}
+.tripCourseContent .tripCourseSlide .courseSwiper .courseImg .trip.on em, .tripCourseContent .tripCourseSlide .courseSwiper .courseImg .trip.on100 em {
+  color: #ed4956;
+  border-color: #ed4956;
+}
+.tripCourseContent .tripCourseSlide .courseSwiper .courseImg .trip em {
+  width: 30px;
+  height: 30px;
+  font-size: 16px;
+  font-weight: 700;
+  background: #FFF;
+  border: 2px solid #bfbfbf;
+  border-radius: 50%;
+  color: #767676;
+  line-height: 29px;
+  position: absolute;
+  left: 50%;
+  top: 34px;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+.tripCourseContent .tripCourseSlide .courseSwiper .courseImg .trip .courseLink {
+  width: 100%;
+  height: 180px;
+  background: #FFF;
+  border-radius: 10px;
+  margin: 0px 10px;
+  box-shadow: 2px 2px 10px 0px rgb(150, 150, 150);
+  overflow: hidden;
+}
+.tripCourseContent .tripCourseSlide .courseSwiper .courseImg .trip .courseLink a {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  color: #FFF;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+}
+.tripCourseContent .tripCourseSlide .courseSwiper .courseImg .trip .courseLink a span {
+  z-index: 1;
+}
+.tripCourseContent .tripCourseSlide .courseSwiper .courseImg .trip .courseLink a::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.tripCourseContent .tripCourseSlide .courseSwiper .courseImg .trip .courseLink a:hover::after {
+  background: rgba(237, 73, 86, 0.8);
+}
+.tripCourseContent .courseTap {
+  padding: 0 0 30px;
+}
+.tripCourseContent .courseTap .courseTapContent {
+  width: 100%;
+  background: #FFF;
+  border: 1px solid #ed4956;
+  border-radius: 10px;
+  box-sizing: border-box;
+  box-shadow: 2px 2px 10px 0px rgb(150, 150, 150);
+  padding: 49px 29px 30px;
+  text-align: center;
+}
+.tripCourseContent .courseTap .courseTapContent .courseTapTitleWrap {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+.tripCourseContent .courseTap .courseTapContent .courseTapTitleWrap em {
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+  font-size: 16px;
+  line-height: 30px;
+  margin-right: 5px;
+}
+.tripCourseContent .courseTap .courseTapContent .courseTapImgWrap {
+  display: flex;
+  justify-content: space-between;
+  margin: 24px 0 32px;
+}
+.tripCourseContent .courseTap .courseTapContent .courseTapImgWrap .courseTapImg {
+  width: 260px;
+  height: 260px;
+  background: cadetblue;
+  border-radius: 10px;
+}
+.tripCourseContent .courseTap .courseTapContent .courseTapImgWrap .courseTapImg a {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.tripCourseContent .courseTap .courseTapContent ul {
+  text-align: left;
+  line-height: 24px;
+}
+.tripCourseContent .courseTap .courseTapContent ul li {
+  display: inline-block;
+  margin-right: 15px;
+}/*# sourceMappingURL=styles.module.css.map */

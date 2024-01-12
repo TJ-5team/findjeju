@@ -1,0 +1,95 @@
+.wrap {
+  background: #f4f6f8;
+}
+.wrap .weather {
+  height: 200px;
+  display: flex;
+  font-size: 14px;
+  line-height: 22px;
+  text-align: center;
+  justify-content: space-between;
+  padding: 80px 0;
+}
+.wrap .weather .weatherDaily,
+.wrap .weather li {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.wrap .weather .sunny {
+  background-image: url("../../../../public/images/weatherBg.jpg");
+}
+.wrap .weather .rain {
+  background-image: url("../../../../public/images/weatherBg.jpg");
+}
+.wrap .weather .rainSnow {
+  background-image: url("../../../../public/images/weatherBg.jpg");
+}
+.wrap .weather .snow {
+  background-image: url("../../../../public/images/weatherBg.jpg");
+}
+.wrap .weather .shower {
+  background-image: url("../../../../public/images/weatherBg.jpg");
+}
+.wrap .weather .weatherDaily {
+  width: 29%;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 5px;
+  color: #FFF;
+  font-size: 16px;
+}
+.wrap .weather .weatherDaily p, .wrap .weather .weatherDaily b, .wrap .weather .weatherDaily span {
+  text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
+}
+.wrap .weather .weatherDaily p:nth-child(2) {
+  font-size: 30px;
+  font-weight: 900;
+}
+.wrap .weather .weatherDaily p:nth-child(2) span {
+  font-size: 20px;
+}
+.wrap .weather .weatherDaily div {
+  font-size: 18px;
+  font-weight: 700;
+}
+.wrap .weather .weatherDaily div b:first-child::after {
+  content: "";
+  width: 1px;
+  height: 12px;
+  background: #FFF;
+  display: inline-block;
+  margin: 0 10px;
+}
+.wrap .weather .weatherDaily div b span {
+  font-size: 16px;
+}
+.wrap .weather ul {
+  width: 70%;
+  background: #FFF;
+  border-radius: 5px;
+  box-shadow: 0px 2px 6px 1px rgba(0, 0, 0, 0.05);
+  -webkit-box-shadow: 0px 2px 6px 1px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: 0px 2px 6px 1px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+  display: flex;
+  overflow: hidden;
+  padding: 10px;
+}
+.wrap .weather ul li {
+  width: 25%;
+  height: 100%;
+}
+.wrap .weather ul li:not(:last-child) {
+  border-right: 1px solid #EEE;
+}
+.wrap .weather ul li .weatherIconBox {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto;
+}
+.wrap .weather ul li .weatherIconBox svg {
+  width: 100%;
+  height: 100%;
+}/*# sourceMappingURL=styles.module.css.map */
