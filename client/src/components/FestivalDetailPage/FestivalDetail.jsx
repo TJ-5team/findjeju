@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import useGetList from "../../hooks/useGetList";
 import styles from './styles.module.css';
@@ -18,6 +18,7 @@ import { BsTelephoneFill } from "react-icons/bs";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import Mapimage from "../Map/Mapimage";
 import TripInfo from "../tripInfo/TripInfo";
+import axios from "axios";
 
 export default function FestivalDetail(){
   const {contentid} = useParams();
@@ -25,7 +26,7 @@ export default function FestivalDetail(){
   const [info] = useGetList(`http://apis.data.go.kr/B551011/KorService1/detailIntro1?serviceKey=CJ%2FlY8Dc3dAVFPdMOF6t%2FHXVFUUjp5iNiBLNNPkrq7ROViBwSkb6oMVC4s5NZjEztVJWKm0beaKYDWMn7suxaQ%3D%3D&numOfRows=50&pageNo=1&MobileApp=APPTest&MobileOS=ETC&contentId=${contentid}&contentTypeId=15&_type=json`);
   const [overview] = useGetList(`http://apis.data.go.kr/B551011/KorService1/detailInfo1?serviceKey=CJ%2FlY8Dc3dAVFPdMOF6t%2FHXVFUUjp5iNiBLNNPkrq7ROViBwSkb6oMVC4s5NZjEztVJWKm0beaKYDWMn7suxaQ%3D%3D&numOfRows=50&pageNo=1&MobileOS=ETC&MobileApp=AppTest&contentId=${contentid}&contentTypeId=15&_type=json`);
   const [imgs] = useGetList(`http://apis.data.go.kr/B551011/KorService1/detailImage1?serviceKey=CJ%2FlY8Dc3dAVFPdMOF6t%2FHXVFUUjp5iNiBLNNPkrq7ROViBwSkb6oMVC4s5NZjEztVJWKm0beaKYDWMn7suxaQ%3D%3D&numOfRows=50&pageNo=1&MobileOS=ETC&MobileApp=AppTest&contentId=${contentid}&imageYN=Y&subImageYN=Y&_type=json`);
-  console.log(lists, info, overview, imgs);
+
   const changeText = (e) => {
     return e.split('<br>').map(line => <>{line}<br/></>);
   }
