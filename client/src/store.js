@@ -4,6 +4,7 @@ import  { handleSearch, inputControll, searchListSlice}  from './reducer/searchR
 import { tripInfoSlice } from './reducer/tripInfoReducer.js';
 import { subSlice } from './reducer/subReducer';
 import { login } from './reducer/loginReducer.js';
+import { userData } from "./reducer/userReducer.js";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { combineReducers } from "redux";
@@ -17,7 +18,8 @@ const rootReducer = combineReducers({
   searchListSlice : searchListSlice.reducer,
   tripInfoSlice : tripInfoSlice.reducer,
   subSlice : subSlice.reducer,
-  login: login.reducer
+  login: login.reducer,
+  userData: userData.reducer
 });
 
 const persistConfig = {

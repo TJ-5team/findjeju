@@ -1,30 +1,26 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import styles from './styles.module.css';
-import { Link, useParams } from 'react-router-dom';
-import axios from 'axios';
+import { useParams } from 'react-router-dom';
 import UserBox from './userBox/UserBox';
 import { getUser } from '../../utils/localStorage';
 import ContentBox from './contentBox/ContentBox';
+import { useDispatch, useSelector } from 'react-redux';
+import { UserData } from '../../api/userApi';
+import { userData } from '../../reselector/userReselector';
 
 export default function MyPage() {
 
-  const [member, setMember] = useState([]);
+  const dispatch = useDispatch();
   const params = useParams();
   const wrapRef = useRef(null);
   const userInfo = getUser();
+  const { user } = useSelector(userData);
 
   useEffect(() => {
 
     if (userInfo.id !== '') {
 
-      axios({
-
-        method: "get",
-        url: `http://127.0.0.1:8000/member/${userInfo.id}`,
-
-      }).then((result) => {
-        setMember(result.data);
-      });
+      dispatch(UserData(userInfo));
 
     }
 
@@ -41,7 +37,7 @@ export default function MyPage() {
           </div>
           <div className={styles.contentWrap}>
             <div className={`${styles.contentInner} inner`}>
-              <UserBox member={member} />
+              <UserBox member={user} />
               <ContentBox />
             </div>
           </div>

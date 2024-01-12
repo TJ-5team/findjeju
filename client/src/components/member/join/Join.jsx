@@ -4,13 +4,14 @@ import ImageUpload from '../../imageUpload/ImageUpload';
 import axios from 'axios';
 import DaumPostcode from 'react-daum-postcode';
 import { useNavigate } from 'react-router-dom';
+import { useGetMember } from '../../../hooks/useGetMember';
 
 export default function Join() {
 
     const navigate = useNavigate();
 
     // 회원데이터
-    const [userData, setUserData] = useState([]);
+    // const [userData, setUserData] = useState([]);
     // input 각폼요소
     const [form, setForm] = useState({ name: '', id: '', pass: '', passcheck: '', nickname: '', email: '', echeck: '', eSelf: '', confirm: '', phone1: '', phone2: '', phone3: '', address: '' });
     // 이메일 토글
@@ -75,20 +76,7 @@ export default function Join() {
     const teRef2 = useRef(null);
 
     /*데이터 가져와서 회원비교*/
-    useEffect(() => {
-
-        axios({
-
-            method: 'get',
-            url: 'http://127.0.0.1:8000/member/'
-
-        }).then((result) => {
-
-            setUserData(result.data);
-
-        })
-
-    }, []);
+    const [userData] = useGetMember();
 
     /*서브밋함수 */
     const fnSubmit = (e) => {
@@ -351,9 +339,15 @@ export default function Join() {
 
     /*이메일 유효성검사 */
     useEffect(() => {
+
+        if (!userData) {
+            return
+        }
+
         setEmailToggle(false);
         const emailCheck = form.email + '@' + form.echeck
         const emailSelfCheck = form.email + '@' + form.eSelf
+
         const search = userData.some((val) => val.email === emailCheck);
         const selfSearch = userData.some((val) => val.email === emailSelfCheck);
         if (search || selfSearch) {
@@ -364,7 +358,8 @@ export default function Join() {
             setValidation((validation) => ({ ...validation, email: '이메일 형식에 맞지 않습니다.' }));
         }
 
-    }, [form.echeck, form.email, form.eSelf])
+
+    }, [form.echeck, form.email, form.eSelf]);
 
     /*이메일 3분 setInterval */
     useEffect(() => {
@@ -385,9 +380,11 @@ export default function Join() {
 
     /*이메일 카운트다운 */
     const resetCountdown = () => {
+
         setTime(180);
         setIsActive(false);
-    }
+
+    };
 
     /*이메일전송 */
     const handleMail = () => {
@@ -446,7 +443,9 @@ export default function Join() {
 
     /*휴대폰 유효성검사 */
     useEffect(() => {
-
+        if (!userData) {
+            return
+        }
         const phoneTotal = `${form.phone1}-${form.phone2}-${form.phone3}`;
         const phoneTot = `${form.phone1}${form.phone2}${form.phone3}`;
         const search = userData.some((val) => val.phone === phoneTot);
@@ -459,14 +458,13 @@ export default function Join() {
             setValidation((validation) => ({ ...validation, phone: '사용 가능한 휴대폰번호입니다.' }));
         }
 
+
     }, [form.phone1, form.phone2, form.phone3])
 
     /*파일업로드 */
     const getImage = (e, d) => {
         setImage(e);
     }
-
-
 
     return (
         <>

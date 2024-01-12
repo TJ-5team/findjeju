@@ -50,6 +50,7 @@ export default function UserBox({ member }) {
     });
 
   };
+
   return (
     <>
       <div className={styles.userBox} ref={userRef}>
@@ -76,10 +77,10 @@ export default function UserBox({ member }) {
             }
           </div>
           <div className={styles.profileImg}>
-            {member[0] && <img src={"http://127.0.0.1:8000/" + member[0].image} alt="유저이미지" />}
+            {member && <img src={"http://127.0.0.1:8000/" + member.image} alt="유저이미지" />}
           </div>
           <p>반가워요!</p>
-          {member[0] && <strong>{`${member[0].id.substring(0, 1)}*${member[0].id.substring(3, 2)}님`}</strong>}
+          {member && <strong>{`${member.id.substring(0, 1)}*${member.id.substring(3, 2)}님`}</strong>}
         </div>
       </div>
     </>
