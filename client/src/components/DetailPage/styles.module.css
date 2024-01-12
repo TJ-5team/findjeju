@@ -1,0 +1,268 @@
+.wrap {
+  margin-top: 130px;
+  padding: 20px 0;
+}
+.wrap div.inner {
+  height: auto;
+  text-align: center;
+}
+.wrap div.inner h2.title {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--fontLightColor);
+}
+.wrap div.inner p.description {
+  margin: 20px 0 30px;
+  color: var(--fontGray);
+}
+.wrap div.inner em.strongText {
+  padding: 0 10px;
+  font-size: 28px;
+  font-weight: 500;
+  color: var(--fontLightColor);
+  box-shadow: inset 0 -12px var(--pinkline);
+}
+.wrap div.inner div.iconMenuWrap {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 40px 0 15px;
+}
+.wrap div.inner div.iconMenuWrap div.iconMenuLeft {
+  display: flex;
+  align-items: center;
+}
+.wrap div.inner div.iconMenuWrap div.iconMenuLeft svg:first-of-type {
+  font-size: 25px;
+}
+.wrap div.inner div.iconMenuWrap div.iconMenuLeft > span {
+  margin: 0 15px 0 5px;
+  vertical-align: middle;
+  font-size: 15px;
+  color: var(--fontGray);
+}
+.wrap div.inner div.iconMenuWrap div.iconMenuRight svg {
+  cursor: pointer;
+  margin-right: 15px;
+}
+.wrap div.inner div.iconMenuWrap div.iconMenuRight svg.iconScrapOn {
+  color: var(--navColor);
+}
+.wrap div.inner div.iconMenuWrap div.iconMenuRight svg.iconShare:hover {
+  color: var(--blue);
+}
+.wrap div.inner ul.tabMenuWrap {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  width: 940px;
+  border-top: 1px solid var(--borderline);
+  border-bottom: 1px solid var(--borderline);
+}
+.wrap div.inner ul.tabMenuWrap.active {
+  position: fixed;
+  top: 0;
+  background: var(--white);
+  z-index: 100;
+}
+.wrap div.inner ul.tabMenuWrap li.tabMenu {
+  position: relative;
+  padding: 20px;
+  width: 200px;
+  font-size: 18px;
+  color: var(--fontGray);
+  cursor: pointer;
+}
+.wrap div.inner ul.tabMenuWrap li.tabMenu.active {
+  font-weight: 600;
+  color: var(--fontLightColor);
+}
+.wrap div.inner ul.tabMenuWrap li.tabMenu.active::after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  bottom: 0;
+  left: 40px;
+  width: 150px;
+  height: 3px;
+  background-color: var(--fontLightColor);
+}
+.wrap div.inner ul.tabMenuWrap li.tabMenu:not(:first-child)::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 20px;
+  left: 0;
+  width: 1.5px;
+  height: 16px;
+  background-color: var(--borderline);
+}
+.wrap div.inner .titleSub {
+  padding-bottom: 15px;
+  text-align: start;
+  font-size: 25px;
+  font-weight: 800;
+  color: var(--fontLightColor);
+  border-bottom: 2px solid var(--fontLightColor);
+}
+.wrap div.inner div.descriptionWrap {
+  margin: 30px 0;
+}
+.wrap div.inner div.descriptionWrap p.descriptionDetail {
+  text-align: start;
+  font-size: 18px;
+  line-height: 1.7;
+  letter-spacing: -1;
+}
+.wrap div.inner ul.detailInfo {
+  display: inline-block;
+  margin: 40px 0;
+  height: auto;
+}
+.wrap div.inner ul.detailInfo li {
+  display: table;
+  padding: 7px 0;
+  float: left;
+  width: 50%;
+  height: auto;
+  font-size: 15px;
+  text-align: start;
+}
+.wrap div.inner ul.detailInfo li strong {
+  position: relative;
+  display: table-cell;
+  padding-left: 15px;
+  line-height: 1.3;
+  font-weight: 500;
+  width: 30%;
+  color: var(--fontLightColor);
+}
+.wrap div.inner ul.detailInfo li strong::before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 3px;
+  height: 3px;
+  line-height: 5px;
+  border-radius: 50%;
+  background: var(--fontDarkColor);
+}
+.wrap div.inner ul.detailInfo li span {
+  display: table-cell;
+  line-height: 1.3;
+  color: var(--fontGray);
+}
+.wrap div.inner h4.titleInfo {
+  padding: 10px;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 25px;
+  background: var(--borderline);
+  border-radius: 10px;
+}
+.wrap div.inner h4.titleInfo img {
+  margin-right: 10px;
+  height: 24px;
+  vertical-align: text-bottom;
+}
+.wrap div.inner div.comfortableImgWrap {
+  margin: 20px 0 100px;
+  padding: 0 10px;
+  display: flex;
+  justify-content: space-evenly;
+}
+.wrap div.inner h3.reply span {
+  margin-left: 10px;
+  color: var(--blue);
+}
+.wrap div.inner div.replyWrap {
+  margin: 14px 0;
+  padding: 14px;
+  background: var(--lightGray);
+}
+.wrap div.inner div.replyWrap textarea.replyText {
+  padding: 10px;
+  width: 100%;
+  height: 80px;
+  font-size: 16px;
+  text-align: start;
+  word-break: keep-all;
+  resize: none;
+  overflow-y: auto;
+  border: 1px solid var(--borderline);
+  background-color: var(--white);
+  box-sizing: border-box;
+}
+.wrap div.inner div.replyWrap textarea.replyText::-moz-placeholder {
+  font-size: 16px;
+}
+.wrap div.inner div.replyWrap textarea.replyText::placeholder {
+  font-size: 16px;
+}
+.wrap div.inner div.replyWrap div.replyBtnWrap {
+  margin-top: 14px;
+  text-align: right;
+}
+.wrap div.inner div.replyWrap div.replyBtnWrap button {
+  height: 40px;
+  vertical-align: middle;
+  cursor: pointer;
+}
+.wrap div.inner div.replyWrap div.replyBtnWrap button:last-of-type {
+  margin-left: 14px;
+  padding: 0 14px;
+  height: 40px;
+  color: var(--white);
+  background-color: var(--blue);
+}
+.wrap div.inner div.replyMore {
+  cursor: pointer;
+  margin-bottom: 40px;
+}
+.wrap div.inner div.reviewList {
+  margin: 10px 0;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--borderline);
+}
+.wrap div.inner div.reviewList div.userImg {
+  width: 10%;
+  height: 60px;
+}
+.wrap div.inner div.reviewList div.userImg img {
+  height: 100%;
+}
+.wrap div.inner div.reviewList div.reviewText {
+  margin: 0 20px;
+  width: 80%;
+  text-align: left;
+}
+.wrap div.inner div.reviewList div.reviewText div {
+  padding: 5px 0;
+  text-wrap: wrap;
+}
+.wrap div.inner div.reviewList div.reviewText span:nth-of-type(2) {
+  margin: 0 10px;
+}
+.wrap div.inner div.reviewList div.reviewText span:last-of-type {
+  color: var(--fontGray);
+}
+.wrap div.inner .scrollTopBtn {
+  position: fixed;
+  padding: 10px;
+  right: 30px;
+  bottom: 30px;
+  border-radius: 50%;
+  box-shadow: 0 0 2px 3px var(--borderline);
+  background-color: var(--blue);
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.5s ease-in;
+}
+.wrap div.inner .scrollTopBtn.active {
+  opacity: 1;
+}/*# sourceMappingURL=styles.module.css.map */

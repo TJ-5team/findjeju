@@ -13,6 +13,7 @@ import FestivalDetailPage from "./pages/FestivalDetailPage";
 import SubPage from './pages/SubPage';
 import Login from "./pages/LoginPage";
 import Mypage from "./pages/Mypage";
+import DetailPage from "./pages/DetailPage";
 
 const router = createBrowserRouter([
 
@@ -111,6 +112,13 @@ const router = createBrowserRouter([
         element:
         <MainContents>
           <SubPage/>
+        </MainContents>
+      },
+      {
+        path:"/detail/:contentid/:contenttypeid",
+        element:
+        <MainContents>
+          <DetailPage/>
         </MainContents>
       },
     ]

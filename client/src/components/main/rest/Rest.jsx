@@ -2,13 +2,12 @@ import React, { useEffect, useState } from "react";
 import useGetList from "../../../hooks/useGetList";
 import styles from "./styles.module.css";
 import { PiAirplaneTiltLight, PiCarLight } from "react-icons/pi";
-import { PiHeartLight } from "react-icons/pi";
-import { PiHeartFill } from "react-icons/pi";
 import { Link } from "react-router-dom";
 import Title from './../title/Title';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAreaData, getListData } from './../../../reselector/areaReselector';
 import { changeList } from "../../../reducer/areaReducer";
+import LikeButton from "./likebutton/LikeButton";
 
 export default function Rest() {
   const dispatch = useDispatch();
@@ -69,10 +68,11 @@ export default function Rest() {
 
   //console.log(url);
 
+  /* LikeButton 으로 만듦
   const [like, setLike] = useState(undefined);
 
   const handleLike = (e, idx) => {
-    //console.log(e.target);
+    console.log(e.target);
     if (like != idx) {
       setLike(idx)
       alert('좋아요를 누르셨습니다!')
@@ -80,7 +80,7 @@ export default function Rest() {
       setLike(!idx)
       alert('좋아요를 취소하였습니다.')
     }
-  }
+  } */
 
   const handleMouseEnter = (e, idx) => {
     //console.log(e.currentTarget.parentNode.childNodes);
@@ -90,7 +90,7 @@ export default function Rest() {
   return (
     <>
       <div className={styles.wrap}>
-        <div className="inner">
+        <div className={`inner`}>
           <div className={styles.restTitle}>
             <PiAirplaneTiltLight style={{ verticalAlign: "top" }} />
             <Title info={'여행콕콕'} newStyle={true} />
@@ -119,19 +119,20 @@ export default function Rest() {
             )} */}
             {list.map((item, idx) =>
               <div className={width === idx ? `${styles.recommandItem} ${styles.active}` : styles.recommandItem} key={item.contentid} onMouseEnter={(e) => handleMouseEnter(e, idx)}>
-                <Link to="/" className={styles.imageWrap}>
-                  <span onClick={(e) => handleLike(e, idx)}>
-                    {like === idx
-                      ? <PiHeartFill className={styles.active} />
-                      : <PiHeartLight className={styles.likebtn} />
-                    }
-                  </span>
+                {/* <span onClick={(e) => handleLike(e, idx)} className={styles.scrapBtn}>
+                  {like === idx
+                    ? <PiHeartFill className={styles.active} />
+                    : <PiHeartLight className={styles.likebtn} />
+                  }
+                </span> */}
+                <Link to={`/detail/${item.contentid}/${item.contenttypeid}`} className={styles.imageWrap}>
                   <img src={item.firstimage} alt="장소추천" className={styles.placeimage} />
                   <span className={styles.decriptionWrap}>
                     <p className={styles.description}>{item.title}</p>
                     <p className={styles.description}>{item.addr1}</p>
                   </span>
                 </Link>
+                <LikeButton idx={idx}/>
               </div>
             )}
 

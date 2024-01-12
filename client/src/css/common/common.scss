@@ -7,8 +7,8 @@ body {
   --bgColor: #424242;
   --iconColor: #bb2121;
   --navColor: #eeb934;
-  --fontDarkColor: #000000;
-  --fontLightColor: #333333;
+  --fontDarkColor: #000;
+  --fontLightColor: #333;
   --pointColor: rgb(106, 149, 40);
   --activeColor: #5de750;
   --orange: orange;
@@ -17,7 +17,10 @@ body {
   --white: #FFF;
   --likeColor: #fe5d63; 
   --darknite: #1A1A24;
-  --gray : #666670;
+  --lightGray : #f4f5f7;
+  --fontGray: #666;
+  --pinkline: #ffdfdf; 
+  --borderline: #e6e6e6;
 }
 
 a {
