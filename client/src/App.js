@@ -4,6 +4,7 @@ import Main from "./Main";
 import MainContents from "./pages/MainContents";
 import Recommand from "./components/main/recommand/Recommand";
 import Weather from "./components/main/weather/Weather";
+import TripCourse from "./components/tripCourse/TripCourse";
 
 const router = createBrowserRouter([
   
@@ -17,7 +18,12 @@ const router = createBrowserRouter([
         <MainContents>
           <Recommand/>
           <Weather/>
+          <TripCourse/>
         </MainContents>
+      },
+      {
+        path:"/coures",
+        element: <TripCourse />
       }
     ]
   }

@@ -8080,7 +8080,7 @@ react-is@^18.0.0, react-is@^18.2.0:
 
 react-kakao-maps-sdk@^1.1.24:
   version "1.1.24"
-  resolved "https://registry.npmjs.org/react-kakao-maps-sdk/-/react-kakao-maps-sdk-1.1.24.tgz"
+  resolved "https://registry.yarnpkg.com/react-kakao-maps-sdk/-/react-kakao-maps-sdk-1.1.24.tgz#a5dd065a808cdcdaaec1cd3081b2fda2f7c57e7c"
   integrity sha512-leLbFwBj6zbTdDg6A9U7EwYT2oq0+2F+NHZSVTyCmmvyc4yt2zpRvUmcAt8I6h2SDUdgHbpvKAV1sZoRIxD4JQ==
   dependencies:
     "@babel/runtime" "^7.22.15"
@@ -9091,6 +9091,11 @@ svgo@^2.7.0:
     csso "^4.2.0"
     picocolors "^1.0.0"
     stable "^0.1.8"
+
+swiper@^11.0.5:
+  version "11.0.5"
+  resolved "https://registry.yarnpkg.com/swiper/-/swiper-11.0.5.tgz#6ed1ad06e6906ba42fd4b93d4988f0626a49046e"
+  integrity sha512-rhCwupqSyRnWrtNzWzemnBLMoyYuoDgGgspAm/8iBD3jCvAWycPLH4Z3TB0O5520DHLzMx94yUMH/B9Efpa48w==
 
 symbol-tree@^3.2.4:
   version "3.2.4"

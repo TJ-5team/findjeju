@@ -1,60 +1,85 @@
 .wrap {
   background: #f4f6f8;
   .weather {
-    height: 260px;
+    height: 200px;
     display: flex;
     font-size: 14px;
     line-height: 22px;
     text-align: center;
     justify-content: space-between;
     padding: 80px 0;
-
     //layout
     .weatherDaily,
     li {
       display: flex;
-      border-radius: 5px;
-      box-shadow: 0px 2px 6px 1px rgba(0,0,0,0.05);
-      -webkit-box-shadow: 0px 2px 6px 1px rgba(0,0,0,0.05);
-      -moz-box-shadow: 0px 2px 6px 1px rgba(0,0,0,0.05);
       align-items: center;
       flex-direction: column;
       justify-content: center;
     }//weatherDaily, li
 
+    .sunny {background-image: url('../../../../public/images/weatherBg.jpg');}
+    .rain {background-image: url('../../../../public/images/weatherBg.jpg');}
+    .rainSnow {background-image: url('../../../../public/images/weatherBg.jpg');}
+    .snow {background-image: url('../../../../public/images/weatherBg.jpg');}
+    .shower {background-image: url('../../../../public/images/weatherBg.jpg');}
+
     .weatherDaily {
-      width: 26%;
-      background-image: url('../../../../public/images/weatherBg.jpg');
+      width: 29%;
       background-repeat: no-repeat;
       background-position: center;
+      border-radius: 5px;
       color: #FFF;
+      font-size: 16px;
       p, b, span {
         text-shadow: 0px 2px 2px rgba(0,0,0,0.5);
       }
-      p {
-        font-size: 20px;
+      p:nth-child(2) {
+        font-size: 30px;
         font-weight: 900;
+        span {font-size: 20px;}
       }
-      b {
+      div {
         font-size: 18px;
-        font-weight: 900;
-      }
-      span {
-        font-size: 14px;
+        font-weight: 700;
+        b {
+          &:first-child{
+            &::after {
+              content: '';
+              width: 1px;
+              height: 12px;
+              background: #FFF;
+              display: inline-block;
+              margin: 0 10px;
+            }
+          }
+          span {
+            font-size: 16px;
+          }
+        }
       }
     }//weatherDaily
     ul {
-      width: 72%;
+      width: 70%;
+      background: #FFF;
+      border-radius: 5px;
+      box-shadow: 0px 2px 6px 1px rgba(0,0,0,0.05);
+      -webkit-box-shadow: 0px 2px 6px 1px rgba(0,0,0,0.05);
+      -moz-box-shadow: 0px 2px 6px 1px rgba(0,0,0,0.05);
+      box-sizing: border-box;
       display: flex;
-      justify-content: space-between;
+      overflow: hidden;
+      padding: 10px;
       li {
-        width: 23%;
+        width: 25%;
         height: 100%;
-        background: #FFF;
-        div{
-          width: 50px;
-          height: 50px;
-          .WeatherIcon {
+        &:not(:last-child) {
+          border-right: 1px solid #EEE;
+        }
+        .weatherIconBox {
+          width: 40px;
+          height: 40px;
+          margin: 0 auto;
+          svg {
             width: 100%;
             height: 100%;
           }//WeatherIcon
