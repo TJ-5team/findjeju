@@ -85,13 +85,14 @@ export default function DetailSwiper() {
       </button>
 
       {/* Pagination */}
+      {imgDetail && 
       <div className={styles.pagination}>
         <div>
           <span>{num + 1}</span>
           <span>/</span>
           <span>{imgDetail.length}</span>
         </div>
-      </div>
+      </div>}
 
     </div>
   );

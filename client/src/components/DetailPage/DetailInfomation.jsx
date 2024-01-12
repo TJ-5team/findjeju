@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import useGetList from "../../hooks/useGetList";
 import styles from "./styles.module.css";
 import LikeButton from "../main/rest/likebutton/LikeButton";
-import { PiEyeThin } from "react-icons/pi";
+import { PiEyeThin, PiTrashThin } from "react-icons/pi";
 import { PiBookmarkSimpleThin } from "react-icons/pi";
 import { PiBookmarkSimpleFill } from "react-icons/pi";
 import { PiShareNetworkThin } from "react-icons/pi";
@@ -20,6 +20,7 @@ import DetailTitle from "./title/DetailTitle";
 export default function DetailInformation() {
 
   const userInfo = getUser();
+  const navigate = useNavigate();
   // console.log(userInfo);
 
   const [reply, setReply] = useState("");
@@ -86,7 +87,7 @@ export default function DetailInformation() {
     } else if (idx === 2) {
       contentRef2.current?.scrollIntoView({ behavior: 'smooth' });
     } else if (idx === 3) {
-      contentRef3.current?.scrollIntoView({ behavior: 'smooth'});
+      contentRef3.current?.scrollIntoView({ behavior: 'smooth' });
     }
 
   }
@@ -189,23 +190,36 @@ export default function DetailInformation() {
         });
     }
   };
-  
+
+  const [replyRemove, setReplyRemove] = useState(false);
+
   useEffect(() => {
     axios.get(`http://localhost:8000/review/${contentid}/${contenttypeid}`)
-    .then(result => setReplyList(result.data));
-  }, [replyReload])
-  
+      .then(result => setReplyList(result.data));
+  }, [replyReload, replyRemove])
+
+
+  const handleDelete = (rid) => {
+    axios.delete(`http://localhost:8000/review/remove/${rid}`)
+    .then(result => {
+      if(result.data === "ok") {
+        alert("삭제되었습니다")
+        setReplyRemove(!replyRemove);
+      }
+    })
+  };
+
   return (
     <div className={styles.wrap}>
       <div className={`${styles.inner} inner`}>
         {commonInfo && commonInfo.map((commonList) =>
           <>
-          <DetailTitle commonList={commonList} infoList={course}/>
+            <DetailTitle commonList={commonList} infoList={course} />
             <ul className={fixed ? `${styles.tabMenuWrap} ${styles.active}` : styles.tabMenuWrap}>
               {tabMenulist && tabMenulist.map((list, idx) =>
                 <li onClick={(e) => handleActive(e, idx)} className={active === idx ? `${styles.tabMenu} ${styles.active}` : styles.tabMenu} key={idx}>{list}</li>
               )}
-            </ul> 
+            </ul>
             <DetailSwiper />
             <h3 ref={contentRef1} className={styles.titleSub}>상세정보</h3>
             <div className={styles.descriptionWrap}>
@@ -345,14 +359,16 @@ export default function DetailInformation() {
           </h3>
           <div className={styles.replyWrap}>
             {/* 로그인 기능 완료되면 삼항식 구현하기 */}
-            <textarea className={styles.replyText} type="text" placeholder={userInfo.id ? "소중한 댓글을 남겨주세요." :"로그인 후 소중한 댓글을 남겨주세요."} 
-            value={reply} onChange={(e) => setReply(e.target.value)} disabled={userInfo.id ? false : true}/>
+            <textarea className={styles.replyText} type="text" placeholder={userInfo.id ? "소중한 댓글을 남겨주세요." : "로그인 후 소중한 댓글을 남겨주세요."}
+              value={reply} onChange={(e) => setReply(e.target.value)} disabled={userInfo.id ? false : true} />
             <div className={styles.replyBtnWrap}>
-                <ImageUpload />
+              {userInfo.id && <ImageUpload />}
               {/* <button>
                 <img src="http://localhost:3000/images\detailPage\btn_reply_file.gif" alt="" />
               </button> */}
-              <button type="button" onClick={handleClick}>{userInfo.id ? "등록" : "로그인"}</button>
+              {userInfo.id
+              ? <button type="button" onClick={handleClick}>등록</button>
+              : <button type="button" onClick={()=>navigate('/login')}>로그인</button>}
             </div>
           </div>
 
@@ -369,6 +385,7 @@ export default function DetailInformation() {
               </div>
               <div className={styles.likebtnWrap}>
                 <LikeButton idx={0} />
+                {userInfo.id && <PiTrashThin size="25" className={styles.replyDelete} onClick={()=>handleDelete(reply.rid)}/*  data-id={reply.rid} *//>}
               </div>
             </div>
           )}

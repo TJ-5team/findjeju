@@ -7,7 +7,16 @@ export async function insertReview({contentid, contenttypeid, reply, id}) {
 }
 
 export async function getReview({contentid, contenttypeid}) {
-  const sql = `select id, contentid, contenttypeid, review_text, review_img, left(rdate,10) rdate from fj_review where contentid=? and contenttypeid=?`;
+  const sql = `select rid, id, contentid, contenttypeid, review_text, review_img, left(rdate,10) rdate from fj_review where contentid=? and contenttypeid=?`;
   return db.execute(sql, [contentid, contenttypeid])
     .then(rows => rows[0]);
 }
+
+export async function removeReview({rid}) {
+  const sql = `delete from fj_review where rid=?`;
+  return db.execute(sql, [rid])
+    .then(result=>("ok"));
+}
+
+
+
