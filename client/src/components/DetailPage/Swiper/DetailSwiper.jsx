@@ -19,7 +19,7 @@ export default function DetailSwiper() {
   //console.log(imgDetail);
 
   const makeImgList = () => {
-    const imgList = [];
+    const result = [];
     for (let index = 0; index < imgDetail.length; index++) {
       if (index < 10) {
         index = '0' + index
