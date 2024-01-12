@@ -409,7 +409,7 @@ export default function DetailInformation() {
         </div>
         <div className={styles.replyMore}>+ 댓글 더보기</div> */}
 
-        <HiArrowSmallUp size="23" className={showTopBtn ? `${styles.scrollTopBtn} ${styles.active}` : styles.scrollTopBtn} onClick={handleScrolltoTop} />
+        <HiArrowSmallUp size="40" className={showTopBtn ? `${styles.scrollTopBtn} ${styles.active}` : styles.scrollTopBtn} onClick={handleScrolltoTop} />
       </div >
     </div >
   )

@@ -51,4 +51,5 @@ export const list = createSlice({
 
 });
 
-export let { changeName, changeArea, changeList } = area.actions
+export let { changeName, changeArea } = area.actions
+export let { changeList } = list.actions

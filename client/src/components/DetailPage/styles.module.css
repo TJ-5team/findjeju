@@ -33,9 +33,6 @@
   display: flex;
   align-items: center;
 }
-.wrap div.inner div.iconMenuWrap div.iconMenuLeft svg:first-of-type {
-  font-size: 25px;
-}
 .wrap div.inner div.iconMenuWrap div.iconMenuLeft > span {
   margin: 0 15px 0 5px;
   vertical-align: middle;

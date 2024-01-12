@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 import Title from './../title/Title';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAreaData, getListData } from './../../../reselector/areaReselector';
-import { changeList } from "../../../reducer/areaReducer";
 import LikeButton from "./likebutton/LikeButton";
+import { changeList } from "../../../reducer/areaReducer";
 
 export default function Rest() {
   const dispatch = useDispatch();
@@ -61,7 +61,8 @@ export default function Rest() {
       } else {
         setActive("stay");
         // setUrl(`http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=4&pageNo=${num}&MobileOS=ETC&MobileApp=AppTest&ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&listYN=Y&arrange=Q&contentTypeId=32&areaCode=39${state.area.code}&cat1=B02&cat2=B0201&cat3=&_type=json`)
-        dispatch(changeList({ num: Math.floor(Math.random() * 3), contentTypeId: 32, category: 'cat1=B02&cat2=B0201' }))
+        dispatch(changeList({ num: Math.floor(Math.random() * 3), contentTypeId: 32, category: 'cat1=B02&cat2=B0201' }));
+        
       }
     }
   };
