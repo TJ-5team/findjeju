@@ -7,7 +7,6 @@ import { subListData } from './../../reselector/subReselector';
 import { SubData } from "../../api/subApi";
 import { useLocation } from "react-router-dom";
 import TripInfoComponents from "../tripInfo/TripInfoComponents";
-import styles from './styles.module.css';
 
 export default function Sub() {
   const path = useLocation().pathname;

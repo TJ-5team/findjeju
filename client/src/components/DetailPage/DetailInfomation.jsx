@@ -50,26 +50,26 @@ export default function DetailInformation() {
   }
   // console.log(window.scrollY)
 
-  
+
   const contentRef1 = useRef(null);
   const contentRef2 = useRef(null);
   const contentRef3 = useRef(null);
 
- /*  const onClickRef1 = () => {
-    contentRef1.current?.scrollIntoView({ behavior: 'smooth' });
-  }
-  const onClickRef2 = () => {
-    contentRef2.current?.scrollIntoView({ behavior: 'smooth' });
-  }
-  const onClickRef3 = () => {
-    contentRef3.current?.scrollIntoView({ behavior: 'smooth' });
-  } */
+  /*  const onClickRef1 = () => {
+     contentRef1.current?.scrollIntoView({ behavior: 'smooth' });
+   }
+   const onClickRef2 = () => {
+     contentRef2.current?.scrollIntoView({ behavior: 'smooth' });
+   }
+   const onClickRef3 = () => {
+     contentRef3.current?.scrollIntoView({ behavior: 'smooth' });
+   } */
 
   const handleActive = (e, idx) => {
     if (active !== idx) {
       setActive(idx)
     }
-    if (idx === 0){
+    if (idx === 0) {
       contentRef1.current?.scrollIntoView({ behavior: 'smooth', block: "end" });
     } else if (idx === 1) {
       contentRef1.current?.scrollIntoView({ behavior: 'smooth' });
@@ -99,9 +99,9 @@ export default function DetailInformation() {
     };
 
     const handleMenuFixed = (e) => {
-      if(window.scrollY > 313){
+      if (window.scrollY > 313) {
         setFixed(true)
-      }else{
+      } else {
         setFixed(false)
       }
     };
@@ -169,17 +169,17 @@ export default function DetailInformation() {
     if (reply !== "") {
       axios.post("http://localhost:8000/review", { contentid: contentid, contenttypeid: contenttypeid, reply: reply, id: "try226" })
         .then(result => {
-          if(result === "ok"){
+          if (result === "ok") {
             window.location.reload();
           }
         });
-      }
-    };
+    }
+  };
 
-  useEffect(()=>{
+  useEffect(() => {
     axios.get(`http://localhost:8000/review/${contentid}/${contenttypeid}`)
-    .then(result => setReplyList(result.data));
-  },[replyList])
+      .then(result => setReplyList(result.data));
+  }, [replyList])
 
   const [scrap, setScrap] = useState(false);
 
@@ -219,13 +219,13 @@ export default function DetailInformation() {
                 <span>1</span>
               </div>
               <div className={styles.iconMenuRight}>
-                { scrap === true
-                ? <PiBookmarkSimpleFill size="28" onClick={handleScrap} className={styles.iconScrapOn} />
-                : <PiBookmarkSimpleThin size="28" onClick={handleScrap}/>}
+                {scrap === true
+                  ? <PiBookmarkSimpleFill size="28" onClick={handleScrap} className={styles.iconScrapOn} />
+                  : <PiBookmarkSimpleThin size="28" onClick={handleScrap} />}
                 <PiShareNetworkThin size="28" onClick={() => handleCopyClipBoard(`http://localhost:3000${location.pathname}`)} className={styles.iconShare} />
               </div>
             </div>
-            <ul className={fixed ? `${styles.tabMenuWrap} ${styles.active}`: styles.tabMenuWrap}>
+            <ul className={fixed ? `${styles.tabMenuWrap} ${styles.active}` : styles.tabMenuWrap}>
               {tabMenulist && tabMenulist.map((list, idx) =>
                 <li onClick={(e) => handleActive(e, idx)} className={active === idx ? `${styles.tabMenu} ${styles.active}` : styles.tabMenu} key={idx}>{list}</li>
               )}
@@ -392,7 +392,7 @@ export default function DetailInformation() {
                 <span>{reply.rdate}</span>
               </div>
               <div className={styles.likebtnWrap}>
-                <LikeButton idx={0}/>
+                <LikeButton idx={0} />
               </div>
             </div>
           )}
