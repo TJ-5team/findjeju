@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import  { area, list } from './reducer/areaReducer.js';
-import  { handleSearch, inputControll, searchListSlice}  from './reducer/searchReducer.js'
+import  { handleSearch, inputControll, searchListSlice, serviceListSlice}  from './reducer/searchReducer.js'
 import { tripInfoSlice } from './reducer/tripInfoReducer.js';
 import { subSlice } from './reducer/subReducer';
 import { login } from './reducer/loginReducer.js';
@@ -19,7 +19,8 @@ const rootReducer = combineReducers({
   tripInfoSlice : tripInfoSlice.reducer,
   subSlice : subSlice.reducer,
   login: login.reducer,
-  userData: userData.reducer
+  userData: userData.reducer,
+  serviceListSlice : serviceListSlice.reducer
 });
 
 const persistConfig = {
