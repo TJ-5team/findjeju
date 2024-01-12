@@ -15,16 +15,10 @@ import ImageUpload from './../imageUpload/ImageUpload';
 import TripInfo from "../tripInfo/TripInfo";
 import { getUser } from "../../utils/localStorage";
 import DetailTitle from "./title/DetailTitle";
+import DetailReply from "./reply/DetailReply";
 
 
 export default function DetailInformation() {
-
-  const userInfo = getUser();
-  const navigate = useNavigate();
-  // console.log(userInfo);
-
-  const [reply, setReply] = useState("");
-  const [replyList, setReplyList] = useState([]);
   const { contentid, contenttypeid } = useParams();
 
   /* 예시로!! 삭제하기 !!!! */
@@ -60,20 +54,9 @@ export default function DetailInformation() {
   }
   // console.log(window.scrollY)
 
-
   const contentRef1 = useRef(null);
   const contentRef2 = useRef(null);
   const contentRef3 = useRef(null);
-
-  /*  const onClickRef1 = () => {
-     contentRef1.current?.scrollIntoView({ behavior: 'smooth' });
-   }
-   const onClickRef2 = () => {
-     contentRef2.current?.scrollIntoView({ behavior: 'smooth' });
-   }
-   const onClickRef3 = () => {
-     contentRef3.current?.scrollIntoView({ behavior: 'smooth' });
-   } */
 
   const handleActive = (e, idx) => {
     if (active !== idx) {
@@ -83,13 +66,12 @@ export default function DetailInformation() {
     if (idx === 0) {
       contentRef1.current?.scrollIntoView({ behavior: 'smooth', block: "end" });
     } else if (idx === 1) {
-      contentRef1.current?.scrollIntoView({ behavior: 'smooth' });
+      contentRef1.current?.scrollIntoView({ behavior: 'smooth', block: "start" });
     } else if (idx === 2) {
-      contentRef2.current?.scrollIntoView({ behavior: 'smooth' });
+      contentRef2.current?.scrollIntoView({ behavior: 'smooth', block: "start" });
     } else if (idx === 3) {
       contentRef3.current?.scrollIntoView({ behavior: 'smooth' });
     }
-
   }
 
   const handleScrolltoTop = () => {
@@ -176,38 +158,6 @@ export default function DetailInformation() {
       })
     }
   },[]) */
-
-  const [replyReload, setReplyReload] = useState(false);
-
-  const handleClick = (e) => {
-    if (reply !== "") {
-      axios.post("http://localhost:8000/review", { contentid: contentid, contenttypeid: contenttypeid, reply: reply, id: "try226" })
-        .then(result => {
-          if (result.data === "ok") {
-            setReplyReload(!replyReload)
-            setReply("")
-          }
-        });
-    }
-  };
-
-  const [replyRemove, setReplyRemove] = useState(false);
-
-  useEffect(() => {
-    axios.get(`http://localhost:8000/review/${contentid}/${contenttypeid}`)
-      .then(result => setReplyList(result.data));
-  }, [replyReload, replyRemove])
-
-
-  const handleDelete = (rid) => {
-    axios.delete(`http://localhost:8000/review/remove/${rid}`)
-    .then(result => {
-      if(result.data === "ok") {
-        alert("삭제되었습니다")
-        setReplyRemove(!replyRemove);
-      }
-    })
-  };
 
   return (
     <div className={styles.wrap}>
@@ -351,57 +301,9 @@ export default function DetailInformation() {
             {imgList()}
           </div>
         </div> */}
-
-        <div>
-          <h3 ref={contentRef2} className={`${styles.titleSub} ${styles.reply}`}>
-            여행톡
-            {replyList && <span>{replyList.length}</span>}
-          </h3>
-          <div className={styles.replyWrap}>
-            {/* 로그인 기능 완료되면 삼항식 구현하기 */}
-            <textarea className={styles.replyText} type="text" placeholder={userInfo.id ? "소중한 댓글을 남겨주세요." : "로그인 후 소중한 댓글을 남겨주세요."}
-              value={reply} onChange={(e) => setReply(e.target.value)} disabled={userInfo.id ? false : true} />
-            <div className={styles.replyBtnWrap}>
-              {userInfo.id && <ImageUpload />}
-              {/* <button>
-                <img src="http://localhost:3000/images\detailPage\btn_reply_file.gif" alt="" />
-              </button> */}
-              {userInfo.id
-              ? <button type="button" onClick={handleClick}>등록</button>
-              : <button type="button" onClick={()=>navigate('/login')}>로그인</button>}
-            </div>
-          </div>
-
-          {replyList && replyList.map(reply =>
-            <div className={styles.reviewList}>
-              <div className={styles.userImg}>
-                <img src="https://item.kakaocdn.net/do/07e48e95accef30a19f445de4a857bce7154249a3890514a43687a85e6b6cc82" alt="프로필이미지" />
-              </div>
-              <div className={styles.reviewText}>
-                <div>{reply.review_text}</div>
-                <span>{reply.id}</span>
-                <span>|</span>
-                <span>{reply.rdate}</span>
-              </div>
-              <div className={styles.likebtnWrap}>
-                <LikeButton idx={0} />
-                {userInfo.id && <PiTrashThin size="25" className={styles.replyDelete} onClick={()=>handleDelete(reply.rid)}/*  data-id={reply.rid} *//>}
-              </div>
-            </div>
-          )}
+        <div ref={contentRef2}>
+          <DetailReply contentid={contentid} contenttypeid={contenttypeid} />
         </div>
-
-        {/* <div className={styles.replyWrap}>
-          <input className={styles.replyText} type="text" placeholder="소중한 댓글을 남겨주세요." />
-          <div className={styles.replyBtnWrap}>
-            <button>
-              <img src="http://localhost:3000/images\detailPage\btn_reply_file.gif" alt="" />
-            </button>
-            <button>로그인</button>
-          </div>
-        </div>
-        <div className={styles.replyMore}>+ 댓글 더보기</div> */}
-
         <div ref={contentRef3}>
           <TripInfo />
         </div>
