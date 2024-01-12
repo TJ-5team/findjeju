@@ -4,11 +4,8 @@ import ImageUpload from '../../imageUpload/ImageUpload';
 import axios from 'axios';
 import DaumPostcode from 'react-daum-postcode';
 import { useNavigate } from 'react-router-dom';
-<<<<<<< Updated upstream
 import { useGetMember } from '../../../hooks/useGetMember';
-=======
 import Recaptcha from "react-google-recaptcha";
->>>>>>> Stashed changes
 
 export default function Join() {
 
@@ -135,6 +132,7 @@ export default function Join() {
         }
 
         if (!captcha) {
+            alert("로봇 체크해주세요.")
             return
         }
 

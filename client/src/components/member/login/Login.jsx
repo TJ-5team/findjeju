@@ -82,8 +82,6 @@ export default function Login() {
     });
   };
 
-
-
   return (
     <>
 
@@ -102,7 +100,8 @@ export default function Login() {
                 <label id="pass">비밀번호</label>
                 <input type="password" name="pass" placeholder='비밀번호를 입력하세요' onChange={fnChange} ref={passRef} />
               </p>
-              <button>로그인</button>
+              <button className={styles.loginBtn}>로그인</button>
+              <button type="button" onClick={() => { navigate("/join") }}>회원가입</button>
             </form>
           </div>
         </div>
