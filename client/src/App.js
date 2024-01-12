@@ -1,5 +1,5 @@
 import React from "react";
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { RouterProvider, ScrollRestoration, createBrowserRouter } from 'react-router-dom';
 import Main from "./Main";
 import MainContents from "./pages/MainContents";
 import Recommand from "./components/main/recommand/Recommand";
@@ -19,7 +19,7 @@ const router = createBrowserRouter([
 
   {
     path: "/",
-    element: <Main />,
+      element: <Main> <ScrollRestoration /> </Main>,
     children: [
       {
         path: "/",

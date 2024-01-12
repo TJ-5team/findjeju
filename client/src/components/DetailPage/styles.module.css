@@ -27,7 +27,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 40px 0 15px;
+  padding: 20px 0 15px;
+  border-bottom: 1px solid var(--borderline);
 }
 .wrap div.inner div.iconMenuWrap div.iconMenuLeft {
   display: flex;
@@ -52,9 +53,7 @@
 .wrap div.inner ul.tabMenuWrap {
   margin-bottom: 20px;
   display: flex;
-  justify-content: space-between;
   width: 940px;
-  border-top: 1px solid var(--borderline);
   border-bottom: 1px solid var(--borderline);
 }
 .wrap div.inner ul.tabMenuWrap.active {
@@ -66,7 +65,8 @@
 .wrap div.inner ul.tabMenuWrap li.tabMenu {
   position: relative;
   padding: 20px;
-  width: 200px;
+  width: 25%;
+  text-align: center;
   font-size: 18px;
   color: var(--fontGray);
   cursor: pointer;
@@ -204,16 +204,25 @@
   text-align: right;
 }
 .wrap div.inner div.replyWrap div.replyBtnWrap button {
-  height: 40px;
-  vertical-align: middle;
-  cursor: pointer;
-}
-.wrap div.inner div.replyWrap div.replyBtnWrap button:last-of-type {
   margin-left: 14px;
   padding: 0 14px;
   height: 40px;
+  vertical-align: middle;
   color: var(--white);
   background-color: var(--blue);
+  cursor: pointer;
+}
+.wrap div.inner div.replyWrap div.replyBtnWrap input {
+  width: 54px;
+  height: 40px;
+  font-size: 0px;
+  vertical-align: middle;
+  background-size: cover;
+  background-image: url("http://localhost:3000/images/detailPage/btn_reply_file.gif");
+  cursor: pointer;
+}
+.wrap div.inner div.replyWrap div.replyBtnWrap input::file-selector-button {
+  display: none;
 }
 .wrap div.inner div.replyMore {
   cursor: pointer;

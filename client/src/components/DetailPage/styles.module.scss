@@ -25,7 +25,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin: 40px 0 15px;
+      padding: 20px 0 15px;
+      border-bottom: 1px solid var(--borderline);
       div.iconMenuLeft {
         display: flex;
         align-items: center;
@@ -36,15 +37,15 @@
           color: var(--fontGray);
         }
       }
-      div.iconMenuRight{
-        svg{
+      div.iconMenuRight {
+        svg {
           cursor: pointer;
           margin-right: 15px;
-          &.iconScrapOn{
+          &.iconScrapOn {
             color: var(--navColor);
           }
-          &.iconShare{
-            &:hover{
+          &.iconShare {
+            &:hover {
               color: var(--blue);
             }
           }
@@ -54,9 +55,7 @@
     ul.tabMenuWrap {
       margin-bottom: 20px;
       display: flex;
-      justify-content: space-between;
       width: 940px;
-      border-top: 1px solid var(--borderline);
       border-bottom: 1px solid var(--borderline);
       &.active {
         position: fixed;
@@ -67,7 +66,8 @@
       li.tabMenu {
         position: relative;
         padding: 20px;
-        width: 200px;
+        width: 25%;
+        text-align: center;
         font-size: 18px;
         color: var(--fontGray);
         cursor: pointer;
@@ -206,15 +206,24 @@
         margin-top: 14px;
         text-align: right;
         button {
+          margin-left: 14px;
+          padding: 0 14px;
           height: 40px;
           vertical-align: middle;
+          color: var(--white);
+          background-color: var(--blue);
           cursor: pointer;
-          &:last-of-type {
-            margin-left: 14px;
-            padding: 0 14px;
-            height: 40px;
-            color: var(--white);
-            background-color: var(--blue);
+        }
+        input {
+          width: 54px;
+          height: 40px;
+          font-size: 0px;
+          vertical-align: middle;
+          background-size: cover;
+          background-image: url("http://localhost:3000/images/detailPage/btn_reply_file.gif");
+          cursor: pointer;
+          &::file-selector-button {
+            display: none;
           }
         }
       }

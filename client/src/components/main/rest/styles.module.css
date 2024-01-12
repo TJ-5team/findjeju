@@ -142,6 +142,16 @@
 .wrap div.recommandSection div.recommandItem .imageWrap span.decriptionWrap > p:last-of-type {
   font-size: 14px;
 }
+.wrap a.recommendMore {
+  display: block;
+  margin-top: 10px;
+  text-align: right;
+  cursor: pointer;
+}
+.wrap a.recommendMore svg {
+  margin-left: 10px;
+  width: 17px;
+}
 
 li.menuList .active {
   color: yellow;
