@@ -1,24 +1,22 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import useGetList from "../../hooks/useGetList";
 import styles from "./styles.module.css";
-import LikeButton from "../main/rest/likebutton/LikeButton";
-import { PiEyeThin, PiTrashThin } from "react-icons/pi";
-import { PiBookmarkSimpleThin } from "react-icons/pi";
-import { PiBookmarkSimpleFill } from "react-icons/pi";
-import { PiShareNetworkThin } from "react-icons/pi";
 import { HiArrowSmallUp } from "react-icons/hi2";
 import DetailSwiper from "./swiper/DetailSwiper";
 import Mapimage from "../Map/Mapimage";
-import axios from "axios";
-import ImageUpload from './../imageUpload/ImageUpload';
 import TripInfo from "../tripInfo/TripInfo";
-import { getUser } from "../../utils/localStorage";
 import DetailTitle from "./title/DetailTitle";
 import DetailReply from "./reply/DetailReply";
+import DetailComfortable from "./categorypage/DetailComfortable";
+import DetailRestaurant from "./categorypage/DetailRestaurant";
+import DetailLodging from "./categorypage/DetailLodging";
+import DetailTourist from './categorypage/DetailTourist';
+import DetailCultural from './categorypage/DetailCultural';
+import DetailSports from './categorypage/DetailSports';
+import DetailShopping from "./categorypage/DetailShopping";
 
-
-export default function DetailInformation() {
+export default function DetailPageCultural() {
   const { contentid, contenttypeid } = useParams();
 
   /* 예시로!! 삭제하기 !!!! */
@@ -26,9 +24,10 @@ export default function DetailInformation() {
   const contentid = 2819964; */
 
   /* api링크 가져오기 */
+  const [comfortable] = useGetList(`http://apis.data.go.kr/B551011/KorWithService1/detailWithTour1?serviceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&contentId=${contentid}&MobileOS=ETC&MobileApp=AppTest&_type=json`);
+
   const [commonInfo] = useGetList(`http://apis.data.go.kr/B551011/KorService1/detailCommon1?ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&contentTypeId=${contenttypeid}&contentId=${contentid}&MobileOS=ETC&MobileApp=AppTest&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y&_type=json`);
   const [detailInfo] = useGetList(`http://apis.data.go.kr/B551011/KorService1/detailIntro1?ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&contentTypeId=${contenttypeid}&contentId=${contentid}&MobileOS=ETC&MobileApp=AppTest&_type=json`);
-  const [comfortable] = useGetList(`http://apis.data.go.kr/B551011/KorWithService1/detailWithTour1?serviceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&contentId=${contentid}&MobileOS=ETC&MobileApp=AppTest&_type=json`);
   const [course] = useGetList(`http://apis.data.go.kr/B551011/KorService1/detailIntro1?ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&contentTypeId=${contenttypeid}&contentId=${contentid}&MobileOS=ETC&MobileApp=AppTest&_type=json`)
 
   /*  
@@ -76,7 +75,10 @@ export default function DetailInformation() {
 
   const handleScrolltoTop = () => {
     if (!window.scrollY) return
-    ScrollMove(0)
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    })
   }
 
   const [showTopBtn, SetShowTopBtn] = useState(false);
@@ -109,13 +111,19 @@ export default function DetailInformation() {
 
   // console.log(window.scrollY);
 
-  const changeText = (e) => {
+  /* const changeText = (e) => {
     const regex = /<a href="(.*?)" target="_blank"/;
     console.log(e);
     return e.match(regex)[1]
   }
+ */
+  {/* {commonList.homepage && 
+  <li>
+    <strong>홈페이지</strong>
+    <span><Link to={changeText(commonList.homepage)}>{changeText(commonList.homepage)}</Link></span>
+  </li>} */}
 
-  const imgUrl = []
+  /* const imgUrl = []
   const imgList = () => {
     const result = [];
     for (let index = 1; index < 12; index++) {
@@ -127,9 +135,9 @@ export default function DetailInformation() {
       }
     }
     return result;
-  }
+  } */
 
-  const check = [
+  /* const check = [
     "contentid",
     "parking",
     "publictransport",
@@ -145,7 +153,7 @@ export default function DetailInformation() {
     "stroller",
     "lactationroom",
     "guidesystem"
-  ]
+  ] */
 
 
   /* useEffect(()=>{
@@ -158,12 +166,31 @@ export default function DetailInformation() {
       })
     }
   },[]) */
+  const changeText = (e) => {
+    return e.split('<br>').map(line => <>{line}<br /></>);
+  }
+
+  const ChangeText = array => {
+    for (let index = 0; index < array.length; index++) {
+      const targetObj = array[index];
+      const values = Object.values(targetObj);
+      values.forEach(val => {
+        if (val.includes("<br>") || val.includes("<br/>") || val.includes("<br />")) {
+          changeText(val)
+        } else {
+          console.log('false');
+        }
+      })
+    }
+  }
+
+  ChangeText(detailInfo)
 
   return (
     <div className={styles.wrap}>
       <div className={`${styles.inner} inner`}>
         {commonInfo && commonInfo.map((commonList) =>
-          <>
+          <div key={commonList.contentid}>
             <DetailTitle commonList={commonList} infoList={course} />
             <ul className={fixed ? `${styles.tabMenuWrap} ${styles.active}` : styles.tabMenuWrap}>
               {tabMenulist && tabMenulist.map((list, idx) =>
@@ -178,11 +205,17 @@ export default function DetailInformation() {
               </p>
             </div>
             <Mapimage x={commonList.mapx} y={commonList.mapy} title={commonList.title} />
-            {detailInfo && detailInfo.map(detailList =>
-              <ul className={styles.detailInfo}>
+            {/* {contenttypeid === '32' && <DetailLodging commonList={commonList} detailInfo={detailInfo} />} */}
+            {/* {contenttypeid === '39' && <DetailRestaurant commonList={commonList} detailInfo={detailInfo} />} */}
+            {/* {contenttypeid === '12' && <DetailTourist commonList={commonList} detailInfo={detailInfo} />} */}
+            {/* {contenttypeid === '14' && <DetailCultural commonList={commonList} detailInfo={detailInfo} />} */}
+            {/* {contenttypeid === '28' && <DetailSports commonList={commonList} detailInfo={detailInfo} />} */}
+            {/* {contenttypeid === '38' && <DetailShopping commonList={commonList} detailInfo={detailInfo} />} */}
+            {detailInfo && detailInfo.map((detailList) =>
+              <ul className={`${styles.detailInfo} ${styles.firstSection}`} key={detailList.contentid}>
                 <li>
                   <strong>문의 및 안내</strong>
-                  <span>{detailList.infocenterlodging}</span>
+                  <span>{detailList.infocenterculture}</span>
                 </li>
                 {/* {commonList.homepage && 
                 <li>
@@ -195,39 +228,43 @@ export default function DetailInformation() {
                 </li>
                 <li>
                   <strong>주차</strong>
-                  <span>{detailList.parkinglodging}</span>
+                  <span>{detailList.parkingculture}</span>
                 </li>
                 <li>
-                  <strong>입실시간</strong>
-                  <span>{detailList.checkintime}</span>
+                  <strong>주차요금</strong>
+                  <span>{detailList.parkingfee}</span>
                 </li>
                 <li>
-                  <strong>퇴실시간</strong>
-                  <span>{detailList.checkouttime}</span>
+                  <strong>이용시간</strong>
+                  <span>{detailList.usetimeculture}</span>
                 </li>
                 <li>
-                  <strong>객실내 취사 여부</strong>
-                  <span>{detailList.chkcooking}</span>
+                  <strong>할인정보</strong>
+                  <span>{detailList.discountinfo}</span>
                 </li>
                 <li>
-                  <strong>식음료장</strong>
-                  <span>{detailList.foodplace}</span>
+                  <strong>휴일</strong>
+                  <span>{detailList.restdateculture}</span>
                 </li>
                 <li>
-                  <strong>픽업서비스</strong>
-                  <span>{detailList.pickup}</span>
+                  <strong>수용인원</strong>
+                  <span>{detailList.accomcountculture}</span>
                 </li>
                 <li>
-                  <strong>객실수</strong>
-                  <span>{detailList.roomcount}</span>
+                  <strong>규모</strong>
+                  <span>{detailList.scale}</span>
                 </li>
                 <li>
-                  <strong>객실유형</strong>
-                  <span>{detailList.roomtype}</span>
+                  <strong>신용카드가능정보</strong>
+                  <span>{detailList.chkcreditcardculture}</span>
                 </li>
                 <li>
-                  <strong>부대시설</strong>
-                  <span>{detailList.subfacility}</span>
+                  <strong>애완동물가능정보</strong>
+                  <span>{detailList.chkpetculture}</span>
+                </li>
+                <li>
+                  <strong>유모차대여정보</strong>
+                  <span>{detailList.chkbabycarriageculture}</span>
                 </li>
                 {comfortable && comfortable.map(info =>
                   <>
@@ -287,7 +324,9 @@ export default function DetailInformation() {
                 )}
               </ul >
             )}
-          </>
+
+            {/* <DetailComfortable contentid={contentid} /> */}
+          </div>
         )}
 
         {/* <div>

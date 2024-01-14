@@ -7,7 +7,7 @@ import styles from "./styles.module.css";
 import { useLocation } from 'react-router';
 import LikeButton from '../../main/rest/likebutton/LikeButton';
 
-export default function DetailTitle({ commonList, infoList }) {
+export default function DetailTitle({ commonList, detailInfo }) {
   const [scrap, setScrap] = useState(false);
   const location = useLocation();
 
@@ -36,7 +36,7 @@ export default function DetailTitle({ commonList, infoList }) {
       <h2 className={styles.title} key={commonList.contentid}>{commonList.title}</h2>
       <div className={styles.descriptionWrap}>
         <p className={styles.description}>{commonList.addr1.substring(0, 2)}</p>
-        {infoList.distance && <p className={styles.decription2}>코스 총거리 : {infoList.distance}</p>}
+        {detailInfo.distance && <p className={styles.decription2}>코스 총거리 : {detailInfo.distance}</p>}
       </div>
       <div className={styles.iconMenuWrap}>
         <div className={styles.iconMenuLeft}>

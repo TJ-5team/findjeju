@@ -6,10 +6,15 @@ nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2
 &_type=json
 
 contentid 
-숙소
-32 
-맛집
-39
+숙소 lodging 32 
+맛집 restaurant 39
+여행지 tourist 12
+문화시설 cultural 14 
+레포츠 sports 28 
+쇼핑 shopping 38
+
+const contenttypeid = 32;
+const contentid = 2819964; 
 
 공통정보 - 숙소
 http://apis.data.go.kr/B551011/KorService1/detailCommon1?ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&contentTypeId=32&contentId=2819964&MobileOS=ETC&MobileApp=AppTest&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y&_type=json
