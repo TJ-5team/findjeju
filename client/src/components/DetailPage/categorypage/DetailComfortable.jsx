@@ -1,13 +1,14 @@
 import React from 'react';
 import useGetList from '../../../hooks/useGetList';
 import styles from "../../DetailPage/styles.module.css";
+import { useSelector } from 'react-redux';
 
-export default function DetailComfortable({ contentid }) {
-  const [comfortable] = useGetList(`http://apis.data.go.kr/B551011/KorWithService1/detailWithTour1?serviceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&contentId=${contentid}&MobileOS=ETC&MobileApp=AppTest&_type=json`);
+export default function DetailComfortable({ contentid, comfortableInfo }) {
+  // const [comfortable] = useGetList(`http://apis.data.go.kr/B551011/KorWithService1/detailWithTour1?serviceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&contentId=${contentid}&MobileOS=ETC&MobileApp=AppTest&_type=json`);
 
   return (
     <>
-      {comfortable && comfortable.map(info =>
+      {comfortableInfo && comfortableInfo.map(info =>
         <ul className={styles.detailInfo} key={contentid}>
           <li>
             <strong>장애인 주차 안내</strong>

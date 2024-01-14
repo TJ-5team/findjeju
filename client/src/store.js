@@ -9,6 +9,7 @@ import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { combineReducers } from "redux";
 import persistStore from 'redux-persist/es/persistStore';
+import { handleDetailData } from './reducer/detailReducer.js';
 
 const rootReducer = combineReducers({
   area: area.reducer,
@@ -20,7 +21,8 @@ const rootReducer = combineReducers({
   subSlice : subSlice.reducer,
   login: login.reducer,
   userData: userData.reducer,
-  serviceListSlice : serviceListSlice.reducer
+  serviceListSlice : serviceListSlice.reducer,
+  handleDetailData : handleDetailData.reducer
 });
 
 const persistConfig = {

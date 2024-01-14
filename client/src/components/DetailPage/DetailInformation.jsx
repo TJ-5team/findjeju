@@ -15,26 +15,36 @@ import DetailTourist from './categorypage/DetailTourist';
 import DetailCultural from './categorypage/DetailCultural';
 import DetailSports from './categorypage/DetailSports';
 import DetailShopping from "./categorypage/DetailShopping";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import useScroll from "../../hooks/useScroll";
+import { DetailData } from "../../api/detailApi";
+import { getDetailData } from "../../reselector/detailReselector";
 
 export default function DetailInformation() {
   const { y } = useScroll();
-
-  /* //1. dispatch
   const dispatch = useDispatch();
-  dispatch() */
+  const { contenttypeid, contentid } = useParams();
+  const { commonInfo, detailInfo, comfortableInfo } = useSelector(getDetailData);
 
-  const { contentid, contenttypeid } = useParams();
+  //1. dispatch
+  /* useEffect(()=>{
+    dispatch(detailData(({ contenttypeid, contentid })))
+  },[contenttypeid, contentid]) */
+  useEffect(()=>{
+    dispatch(DetailData({ contenttypeid, contentid }))
+  },[ contenttypeid, contentid ])
+
 
   /* api링크 가져오기 */
-  const [commonInfo] = useGetList(`http://apis.data.go.kr/B551011/KorService1/detailCommon1?ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&contentTypeId=${contenttypeid}&contentId=${contentid}&MobileOS=ETC&MobileApp=AppTest&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y&_type=json`);
-  const [detailInfo] = useGetList(`http://apis.data.go.kr/B551011/KorService1/detailIntro1?ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&contentTypeId=${contenttypeid}&contentId=${contentid}&MobileOS=ETC&MobileApp=AppTest&_type=json`);
+  // const [commonInfo] = useGetList(`http://apis.data.go.kr/B551011/KorService1/detailCommon1?ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&contentTypeId=${contenttypeid}&contentId=${contentid}&MobileOS=ETC&MobileApp=AppTest&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y&_type=json`);
+  // const [detailInfo] = useGetList(`http://apis.data.go.kr/B551011/KorService1/detailIntro1?ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&contentTypeId=${contenttypeid}&contentId=${contentid}&MobileOS=ETC&MobileApp=AppTest&_type=json`);
 
   const tabMenulist = ["사진보기", "상세정보", "여행톡", "추천여행"]
   const [active, setActive] = useState(0);
-  const [showTopBtn, SetShowTopBtn] = useState(false);
-  const [fixed, setFixed] = useState(false);
+  
+  /* useScroll 로 구현 */
+  // const [showTopBtn, SetShowTopBtn] = useState(false);
+  // const [fixed, setFixed] = useState(false);
 
   const contentRef1 = useRef(null);
   const contentRef2 = useRef(null);
@@ -124,7 +134,7 @@ export default function DetailInformation() {
             {contenttypeid === '14' && <DetailCultural commonList={commonList} detailInfo={detailInfo} />}
             {contenttypeid === '28' && <DetailSports commonList={commonList} detailInfo={detailInfo} />}
             {contenttypeid === '38' && <DetailShopping commonList={commonList} detailInfo={detailInfo} />}
-            <DetailComfortable contentid={contentid} />
+            <DetailComfortable contentid={contentid} comfortableInfo={comfortableInfo}/>
           </div>
         )}
 
