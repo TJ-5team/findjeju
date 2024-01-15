@@ -1,6 +1,5 @@
 .wrap {
   background: var(--lightGray);
-  min-height: 300px;
   .weather {
     display: flex;
     font-size: 14px;
@@ -11,6 +10,7 @@
     //layout
     .weatherDaily,
     li {
+      height: 224px;
       display: flex;
       align-items: center;
       flex-direction: column;
@@ -33,7 +33,7 @@
       p, b, span {
         text-shadow: 0px 2px 2px rgba(0,0,0,0.5);
       }
-      p:nth-child(2) {
+      p:nth-child(1) {
         font-size: 30px;
         font-weight: 900;
         span {font-size: 20px;}
@@ -41,6 +41,7 @@
       div {
         font-size: 18px;
         font-weight: 700;
+        margin-top: 10px;
         b {
           &:first-child{
             &::after {
@@ -58,31 +59,81 @@
         }
       }
     }//weatherDaily
-    ul {
+    > ul {
       width: 70%;
       background: var(--white);
       border-radius: 5px;
       box-shadow: 0px 2px 6px 1px rgba(0,0,0,0.05);
       -webkit-box-shadow: 0px 2px 6px 1px rgba(0,0,0,0.05);
       -moz-box-shadow: 0px 2px 6px 1px rgba(0,0,0,0.05);
+      color: var(--fontGray);
       display: flex;
       overflow: hidden;
       padding: 10px;
-      li {
+      > li {
         width: 25%;
         height: 100%;
+        padding: 0 10px;
         &:not(:last-child) {
           border-right: 1px solid #EEE;
         }
-        .weatherIconBox {
-          width: 40px;
-          height: 40px;
-          margin: 0 auto;
-          svg {
+        > div {
+          width: 100%;
+            .weatherIconBox {
+            width: 60px;
+            height: 50px;
+            margin: 0 auto;
+            svg {
+              width: 100%;
+              height: 100%;
+              color: var(--darknite);
+              }//svg
+            }//WeatherIcon
+          .weatherSkyText {
+            font-size: 15px;
+            font-weight: 700;
+          }//weatherSkyText
+          .weatherTemBox {
             width: 100%;
-            height: 100%;
-          }//WeatherIcon
-        }//div
+            display: flex;
+            align-items: flex-start;
+            margin-top: 14px;
+            strong {
+              color: var(--darknite);
+              font-weight: 700;
+              padding: 0 5px;
+              font-size: 13px;
+              span {font-size: 16px;}
+            }
+            ul {
+              width: 60%;
+              li {
+                width: auto;
+                height: auto;
+                flex-direction: row;
+                vertical-align: baseline;
+              }
+            }
+            .weatherUmb {
+              width: 40%;
+              border-left: 1px solid var(--borderline);
+              box-sizing: border-box;
+              display: flex;
+              align-items: center;
+              flex-wrap: wrap;
+              padding-left: 10px;
+              svg {
+                width: 24px;
+                height: 24px;
+                margin: 0 auto -2px;
+              }
+              > strong {
+                display: flex;
+                justify-content: center;
+              }
+            }
+          }//weatherTemBox
+        }
       }//li
     }//ul
   }//weather
