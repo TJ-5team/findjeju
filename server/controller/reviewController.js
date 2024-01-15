@@ -18,3 +18,12 @@ export async function removeReview(req, res){
   res.json(result);
 }
 
+export async function userReview(req,res){
+
+  const mid = req.params.mid;
+
+  const result = await repository.userReview(mid);
+  res.json(result);
+
+}
+

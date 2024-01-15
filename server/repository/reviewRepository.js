@@ -18,5 +18,11 @@ export async function removeReview({rid}) {
     .then(result=>("ok"));
 }
 
+export async function userReview(id){
+
+  const sql = `select rid, id, contentid, contenttypeid, review_text, review_img, left(rdate,10) rdate from fj_review where id = ? `;
+  return db.execute(sql, [id])
+    .then(result=>("ok"));
+}
 
 
