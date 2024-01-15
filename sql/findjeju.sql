@@ -18,7 +18,7 @@ create table fj_member(
 
 drop table fj_member;
 
-insert into fj_member(name,id,password,nickname,email,phone,address,user_img) values('관리자','try226','1234','5조','try226@naver.com','01012345678','경기도 부천시 소사구', 'path');
+insert into fj_member(name,id,password,nickname,email,phone,address,user_img) values('관리자','try226','$2a$10$TcZs4tDeBpTJNAnVHg65U.m0DsqsTj0eH1gLkulWOfnNv1H96sfwG','5조','try226@naver.com','01012345678','경기도 부천시 소사구', 'path');
 
 select * from fj_member;
 
