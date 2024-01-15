@@ -8,7 +8,7 @@ import { PiBookmarkSimpleThin } from "react-icons/pi";
 import { PiBookmarkSimpleFill } from "react-icons/pi";
 import { PiShareNetworkThin } from "react-icons/pi";
 import { HiArrowSmallUp } from "react-icons/hi2";
-import DetailSwiper from "./swiper/DetailSwiper";
+import DetailSwiper from "./Swiper/DetailSwiper";
 import Mapimage from "../Map/Mapimage";
 import axios from "axios";
 import ImageUpload from './../imageUpload/ImageUpload';
@@ -86,7 +86,7 @@ export default function DetailInformation() {
     } else if (idx === 2) {
       contentRef2.current?.scrollIntoView({ behavior: 'smooth' });
     } else if (idx === 3) {
-      contentRef3.current?.scrollIntoView({ behavior: 'smooth'});
+      contentRef3.current?.scrollIntoView({ behavior: 'smooth' });
     }
 
   }
@@ -189,23 +189,23 @@ export default function DetailInformation() {
         });
     }
   };
-  
+
   useEffect(() => {
     axios.get(`http://localhost:8000/review/${contentid}/${contenttypeid}`)
-    .then(result => setReplyList(result.data));
+      .then(result => setReplyList(result.data));
   }, [replyReload])
-  
+
   return (
     <div className={styles.wrap}>
       <div className={`${styles.inner} inner`}>
         {commonInfo && commonInfo.map((commonList) =>
           <>
-          <DetailTitle commonList={commonList} infoList={course}/>
+            <DetailTitle commonList={commonList} infoList={course} />
             <ul className={fixed ? `${styles.tabMenuWrap} ${styles.active}` : styles.tabMenuWrap}>
               {tabMenulist && tabMenulist.map((list, idx) =>
                 <li onClick={(e) => handleActive(e, idx)} className={active === idx ? `${styles.tabMenu} ${styles.active}` : styles.tabMenu} key={idx}>{list}</li>
               )}
-            </ul> 
+            </ul>
             <DetailSwiper />
             <h3 ref={contentRef1} className={styles.titleSub}>상세정보</h3>
             <div className={styles.descriptionWrap}>
@@ -345,10 +345,10 @@ export default function DetailInformation() {
           </h3>
           <div className={styles.replyWrap}>
             {/* 로그인 기능 완료되면 삼항식 구현하기 */}
-            <textarea className={styles.replyText} type="text" placeholder={userInfo.id ? "소중한 댓글을 남겨주세요." :"로그인 후 소중한 댓글을 남겨주세요."} 
-            value={reply} onChange={(e) => setReply(e.target.value)} disabled={userInfo.id ? false : true}/>
+            <textarea className={styles.replyText} type="text" placeholder={userInfo.id ? "소중한 댓글을 남겨주세요." : "로그인 후 소중한 댓글을 남겨주세요."}
+              value={reply} onChange={(e) => setReply(e.target.value)} disabled={userInfo.id ? false : true} />
             <div className={styles.replyBtnWrap}>
-                <ImageUpload />
+              <ImageUpload />
               {/* <button>
                 <img src="http://localhost:3000/images\detailPage\btn_reply_file.gif" alt="" />
               </button> */}

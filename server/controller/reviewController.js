@@ -12,3 +12,12 @@ export async function getReview(req, res){
   const result = await repository.getReview({contentid, contenttypeid});
   res.json(result);
 }
+
+export async function userReview(req,res){
+
+  const mid = req.params.mid;
+  const result = await repository.userReview(mid);
+
+  res.json(result);
+
+}

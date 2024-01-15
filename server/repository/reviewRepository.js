@@ -11,3 +11,10 @@ export async function getReview({contentid, contenttypeid}) {
   return db.execute(sql, [contentid, contenttypeid])
     .then(rows => rows[0]);
 }
+
+export async function userReview(id){
+
+  const sql = `select id, contentid, contenttypeid, review_text, review_img, left(rdate,10) rdate from fj_review where id =?`
+  return db.execute(sql,[id])
+  .then(rows => rows[0]);
+}
