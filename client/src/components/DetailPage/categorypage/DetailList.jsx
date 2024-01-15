@@ -23,7 +23,7 @@ export default function DetailList({ name, list }) {
   }
 
   return (
-    <li>
+    <li key={name}>
       <strong>{name}</strong>
       <span>{changeText(list)}</span>
     </li>

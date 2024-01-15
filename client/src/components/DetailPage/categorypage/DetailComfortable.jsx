@@ -1,13 +1,13 @@
 import React from 'react';
 import styles from "../../DetailPage/styles.module.css";
 
-export default function DetailComfortable({ contentid, comfortableInfo }) {
+export default function DetailComfortable({ comfortableInfo }) {
   // const [comfortable] = useGetList(`http://apis.data.go.kr/B551011/KorWithService1/detailWithTour1?serviceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&contentId=${contentid}&MobileOS=ETC&MobileApp=AppTest&_type=json`);
 
   return (
     <>
       {comfortableInfo && comfortableInfo.map(info =>
-        <ul className={styles.detailInfo} key={contentid}>
+        <ul className={styles.detailInfo} key={info.contentid}>
           <li>
             <strong>장애인 주차 안내</strong>
             <span>{info.parking}</span>

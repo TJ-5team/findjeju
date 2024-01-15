@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
-import useGetList from "../../hooks/useGetList";
 import styles from "./styles.module.css";
 import { HiArrowSmallUp } from "react-icons/hi2";
 import DetailSwiper from "./swiper/DetailSwiper";
@@ -26,14 +25,9 @@ export default function DetailInformation() {
   const { contenttypeid, contentid } = useParams();
   const { commonInfo, detailInfo, comfortableInfo } = useSelector(getDetailData);
 
-  //1. dispatch
-  /* useEffect(()=>{
-    dispatch(detailData(({ contenttypeid, contentid })))
-  },[contenttypeid, contentid]) */
   useEffect(()=>{
     dispatch(DetailData({ contenttypeid, contentid }))
   },[ contenttypeid, contentid ])
-
 
   /* api링크 가져오기 */
   // const [commonInfo] = useGetList(`http://apis.data.go.kr/B551011/KorService1/detailCommon1?ServiceKey=nyjoBggUlH0et5JY2fC9TW7%2BuSsx%2BIGHKWsgAuOWswMCtns64Y3M1Z%2BGROfg6L5ONigYQx6N%2BmqDCpABn3PmeQ%3D%3D&contentTypeId=${contenttypeid}&contentId=${contentid}&MobileOS=ETC&MobileApp=AppTest&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y&_type=json`);
@@ -142,7 +136,7 @@ export default function DetailInformation() {
               </p>
             </div>
             <Mapimage x={commonList.mapx} y={commonList.mapy} title={commonList.title} />
-            {contenttypeid === '32' && <DetailLodging commonList={commonList} detailInfo={detailInfo} />}
+            {contenttypeid === '32' && <DetailLodging commonList={commonList} detailInfo={detailInfo} key={commonList.contentid}/>}
             {contenttypeid === '39' && <DetailRestaurant commonList={commonList} detailInfo={detailInfo} />}
             {contenttypeid === '12' && <DetailTourist commonList={commonList} detailInfo={detailInfo} />}
             {contenttypeid === '14' && <DetailCultural commonList={commonList} detailInfo={detailInfo} />}
