@@ -69,7 +69,7 @@ export default function DetailReply({ contentid, contenttypeid }) {
       </div>
 
       {replyList && replyList.map(reply =>
-        <div className={styles.reviewList}>
+        <div className={styles.reviewList} key={reply.rid}>
           <div className={styles.userImg}>
             <img src="https://item.kakaocdn.net/do/07e48e95accef30a19f445de4a857bce7154249a3890514a43687a85e6b6cc82" alt="프로필이미지" />
           </div>

@@ -1,6 +1,16 @@
 .wrap {
   position: relative;
 }
+.wrap div.swiperNoImageWrap {
+  width: 940px;
+  height: 627px;
+  overflow: hidden;
+}
+.wrap div.swiperNoImageWrap img.swiperNoImage {
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
 .wrap .swiperSlide {
   width: 940px;
   height: 627px;

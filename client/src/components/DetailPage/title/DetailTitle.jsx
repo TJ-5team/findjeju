@@ -30,6 +30,45 @@ export default function DetailTitle({ commonList, detailInfo }) {
     }
   };
 
+  /* const userInfo = getUser();
+  const navigate = useNavigate();
+
+  const [reply, setReply] = useState("");
+  const [replyList, setReplyList] = useState([]);
+  const [replyReload, setReplyReload] = useState(false);
+  const [replyRemove, setReplyRemove] = useState(false);
+
+  const handleClick = (e) => {
+    if (reply !== "") {
+      axios.post("http://localhost:8000/review", { contentid: contentid, contenttypeid: contenttypeid, reply: reply, id: "try226" })
+        .then(result => {
+          if (result.data === "ok") {
+            setReplyReload(!replyReload);
+            setReply("");
+          }
+        });
+    }
+  };
+
+  useEffect(() => {
+    axios.get(`http://localhost:8000/review/${contentid}/${contenttypeid}`)
+      .then(result => setReplyList(result.data));
+  }, [replyReload, replyRemove])
+
+
+  const handleRemove = (rid) => {
+    const confirmRemove = window.confirm("정말 삭제하시겠습니까?")
+    if(confirmRemove){
+    axios.delete(`http://localhost:8000/review/remove/${rid}`)
+      .then(result => {
+        if (result.data === "ok") {
+          alert("삭제되었습니다")
+          setReplyRemove(!replyRemove);
+        }
+      })
+    }
+  }; */
+
 
   return (
     <>

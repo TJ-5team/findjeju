@@ -1,62 +1,82 @@
 import React from 'react';
-import useGetList from '../../../hooks/useGetList';
 import styles from "../../DetailPage/styles.module.css";
+import DetailList from './DetailList';
 
 export default function DetailSports({ detailInfo, commonList }) {
+
+  const changeText = (e) => {
+    if (!e) {
+      return
+    }
+
+    if (e.includes("<br>")) {
+      return e.split('<br>').map(line => <>{line}<br /></>);
+    } else if (e.includes("<br/>")) {
+      return e.split('<br/>').map(line => <>{line}<br /></>);
+    } else if (e.includes("<br />")) {
+      return e.split('<br />').map(line => <>{line}<br /></>);
+    }
+  }
 
   return (
     <>
       {detailInfo && detailInfo.map((detailList) =>
         <ul className={`${styles.detailInfo} ${styles.firstSection}`} key={detailList.contentid}>
-          <li>
+          <DetailList name={"문의 및 안내"} list={detailList.infocenterleports} />
+          <DetailList name={"주소"} list={commonList.addr1} />
+          <DetailList name={"주차"} list={detailList.parkingleports} />
+          <DetailList name={"주차요금"} list={detailList.parkingfeeleports} />
+          <DetailList name={"이용시간"} list={detailList.usetimeleports} />
+          <DetailList name={"예약안내"} list={detailList.reservation} />
+          <DetailList name={"휴일"} list={detailList.restdateleports} />
+          <DetailList name={"수용인원"} list={detailList.accomcountleports} />
+          <DetailList name={"체험가능연령"} list={detailList.expagerangeleports} />
+          <DetailList name={"신용카드가능정보"} list={detailList.chkcreditcardleports} />
+          <DetailList name={"유모차대여정보"} list={detailList.chkbabycarriageleports} />
+          {/* <li>
             <strong>문의 및 안내</strong>
-            <span>{detailList.infocenterleports}</span>
+            <span>{changeText(detailList.infocenterleports)}</span>
           </li>
-          {/* {commonList.homepage && 
-                <li>
-                  <strong>홈페이지</strong>
-                  <span><Link to={changeText(commonList.homepage)}>{changeText(commonList.homepage)}</Link></span>
-                </li>} */}
           <li>
             <strong>주소</strong>
-            <span>{commonList.addr1}</span>
+            <span>{changeText(commonList.addr1)}</span>
           </li>
           <li>
             <strong>주차</strong>
-            <span>{detailList.parkingleports}</span>
+            <span>{changeText(detailList.parkingleports)}</span>
           </li>
           <li>
             <strong>주차요금</strong>
-            <span>{detailList.parkingfeeleports}</span>
+            <span>{changeText(detailList.parkingfeeleports)}</span>
           </li>
           <li>
             <strong>이용시간</strong>
-            <span>{detailList.usetimeleports}</span>
+            <span>{changeText(detailList.usetimeleports)}</span>
           </li>
           <li>
             <strong>예약안내</strong>
-            <span>{detailList.reservation}</span>
+            <span>{changeText(detailList.reservation)}</span>
           </li>
           <li>
             <strong>휴일</strong>
-            <span>{detailList.restdateleports}</span>
+            <span>{changeText(detailList.restdateleports)}</span>
           </li>
           <li>
             <strong>수용인원</strong>
-            <span>{detailList.accomcountleports}</span>
+            <span>{changeText(detailList.accomcountleports)}</span>
           </li>
           <li>
             <strong>체험가능연령</strong>
-            <span>{detailList.expagerangeleports}</span>
+            <span>{changeText(detailList.expagerangeleports)}</span>
           </li>
           <li>
             <strong>신용카드가능정보</strong>
-            <span>{detailList.chkcreditcardleports}</span>
+            <span>{changeText(detailList.chkcreditcardleports)}</span>
           </li>
           <li>
             <strong>유모차대여정보</strong>
-            <span>{detailList.chkbabycarriageleports}</span>
-          </li>
+            <span>{changeText(detailList.chkbabycarriageleports)}</span>
+          </li> */}
           {/* {comfortable && comfortable.map(info =>
             <>
               <li>

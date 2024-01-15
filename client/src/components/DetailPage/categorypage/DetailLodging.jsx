@@ -1,62 +1,82 @@
 import React from 'react';
-import useGetList from '../../../hooks/useGetList';
 import styles from "../../DetailPage/styles.module.css";
+import DetailList from './DetailList';
 
 export default function DetailLodging({ detailInfo, commonList }) {
+
+  const changeText = (e) => {
+    if (!e) {
+      return
+    }
+
+    if (e.includes("<br>")) {
+      return e.split('<br>').map(line => <>{line}<br /></>);
+    } else if (e.includes("<br/>")) {
+      return e.split('<br/>').map(line => <>{line}<br /></>);
+    } else if (e.includes("<br />")) {
+      return e.split('<br />').map(line => <>{line}<br /></>);
+    }
+  }
 
   return (
     <>
       {detailInfo && detailInfo.map((detailList) =>
         <ul className={`${styles.detailInfo} ${styles.firstSection}`} key={detailList.contentid}>
-          <li>
+          <DetailList name={"문의 및 안내"} list={detailList.infocenterlodging} />
+          <DetailList name={"주소"} list={commonList.addr1} />
+          <DetailList name={"주차"} list={detailList.parkinglodging} />
+          <DetailList name={"입실시간"} list={detailList.checkintime} />
+          <DetailList name={"퇴실시간"} list={detailList.checkouttime} />
+          <DetailList name={"객실내 취사 여부"} list={detailList.chkcooking} />
+          <DetailList name={"식음료장"} list={detailList.foodplace} />
+          <DetailList name={"픽업서비스"} list={detailList.pickup} />
+          <DetailList name={"객실수"} list={detailList.roomcount} />
+          <DetailList name={"객실유형"} list={detailList.roomtype} />
+          <DetailList name={"부대시설"} list={detailList.subfacility} />
+          {/* <li>
             <strong>문의 및 안내</strong>
-            <span>{detailList.infocenterlodging}</span>
+            <span>{changeText(detailList.infocenterlodging)}</span>
           </li>
-          {/* {commonList.homepage && 
-                <li>
-                  <strong>홈페이지</strong>
-                  <span><Link to={changeText(commonList.homepage)}>{changeText(commonList.homepage)}</Link></span>
-                </li>} */}
           <li>
             <strong>주소</strong>
-            <span>{commonList.addr1}</span>
+            <span>{changeText(commonList.addr1)}</span>
           </li>
           <li>
             <strong>주차</strong>
-            <span>{detailList.parkinglodging}</span>
+            <span>{changeText(detailList.parkinglodging)}</span>
           </li>
           <li>
             <strong>입실시간</strong>
-            <span>{detailList.checkintime}</span>
+            <span>{changeText(detailList.checkintime)}</span>
           </li>
           <li>
             <strong>퇴실시간</strong>
-            <span>{detailList.checkouttime}</span>
+            <span>{changeText(detailList.checkouttime)}</span>
           </li>
           <li>
             <strong>객실내 취사 여부</strong>
-            <span>{detailList.chkcooking}</span>
+            <span>{changeText(detailList.chkcooking)}</span>
           </li>
           <li>
             <strong>식음료장</strong>
-            <span>{detailList.foodplace}</span>
+            <span>{changeText(detailList.foodplace)}</span>
           </li>
           <li>
             <strong>픽업서비스</strong>
-            <span>{detailList.pickup}</span>
+            <span>{changeText(detailList.pickup)}</span>
           </li>
           <li>
             <strong>객실수</strong>
-            <span>{detailList.roomcount}</span>
+            <span>{changeText(detailList.roomcount)}</span>
           </li>
           <li>
             <strong>객실유형</strong>
-            <span>{detailList.roomtype}</span>
+            <span>{changeText(detailList.roomtype)}</span>
           </li>
           <li>
             <strong>부대시설</strong>
-            <span>{detailList.subfacility}</span>
-          </li>
+            <span>{changeText(detailList.subfacility)}</span>
+          </li> */}
           {/* {comfortable && comfortable.map(info =>
             <>
               <li>

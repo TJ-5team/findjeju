@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import "./css/common/common.css";
 import "./css/reset.css";
+import "./css/common/common.css";
 import reportWebVitals from './reportWebVitals';
 import { Provider } from "react-redux";
 import { persistor, store } from "./store.js";

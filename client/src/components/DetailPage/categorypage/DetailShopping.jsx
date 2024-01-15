@@ -1,66 +1,93 @@
 import React from 'react';
-import useGetList from '../../../hooks/useGetList';
 import styles from "../../DetailPage/styles.module.css";
+import DetailList from './DetailList';
 
 export default function DetailShopping({ detailInfo, commonList }) {
+
+  const changeText = (e) => {
+    if (!e) {
+      return
+    }
+
+    if (e.includes("<br>")) {
+      return e.split('<br>').map(line => <>{line}<br /></>);
+    } else if (e.includes("<br/>")) {
+      return e.split('<br/>').map(line => <>{line}<br /></>);
+    } else if (e.includes("<br />")) {
+      return e.split('<br />').map(line => <>{line}<br /></>);
+    }
+  }
+
+  const changeHomepage = (e) => {
+    const regex = /<a href="(.*?)" target="_blank"/;
+    console.log(e);
+    return e.match(regex)[1]
+  }
+
 
   return (
     <>
       {detailInfo && detailInfo.map((detailList) =>
         <ul className={`${styles.detailInfo} ${styles.firstSection}`} key={detailList.contentid}>
-          <li>
+          <DetailList name={"문의 및 안내"} list={detailList.infocentershopping} />
+          <DetailList name={"주소"} list={commonList.addr1} />
+          <DetailList name={"주차"} list={detailList.parkingshopping} />
+          <DetailList name={"영업시간"} list={detailList.opentime} />
+          <DetailList name={"개장일"} list={detailList.opendateshopping} />
+          <DetailList name={"휴일"} list={detailList.restdateshopping} />
+          <DetailList name={"규모"} list={detailList.scaleshopping} />
+          <DetailList name={"매장안내"} list={detailList.shopguide} />
+          <DetailList name={"판매품목"} list={detailList.saleitem} />
+          <DetailList name={"신용카드가능정보"} list={detailList.chkcreditcardshopping} />
+          <DetailList name={"유모차대여정보"} list={detailList.chkbabycarriageshopping} />
+          {/* <li>
             <strong>문의 및 안내</strong>
-            <span>{detailList.infocentershopping}</span>
+            <span>{changeText(detailList.infocentershopping)}</span>
           </li>
-          {/* {commonList.homepage && 
-                <li>
-                  <strong>홈페이지</strong>
-                  <span><Link to={changeText(commonList.homepage)}>{changeText(commonList.homepage)}</Link></span>
-                </li>} */}
           <li>
             <strong>주소</strong>
-            <span>{commonList.addr1}</span>
+            <span>{changeText(commonList.addr1)}</span>
           </li>
           <li>
             <strong>주차</strong>
-            <span>{detailList.parkingshopping}</span>
+            <span>{changeText(detailList.parkingshopping)}</span>
           </li>
           <li>
             <strong>영업시간</strong>
-            <span>{detailList.opentime}</span>
+            <span>{changeText(detailList.opentime)}</span>
           </li>
           <li>
             <strong>개장일</strong>
-            <span>{detailList.opendateshopping}</span>
+            <span>{changeText(detailList.opendateshopping)}</span>
           </li>
           <li>
             <strong>휴일</strong>
-            <span>{detailList.restdateshopping}</span>
+            <span>{changeText(detailList.restdateshopping)}</span>
           </li>
           <li>
             <strong>규모</strong>
-            <span>{detailList.scaleshopping}</span>
+            <span>{changeText(detailList.scaleshopping)}</span>
           </li>
           <li>
             <strong>체험가능연령</strong>
-            <span>{detailList.expagerange}</span>
+            <span>{changeText(detailList.expagerange)}</span>
           </li>
           <li>
             <strong>매장안내</strong>
-            <span>{detailList.shopguide}</span>
+            <span>{changeText(detailList.shopguide)}</span>
           </li>
           <li>
             <strong>판매품목</strong>
-            <span>{detailList.saleitem}</span>
+            <span>{changeText(detailList.saleitem)}</span>
           </li>
           <li>
             <strong>신용카드가능정보</strong>
-            <span>{detailList.chkcreditcardshopping}</span>
+            <span>{changeText(detailList.chkcreditcardshopping)}</span>
           </li>
           <li>
             <strong>유모차대여정보</strong>
-            <span>{detailList.chkbabycarriageshopping}</span>
-          </li>
+            <span>{changeText(detailList.chkbabycarriageshopping)}</span>
+          </li> */}
           {/* {comfortable && comfortable.map(info =>
             <>
               <li>

@@ -1,71 +1,86 @@
 import React from 'react';
-import useGetList from '../../../hooks/useGetList';
 import styles from "../../DetailPage/styles.module.css";
+import DetailList from './DetailList';
 
 export default function DetailTourist({ detailInfo, commonList }) {
 
-  /* const changeText = (e) => {
-    return e.split('<br>').map(line => <>{line}<br/></>);
+  const changeText = (e) => {
+    if (!e) {
+      return
+    }
+
+    if (e.includes("<br>")) {
+      return e.split('<br>').map(line => <>{line}<br /></>);
+    } else if (e.includes("<br/>")) {
+      return e.split('<br/>').map(line => <>{line}<br /></>);
+    } else if (e.includes("<br />")) {
+      return e.split('<br />').map(line => <>{line}<br /></>);
+    }
   }
- */
+
   return (
     <>
       {detailInfo && detailInfo.map((detailList) =>
         <ul className={`${styles.detailInfo} ${styles.firstSection}`} key={detailList.contentid}>
-          <li>
+          <DetailList name={"문의 및 안내"} list={detailList.infocenter} />
+          <DetailList name={"주소"} list={commonList.addr1} />
+          <DetailList name={"주차"} list={detailList.parking} />
+          <DetailList name={"이용시간"} list={detailList.usetime} />
+          <DetailList name={"개장일"} list={detailList.opendate} />
+          <DetailList name={"휴일"} list={detailList.restdate} />
+          <DetailList name={"수용인원"} list={detailList.accomcount} />
+          <DetailList name={"체험가능연령"} list={detailList.expagerange} />
+          <DetailList name={"체험안내"} list={detailList.expguide} />
+          <DetailList name={"신용카드가능정보"} list={detailList.chkcreditcard} />
+          <DetailList name={"유모차대여정보"} list={detailList.chkbabycarriage} />
+          {/* <li>
             <strong>문의 및 안내</strong>
-            <span>{detailList.infocenter}</span>
+            <span>{changeText(detailList.infocenter)}</span>
           </li>
-          {/* {commonList.homepage && 
-                <li>
-                  <strong>홈페이지</strong>
-                  <span><Link to={changeText(commonList.homepage)}>{changeText(commonList.homepage)}</Link></span>
-                </li>} */}
           <li>
             <strong>주소</strong>
-            <span>{commonList.addr1}</span>
+            <span>{changeText(commonList.addr1)}</span>
           </li>
           <li>
             <strong>주차</strong>
-            <span>{detailList.parking}</span>
+            <span>{changeText(detailList.parking)}</span>
           </li>
           <li>
             <strong>이용시간</strong>
-            <span>{detailList.usetime}</span>
+            <span>{changeText(detailList.usetime)}</span>
           </li>
           <li>
             <strong>개장일</strong>
-            <span>{detailList.opendate}</span>
+            <span>{changeText(detailList.opendate)}</span>
           </li>
           <li>
             <strong>휴일</strong>
-            <span>{detailList.restdate}</span>
+            <span>{changeText(detailList.restdate)}</span>
           </li>
           <li>
             <strong>수용인원</strong>
-            <span>{detailList.accomcount}</span>
+            <span>{changeText(detailList.accomcount)}</span>
           </li>
           <li>
             <strong>체험가능연령</strong>
-            <span>{detailList.expagerange}</span>
+            <span>{changeText(detailList.expagerange)}</span>
           </li>
           <li>
             <strong>체험안내</strong>
-            {/* <span>{changeText(detailList.expguide)}</span> */}
-            <span>{detailList.expguide}</span>
+            <span>{changeText(detailList.expguide)}</span>
           </li>
           <li>
             <strong>관람소요시간</strong>
-            <span>{detailList.spendtime}</span>
+            <span>{changeText(detailList.spendtime)}</span>
           </li>
           <li>
             <strong>신용카드가능정보</strong>
-            <span>{detailList.chkcreditcard}</span>
+            <span>{changeText(detailList.chkcreditcard)}</span>
           </li>
           <li>
             <strong>유모차대여정보</strong>
-            <span>{detailList.chkbabycarriage}</span>
-          </li>
+            <span>{changeText(detailList.chkbabycarriage)}</span>
+          </li> */}
           {/* {comfortable && comfortable.map(info =>
             <>
               <li>
