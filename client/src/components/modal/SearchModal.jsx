@@ -104,23 +104,23 @@ export default function SearchModal() {
                   <ul>
                     <li>
                       <span className={styles.spanNum}>1</span>
-                      <Link to={"/search/제주"}>제주</Link>
+                      <Link to={"/search/제주"} onClick={()=>dispatch(clickOthers())}>제주</Link>
                     </li>
                     <li>
                       <span className={styles.spanNum}>2</span>
-                      <Link to={"/search/서귀포"}>서귀포</Link>
+                      <Link to={"/search/서귀포"} onClick={()=>dispatch(clickOthers())}>서귀포</Link>
                     </li>
                     <li>
                       <span className={styles.spanNum}>3</span>
-                      <Link to={"/search/올레"}>올레</Link>
+                      <Link to={"/search/올레"} onClick={()=>dispatch(clickOthers())}>올레</Link>
                     </li>
                     <li>
                       <span className={styles.spanNum}>4</span>
-                      <Link to={"/search/한라산"}>한라산</Link>
+                      <Link to={"/search/한라산"} onClick={()=>dispatch(clickOthers())}>한라산</Link>
                     </li>
                     <li>
                       <span className={styles.spanNum}>5</span>
-                      <Link to={"/search/우도"}>우도</Link>
+                      <Link to={"/search/우도"} onClick={()=>dispatch(clickOthers())}>우도</Link>
                     </li>
                   </ul>
                 </div>
