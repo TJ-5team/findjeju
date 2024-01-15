@@ -1,86 +1,88 @@
 import React from 'react';
-import useGetList from '../../../hooks/useGetList';
 import styles from "../../DetailPage/styles.module.css";
+import DetailList from './DetailList';
 
 export default function DetailCultural({ detailInfo, commonList }) {
 
   const changeText = (e) => {
-    return e.split('<br>').map(line => <>{line}<br/></>);
-  }
+    if (!e) {
+      return
+    }
 
-  const ChangeText = array => {
-    for (let index = 0; index < array.length; index++) {
-      const targetObj = array[index];
-      const values = Object.values(targetObj);
-      values.forEach(val => {
-        if (val.includes("<br>")||val.includes("<br/>")||val.includes("<br />")) {
-          changeText(val)
-        }else{
-          console.log('false');
-        }
-      })
+    if (e.includes("<br>")) {
+      return e.split('<br>').map(line => <>{line}<br /></>);
+    } else if (e.includes("<br/>")) {
+      return e.split('<br/>').map(line => <>{line}<br /></>);
+    } else if (e.includes("<br />")) {
+      return e.split('<br />').map(line => <>{line}<br /></>);
     }
   }
-
-  ChangeText(detailInfo)
 
   return (
     <>
       {detailInfo && detailInfo.map((detailList) =>
         <ul className={`${styles.detailInfo} ${styles.firstSection}`} key={detailList.contentid}>
-          <li>
+          <DetailList name={"문의 및 안내"} list={detailList.infocenterculture} />
+          <DetailList name={"주소"} list={commonList.addr1} />
+          <DetailList name={"주차"} list={detailList.parkingculture} />
+          <DetailList name={"주차요금"} list={detailList.parkingfee} />
+          <DetailList name={"이용시간"} list={detailList.usetimeculture} />
+          <DetailList name={"할인정보"} list={detailList.discountinfo} />
+          <DetailList name={"휴일"} list={detailList.restdateculture} />
+          <DetailList name={"수용인원"} list={detailList.accomcountculture} />
+          <DetailList name={"규모"} list={detailList.scale} />
+          <DetailList name={"관람소요시간"} list={detailList.spendtime} />
+          <DetailList name={"신용카드 가능정보"} list={detailList.chkcreditcardculture} />
+          <DetailList name={"애완동물 가능정보"} list={detailList.chkpetculture} />
+          <DetailList name={"유모차대여정보"} list={detailList.chkbabycarriageculture} />
+          {/* <li>
             <strong>문의 및 안내</strong>
-            <span>{detailList.infocenterculture}</span>
-          </li>
-          {/* {commonList.homepage && 
-                <li>
-                  <strong>홈페이지</strong>
-                  <span><Link to={changeText(commonList.homepage)}>{changeText(commonList.homepage)}</Link></span>
-                </li>} */}
+            <span>{changeText(detailList.infocenterculture)}</span>
+          </li> 
           <li>
             <strong>주소</strong>
-            <span>{commonList.addr1}</span>
+            <span>{changeText(commonList.addr1)}</span>
           </li>
           <li>
             <strong>주차</strong>
-            <span>{detailList.parkingculture}</span>
+            <span>{changeText(detailList.parkingculture)}</span>
           </li>
           <li>
             <strong>주차요금</strong>
-            <span>{detailList.parkingfee}</span>
+            <span>{changeText(detailList.parkingfee)}</span>
           </li>
           <li>
             <strong>이용시간</strong>
-            <span>{detailList.usetimeculture}</span>
+            <span>{changeText(detailList.usetimeculture)}</span>
           </li>
           <li>
             <strong>할인정보</strong>
-            <span>{detailList.discountinfo}</span>
+            <span>{changeText(detailList.discountinfo)}</span>
           </li>
           <li>
             <strong>휴일</strong>
-            <span>{detailList.restdateculture}</span>
+            <span>{changeText(detailList.restdateculture)}</span>
           </li>
           <li>
             <strong>수용인원</strong>
-            <span>{detailList.accomcountculture}</span>
+            <span>{changeText(detailList.accomcountculture)}</span>
           </li>
           <li>
             <strong>규모</strong>
-            <span>{detailList.scale}</span>
+            <span>{changeText(detailList.scale)}</span>
           </li>
           <li>
             <strong>신용카드가능정보</strong>
-            <span>{detailList.chkcreditcardculture}</span>
+            <span>{changeText(detailList.chkcreditcardculture)}</span>
           </li>
           <li>
             <strong>애완동물가능정보</strong>
-            <span>{detailList.chkpetculture}</span>
+            <span>{changeText(detailList.chkpetculture)}</span>
           </li>
           <li>
             <strong>유모차대여정보</strong>
-            <span>{detailList.chkbabycarriageculture}</span>
-          </li>
+            <span>{changeText(detailList.chkbabycarriageculture)}</span>
+          </li> */}
           {/* {comfortable && comfortable.map(info =>
             <>
               <li>

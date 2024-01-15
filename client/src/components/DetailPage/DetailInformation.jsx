@@ -109,6 +109,20 @@ export default function DetailInformation() {
     }
   },[]) */
 
+  const changeText = (e) => {
+    if(!e){
+      return
+    }
+
+    if(e.includes("<br>")){
+      return e.split('<br>').map(line => <>{line}<br/></>);
+    }else if(e.includes("<br/>")){
+      return e.split('<br/>').map(line => <>{line}<br/></>);
+    }else if(e.includes("<br />")){
+      return e.split('<br />').map(line => <>{line}<br/></>);
+    }
+  }
+
   return (
     <div className={styles.wrap}>
       <div className={`${styles.inner} inner`}>
@@ -124,7 +138,7 @@ export default function DetailInformation() {
             <h3 ref={contentRef1} className={styles.titleSub}>상세정보</h3>
             <div className={styles.descriptionWrap}>
               <p className={styles.descriptionDetail}>
-                {commonList.overview}
+                {changeText(commonList.overview)}
               </p>
             </div>
             <Mapimage x={commonList.mapx} y={commonList.mapy} title={commonList.title} />
