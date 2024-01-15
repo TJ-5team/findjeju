@@ -4,7 +4,6 @@ export async function insertReview(req, res){
   const {contentid, contenttypeid, reply, id} = req.body;
   const result = await repository.insertReview({contentid, contenttypeid, reply, id});
   res.json(result);
-
 }
 
 export async function getReview(req, res){
@@ -13,11 +12,9 @@ export async function getReview(req, res){
   res.json(result);
 }
 
-export async function userReview(req,res){
-
-  const mid = req.params.mid;
-  const result = await repository.userReview(mid);
-
+export async function removeReview(req, res){
+  const {rid} = req.params;
+  const result = await repository.removeReview({rid});
   res.json(result);
-
 }
+
