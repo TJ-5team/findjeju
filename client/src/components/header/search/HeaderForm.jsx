@@ -25,7 +25,7 @@ export default function HeaderForm() {
           <input style={{"display":"none"}} type="password" />
           {/* 크롬 아이디 자동완성 기능방지용 */}
           <input type="text" readOnly placeholder="어디로, 어떤 여행을 떠날 예정인가요?" value={keyword} title="검색" id="search" autoComplete="off" onFocus={()=>dispatch(clickSearch())}/>
-          <Link to={"/"} className={styles.btnSearch}></Link>
+          <button onClick={()=>dispatch(clickSearch())} className={styles.btnSearch}></button>
         </div>
         <div className={styles.profile}>
           {userInfo.id ? <Link to={"/mypage/main"} className={styles.btnProfile}></Link> : <Link to={"/login"} className={styles.btnProfile}></Link>}

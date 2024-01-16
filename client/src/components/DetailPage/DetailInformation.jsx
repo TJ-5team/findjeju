@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import styles from "./styles.module.css";
 import { HiArrowSmallUp } from "react-icons/hi2";
-import DetailSwiper from "./Swiper/DetailSwiper";
+import DetailSwiper from "./imgswiper/DetailSwiper";
 import Mapimage from "../Map/Mapimage";
 import TripInfo from "../tripInfo/TripInfo";
 import DetailTitle from "./title/DetailTitle";
