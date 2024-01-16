@@ -25,6 +25,7 @@ export default function UserBox({ member }) {
     dispatch(loginData({ id: '', iat: '' }));
     // await persistor.purge(); // persistStore의 데이터 전부 날림
     navigate("/");
+    window.location.reload();
 
   };
 
@@ -46,6 +47,7 @@ export default function UserBox({ member }) {
 
       alert("탈퇴 되었습니다.");
       navigate("/");
+      window.location.reload();
 
     });
 

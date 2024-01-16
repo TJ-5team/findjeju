@@ -2,12 +2,15 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './styles.module.css';
 import { gsap } from "gsap";
-
+import axios from 'axios';
+import { getUser } from '../../../utils/localStorage';
 export default function ContentBox() {
 
   const [toggle, setToggle] = useState(false);
   const imgRef = useRef(null);
   const banRef = useRef(null);
+  const userInfo = getUser();
+  const [reviewCount, setReviewCount] = useState([]);
 
   useEffect(() => {
 
@@ -32,6 +35,24 @@ export default function ContentBox() {
     }
 
   }, [toggle]);
+
+  useEffect(() => {
+
+    if (userInfo.id !== '') {
+      axios({
+
+        method: 'get',
+        url: `http://127.0.0.1:8000/review/${userInfo.id}`
+
+      }).then((result) => {
+        if (result.data) {
+          setReviewCount(result.data.length);
+        }
+      })
+    }
+
+
+  }, []);
 
   return (
     <>
@@ -64,7 +85,7 @@ export default function ContentBox() {
           </li>
           <li>
             <Link to="#">
-              <em>0</em>
+              <em>{reviewCount}</em>
             </Link>
             <span>여행톡</span>
           </li>

@@ -70,6 +70,7 @@ export default function Login() {
         setCookie("x-auth-jwt", userInfo);
         //JWT의 decode 메서드는 이 토큰을 해독하여 그 내용을 볼 수 있게 합니다
         dispatch(loginData(userInfo));
+        window.location.reload();
       } else {
         if (result.data.cnt === 1) {
           alert("패스워드가 다릅니다.");

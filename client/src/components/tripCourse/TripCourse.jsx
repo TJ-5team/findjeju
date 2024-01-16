@@ -1,9 +1,10 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import styles from './styles.module.css';
 import Mapimage from "../Map/Mapimage";
 import { Link } from "react-router-dom";
 import DetailTitle from "../DetailPage/title/DetailTitle";
 import useGetList from "../../hooks/useGetList";
+import DetailReply from "../DetailPage/reply/DetailReply";
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation, Thumbs, EffectFade } from 'swiper/modules';
@@ -11,7 +12,6 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 import 'swiper/css/effect-fade';
-
 
 export default function TripCourse(){
   <script
@@ -26,79 +26,38 @@ export default function TripCourse(){
     setOnIndex(index);
   };
 
-
-  
-  const [courseTotal] = useGetList(`http://apis.data.go.kr/B551011/KorService1/detailCommon1?serviceKey=H4pEvj%2FnHLi4pMfSQvy0lqYgV7Wv1sdyTEBMecAG8%2Be%2FRh%2BjKs4mFAoT3D4cRrjVoEQQEyzLzSzrDjBCeYT9ng%3D%3D&contentTypeId=25&contentId=2372024&MobileOS=ETC&MobileApp=AppTest&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y&_type=json`);
-  const [courseIntro] = useGetList(`http://apis.data.go.kr/B551011/KorService1/detailIntro1?serviceKey=H4pEvj%2FnHLi4pMfSQvy0lqYgV7Wv1sdyTEBMecAG8%2Be%2FRh%2BjKs4mFAoT3D4cRrjVoEQQEyzLzSzrDjBCeYT9ng%3D%3D&contentTypeId=25&contentId=2372024&MobileOS=ETC&MobileApp=AppTest&_type=json`);  
-  const [courseInfo] = useGetList(`http://apis.data.go.kr/B551011/KorService1/detailInfo1?serviceKey=H4pEvj%2FnHLi4pMfSQvy0lqYgV7Wv1sdyTEBMecAG8%2Be%2FRh%2BjKs4mFAoT3D4cRrjVoEQQEyzLzSzrDjBCeYT9ng%3D%3D&contentTypeId=25&contentId=2372024&MobileOS=ETC&MobileApp=AppTest&_type=json`);
+  const [courseTotal] = useGetList(`http://apis.data.go.kr/B551011/KorService1/detailCommon1?serviceKey=H4pEvj%2FnHLi4pMfSQvy0lqYgV7Wv1sdyTEBMecAG8%2Be%2FRh%2BjKs4mFAoT3D4cRrjVoEQQEyzLzSzrDjBCeYT9ng%3D%3D&contentTypeId=25&contentId=2804721&MobileOS=ETC&MobileApp=AppTest&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y&_type=json`);
+  const [courseIntro] = useGetList(`http://apis.data.go.kr/B551011/KorService1/detailIntro1?serviceKey=H4pEvj%2FnHLi4pMfSQvy0lqYgV7Wv1sdyTEBMecAG8%2Be%2FRh%2BjKs4mFAoT3D4cRrjVoEQQEyzLzSzrDjBCeYT9ng%3D%3D&contentTypeId=25&contentId=2804721&MobileOS=ETC&MobileApp=AppTest&_type=json`);  
+  const [courseInfo] = useGetList(`http://apis.data.go.kr/B551011/KorService1/detailInfo1?serviceKey=H4pEvj%2FnHLi4pMfSQvy0lqYgV7Wv1sdyTEBMecAG8%2Be%2FRh%2BjKs4mFAoT3D4cRrjVoEQQEyzLzSzrDjBCeYT9ng%3D%3D&contentTypeId=25&contentId=2804721&MobileOS=ETC&MobileApp=AppTest&_type=json`);
   const [courseImg] = useGetList(`http://apis.data.go.kr/B551011/KorService1/detailImage1?ServiceKey=H4pEvj%2FnHLi4pMfSQvy0lqYgV7Wv1sdyTEBMecAG8%2Be%2FRh%2BjKs4mFAoT3D4cRrjVoEQQEyzLzSzrDjBCeYT9ng%3D%3D&contentId=126460&MobileOS=ETC&MobileApp=AppTest&imageYN=Y&subImageYN=Y&numOfRows=10&_type=json`);
-  const [coursePage] = useGetList(`http://apis.data.go.kr/B551011/KorService1/detailCommon1?ServiceKey=H4pEvj%2FnHLi4pMfSQvy0lqYgV7Wv1sdyTEBMecAG8%2Be%2FRh%2BjKs4mFAoT3D4cRrjVoEQQEyzLzSzrDjBCeYT9ng%3D%3D&contentTypeId=12&contentId=126460&MobileOS=ETC&MobileApp=AppTest&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y&_type=json`);
+  const [coursePage] = useGetList(`http://apis.data.go.kr/B551011/KorService1/detailCommon1?ServiceKey=H4pEvj%2FnHLi4pMfSQvy0lqYgV7Wv1sdyTEBMecAG8%2Be%2FRh%2BjKs4mFAoT3D4cRrjVoEQQEyzLzSzrDjBCeYT9ng%3D%3D&contentTypeId=12&contentId=126460&MobileOS=ETC&MobileApp=AppTest&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y&_type=json`); //코스정보
 
 
-
-
-  // const [courseTotal, setCourseTotal] = useState([]);
-  // const [courseIntro, setCourseIntro] = useState([]);
-  // const [courseInfo, setCourseInfo] = useState([]);
-  // const [courseImg, setCourseImg] = useState([]);
-  // const [coursePage, setCoursePage] = useState([]);
-
-  // useEffect(() => {
-  //   axios
-  //   .get(`http://apis.data.go.kr/B551011/KorService1/detailCommon1?serviceKey=H4pEvj%2FnHLi4pMfSQvy0lqYgV7Wv1sdyTEBMecAG8%2Be%2FRh%2BjKs4mFAoT3D4cRrjVoEQQEyzLzSzrDjBCeYT9ng%3D%3D
-  //   &contentTypeId=25&contentId=2372024&MobileOS=ETC&MobileApp=AppTest&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y&_type=json`)
-  //   .then(result => setCourseTotal(result.data.response.body.items.item));
-  // }, []);
-
-  // useEffect(() => {
-  //   axios
-  //   .get(`http://apis.data.go.kr/B551011/KorService1/detailIntro1?serviceKey=H4pEvj%2FnHLi4pMfSQvy0lqYgV7Wv1sdyTEBMecAG8%2Be%2FRh%2BjKs4mFAoT3D4cRrjVoEQQEyzLzSzrDjBCeYT9ng%3D%3D
-  //   &contentTypeId=25&contentId=2372024&MobileOS=ETC&MobileApp=AppTest&_type=json`)
-  //   .then(result => setCourseIntro(result.data.response.body.items.item));
-  // }, []);
-
-  // useEffect(() => {
-  //   axios
-  //   .get(`http://apis.data.go.kr/B551011/KorService1/detailInfo1?serviceKey=H4pEvj%2FnHLi4pMfSQvy0lqYgV7Wv1sdyTEBMecAG8%2Be%2FRh%2BjKs4mFAoT3D4cRrjVoEQQEyzLzSzrDjBCeYT9ng%3D%3D
-  //   &contentTypeId=25&contentId=2372024&MobileOS=ETC&MobileApp=AppTest&_type=json`)
-  //   .then(result => setCourseInfo(result.data.response.body.items.item));
-  // }, []);
-  // useEffect(() => {
-  //   axios
-  //   .get(`http://apis.data.go.kr/B551011/KorService1/detailImage1?ServiceKey=H4pEvj%2FnHLi4pMfSQvy0lqYgV7Wv1sdyTEBMecAG8%2Be%2FRh%2BjKs4mFAoT3D4cRrjVoEQQEyzLzSzrDjBCeYT9ng%3D%3D
-  //   &contentId=126460&MobileOS=ETC&MobileApp=AppTest&imageYN=Y&subImageYN=Y&numOfRows=10&_type=json`)
-  //   .then(result => setCourseImg(result.data.response.body.items.item));
-  // }, []);
-
-  // useEffect(() => {
-  //   axios
-  //   .get(`http://apis.data.go.kr/B551011/KorService1/detailCommon1?ServiceKey=H4pEvj%2FnHLi4pMfSQvy0lqYgV7Wv1sdyTEBMecAG8%2Be%2FRh%2BjKs4mFAoT3D4cRrjVoEQQEyzLzSzrDjBCeYT9ng%3D%3D
-  //   &contentTypeId=12&contentId=126460&MobileOS=ETC&MobileApp=AppTest&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y&_type=json`)
-  //   .then(result => setCoursePage(result.data.response.body.items.item));
-  // }, []);
-
+  console.log(courseImg);
+  
   return(
     <>
       <div className={styles.wrap}>
         <div className={`${styles.tripCourseContent} inner`}>
-          <div className={styles.tripCourseTitle}>
+          {/* <div className={styles.tripCourseTitle}>
             <div className={styles.courseTitle}>
-              <em>1 코스</em>
+              <em>{courseInfo.length} 코스</em>
               <h2>{courseTotal.title}</h2>
             </div>
             <div className={styles.courseSubAddr}>
-              {/* <span>전라남도 목포시 고하도안길 234</span> */}
               <span>{courseIntro.distance}</span>
             </div>
+          </div> */}
+          <div className={styles.tripCourseTitle}>
+            <em className={styles.titleRed}>{courseInfo.length} 코스</em>
+            {courseTotal.map((title, titleIdx)=>
+              <DetailTitle
+                key={titleIdx}
+                commonList ={title}
+                detailInfo ={courseIntro}
+              />
+            )}
           </div>
-          {/* {courseTotal.map((title, titleIdx)=>{
-            <DetailTitle
-              key={titleIdx}
-              commonList ={title.title}
-              infoList ={title.overview}
-            />
-            
-          })} */}
           <div className={styles.tripCourseInfo}>
             <ul className={styles.tripCourseIcon}>
               <li>
@@ -119,23 +78,18 @@ export default function TripCourse(){
                   <strong>힐링코스</strong>
                 </div>
               </li>
-              <li>
-                <figure>
-                  <img src="https://korean.visitkorea.or.kr/resources/images/sub/ico_schedule_tag.png" alt="" />
-                </figure>
-                <div>
-                  <p>태그</p>
-                  <div className={styles.tripInfoHash}>
-                    <Link to="#">#해시태그</Link>
-                  </div>
-                </div>
-              </li>
             </ul>
-            <p className={styles.tripCourseText}>
-              {courseTotal.overview}
-            </p>
+            {courseTotal.map((toComment, commentIdx)=>
+              <p key={commentIdx} className={styles.tripCourseText}>
+                {toComment.overview}
+              </p>
+              )}
           </div>
-          <Mapimage />
+          <Mapimage
+            x = {126.5460485461}
+            y = {33.5180620158}
+            title = {""}
+          />
           <div className={styles.tripCourseSlide}>
             <div className={`${styles.courseSwiper} courseSwiper`}>
               <Swiper
@@ -143,37 +97,31 @@ export default function TripCourse(){
                   '--swiper-navigation-color': '#fff',
                   '--swiper-pagination-color': '#fff',
                 }}
-                slidesPerView={4.5}
+                slidesPerView={courseInfo.length > 4 ? 4.5 : 4}
                 className={`${styles.courseImg} courseImg`}
                 onSwiper={setThumbsSwiper}
                 navigation={true}
                 watchSlidesProgress={true}
                 modules={[Pagination, Navigation, Thumbs]}
               >
-                {courseInfo.map((courseInfo,idx)=>{
-                  const slideOn = idx === onIndex;
-                  const slideBeforeOn = idx < onIndex;
-                  const slideAfterOn = idx > onIndex;
-                  return (
-                    <SwiperSlide
-                      key={idx}
-                      className={`${styles.trip}
-                        ${slideOn ? styles.on : ''}
-                        ${slideBeforeOn ? styles.on100 : ''}
-                        ${slideAfterOn === '' }`
-                      }
-                      onClick={() => handleSlideClick(idx)}
-                    >
-                    <em>{idx}</em>
-                    {coursePage.map((coursePage, pageIdx)=>{
-                      return <div key={pageIdx} className={`${styles.courseLink} courseLink`}
-                        style={{backgroundImage: `url(${coursePage.firstimage})`}}>
-                        <span>{courseInfo.subname}</span>
-                      </div>
-                    })}
+                {courseInfo.map((courseInfo,idx)=>
+                  <SwiperSlide
+                    key={idx}
+                    className={`${styles.trip}
+                      ${idx === onIndex ? styles.on : ''}
+                      ${idx < onIndex ? styles.on100 : ''}
+                      ${idx > onIndex === '' }`}
+                    onClick={() => handleSlideClick(idx)}
+                  >
+                  <em>{idx + 1}</em>
+                  {courseTotal.map((courseTotal, pageIdx)=>
+                    <div key={pageIdx} className={`${styles.courseLink} courseLink`}
+                      style={{backgroundImage: `url(${courseTotal.firstimage})`}}>
+                      <span>{courseInfo.subname}</span>
+                    </div>
+                  )}
                   </SwiperSlide>
-                  )
-                })}
+                )}
               </Swiper>
               <Swiper
                 className={`${styles.courseTap} courseTap`}
@@ -188,18 +136,18 @@ export default function TripCourse(){
                   return (
                   <SwiperSlide key={cIndex} className={`${styles.courseTapContent} courseTapContent`}>
                     <div className={`${styles.courseTapTitleWrap} courseTapTitleWrap`}>
-                      <em>{cIndex}</em>
+                      <em>{cIndex + 1}</em>
                       <strong>{courseInfo.subname}</strong>
                     </div>
                     <div className={`${styles.courseTapImgWrap} courseTapImgWrap`}>
-                      {courseImg.slice(0, 3).map((courseImg, imgIndex)=>{
-                      return <div key={imgIndex} className={`${styles.courseTapImg} courseTapImg`}>
-                        <Link to="#" style={{backgroundImage: `url(${courseImg.originimgurl})`}}>
-                        </Link>
-                      </div>
-                      })}
+                      {courseImg.slice(0, 3).map((courseImg, imgIndex)=>
+                        <div key={imgIndex} className={`${styles.courseTapImg} courseTapImg`}>
+                          <Link to="#" style={{backgroundImage: `url(${courseImg.originimgurl})`}}>
+                          </Link>
+                        </div>
+                      )}
                     </div>
-                    <div className={styles.courseSubAddr}>
+                    <div className={styles.courseSubComment}>
                       {courseInfo.subdetailoverview}
                     </div>
                   </SwiperSlide>
@@ -208,6 +156,10 @@ export default function TripCourse(){
               </Swiper>
             </div>
           </div>
+          <DetailReply 
+            contentid = {2372024}
+            contenttypeid = {25}
+          />
         </div>
       </div>
     </>

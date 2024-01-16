@@ -4,13 +4,13 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-import { Navigation } from 'swiper/modules';
 import { useSelector } from 'react-redux';
 import { getAreaData } from '../../../../reselector/areaReselector';
+import { useNavigate } from 'react-router';
 
 export default function SwiperBox({ area }) {
     const [arr, setArr] = useState([]);
-
+    const navigate = useNavigate();
     let res = [];
 
     const state = useSelector(getAreaData);
@@ -54,14 +54,12 @@ export default function SwiperBox({ area }) {
             <Swiper
                 slidesPerView={1}
                 className={styles.swiper}
-                navigation={true}
-                modules={[Navigation]}
             >
                 {arr.map((val, key) => {
                     return <SwiperSlide className={styles.slide} key={key}>
                         {val.map((lst, idx) => {
                             let random = Math.floor(Math.random() * (10 - 1 + 1) + 1);
-                            return <fieldset key={idx} className={styles.imgBox}>
+                            return <fieldset key={idx} className={styles.imgBox} onClick={()=>{navigate(`/detail/${lst.contentId}/${lst.contenttypeid}`)}}>
                                 <img src={lst.firstimage ? lst.firstimage : `./images/recommand/${state.area.imgArea}${random}.jpg`} alt="제주도이미지" />
                                 <span>{lst.title}</span>
                             </fieldset>

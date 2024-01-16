@@ -1,7 +1,15 @@
 .wrap {
   position: relative;
-  margin-bottom: 50px;
-  .swiperSlide{
+  div.swiperNoImageWrap {
+    width: 940px;
+    height: 627px;
+    overflow: hidden;
+    img.swiperNoImage {
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .swiperSlide {
     width: 940px;
     height: 627px;
     img {
@@ -22,7 +30,7 @@
     background-color: var(--fontDarkColor);
     border-radius: 30px;
     z-index: 10;
-    div{
+    div {
       span {
         font-size: 16px;
         &:last-child {
@@ -41,7 +49,7 @@
     height: 40px;
     z-index: 10;
     cursor: pointer;
-    img{
+    img {
       height: 100%;
     }
     &.prevBtn {
@@ -49,7 +57,7 @@
     }
     &.nextBtn {
       right: 20px;
-      img{
+      img {
         transform: scaleX(-1);
       }
     }

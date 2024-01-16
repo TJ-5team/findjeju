@@ -1,5 +1,5 @@
 .wrap {
-  margin-top: 100px;
+  margin-top: 180px;
 }
 
 .tripCourseContent .tripCourseTitle {
@@ -22,6 +22,24 @@
   font-size: 36px;
   font-weight: 800;
 }
+.tripCourseContent em.titleRed {
+  width: 65px;
+  height: 32px;
+  background: #ed4956;
+  border-radius: 16px;
+  color: #FFF;
+  display: inline-block;
+  font-weight: 700;
+  font-size: 18px;
+  text-align: center;
+  line-height: 31px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+.tripCourseContent h2 {
+  display: inline-block;
+  vertical-align: middle;
+}
 .tripCourseContent .courseTitle strong, .tripCourseContent .courseTitle h2, .tripCourseContent .courseTitle em,
 .tripCourseContent .courseTapTitleWrap strong,
 .tripCourseContent .courseTapTitleWrap h2,
@@ -35,18 +53,26 @@
   color: #FFF;
   font-weight: 700;
 }
-.tripCourseContent .courseSubAddr {
+.tripCourseContent .courseSubComment {
   color: #666;
   font-size: 16px;
   text-align: left;
+}
+.tripCourseContent .courseSubComment span:first-child:after {
+  content: "";
+  width: 1px;
+  height: 14px;
+  background: #CCC;
+  display: inline-block;
+  margin: 0 10px;
+  vertical-align: middle;
 }
 .tripCourseContent .tripCourseInfo {
   margin-bottom: 44px;
 }
 .tripCourseContent .tripCourseInfo ul {
-  border-top: 1px solid var(--borderline);
   border-bottom: 1px solid var(--borderline);
-  padding: 40px 150px;
+  padding: 0px 150px 40px;
   display: flex;
   flex-wrap: wrap;
 }
@@ -55,9 +81,6 @@
   height: 80px;
   display: flex;
   align-items: center;
-}
-.tripCourseContent .tripCourseInfo ul li:last-child {
-  width: 100%;
 }
 .tripCourseContent .tripCourseInfo ul li figure {
   width: 80px;
@@ -188,12 +211,12 @@
 }
 .tripCourseContent .courseTap .courseTapContent {
   width: 100%;
-  height: 507px;
+  min-height: 507px;
   background: var(--white);
   border: 1px solid #ed4956;
   border-radius: 10px;
   box-shadow: 2px 2px 10px 0px rgb(150, 150, 150);
-  padding: 49px 29px 30px;
+  padding: 49px 29px 40px;
   text-align: center;
 }
 .tripCourseContent .courseTap .courseTapContent .courseTapTitleWrap {

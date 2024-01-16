@@ -3,10 +3,12 @@ import styles from "./styles.module.css";
 import { Link, useParams } from "react-router-dom";
 import {useDispatch} from "react-redux"
 import { clickSearch } from "../../../reducer/searchReducer";
+import { getUser } from "../../../utils/localStorage";
 export default function HeaderForm() {
   const params = useParams();
   const dispatch = useDispatch();
   const [keyword, setKeyword] = useState("");
+  const userInfo = getUser();
   useEffect(()=>{
     if(params.keyword){
       setKeyword(params.keyword)
@@ -26,7 +28,7 @@ export default function HeaderForm() {
           <Link to={"/"} className={styles.btnSearch}></Link>
         </div>
         <div className={styles.profile}>
-          <Link to={"/login"} className={styles.btnProfile}></Link>
+          {userInfo.id ? <Link to={"/mypage/main"} className={styles.btnProfile}></Link> : <Link to={"/login"} className={styles.btnProfile}></Link>}
         </div>
       </div>
     </>

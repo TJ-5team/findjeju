@@ -7,13 +7,14 @@ import styles from "./styles.module.css";
 import { useLocation } from 'react-router';
 import LikeButton from '../../main/rest/likebutton/LikeButton';
 
-export default function DetailTitle({ commonList, infoList }) {
+export default function DetailTitle({ commonList, detailInfo }) {
   const [scrap, setScrap] = useState(false);
   const location = useLocation();
 
   console.log(commonList);
 
-  console.log(infoList);
+  console.log(detailInfo);
+
   
   const handleScrap = (e, idx) => {
     if (scrap === false) {
@@ -34,13 +35,58 @@ export default function DetailTitle({ commonList, infoList }) {
     }
   };
 
+  /* const userInfo = getUser();
+  const navigate = useNavigate();
+
+  const [reply, setReply] = useState("");
+  const [replyList, setReplyList] = useState([]);
+  const [replyReload, setReplyReload] = useState(false);
+  const [replyRemove, setReplyRemove] = useState(false);
+
+  const handleClick = (e) => {
+    if (reply !== "") {
+      axios.post("http://localhost:8000/review", { contentid: contentid, contenttypeid: contenttypeid, reply: reply, id: "try226" })
+        .then(result => {
+          if (result.data === "ok") {
+            setReplyReload(!replyReload);
+            setReply("");
+          }
+        });
+    }
+  };
+
+  useEffect(() => {
+    axios.get(`http://localhost:8000/review/${contentid}/${contenttypeid}`)
+      .then(result => setReplyList(result.data));
+  }, [replyReload, replyRemove])
+
+
+  const handleRemove = (rid) => {
+    const confirmRemove = window.confirm("정말 삭제하시겠습니까?")
+    if(confirmRemove){
+    axios.delete(`http://localhost:8000/review/remove/${rid}`)
+      .then(result => {
+        if (result.data === "ok") {
+          alert("삭제되었습니다")
+          setReplyRemove(!replyRemove);
+        }
+      })
+    }
+  }; */
+
 
   return (
     <>
       <h2 className={styles.title} key={commonList.contentid}>{commonList.title}</h2>
       <div className={styles.descriptionWrap}>
         <p className={styles.description}>{commonList.addr1.substring(0, 2)}</p>
-        {infoList.distance && <p className={styles.decription2}>코스 총거리 : {infoList.distance}</p>}
+        {detailInfo &&
+          <>
+            {detailInfo.map((l, idx) =>
+              <p key={idx}>코스 총거리 : {l.distance}</p>
+            )}
+          </> 
+        }
       </div>
       <div className={styles.iconMenuWrap}>
         <div className={styles.iconMenuLeft}>
