@@ -150,7 +150,7 @@ export default function Join() {
         axios({
 
             method: 'post',
-            url: 'http://127.0.0.1:8000/member/signup',
+            url: 'http://192.168.50.31:8000/member/signup',
             data: formDataObject
 
         }).then((result) => {
@@ -398,7 +398,7 @@ export default function Join() {
 
         setTime(180);
 
-        axios.post("http://127.0.0.1:8000/member/email", { email: form.email, echeck: form.echeck })
+        axios.post("http://192.168.50.31:8000/member/email", { email: form.email, echeck: form.echeck })
             .then((result) => {
 
                 setNumber(result.data.number);

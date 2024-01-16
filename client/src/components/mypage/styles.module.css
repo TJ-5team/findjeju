@@ -17,7 +17,7 @@ div.wrap div.titleWrap h2.title::before {
   display: block;
   width: 26px;
   height: 29px;
-  background-image: url("http://localhost:3000/images/mypage/mypage.png");
+  background-image: url("http://192.168.50.31:3000/images/mypage/mypage.png");
   background-repeat: no-repeat;
   background-size: contain;
   position: absolute;

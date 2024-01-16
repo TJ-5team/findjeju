@@ -29,10 +29,10 @@ const router = createBrowserRouter([
         element:
           <MainContents>
             <VisualSlide/>
+            <Weather />
             <Recommand />
             <Rest />
             <Fiesta/>
-            <Weather />
           </MainContents>
       },
       {
