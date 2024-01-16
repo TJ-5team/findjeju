@@ -1,8 +1,10 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import styles from './styles.module.css';
 import Mapimage from "../Map/Mapimage";
-import useGetList from "../../hooks/useGetList";
 import { Link } from "react-router-dom";
+import DetailTitle from "../DetailPage/title/DetailTitle";
+import useGetList from "../../hooks/useGetList";
+import DetailReply from "../DetailPage/reply/DetailReply";
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation, Thumbs, EffectFade } from 'swiper/modules';
@@ -10,7 +12,6 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 import 'swiper/css/effect-fade';
-import SwiperComponents from "./swiperCourse/SwiperComponents";
 
 export default function TripCourse(){
   <script
@@ -19,29 +20,43 @@ export default function TripCourse(){
   ></script>
 
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
-  const [number, setNumber] = useState(0);
+  const [onIndex, setOnIndex] = useState(0);
 
-  const arr = [1,2,3,4,5,6];
+  const handleSlideClick = (index) => {
+    setOnIndex(index);
+  };
 
-  const getNumber = (e) =>{
-    setNumber(e);
-  }
+  const [courseTotal] = useGetList(`http://apis.data.go.kr/B551011/KorService1/detailCommon1?serviceKey=H4pEvj%2FnHLi4pMfSQvy0lqYgV7Wv1sdyTEBMecAG8%2Be%2FRh%2BjKs4mFAoT3D4cRrjVoEQQEyzLzSzrDjBCeYT9ng%3D%3D&contentTypeId=25&contentId=2804721&MobileOS=ETC&MobileApp=AppTest&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y&_type=json`);
+  const [courseIntro] = useGetList(`http://apis.data.go.kr/B551011/KorService1/detailIntro1?serviceKey=H4pEvj%2FnHLi4pMfSQvy0lqYgV7Wv1sdyTEBMecAG8%2Be%2FRh%2BjKs4mFAoT3D4cRrjVoEQQEyzLzSzrDjBCeYT9ng%3D%3D&contentTypeId=25&contentId=2804721&MobileOS=ETC&MobileApp=AppTest&_type=json`);  
+  const [courseInfo] = useGetList(`http://apis.data.go.kr/B551011/KorService1/detailInfo1?serviceKey=H4pEvj%2FnHLi4pMfSQvy0lqYgV7Wv1sdyTEBMecAG8%2Be%2FRh%2BjKs4mFAoT3D4cRrjVoEQQEyzLzSzrDjBCeYT9ng%3D%3D&contentTypeId=25&contentId=2804721&MobileOS=ETC&MobileApp=AppTest&_type=json`);
+  const [courseImg] = useGetList(`http://apis.data.go.kr/B551011/KorService1/detailImage1?ServiceKey=H4pEvj%2FnHLi4pMfSQvy0lqYgV7Wv1sdyTEBMecAG8%2Be%2FRh%2BjKs4mFAoT3D4cRrjVoEQQEyzLzSzrDjBCeYT9ng%3D%3D&contentId=126460&MobileOS=ETC&MobileApp=AppTest&imageYN=Y&subImageYN=Y&numOfRows=10&_type=json`);
+  const [coursePage] = useGetList(`http://apis.data.go.kr/B551011/KorService1/detailCommon1?ServiceKey=H4pEvj%2FnHLi4pMfSQvy0lqYgV7Wv1sdyTEBMecAG8%2Be%2FRh%2BjKs4mFAoT3D4cRrjVoEQQEyzLzSzrDjBCeYT9ng%3D%3D&contentTypeId=12&contentId=126460&MobileOS=ETC&MobileApp=AppTest&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y&_type=json`); //코스정보
 
-  console.log(number);
 
+  console.log(courseImg);
+  
   return(
     <>
       <div className={styles.wrap}>
         <div className={`${styles.tripCourseContent} inner`}>
-          <div className={styles.tripCourseTitle}>
+          {/* <div className={styles.tripCourseTitle}>
             <div className={styles.courseTitle}>
-              <em>1 코스</em>
-              <h2>서해랑길(진도, 목포구간)</h2>
+              <em>{courseInfo.length} 코스</em>
+              <h2>{courseTotal.title}</h2>
             </div>
             <div className={styles.courseSubAddr}>
-              <span>전라남도 목포시 고하도안길 234</span>
-              <span>내 위치에서 13239.4km</span>
+              <span>{courseIntro.distance}</span>
             </div>
+          </div> */}
+          <div className={styles.tripCourseTitle}>
+            <em className={styles.titleRed}>{courseInfo.length} 코스</em>
+            {courseTotal.map((title, titleIdx)=>
+              <DetailTitle
+                key={titleIdx}
+                commonList ={title}
+                detailInfo ={courseIntro}
+              />
+            )}
           </div>
           <div className={styles.tripCourseInfo}>
             <ul className={styles.tripCourseIcon}>
@@ -63,31 +78,18 @@ export default function TripCourse(){
                   <strong>힐링코스</strong>
                 </div>
               </li>
-              <li>
-                <figure>
-                  <img src="https://korean.visitkorea.or.kr/resources/images/sub/ico_schedule_tag.png" alt="" />
-                </figure>
-                <div>
-                  <p>태그</p>
-                  <div className={styles.tripInfoHash}>
-                    <Link to="#">#해시태그</Link>
-                    <Link to="#">#해시태그</Link>
-                    <Link to="#">#해시태그</Link>
-                    <Link to="#">#해시태그</Link>
-                    <Link to="#">#해시태그</Link>
-                    <Link to="#">#해시태그</Link>
-                    <Link to="#">#해시태그</Link>
-                    <Link to="#">#해시태그</Link>
-                    <Link to="#">#해시태그</Link>
-                  </div>
-                </div>
-              </li>
             </ul>
-            <p className={styles.tripCourseText}>
-              서해랑길은 땅끝마을 해남을 시작으로 인천 강화까지 총 1,800km의 길이다. 새와 나무, 바람의 터전이 된 쌍계사 정원과 가을 낙엽 길을 걸으며 자연 있는 그대로를 마주하게 된다. 서해랑 길로 이어진 길 따라 걸어가면 바다 소리로 채워진 고하도, 일몰 시간 섬과 섬 사이로 지는 해를 볼 수 있는 세방 낙조 그리고 이제는 과거의 길이 된 목포근대문화의 거리를 만날 수 있다.
-            </p>
+            {courseTotal.map((toComment, commentIdx)=>
+              <p key={commentIdx} className={styles.tripCourseText}>
+                {toComment.overview}
+              </p>
+              )}
           </div>
-          <Mapimage/>
+          <Mapimage
+            x = {126.5460485461}
+            y = {33.5180620158}
+            title = {""}
+          />
           <div className={styles.tripCourseSlide}>
             <div className={`${styles.courseSwiper} courseSwiper`}>
               <Swiper
@@ -95,31 +97,31 @@ export default function TripCourse(){
                   '--swiper-navigation-color': '#fff',
                   '--swiper-pagination-color': '#fff',
                 }}
-                slidesPerView={4.5}
+                slidesPerView={courseInfo.length > 4 ? 4.5 : 4}
                 className={`${styles.courseImg} courseImg`}
                 onSwiper={setThumbsSwiper}
                 navigation={true}
                 watchSlidesProgress={true}
                 modules={[Pagination, Navigation, Thumbs]}
-              > 
-                {arr.map((val,idx)=>{
-                  return <SwiperComponents
-                          key={idx}
-                          list={idx}
-                          getNumber={getNumber}
-                          number={number}
-                        />
-                })}
-
-
-                {/* <SwiperSlide className={`${styles.trip} trip ${styles.on} on`}>
-                  <em>1</em>
-                  <div className={`${styles.courseLink} courseLink`}>
-                    <Link to="#">
-                      <span>제목</span>
-                    </Link>
-                  </div>
-                </SwiperSlide>*/}
+              >
+                {courseInfo.map((courseInfo,idx)=>
+                  <SwiperSlide
+                    key={idx}
+                    className={`${styles.trip}
+                      ${idx === onIndex ? styles.on : ''}
+                      ${idx < onIndex ? styles.on100 : ''}
+                      ${idx > onIndex === '' }`}
+                    onClick={() => handleSlideClick(idx)}
+                  >
+                  <em>{idx + 1}</em>
+                  {courseTotal.map((courseTotal, pageIdx)=>
+                    <div key={pageIdx} className={`${styles.courseLink} courseLink`}
+                      style={{backgroundImage: `url(${courseTotal.firstimage})`}}>
+                      <span>{courseInfo.subname}</span>
+                    </div>
+                  )}
+                  </SwiperSlide>
+                )}
               </Swiper>
               <Swiper
                 className={`${styles.courseTap} courseTap`}
@@ -130,188 +132,34 @@ export default function TripCourse(){
                 effect={'fade'}
                 speed={1}
               >
-                <SwiperSlide className={`${styles.courseTapContent} courseTapContent`}>
-                  <div className={`${styles.courseTapTitleWrap} courseTapTitleWrap`}>
-                    <em>1</em>
-                    <strong>관광지 이름</strong>
-                  </div>
-                  <div className={styles.courseSubAddr}>
-                    <span>전라남도 목포시 고하도안길 234</span>
-                    <span>내 위치에서 13239.4km</span>
-                  </div>
-                  <div className={`${styles.courseTapImgWrap} courseTapImgWrap`}>
-                    <div className={`${styles.courseTapImg} courseTapImg`}>
-                      <Link to="#"></Link>
+                {courseInfo.map((courseInfo, cIndex)=>{
+                  return (
+                  <SwiperSlide key={cIndex} className={`${styles.courseTapContent} courseTapContent`}>
+                    <div className={`${styles.courseTapTitleWrap} courseTapTitleWrap`}>
+                      <em>{cIndex + 1}</em>
+                      <strong>{courseInfo.subname}</strong>
                     </div>
-                    <div className={`${styles.courseTapImg} courseTapImg`}>
-                      <Link to="#"></Link>
+                    <div className={`${styles.courseTapImgWrap} courseTapImgWrap`}>
+                      {courseImg.slice(0, 3).map((courseImg, imgIndex)=>
+                        <div key={imgIndex} className={`${styles.courseTapImg} courseTapImg`}>
+                          <Link to="#" style={{backgroundImage: `url(${courseImg.originimgurl})`}}>
+                          </Link>
+                        </div>
+                      )}
                     </div>
-                    <div className={`${styles.courseTapImg} courseTapImg`}>
-                      <Link to="#"></Link>
+                    <div className={styles.courseSubComment}>
+                      {courseInfo.subdetailoverview}
                     </div>
-                  </div>
-                  <ul>
-                    <li>
-                      <Link to="">#해시태그</Link>
-                    </li>
-                    <li>
-                      <Link to="">#해시태그해시태그</Link>
-                    </li>
-                    <li>
-                      <Link to="">#해시해시태그</Link>
-                    </li>
-                    <li>
-                      <Link to="">#해시태그</Link>
-                    </li>
-                    <li>
-                      <Link to="">#해시해시태그</Link>
-                    </li>
-                    <li>
-                      <Link to="">#해시태그</Link>
-                    </li>
-                    <li>
-                      <Link to="">#해시태그해시태그</Link>
-                    </li>
-                    <li>
-                      <Link to="">#해시태그</Link>
-                    </li>
-                    <li>
-                      <Link to="">#해시태그</Link>
-                    </li>
-                    
-                  </ul>
-                </SwiperSlide>
-                <SwiperSlide className={`${styles.courseTapContent} courseTapContent`}>
-                  <div className={`${styles.courseTapTitleWrap} courseTapTitleWrap`}>
-                    <em>4</em>
-                    <strong>관광지 이름</strong>
-                  </div>
-                  <div className={styles.courseSubAddr}>
-                    <span>전라남도 목포시 고하도안길 234</span>
-                    <span>내 위치에서 13239.4km</span>
-                  </div>
-                  <div className={`${styles.courseTapImgWrap} courseTapImgWrap`}>
-                    <div className={`${styles.courseTapImg} courseTapImg`}>
-                      <Link to="#"></Link>
-                    </div>
-                    <div className={`${styles.courseTapImg} courseTapImg`}>
-                      <Link to="#"></Link>
-                    </div>
-                    <div className={`${styles.courseTapImg} courseTapImg`}>
-                      <Link to="#"></Link>
-                    </div>
-                  </div>
-                  <ul>
-                    <li>
-                      <Link to="">#해시태그</Link>
-                    </li>
-                  </ul>
-                </SwiperSlide>
-                <SwiperSlide className={`${styles.courseTapContent} courseTapContent`}>
-                  <div className={`${styles.courseTapTitleWrap} courseTapTitleWrap`}>
-                    <em>2</em>
-                    <strong>관광지 이름</strong>
-                  </div>
-                  <div className={styles.courseSubAddr}>
-                    <span>전라남도 목포시 고하도안길 234</span>
-                    <span>내 위치에서 13239.4km</span>
-                  </div>
-                  <div className={`${styles.courseTapImgWrap} courseTapImgWrap`}>
-                    <div className={`${styles.courseTapImg} courseTapImg`}>
-                      <Link to="#"></Link>
-                    </div>
-                    <div className={`${styles.courseTapImg} courseTapImg`}>
-                      <Link to="#"></Link>
-                    </div>
-                    <div className={`${styles.courseTapImg} courseTapImg`}>
-                      <Link to="#"></Link>
-                    </div>
-                  </div>
-                  <ul>
-                    <li>
-                      <Link to="">#해시태그</Link>
-                    </li>
-                    <li>
-                      <Link to="">#해시태그해시태그</Link>
-                    </li>
-                    <li>
-                      <Link to="">#해시해시태그</Link>
-                    </li>
-                    <li>
-                      <Link to="">#해시태그</Link>
-                    </li>
-                    <li>
-                      <Link to="">#해시해시태그</Link>
-                    </li>
-                    <li>
-                      <Link to="">#해시태그</Link>
-                    </li>
-                    <li>
-                      <Link to="">#해시태그해시태그</Link>
-                    </li>
-                    <li>
-                      <Link to="">#해시태그</Link>
-                    </li>
-                    <li>
-                      <Link to="">#해시태그</Link>
-                    </li>
-                    
-                  </ul>
-                </SwiperSlide>
-                <SwiperSlide className={`${styles.courseTapContent} courseTapContent`}>
-                  <div className={`${styles.courseTapTitleWrap} courseTapTitleWrap`}>
-                    <em>3</em>
-                    <strong>관광지 이름</strong>
-                  </div>
-                  <div className={styles.courseSubAddr}>
-                    <span>전라남도 목포시 고하도안길 234</span>
-                    <span>내 위치에서 13239.4km</span>
-                  </div>
-                  <div className={`${styles.courseTapImgWrap} courseTapImgWrap`}>
-                    <div className={`${styles.courseTapImg} courseTapImg`}>
-                      <Link to="#"></Link>
-                    </div>
-                    <div className={`${styles.courseTapImg} courseTapImg`}>
-                      <Link to="#"></Link>
-                    </div>
-                    <div className={`${styles.courseTapImg} courseTapImg`}>
-                      <Link to="#"></Link>
-                    </div>
-                  </div>
-                  <ul>
-                    <li>
-                      <Link to="">#해시태그</Link>
-                    </li>
-                    <li>
-                      <Link to="">#해시태그해시태그</Link>
-                    </li>
-                    <li>
-                      <Link to="">#해시해시태그</Link>
-                    </li>
-                    <li>
-                      <Link to="">#해시태그</Link>
-                    </li>
-                    <li>
-                      <Link to="">#해시해시태그</Link>
-                    </li>
-                    <li>
-                      <Link to="">#해시태그</Link>
-                    </li>
-                    <li>
-                      <Link to="">#해시태그해시태그</Link>
-                    </li>
-                    <li>
-                      <Link to="">#해시태그</Link>
-                    </li>
-                    <li>
-                      <Link to="">#해시태그</Link>
-                    </li>
-                    
-                  </ul>
-                </SwiperSlide>
+                  </SwiperSlide>
+                  )
+                })}
               </Swiper>
             </div>
           </div>
+          <DetailReply 
+            contentid = {2372024}
+            contenttypeid = {25}
+          />
         </div>
       </div>
     </>

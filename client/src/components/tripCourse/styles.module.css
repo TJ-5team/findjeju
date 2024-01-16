@@ -1,3 +1,7 @@
+.wrap {
+  margin-top: 180px;
+}
+
 .tripCourseContent .tripCourseTitle {
   text-align: center;
   margin-bottom: 35px;
@@ -18,6 +22,24 @@
   font-size: 36px;
   font-weight: 800;
 }
+.tripCourseContent em.titleRed {
+  width: 65px;
+  height: 32px;
+  background: #ed4956;
+  border-radius: 16px;
+  color: #FFF;
+  display: inline-block;
+  font-weight: 700;
+  font-size: 18px;
+  text-align: center;
+  line-height: 31px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+.tripCourseContent h2 {
+  display: inline-block;
+  vertical-align: middle;
+}
 .tripCourseContent .courseTitle strong, .tripCourseContent .courseTitle h2, .tripCourseContent .courseTitle em,
 .tripCourseContent .courseTapTitleWrap strong,
 .tripCourseContent .courseTapTitleWrap h2,
@@ -31,11 +53,12 @@
   color: #FFF;
   font-weight: 700;
 }
-.tripCourseContent .courseSubAddr {
+.tripCourseContent .courseSubComment {
   color: #666;
   font-size: 16px;
+  text-align: left;
 }
-.tripCourseContent .courseSubAddr span:first-child:after {
+.tripCourseContent .courseSubComment span:first-child:after {
   content: "";
   width: 1px;
   height: 14px;
@@ -48,9 +71,8 @@
   margin-bottom: 44px;
 }
 .tripCourseContent .tripCourseInfo ul {
-  border-top: 1px solid #e6e6e6;
-  border-bottom: 1px solid #e6e6e6;
-  padding: 40px 150px;
+  border-bottom: 1px solid var(--borderline);
+  padding: 0px 150px 40px;
   display: flex;
   flex-wrap: wrap;
 }
@@ -59,9 +81,6 @@
   height: 80px;
   display: flex;
   align-items: center;
-}
-.tripCourseContent .tripCourseInfo ul li:last-child {
-  width: 100%;
 }
 .tripCourseContent .tripCourseInfo ul li figure {
   width: 80px;
@@ -96,7 +115,6 @@
   margin-top: 40px;
   padding: 0 20px;
   background: #EEE;
-  box-sizing: border-box;
   position: relative;
 }
 .tripCourseContent .tripCourseSlide .courseSwiper .courseImg {
@@ -147,7 +165,7 @@
   border: 2px solid #bfbfbf;
   border-radius: 50%;
   color: #767676;
-  line-height: 29px;
+  line-height: 25px;
   position: absolute;
   left: 50%;
   top: 34px;
@@ -157,25 +175,25 @@
 .tripCourseContent .tripCourseSlide .courseSwiper .courseImg .trip .courseLink {
   width: 100%;
   height: 180px;
-  background: #FFF;
+  background-position: center;
+  background-repeat: no-repeat;
+  -o-object-fit: cover;
+     object-fit: cover;
   border-radius: 10px;
-  margin: 0px 10px;
   box-shadow: 2px 2px 10px 0px rgb(150, 150, 150);
-  overflow: hidden;
-}
-.tripCourseContent .tripCourseSlide .courseSwiper .courseImg .trip .courseLink a {
-  width: 100%;
-  height: 100%;
   display: flex;
-  color: #FFF;
+  color: var(--white);
+  cursor: pointer;
   position: relative;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+  margin: 0px 10px;
 }
-.tripCourseContent .tripCourseSlide .courseSwiper .courseImg .trip .courseLink a span {
+.tripCourseContent .tripCourseSlide .courseSwiper .courseImg .trip .courseLink span {
   z-index: 1;
 }
-.tripCourseContent .tripCourseSlide .courseSwiper .courseImg .trip .courseLink a::after {
+.tripCourseContent .tripCourseSlide .courseSwiper .courseImg .trip .courseLink::after {
   content: "";
   width: 100%;
   height: 100%;
@@ -185,7 +203,7 @@
   top: 0;
   left: 0;
 }
-.tripCourseContent .tripCourseSlide .courseSwiper .courseImg .trip .courseLink a:hover::after {
+.tripCourseContent .tripCourseSlide .courseSwiper .courseImg .trip .courseLink:hover::after {
   background: rgba(237, 73, 86, 0.8);
 }
 .tripCourseContent .courseTap {
@@ -193,12 +211,12 @@
 }
 .tripCourseContent .courseTap .courseTapContent {
   width: 100%;
-  background: #FFF;
+  min-height: 507px;
+  background: var(--white);
   border: 1px solid #ed4956;
   border-radius: 10px;
-  box-sizing: border-box;
   box-shadow: 2px 2px 10px 0px rgb(150, 150, 150);
-  padding: 49px 29px 30px;
+  padding: 49px 29px 40px;
   text-align: center;
 }
 .tripCourseContent .courseTap .courseTapContent .courseTapTitleWrap {
@@ -211,7 +229,7 @@
   height: 30px;
   border-radius: 30px;
   font-size: 16px;
-  line-height: 30px;
+  line-height: 28px;
   margin-right: 5px;
 }
 .tripCourseContent .courseTap .courseTapContent .courseTapImgWrap {
@@ -222,12 +240,15 @@
 .tripCourseContent .courseTap .courseTapContent .courseTapImgWrap .courseTapImg {
   width: 260px;
   height: 260px;
-  background: cadetblue;
   border-radius: 10px;
+  overflow: hidden;
 }
 .tripCourseContent .courseTap .courseTapContent .courseTapImgWrap .courseTapImg a {
   width: 100%;
   height: 100%;
+  background-position: center;
+  -o-object-fit: cover;
+     object-fit: cover;
   display: block;
 }
 .tripCourseContent .courseTap .courseTapContent ul {

@@ -11,6 +11,11 @@ export default function DetailTitle({ commonList, detailInfo }) {
   const [scrap, setScrap] = useState(false);
   const location = useLocation();
 
+  console.log(commonList);
+
+  console.log(detailInfo);
+
+  
   const handleScrap = (e, idx) => {
     if (scrap === false) {
       setScrap(true);
@@ -75,7 +80,13 @@ export default function DetailTitle({ commonList, detailInfo }) {
       <h2 className={styles.title} key={commonList.contentid}>{commonList.title}</h2>
       <div className={styles.descriptionWrap}>
         <p className={styles.description}>{commonList.addr1.substring(0, 2)}</p>
-        {detailInfo.distance && <p className={styles.decription2}>코스 총거리 : {detailInfo.distance}</p>}
+        {detailInfo &&
+          <>
+            {detailInfo.map((l, idx) =>
+              <p key={idx}>코스 총거리 : {l.distance}</p>
+            )}
+          </> 
+        }
       </div>
       <div className={styles.iconMenuWrap}>
         <div className={styles.iconMenuLeft}>

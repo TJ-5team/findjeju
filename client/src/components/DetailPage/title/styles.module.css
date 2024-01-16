@@ -2,6 +2,7 @@ h2.title {
   font-size: 36px;
   font-weight: 700;
   color: var(--fontLightColor);
+  text-align: center;
 }
 
 div.descriptionWrap {

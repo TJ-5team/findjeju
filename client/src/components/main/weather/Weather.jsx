@@ -36,7 +36,7 @@ export default function Weather(){
             <div key={skyId} className={`${styles.weatherDaily} ${getWeatherBg(sky.fcstValue)}`}>
               {weatherNowFilter.map((weath, index)=>(
                 <div key={index}>
-                  <p>{weath.baseDate}</p>
+                  {/* <p>{weath.baseDate}</p> */}
                   <p>{weath.obsrValue}<span>&#8451;</span></p>
                 </div>
               ))}

@@ -65,12 +65,14 @@ export default function WeatherWeek (){
                 <div className={styles.weatherIconBox}>
                   {weatherIcon}
                 </div>
-                <p>{value.wf3Am}</p>
-                <p>
-                  {val.taMin3} <span>&#8451;</span>
-                  {val.taMax3} <span>&#8451;</span>
-                </p>
-                <span><WiUmbrella /> {value.rnSt3Am}&#37;</span>
+                <p className={styles.weatherSkyText}>{value.wf3Am}</p>
+                <div className={styles.weatherTemBox}>
+                  <ul>
+                    <li>최저 <strong><span>{val.taMin3}</span> &#8451;</strong> </li>
+                    <li>최고 <strong><span>{val.taMax3}</span> &#8451;</strong> </li>
+                  </ul>
+                  <p className={styles.weatherUmb}><WiUmbrella /> <strong><span>{value.rnSt3Am}</span> &#37;</strong></p>
+                </div>
               </div>
               })
             }
@@ -80,20 +82,22 @@ export default function WeatherWeek (){
             return <li key={idx}> {
               weatherWeek.map((value,index)=>{
                 const weekDay = getDayOfWeek((today.getDay() + 4) % 7);
-                const weatherIcon = getWeatherIcon(value.wf4Am);
+                const weatherIcon = getWeatherIcon(value.wf3Am);
                 return <div key={index}>
-                  {month}. {weekDate+4} {weekDay}
+                <p>{month}. {weekDate+4} {weekDay}</p>
                 <div className={styles.weatherIconBox}>
                   {weatherIcon}
                 </div>
-                <p>{value.wf4Am}</p>
-                <p>
-                  {val.taMin4} <span>&#8451;</span>
-                  {val.taMax4} <span>&#8451;</span>
-                </p>
-                <span><WiUmbrella /> {value.rnSt4Am}&#37;</span>
+                <p className={styles.weatherSkyText}>{value.wf4Am}</p>
+                <div className={styles.weatherTemBox}>
+                  <ul>
+                    <li>최저 <strong><span>{val.taMin4}</span> &#8451;</strong> </li>
+                    <li>최고 <strong><span>{val.taMax4}</span> &#8451;</strong> </li>
+                  </ul>
+                  <p className={styles.weatherUmb}><WiUmbrella /> <strong><span>{value.rnSt4Am}</span> &#37;</strong></p>
+                </div>
               </div>
-              }) 
+              })
             }
           </li>
           })}
@@ -101,20 +105,22 @@ export default function WeatherWeek (){
             return <li key={idx}> {
               weatherWeek.map((value,index)=>{
                 const weekDay = getDayOfWeek((today.getDay() + 5) % 7);
-                const weatherIcon = getWeatherIcon(value.wf5Am);
+                const weatherIcon = getWeatherIcon(value.wf3Am);
                 return <div key={index}>
-                  {month}. {weekDate+5} {weekDay}
-                  <div className={styles.weatherIconBox}>
-                    {weatherIcon}
-                  </div>
-                  <p>{value.wf5Am}</p>
-                  <p>
-                    {val.taMin5} <span>&#8451;</span>
-                    {val.taMax5} <span>&#8451;</span>
-                  </p>
-                  <span><WiUmbrella /> {value.rnSt5Am}&#37;</span>
+                <p>{month}. {weekDate+5} {weekDay}</p>
+                <div className={styles.weatherIconBox}>
+                  {weatherIcon}
                 </div>
-              }) 
+                <p className={styles.weatherSkyText}>{value.wf5Am}</p>
+                <div className={styles.weatherTemBox}>
+                  <ul>
+                    <li>최저 <strong><span>{val.taMin5}</span> &#8451;</strong> </li>
+                    <li>최고 <strong><span>{val.taMax5}</span> &#8451;</strong> </li>
+                  </ul>
+                  <p className={styles.weatherUmb}><WiUmbrella /> <strong><span>{value.rnSt5Am}</span> &#37;</strong></p>
+                </div>
+              </div>
+              })
             }
           </li>
           })}
@@ -122,23 +128,26 @@ export default function WeatherWeek (){
             return <li key={idx}> {
               weatherWeek.map((value,index)=>{
                 const weekDay = getDayOfWeek((today.getDay() + 6) % 7);
-                const weatherIcon = getWeatherIcon(value.wf6Am);
+                const weatherIcon = getWeatherIcon(value.wf3Am);
                 return <div key={index}>
-                    {month}. {weekDate+6} {weekDay}
-                    <div className={styles.weatherIconBox}>
-                    {weatherIcon}
-                  </div>
-                  <p>{value.wf6Am}</p>
-                  <p>
-                    {val.taMin6} <span>&#8451;</span>
-                    {val.taMax6} <span>&#8451;</span>
-                  </p>
-                  <span><WiUmbrella /> {value.rnSt6Am}&#37;</span>
+                <p>{month}. {weekDate+6} {weekDay}</p>
+                <div className={styles.weatherIconBox}>
+                  {weatherIcon}
                 </div>
-              }) 
+                <p className={styles.weatherSkyText}>{value.wf6Am}</p>
+                <div className={styles.weatherTemBox}>
+                  <ul>
+                    <li>최저 <strong><span>{val.taMin6}</span> &#8451;</strong> </li>
+                    <li>최고 <strong><span>{val.taMax6}</span> &#8451;</strong> </li>
+                  </ul>
+                  <p className={styles.weatherUmb}><WiUmbrella /> <strong><span>{value.rnSt6Am}</span> &#37;</strong></p>
+                </div>
+              </div>
+              })
             }
           </li>
           })}
+
       </ul>
     </>
   );
