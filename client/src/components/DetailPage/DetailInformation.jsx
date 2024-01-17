@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import useGetList from "../../hooks/useGetList";
 import styles from "./styles.module.css";
 import { HiArrowSmallUp } from "react-icons/hi2";
-import DetailSwiper from "./swiper/DetailSwiper";
 import Mapimage from "../Map/Mapimage";
 import TripInfo from "../tripInfo/TripInfo";
 import DetailTitle from "./title/DetailTitle";
@@ -19,6 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import useScroll from "../../hooks/useScroll";
 import { DetailData } from "../../api/detailApi";
 import { getDetailData } from "../../reselector/detailReselector";
+import DetailSwiper from './swiperimage/DetailSwiper';
 
 export default function DetailInformation() {
   const { y } = useScroll();

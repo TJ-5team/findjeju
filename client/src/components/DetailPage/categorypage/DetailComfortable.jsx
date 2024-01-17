@@ -9,7 +9,7 @@ export default function DetailComfortable({ contentid, comfortableInfo }) {
     <>
       {comfortableInfo && comfortableInfo.map(info =>
         <ul className={styles.detailInfo} key={contentid}>
-          <DetailList name={"문의 및 안내"} list={info.parking} />
+          <DetailList name={"장애인 주차 안내"} list={info.parking} />
           <DetailList name={"접근로"} list={info.publictransport} />
           <DetailList name={"휠체어"} list={info.wheelchair} />
           <DetailList name={"출입통로"} list={info.exit} />

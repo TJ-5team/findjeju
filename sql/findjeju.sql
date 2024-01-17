@@ -19,6 +19,9 @@ create table fj_member(
 drop table fj_member;
 
 insert into fj_member(name,id,password,nickname,email,phone,address,user_img) values('관리자','test','$2a$10$TcZs4tDeBpTJNAnVHg65U.m0DsqsTj0eH1gLkulWOfnNv1H96sfwG','5조','try226@naver.com','01012345678','경기도 부천시 소사구', 'path');
+insert into fj_member(name,id,password,nickname,email,phone,address,user_img) values('관리자','test1','$2a$10$TcZs4tDeBpTJNAnVHg65U.m0DsqsTj0eH1gLkulWOfnNv1H96sfwG','5조','try226@naver.com','01012345678','경기도 부천시 소사구', 'uploads\1705483262637-239436975_smile.jpg');
+
+select name,id,password,nickname,email,phone,address,user_img as image,sms_check from fj_member where id = 'test';
 
 select * from fj_member;
 
