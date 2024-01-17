@@ -10,7 +10,6 @@ import axios from 'axios';
 export default function VisualSlide() {
   const [list, setList] = useState([]);
   useEffect(() => {
-    console.log(list);
     try {
       axios
       .get("http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=11&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey=CU%2BXIQukCNW8VDOOJDU8QzHHPgrsOso%2FEiDhpWTlD8Lb9q1SYmll5Qp9YK4UsjFNOYVQoLCrMi2s0mfnEPr0iA%3D%3D&listYN=Y&arrange=R&contentTypeId=12&areaCode=39&sigunguCode=&cat1=&cat2=A0101&cat3=&_type=json")
@@ -18,7 +17,6 @@ export default function VisualSlide() {
     } catch (error) {
       console.log(error);
     }
-    console.log(list);
   }, []);
   // console.log(list)
   const [firstSwiper, setFirstSwiper] = useState(null);

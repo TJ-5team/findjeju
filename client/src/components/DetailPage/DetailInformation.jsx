@@ -122,7 +122,7 @@ export default function DetailInformation() {
       <div className={`${styles.inner} inner`}>
         {commonInfo && commonInfo.map((commonList) =>
           <div key={commonList.contentid}>
-            <DetailTitle commonList={commonList} detailInfo={detailInfo} />
+            <DetailTitle commonList={commonList} />
             <ul className={y > 313 ? `${styles.tabMenuWrap} ${styles.active}` : styles.tabMenuWrap}>
               {tabMenulist && tabMenulist.map((list, idx) =>
                 <li onClick={(e) => handleActive(e, idx)} className={active === idx ? `${styles.tabMenu} ${styles.active}` : styles.tabMenu} key={idx}>{list}</li>

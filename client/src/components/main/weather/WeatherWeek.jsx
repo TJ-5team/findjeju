@@ -38,17 +38,17 @@ export default function WeatherWeek (){
     if (weatherStatus === '맑음') {
       return <WiDaySunny />;
     } else if (weatherStatus === '구름많음' || weatherStatus === '흐림') {
-      return <WiCloud />;
+      return <WiCloud />
     } else if (weatherStatus === '구름많고 비' || weatherStatus === '흐리고 비') {
-      return <WiRain />;
+      return <WiRain />
     } else if (weatherStatus === '구름많고 눈' || weatherStatus === '흐리고 눈') {
-      return <WiSnow />;
+      return <WiSnow />
     } else if (weatherStatus === '구름많고 비/눈' || weatherStatus === '흐리고 비/눈') {
-      return <WiRainMix />;
+      return <WiRainMix />
     } else if (weatherStatus === '소나기' || weatherStatus === '구름많고 소나기' || weatherStatus === '흐리고 소나기') {
-      return <WiDayRain />;
+      return <WiDayRain />
     } else {
-      return <WiDaySunny />;
+      return <WiDaySunny />
     }
   };
 
@@ -82,7 +82,7 @@ export default function WeatherWeek (){
             return <li key={idx}> {
               weatherWeek.map((value,index)=>{
                 const weekDay = getDayOfWeek((today.getDay() + 4) % 7);
-                const weatherIcon = getWeatherIcon(value.wf3Am);
+                const weatherIcon = getWeatherIcon(value.wf4Am);
                 return <div key={index}>
                 <p>{month}. {weekDate+4} {weekDay}</p>
                 <div className={styles.weatherIconBox}>
@@ -105,7 +105,7 @@ export default function WeatherWeek (){
             return <li key={idx}> {
               weatherWeek.map((value,index)=>{
                 const weekDay = getDayOfWeek((today.getDay() + 5) % 7);
-                const weatherIcon = getWeatherIcon(value.wf3Am);
+                const weatherIcon = getWeatherIcon(value.wf5Am);
                 return <div key={index}>
                 <p>{month}. {weekDate+5} {weekDay}</p>
                 <div className={styles.weatherIconBox}>
@@ -128,7 +128,7 @@ export default function WeatherWeek (){
             return <li key={idx}> {
               weatherWeek.map((value,index)=>{
                 const weekDay = getDayOfWeek((today.getDay() + 6) % 7);
-                const weatherIcon = getWeatherIcon(value.wf3Am);
+                const weatherIcon = getWeatherIcon(value.wf6Am);
                 return <div key={index}>
                 <p>{month}. {weekDate+6} {weekDay}</p>
                 <div className={styles.weatherIconBox}>

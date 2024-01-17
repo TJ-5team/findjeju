@@ -49,7 +49,7 @@ input {
 }
 
 div.wrap {
-  min-height: 900px;
+  padding: 60px 0;
 }
 div.wrap h3.title {
   margin-bottom: 28px;

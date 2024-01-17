@@ -1,6 +1,5 @@
 .wrap {
-  min-height: 500px;
-  margin: 80px 0;
+  padding: 30px 0 60px;
   background-color: var(--lightGray);
 }
 .wrap div.restTitle {
@@ -96,7 +95,7 @@
 }
 .wrap div.recommandSection div.recommandItem.active {
   cursor: pointer;
-  width: 600px;
+  width: 560px;
 }
 .wrap div.recommandSection div.recommandItem.active img {
   transform: scale(1.2);
