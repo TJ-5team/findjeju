@@ -11,20 +11,12 @@ import { WiRainMix } from "react-icons/wi"; //비/눈
 import { WiDayRain } from "react-icons/wi"; //소나기
 import { WiUmbrella } from "react-icons/wi"; // 강수확률용
 
-
-//https://react-icons.github.io/react-icons/icons/wi/
-
 export default function WeatherWeek (){
   const date = useGetDate(false, false, true);
   const week = useGetDate(false);
-  const arr = [3,4,5,6];
-  /* const [weatherWeek] = useGetList(`http://apis.data.go.kr/1360000/MidFcstInfoService/getMidLandFcst?serviceKey=H4pEvj%2FnHLi4pMfSQvy0lqYgV7Wv1sdyTEBMecAG8%2Be%2FRh%2BjKs4mFAoT3D4cRrjVoEQQEyzLzSzrDjBCeYT9ng%3D%3D&numOfRows=10&pageNo=1&dataType=JSON&regId=11G00000&tmFc=${date.date}`) */
   const [weatherWeek] = useGetList(`http://apis.data.go.kr/1360000/MidFcstInfoService/getMidLandFcst?serviceKey=H4pEvj%2FnHLi4pMfSQvy0lqYgV7Wv1sdyTEBMecAG8%2Be%2FRh%2BjKs4mFAoT3D4cRrjVoEQQEyzLzSzrDjBCeYT9ng%3D%3D&numOfRows=10&pageNo=1&regId=11G00000&tmFc=${date.date}&dataType=JSON
   `)
   const [weatherWeekTem] = useGetList(`http://apis.data.go.kr/1360000/MidFcstInfoService/getMidTa?serviceKey=H4pEvj%2FnHLi4pMfSQvy0lqYgV7Wv1sdyTEBMecAG8%2Be%2FRh%2BjKs4mFAoT3D4cRrjVoEQQEyzLzSzrDjBCeYT9ng%3D%3D&numOfRows=40&pageNo=1&regId=11G00201&tmFc=${date.date}&dataType=JSON`);
-
-  console.log(weatherWeek);
-  console.log(weatherWeekTem);
 
   let today = new Date();   
   let month = today.getMonth() + 1;  // 월
