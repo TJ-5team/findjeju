@@ -7,7 +7,7 @@ export async function insertReview({contentid, contenttypeid, reply, replyImage,
 }
 
 export async function getReview({contentid, contenttypeid}) {
-  const sql = `select r.id, user_img, contentid, contenttypeid, review_text, review_img, left(rdate,10) rdate from fj_review r, fj_member m where r.id=m.id and contentid=? and contenttypeid=?`;
+  const sql = `select r.id, user_img, contentid, contenttypeid, review_text, review_img, left(rdate,10) rdate from fj_review r, fj_member m where r.id=m.id and contentid=? and contenttypeid=? `;
   return db.execute(sql, [contentid, contenttypeid])
     .then(rows => rows[0]);
 }

@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { UserData } from '../../../api/userApi';
 import { userData } from '../../../reselector/userReselector.js';
 import { BsCheckLg } from 'react-icons/bs';
+import { AiFillCloseSquare } from "react-icons/ai"
 
 export default function DetailReply({ contentid, contenttypeid }) {
   const userInfo = getUser();
@@ -28,11 +29,13 @@ export default function DetailReply({ contentid, contenttypeid }) {
     axios.get(`http://localhost:8000/review/${contentid}/${contenttypeid}`)
       .then(result => setReplyList(result.data));
   }, [replyReload, replyRemove])
-  console.log(replyList);
+  // console.log(replyImage);
 
   const getImage = (e) => {
     setReplyImage(e)
+    // console.log(e);
   }
+
 
   const handleClick = (e) => {
     if (reply !== "") {
@@ -41,6 +44,7 @@ export default function DetailReply({ contentid, contenttypeid }) {
           if (result.data === "ok") {
             setReplyReload(!replyReload);
             setReply("");
+            setReplyImage(null);
           }
         });
     }
@@ -82,16 +86,23 @@ export default function DetailReply({ contentid, contenttypeid }) {
             : <button type="button" onClick={() => navigate('/login')}>로그인</button>
           }
         </div>
-        {replyImage &&
+        {replyImage === null ?
+          <></>
+        :
           <div className={styles.replyImageWrap}>
-            <img src={`http://localhost:8000/${replyImage}`} alt="" />
+            <div>
+              <img src={`http://localhost:8000/${replyImage}`} alt="" />
+              <button type="button" className={styles.imageRemove} onClick={()=>setReplyImage(null)}>
+                <AiFillCloseSquare size="25" />
+              </button>
+            </div>
             <p>이미지 첨부는 최대 1개까지 가능합니다. <br />변경을 원하시면 다시 등록해주세요.</p>
           </div>
         }
       </div>
 
-      {replyList && replyList.map(reply =>
-        <div className={styles.reviewList} key={reply.rid}>
+      {replyList && replyList.map((reply,idx) =>
+        <div className={styles.reviewList} key={idx}>
           <div className={styles.userImg}>
             {!reply.user_img
               ? <img src="http://127.0.0.1:3000/images/mypage/user.png" alt="프로필이미지" />
