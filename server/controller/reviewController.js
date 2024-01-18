@@ -1,9 +1,8 @@
 import * as repository from "../repository/reviewRepository.js";
 
 export async function insertReview(req, res){
-  const {contentid, contenttypeid, reply, id} = req.body;
-  const result = await repository.insertReview({contentid, contenttypeid, reply, id});
-
+  const {contentid, contenttypeid, reply, replyImage, id} = req.body;
+  const result = await repository.insertReview({contentid, contenttypeid, reply, replyImage, id});
   res.json(result);
 }
 

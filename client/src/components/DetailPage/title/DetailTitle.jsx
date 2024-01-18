@@ -11,9 +11,7 @@ export default function DetailTitle({ commonList, detailInfo }) {
   const [scrap, setScrap] = useState(false);
   const location = useLocation();
 
-  console.log(commonList);
 
-  console.log(detailInfo);
 
   
   const handleScrap = (e, idx) => {

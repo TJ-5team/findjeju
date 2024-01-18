@@ -63,6 +63,8 @@ export default function Join() {
     const pattern_emoji = /[\uD800-\uDBFF][\uDC00-\uDFFF]/; // 이모지체크
     const pattern_phone = /^(01[016789]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
 
+    // 정규식도 객체로 관리하여준다.
+    // 
 
     // 유효성검사 focus이동
     const nameRef = useRef(null);
@@ -171,6 +173,8 @@ export default function Join() {
 
         const { name, value } = e.target
 
+
+
         /* 이름 유효성 검사 */
         if (name === 'name' && value) {
             const search = userData.some((val) => val.name === value);
@@ -209,11 +213,16 @@ export default function Join() {
         /* 패스워드 유효성 검사 */
         if (name === 'pass' && value) {
             if (!reg.test(value)) {
-                setValidation((validation) => ({ ...validation, pass: '한글을 제외한 특수문자,문자,숫자를 포함하여 8자 이상 입력해주세요.' }))
+                setValidation((validation) => ({ ...validation, pass: '한글을 제외한 특수문자,문자,숫자를 포함하여 8자 이상 입력해주세요.' }));
             } else if (value.length >= 13) {
-                setValidation((validation) => ({ ...validation, pass: '최대 12글자 입니다.' }))
+                setValidation((validation) => ({ ...validation, pass: '최대 12글자 입니다.' }));
             } else {
-                setValidation((validation) => ({ ...validation, pass: '사용 가능한 비밀번호입니다.' }))
+                setValidation((validation) => ({ ...validation, pass: '사용 가능한 비밀번호입니다.' }));
+            }
+            if (form.passcheck !== value) {
+                setValidation((validation) => ({ ...validation, passcheck: '입력하신 비밀번호와 다릅니다.' }));
+            } else if (form.passcheck === value) {
+                setValidation((validation) => ({ ...validation, passcheck: '입력하신 비밀번호와 같습니다.' }));
             }
         } else if (name === 'pass' && !value) {
 
@@ -473,6 +482,20 @@ export default function Join() {
         setImage(e);
     }
 
+    /* function fnName() {
+
+        if (focus.name === '' || form.name) {
+            if () {
+
+            } else {
+
+            }
+        } else {
+            return <span className={styles.check}>{validation.name}</span>
+        }
+
+    } */
+
     return (
         <>
             <div className={`${styles.wrap} inner`}>
@@ -500,7 +523,7 @@ export default function Join() {
                             </li>
                             <li className={styles.joinLi}>
                                 <label id="pass">* 비밀번호</label>
-                                <input type="password" name="pass" id="pass" value={form.pass} onChange={fnChange} placeholder='비밀번호' onFocus={handleFocus} />
+                                <input type="password" name="pass" id="pass" value={form.pass} onChange={fnChange} placeholder='비밀번호' onFocus={handleFocus} ref={passRef} />
                                 {focus.pass === '' || form.pass
                                     ? validation.pass === '한글을 제외한 특수문자,문자,숫자를 포함하여 8자 이상 입력해주세요.'
                                         ? <span className={styles.check}>{validation.pass}</span>
@@ -588,7 +611,7 @@ export default function Join() {
                                     <span>-</span>
                                     <input type="text" name="phone3" id="phone" value={form.phone3} onChange={fnChange} placeholder='5678' maxLength={4} ref={phoneRef3} />
                                 </div>
-                                {form.phone1 || focus.phone1 === 'ok' ? validation.phone === '번호 형식에 맞지 않습니다.' || validation.phone === '이미 사용 중인 번호입니다.' ? <span className={styles.check}> {validation.phone}</span> : <span className={styles.success}> {validation.phone}</span> : null}
+                                {form.phone1 || focus.phone1 === 'ok' ? validation.phone === '번호 형식에 맞지 않습니다.' || validation.phone === '이미 사용 중인 번호입니다.' || validation.phone === '필수 입력 항목입니다.' ? <span className={styles.check}> {validation.phone}</span> : <span className={styles.success}> {validation.phone}</span> : null}
                             </li>
                             <li className={styles.joinLi}>
                                 <label id="postal">* 우편번호</label>

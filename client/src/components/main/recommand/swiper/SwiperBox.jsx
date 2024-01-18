@@ -59,7 +59,7 @@ export default function SwiperBox({ area }) {
                     return <SwiperSlide className={styles.slide} key={key}>
                         {val.map((lst, idx) => {
                             let random = Math.floor(Math.random() * (10 - 1 + 1) + 1);
-                            return <fieldset key={idx} className={styles.imgBox} onClick={()=>{navigate(`/detail/${lst.contentid}/${lst.contenttypeid}`)}}>
+                            return <fieldset key={idx} className={styles.imgBox} onClick={() => { navigate(`/detail/${lst.contentid}/${lst.contenttypeid}`) }}>
                                 <img src={lst.firstimage ? lst.firstimage : `./images/recommand/${state.area.imgArea}${random}.jpg`} alt="제주도이미지" />
                                 <span>{lst.title}</span>
                             </fieldset>
