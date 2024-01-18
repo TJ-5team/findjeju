@@ -20,8 +20,6 @@ export default function DetailReply({ contentid, contenttypeid }) {
   const [replyReload, setReplyReload] = useState(false);
   const [replyRemove, setReplyRemove] = useState(false);
   const [replyImage, setReplyImage] = useState(null);
-  const { user } = useSelector(userData);
-  const state = useSelector((state) => state);
 
   // console.log(user);
 

@@ -18,7 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import useScroll from "../../hooks/useScroll";
 import { DetailData } from "../../api/detailApi";
 import { getDetailData } from "../../reselector/detailReselector";
-import DetailSwiper from './swiperimage/DetailSwiper';
+import DetailSwiper from "./imgswiper/DetailSwiper";
 
 export default function DetailInformation() {
   const { y } = useScroll();
