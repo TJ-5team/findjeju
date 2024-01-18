@@ -56,6 +56,7 @@
     color: #666;
     font-size: 16px;
     text-align: left;
+    line-height: 22px;
     span:first-child:after {
       content: '';
       width: 1px;
@@ -103,6 +104,8 @@
       }
     }
     .tripCourseText {
+      font-size: 17px;
+      line-height: 26px;
       padding-top: 24px;
     }//tripCourseText
   }//tripCourseInfo
@@ -112,12 +115,12 @@
     .courseSwiper {
       width: 100%;
       margin-top: 40px;
-      padding: 0 20px;
       background: #EEE;
       position: relative;
       .courseImg {
         display: flex;
         text-align: center;
+        padding: 0 20px;
         .trip {
           width: 200px;
           height: auto;
@@ -211,10 +214,10 @@
     }//courseSwiper
   }//tripCourseSlide
   .courseTap {
-    padding: 0 0 30px;
+    padding: 0 20px 30px;
     .courseTapContent {
       width: 100%;
-      min-height: 507px;
+      min-height: 550px;
       background: var(--white);
       border: 1px solid #ed4956;
       border-radius: 10px;
@@ -232,6 +235,12 @@
           font-size: 16px;
           line-height: 28px;
           margin-right: 5px;
+        }
+        >p {
+          color: var(--fontGray);
+          font-size: 17px;
+          font-weight: 400;
+          margin-top: 10px;
         }
       }//courseTapTitleWrap
       .courseTapImgWrap{

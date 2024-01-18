@@ -1,11 +1,11 @@
 .wrap {
-  background-color: var(--bluelight);
-  padding: 50px 0px;
+  background-color: var(--lightGray);
+  padding: 60px 0px 40px;
 }
 
 div.titleWrap {
   display: flex;
-  margin-bottom: 25px;
+  margin-bottom: 16px;
   align-items: center;
 }
 div.titleWrap h2.title {

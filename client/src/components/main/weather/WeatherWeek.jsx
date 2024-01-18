@@ -11,20 +11,12 @@ import { WiRainMix } from "react-icons/wi"; //비/눈
 import { WiDayRain } from "react-icons/wi"; //소나기
 import { WiUmbrella } from "react-icons/wi"; // 강수확률용
 
-
-//https://react-icons.github.io/react-icons/icons/wi/
-
 export default function WeatherWeek (){
   const date = useGetDate(false, false, true);
   const week = useGetDate(false);
-  const arr = [3,4,5,6];
-  /* const [weatherWeek] = useGetList(`http://apis.data.go.kr/1360000/MidFcstInfoService/getMidLandFcst?serviceKey=H4pEvj%2FnHLi4pMfSQvy0lqYgV7Wv1sdyTEBMecAG8%2Be%2FRh%2BjKs4mFAoT3D4cRrjVoEQQEyzLzSzrDjBCeYT9ng%3D%3D&numOfRows=10&pageNo=1&dataType=JSON&regId=11G00000&tmFc=${date.date}`) */
   const [weatherWeek] = useGetList(`http://apis.data.go.kr/1360000/MidFcstInfoService/getMidLandFcst?serviceKey=H4pEvj%2FnHLi4pMfSQvy0lqYgV7Wv1sdyTEBMecAG8%2Be%2FRh%2BjKs4mFAoT3D4cRrjVoEQQEyzLzSzrDjBCeYT9ng%3D%3D&numOfRows=10&pageNo=1&regId=11G00000&tmFc=${date.date}&dataType=JSON
   `)
   const [weatherWeekTem] = useGetList(`http://apis.data.go.kr/1360000/MidFcstInfoService/getMidTa?serviceKey=H4pEvj%2FnHLi4pMfSQvy0lqYgV7Wv1sdyTEBMecAG8%2Be%2FRh%2BjKs4mFAoT3D4cRrjVoEQQEyzLzSzrDjBCeYT9ng%3D%3D&numOfRows=40&pageNo=1&regId=11G00201&tmFc=${date.date}&dataType=JSON`);
-
-  console.log(weatherWeek);
-  console.log(weatherWeekTem);
 
   let today = new Date();   
   let month = today.getMonth() + 1;  // 월
@@ -38,17 +30,17 @@ export default function WeatherWeek (){
     if (weatherStatus === '맑음') {
       return <WiDaySunny />;
     } else if (weatherStatus === '구름많음' || weatherStatus === '흐림') {
-      return <WiCloud />;
+      return <WiCloud />
     } else if (weatherStatus === '구름많고 비' || weatherStatus === '흐리고 비') {
-      return <WiRain />;
+      return <WiRain />
     } else if (weatherStatus === '구름많고 눈' || weatherStatus === '흐리고 눈') {
-      return <WiSnow />;
+      return <WiSnow />
     } else if (weatherStatus === '구름많고 비/눈' || weatherStatus === '흐리고 비/눈') {
-      return <WiRainMix />;
+      return <WiRainMix />
     } else if (weatherStatus === '소나기' || weatherStatus === '구름많고 소나기' || weatherStatus === '흐리고 소나기') {
-      return <WiDayRain />;
+      return <WiDayRain />
     } else {
-      return <WiDaySunny />;
+      return <WiDaySunny />
     }
   };
 
@@ -82,7 +74,7 @@ export default function WeatherWeek (){
             return <li key={idx}> {
               weatherWeek.map((value,index)=>{
                 const weekDay = getDayOfWeek((today.getDay() + 4) % 7);
-                const weatherIcon = getWeatherIcon(value.wf3Am);
+                const weatherIcon = getWeatherIcon(value.wf4Am);
                 return <div key={index}>
                 <p>{month}. {weekDate+4} {weekDay}</p>
                 <div className={styles.weatherIconBox}>
@@ -105,7 +97,7 @@ export default function WeatherWeek (){
             return <li key={idx}> {
               weatherWeek.map((value,index)=>{
                 const weekDay = getDayOfWeek((today.getDay() + 5) % 7);
-                const weatherIcon = getWeatherIcon(value.wf3Am);
+                const weatherIcon = getWeatherIcon(value.wf5Am);
                 return <div key={index}>
                 <p>{month}. {weekDate+5} {weekDay}</p>
                 <div className={styles.weatherIconBox}>
@@ -128,7 +120,7 @@ export default function WeatherWeek (){
             return <li key={idx}> {
               weatherWeek.map((value,index)=>{
                 const weekDay = getDayOfWeek((today.getDay() + 6) % 7);
-                const weatherIcon = getWeatherIcon(value.wf3Am);
+                const weatherIcon = getWeatherIcon(value.wf6Am);
                 return <div key={index}>
                 <p>{month}. {weekDate+6} {weekDay}</p>
                 <div className={styles.weatherIconBox}>

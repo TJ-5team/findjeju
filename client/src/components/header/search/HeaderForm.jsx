@@ -28,7 +28,10 @@ export default function HeaderForm() {
           <button onClick={()=>dispatch(clickSearch())} className={styles.btnSearch}></button>
         </div>
         <div className={styles.profile}>
-          {userInfo.id ? <Link to={"/mypage/main"} className={styles.btnProfile}></Link> : <Link to={"/login"} className={styles.btnProfile}></Link>}
+
+          {userInfo ? userInfo.id ? <Link to={"/mypage/main"} className={styles.btnProfile}></Link> : <Link to={"/login"} className={styles.btnProfile}></Link> : <Link to={"/login"} className={styles.btnProfile}></Link>}
+          {/* {userInfo.id ? <Link to={"/mypage/main"} className={styles.btnProfile}></Link> : <Link to={"/login"} className={styles.btnProfile}></Link>} */}
+
         </div>
       </div>
     </>

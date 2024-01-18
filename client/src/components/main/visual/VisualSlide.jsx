@@ -5,10 +5,20 @@ import { Controller, Navigation, Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation'
 import { Link } from 'react-router-dom';
-import useGetList from '../../../hooks/useGetList';
+import axios from 'axios';
 
 export default function VisualSlide() {
-  const [list] = useGetList("http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=11&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey=CU%2BXIQukCNW8VDOOJDU8QzHHPgrsOso%2FEiDhpWTlD8Lb9q1SYmll5Qp9YK4UsjFNOYVQoLCrMi2s0mfnEPr0iA%3D%3D&listYN=Y&arrange=R&contentTypeId=12&areaCode=39&sigunguCode=&cat1=&cat2=A0101&cat3=&_type=json")
+  const [list, setList] = useState([]);
+  useEffect(() => {
+    try {
+      axios
+      .get("http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=11&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey=CU%2BXIQukCNW8VDOOJDU8QzHHPgrsOso%2FEiDhpWTlD8Lb9q1SYmll5Qp9YK4UsjFNOYVQoLCrMi2s0mfnEPr0iA%3D%3D&listYN=Y&arrange=R&contentTypeId=12&areaCode=39&sigunguCode=&cat1=&cat2=A0101&cat3=&_type=json")
+      .then(result => setList(result.data.response.body.items.item));
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+  // console.log(list)
   const [firstSwiper, setFirstSwiper] = useState(null);
   const [secondSwiper, setSecondSwiper] = useState(null);
   const [auto, setAuto] = useState(false);
@@ -43,6 +53,7 @@ export default function VisualSlide() {
     visualSwiper.current.swiper.autoplay.start();
     setAuto(false);
   }, [reset])
+
   return (
     <div className={styles.wrap} style={{ "background": bgColor[colorNum] }}>
       <div className={styles.cont}>

@@ -1,7 +1,9 @@
 @use "../../../css/common/common" as m;
 
 div.wrap{
-  min-height: 900px;
+  // min-height: 900px;
+  // background-color: var(--lightGray);
+  padding: 60px 0;
     h3.title{
       margin-bottom: 28px;
       font-size: 22px;

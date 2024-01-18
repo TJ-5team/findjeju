@@ -56,7 +56,7 @@ export default function Login() {
     axios({
 
       method: 'post',
-      url: 'http://127.0.0.1:8000/member/login',
+      url: 'http://localhost:8000/member/login',
       data: form
 
     }).then((result) => {

@@ -10,7 +10,7 @@ export const useGetMember = () =>{
     axios({
 
       method: 'get',
-      url: 'http://127.0.0.1:8000/member/'
+      url: 'http://localhost:8000/member/'
 
     }).then((result) => {
 

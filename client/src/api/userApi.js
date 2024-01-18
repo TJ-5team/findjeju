@@ -8,7 +8,7 @@ export const UserData = (userInfo) =>{
         axios({
   
           method: "get",
-          url: `http://127.0.0.1:8000/member/${userInfo.id}`,
+          url: `http://localhost:8000/member/${userInfo.id}`,
   
         }).then((result) => {
 

@@ -42,7 +42,7 @@ export default function ContentBox() {
       axios({
 
         method: 'get',
-        url: `http://127.0.0.1:8000/review/${userInfo.id}`
+        url: `http://localhost:8000/review/${userInfo.id}`
 
       }).then((result) => {
         if (result.data) {
