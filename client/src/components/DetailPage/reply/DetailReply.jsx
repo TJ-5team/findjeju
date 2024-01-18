@@ -6,44 +6,61 @@ import styles from "./styles.module.css";
 import { PiTrashThin } from 'react-icons/pi';
 import LikeButton from '../../main/rest/likebutton/LikeButton';
 import ImageUpload from '../../imageUpload/ImageUpload';
+import { useDispatch, useSelector } from 'react-redux';
+import { UserData } from '../../../api/userApi';
+import { userData } from '../../../reselector/userReselector.js';
+import { BsCheckLg } from 'react-icons/bs';
+import { AiFillCloseSquare } from "react-icons/ai"
 
 export default function DetailReply({ contentid, contenttypeid }) {
   const userInfo = getUser();
   const navigate = useNavigate();
-
   const [reply, setReply] = useState("");
   const [replyList, setReplyList] = useState([]);
   const [replyReload, setReplyReload] = useState(false);
   const [replyRemove, setReplyRemove] = useState(false);
+  const [replyImage, setReplyImage] = useState(null);
 
-  const handleClick = (e) => {
-    if (reply !== "") {
-      axios.post("http://localhost:8000/review", { contentid: contentid, contenttypeid: contenttypeid, reply: reply, id: "try226" })
-        .then(result => {
-          if (result.data === "ok") {
-            setReplyReload(!replyReload);
-            setReply("");
-          }
-        });
-    }
-  };
+  // console.log(user);
 
   useEffect(() => {
     axios.get(`http://localhost:8000/review/${contentid}/${contenttypeid}`)
       .then(result => setReplyList(result.data));
   }, [replyReload, replyRemove])
+  // console.log(replyImage);
+
+  const getImage = (e) => {
+    setReplyImage(e)
+    // console.log(e);
+  }
+
+
+  const handleClick = (e) => {
+    if (reply !== "") {
+      axios.post("http://localhost:8000/review", { contentid: contentid, contenttypeid: contenttypeid, reply: reply, replyImage: replyImage, id: userInfo.id })
+        .then(result => {
+          if (result.data === "ok") {
+            setReplyReload(!replyReload);
+            setReply("");
+            setReplyImage(null);
+          }
+        });
+    }
+  };
+
+
 
 
   const handleRemove = (rid) => {
     const confirmRemove = window.confirm("정말 삭제하시겠습니까?")
-    if(confirmRemove){
-    axios.delete(`http://localhost:8000/review/remove/${rid}`)
-      .then(result => {
-        if (result.data === "ok") {
-          alert("삭제되었습니다")
-          setReplyRemove(!replyRemove);
-        }
-      })
+    if (confirmRemove) {
+      axios.delete(`http://localhost:8000/review/remove/${rid}`)
+        .then(result => {
+          if (result.data === "ok") {
+            alert("삭제되었습니다")
+            setReplyRemove(!replyRemove);
+          }
+        })
     }
   };
 
@@ -58,22 +75,42 @@ export default function DetailReply({ contentid, contenttypeid }) {
         <textarea className={styles.replyText} type="text" placeholder={userInfo.id ? "소중한 댓글을 남겨주세요." : "로그인 후 소중한 댓글을 남겨주세요."}
           value={reply} onChange={(e) => setReply(e.target.value)} disabled={userInfo.id ? false : true} />
         <div className={styles.replyBtnWrap}>
-          {userInfo.id && <ImageUpload />}
+          {userInfo.id && <ImageUpload getImage={getImage} />}
           {/* <button>
                 <img src="http://localhost:3000/images\detailPage\btn_reply_file.gif" alt="" />
               </button> */}
           {userInfo.id
             ? <button type="button" onClick={handleClick}>등록</button>
-            : <button type="button" onClick={() => navigate('/login')}>로그인</button>}
+            : <button type="button" onClick={() => navigate('/login')}>로그인</button>
+          }
         </div>
+        {replyImage === null ?
+          <></>
+        :
+          <div className={styles.replyImageWrap}>
+            <div>
+              <img src={`http://localhost:8000/${replyImage}`} alt="" />
+              <button type="button" className={styles.imageRemove} onClick={()=>setReplyImage(null)}>
+                <AiFillCloseSquare size="25" />
+              </button>
+            </div>
+            <p>이미지 첨부는 최대 1개까지 가능합니다. <br />변경을 원하시면 다시 등록해주세요.</p>
+          </div>
+        }
       </div>
 
-      {replyList && replyList.map(reply =>
-        <div className={styles.reviewList} key={reply.rid}>
+      {replyList && replyList.map((reply,idx) =>
+        <div className={styles.reviewList} key={idx}>
           <div className={styles.userImg}>
-            <img src="https://item.kakaocdn.net/do/07e48e95accef30a19f445de4a857bce7154249a3890514a43687a85e6b6cc82" alt="프로필이미지" />
+            {!reply.user_img
+              ? <img src="http://127.0.0.1:3000/images/mypage/user.png" alt="프로필이미지" />
+              : <img src={"http://127.0.0.1:8000/" + reply.user_img} alt="유저이미지" />}
           </div>
           <div className={styles.reviewText}>
+            {reply.review_img &&
+              <div className={styles.reviewImage}>
+                <img src={"http://127.0.0.1:8000/" + reply.review_img} alt="리뷰사진" />
+              </div>}
             <div>{reply.review_text}</div>
             <span>{reply.id}</span>
             <span>|</span>
