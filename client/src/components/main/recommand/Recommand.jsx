@@ -1,11 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styles from './styles.module.css';
 import Title from '../title/Title';
 import SwiperBox from './swiper/SwiperBox';
 import AreaTitle from './title/AreaTitle';
-import { useSelector } from 'react-redux';
-import { getUserData } from '../../../reselector/memberReselector';
-import { getId, getUser } from '../../../utils/localStorage';
 
 export default function Recommand() {
 
@@ -16,14 +13,6 @@ export default function Recommand() {
 
   };
 
-  const state = useSelector(getUserData);
-  // const userInfo = getUser();
-
-  useEffect(() => {
-
-    // console.log(userInfo);
-
-  }, [])
 
   return (
     <>
