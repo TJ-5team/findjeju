@@ -2,10 +2,10 @@
 use findjeju;
 select database();
 
-create user 'root'@'192.168.50.31' identified by '1234';
- grant all privileges on *.* to root@192.168.50.31;
+create user 'root'@'현재 아이피' identified by '1234';
+ grant all privileges on *.* to root@현재 아이피;
  flush privileges;
- show grants for 'root'@'192.168.50.31';
+ show grants for 'root'@'현재 아이피';
  commit;
  
 -- 멤버 테이블

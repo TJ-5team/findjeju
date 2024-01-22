@@ -24,7 +24,7 @@ export default function DetailReply({ contentid, contenttypeid }) {
   // console.log(user);
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/review/${contentid}/${contenttypeid}`)
+    axios.get(`http://127.0.0.1:8000/review/${contentid}/${contenttypeid}`)
       .then(result => setReplyList(result.data));
   }, [replyReload, replyRemove])
   // console.log(replyImage);
@@ -37,7 +37,7 @@ export default function DetailReply({ contentid, contenttypeid }) {
 
   const handleClick = (e) => {
     if (reply !== "") {
-      axios.post("http://localhost:8000/review", { contentid: contentid, contenttypeid: contenttypeid, reply: reply, replyImage: replyImage, id: userInfo.id })
+      axios.post("http://127.0.0.1:8000/review", { contentid: contentid, contenttypeid: contenttypeid, reply: reply, replyImage: replyImage, id: userInfo.id })
         .then(result => {
           if (result.data === "ok") {
             setReplyReload(!replyReload);
@@ -54,7 +54,7 @@ export default function DetailReply({ contentid, contenttypeid }) {
   const handleRemove = (rid) => {
     const confirmRemove = window.confirm("정말 삭제하시겠습니까?")
     if (confirmRemove) {
-      axios.delete(`http://localhost:8000/review/remove/${rid}`)
+      axios.delete(`http://127.0.0.1:8000/review/remove/${rid}`)
         .then(result => {
           if (result.data === "ok") {
             alert("삭제되었습니다")
@@ -77,7 +77,7 @@ export default function DetailReply({ contentid, contenttypeid }) {
         <div className={styles.replyBtnWrap}>
           {userInfo.id && <ImageUpload getImage={getImage} />}
           {/* <button>
-                <img src="http://192.168.50.31:3000/images\detailPage\btn_reply_file.gif" alt="" />
+                <img src="http://127.0.0.1:3000/images\detailPage\btn_reply_file.gif" alt="" />
               </button> */}
           {userInfo.id
             ? <button type="button" onClick={handleClick}>등록</button>
@@ -89,7 +89,7 @@ export default function DetailReply({ contentid, contenttypeid }) {
         :
           <div className={styles.replyImageWrap}>
             <div>
-              <img src={`http://localhost:8000/${replyImage}`} alt="" />
+              <img src={`http://127.0.0.1:8000/${replyImage}`} alt="" />
               <button type="button" className={styles.imageRemove} onClick={()=>setReplyImage(null)}>
                 <AiFillCloseSquare size="25" />
               </button>

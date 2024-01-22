@@ -108,7 +108,7 @@ div{
     left: 38px;
     top: -12px;
     z-index: 10;
-    background: url("http://192.168.50.31:3000/images/visual1.png") no-repeat;
+    background: url("http://127.0.0.1:3000/images/visual1.png") no-repeat;
     @keyframes rotate_image {
       100% {transform: rotate(360deg);}
       
