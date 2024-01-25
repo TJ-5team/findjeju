@@ -13,8 +13,9 @@ export async function getReview(req, res){
 }
 
 export async function removeReview(req, res){
-  const {rid} = req.params;
-  const result = await repository.removeReview({rid});
+  const {id, rid} = req.params;
+  console.log(id, rid);
+  const result = await repository.removeReview({id, rid});
   res.json(result);
 }
 

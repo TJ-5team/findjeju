@@ -27,6 +27,7 @@ export default function DetailReply({ contentid, contenttypeid }) {
     axios.get(`http://127.0.0.1:8000/review/${contentid}/${contenttypeid}`)
       .then(result => setReplyList(result.data));
   }, [replyReload, replyRemove])
+  console.log(replyList);
   // console.log(replyImage);
 
   const getImage = (e) => {
@@ -48,13 +49,10 @@ export default function DetailReply({ contentid, contenttypeid }) {
     }
   };
 
-
-
-
   const handleRemove = (rid) => {
     const confirmRemove = window.confirm("정말 삭제하시겠습니까?")
     if (confirmRemove) {
-      axios.delete(`http://127.0.0.1:8000/review/remove/${rid}`)
+      axios.delete(`http://127.0.0.1:8000/review/remove/${userInfo.id}/${rid}`)
         .then(result => {
           if (result.data === "ok") {
             alert("삭제되었습니다")
@@ -118,7 +116,7 @@ export default function DetailReply({ contentid, contenttypeid }) {
           </div>
           <div className={styles.likebtnWrap}>
             <LikeButton idx={0} />
-            {userInfo.id && <PiTrashThin size="25" className={styles.replyDelete} onClick={() => handleRemove(reply.rid)}/*  data-id={reply.rid} */ />}
+            {reply.id === userInfo.id && <PiTrashThin size="25" className={styles.replyDelete} onClick={() => handleRemove(reply.rid)}/*  data-id={reply.rid} */ />}
           </div>
         </div>
       )}
