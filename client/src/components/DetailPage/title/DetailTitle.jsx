@@ -43,7 +43,7 @@ export default function DetailTitle({ commonList, detailInfo }) {
 
   const handleClick = (e) => {
     if (reply !== "") {
-      axios.post("http://localhost:8000/review", { contentid: contentid, contenttypeid: contenttypeid, reply: reply, id: "try226" })
+      axios.post("http://127.0.0.1:8000/review", { contentid: contentid, contenttypeid: contenttypeid, reply: reply, id: "try226" })
         .then(result => {
           if (result.data === "ok") {
             setReplyReload(!replyReload);
@@ -54,7 +54,7 @@ export default function DetailTitle({ commonList, detailInfo }) {
   };
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/review/${contentid}/${contenttypeid}`)
+    axios.get(`http://127.0.0.1:8000/review/${contentid}/${contenttypeid}`)
       .then(result => setReplyList(result.data));
   }, [replyReload, replyRemove])
 
@@ -62,7 +62,7 @@ export default function DetailTitle({ commonList, detailInfo }) {
   const handleRemove = (rid) => {
     const confirmRemove = window.confirm("정말 삭제하시겠습니까?")
     if(confirmRemove){
-    axios.delete(`http://localhost:8000/review/remove/${rid}`)
+    axios.delete(`http://127.0.0.1:8000/review/remove/${rid}`)
       .then(result => {
         if (result.data === "ok") {
           alert("삭제되었습니다")
@@ -97,7 +97,7 @@ export default function DetailTitle({ commonList, detailInfo }) {
           {scrap === true
             ? <PiBookmarkSimpleFill size="28" onClick={handleScrap} className={styles.iconScrapOn} />
             : <PiBookmarkSimpleThin size="28" onClick={handleScrap} />}
-          <PiShareNetworkThin size="28" onClick={() => handleCopyClipBoard(`http://localhost:3000${location.pathname}`)} className={styles.iconShare} />
+          <PiShareNetworkThin size="28" onClick={() => handleCopyClipBoard(`http://127.0.0.1:3000${location.pathname}`)} className={styles.iconShare} />
         </div>
       </div>
     </>

@@ -10,7 +10,7 @@ export default function TripInfoComponents({title, lists}){
       {lists && lists.map((list,i) => 
       <Link to={`/detail/${list.contentid}/${list.contenttypeid}`} key={i}>
         <div className={styles.box}>
-          <img className={styles.img} src={list.firstimage ? list.firstimage : "http://localhost:3000/images/jeju_island.png"} alt="추천사진" />
+          <img className={styles.img} src={list.firstimage ? list.firstimage : "http://127.0.0.1:3000/images/jeju_island.png"} alt="추천사진" />
           <h4 className={styles.text}>{list.title}</h4>
         </div>
       </Link>

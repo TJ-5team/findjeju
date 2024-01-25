@@ -84,9 +84,9 @@ export default function DetailInformation() {
     for (let index = 1; index < 12; index++) {
       if (index < 10) {
         index = '0' + index
-        result.push(<img key={index} src={`http://localhost:3000/images/detailPage/icon_bfreesvc_${index}.png`} alt=""></img>);
+        result.push(<img key={index} src={`http://127.0.0.1:3000/images/detailPage/icon_bfreesvc_${index}.png`} alt=""></img>);
       } else {
-        result.push(<img key={index} src={`http://localhost:3000/images/detailPage/icon_bfreesvc_${index}.png`} alt=""></img>);
+        result.push(<img key={index} src={`http://127.0.0.1:3000/images/detailPage/icon_bfreesvc_${index}.png`} alt=""></img>);
       }
     }
     return result;
@@ -149,7 +149,7 @@ export default function DetailInformation() {
         {/* <div>
           <h4 className={styles.titleInfo}>
             <div>
-              <img src="http://localhost:3000/images/detailPage/ico_info.png" alt="" />
+              <img src="http://127.0.0.1:3000/images/detailPage/ico_info.png" alt="" />
               모두의 여행 '무장애여행'
             </div>
           </h4>

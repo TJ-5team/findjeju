@@ -17,7 +17,7 @@ div.userBox {
         overflow: hidden;
         width: 24px;
         height: 26px;
-        background: url("http://localhost:3000/images/mypage/dot.png") no-repeat;
+        background: url("http://127.0.0.1:3000/images/mypage/dot.png") no-repeat;
         text-indent: -9999px;
         cursor: pointer;
       }
@@ -56,14 +56,14 @@ div.userBox {
           &:nth-child(1) {
             a {
               &::before {
-                background-image: url("http://localhost:3000/images/mypage/ico_sprite.png");
+                background-image: url("http://127.0.0.1:3000/images/mypage/ico_sprite.png");
               }
             }
           }
           &:nth-child(2) {
             a {
               &::before {
-                background-image: url("http://localhost:3000/images/mypage/ico_sprite.png");
+                background-image: url("http://127.0.0.1:3000/images/mypage/ico_sprite.png");
                 background-position: 0px 66px;
               }
             }
@@ -71,7 +71,7 @@ div.userBox {
           &:nth-child(3) {
             a {
               &::before {
-                background-image: url("http://localhost:3000/images/mypage/ico_sprite.png");
+                background-image: url("http://127.0.0.1:3000/images/mypage/ico_sprite.png");
                 background-position: 0px 30px;
               }
             }

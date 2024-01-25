@@ -48,10 +48,10 @@ div.contentBox ul.contentList li:first-child {
   border-bottom: 1px solid #e6e6e6;
 }
 div.contentBox ul.contentList li:first-child a::before {
-  background: url("http://localhost:3000/images/mypage/select.png") 0 0 no-repeat;
+  background: url("http://127.0.0.1:3000/images/mypage/select.png") 0 0 no-repeat;
 }
 div.contentBox ul.contentList li:last-child a::before {
-  background: url("http://localhost:3000/images/mypage/select.png") 0 -60px no-repeat;
+  background: url("http://127.0.0.1:3000/images/mypage/select.png") 0 -60px no-repeat;
 }
 div.contentBox ul.contentList li:last-child a::after {
   content: "▼";
@@ -101,20 +101,20 @@ div.contentBox ul.activeList li a em {
   box-sizing: border-box;
 }
 div.contentBox ul.activeList li:nth-child(1) a::before {
-  background: url("http://localhost:3000/images/mypage/icon_active.png") 0 0px no-repeat;
+  background: url("http://127.0.0.1:3000/images/mypage/icon_active.png") 0 0px no-repeat;
 }
 div.contentBox ul.activeList li:nth-child(2) a::before {
-  background: url("http://localhost:3000/images/mypage/icon_active.png") 0 -65px no-repeat;
+  background: url("http://127.0.0.1:3000/images/mypage/icon_active.png") 0 -65px no-repeat;
 }
 div.contentBox ul.activeList li:nth-child(3) a::before {
-  background: url("http://localhost:3000/images/mypage/icon_active.png") 0 -130px no-repeat;
+  background: url("http://127.0.0.1:3000/images/mypage/icon_active.png") 0 -130px no-repeat;
 }
 div.contentBox ul.activeList li:nth-child(4) a::before {
-  background: url("http://localhost:3000/images/mypage/icon_active.png") 0 -195px no-repeat;
+  background: url("http://127.0.0.1:3000/images/mypage/icon_active.png") 0 -195px no-repeat;
 }
 div.contentBox ul.activeList li:nth-child(5) a::before {
-  background: url("http://localhost:3000/images/mypage/icon_active.png") 0 -260px no-repeat;
+  background: url("http://127.0.0.1:3000/images/mypage/icon_active.png") 0 -260px no-repeat;
 }
 div.contentBox ul.activeList li:nth-child(6) a::before {
-  background: url("http://localhost:3000/images/mypage/icon_active.png") 0 -325px no-repeat;
+  background: url("http://127.0.0.1:3000/images/mypage/icon_active.png") 0 -325px no-repeat;
 }/*# sourceMappingURL=styles.module.css.map */
