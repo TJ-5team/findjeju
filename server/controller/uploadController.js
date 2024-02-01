@@ -3,7 +3,7 @@ import multer from 'multer';
 //multer 라이브러리를 이용한 파일업로드
 const storage = multer.diskStorage({
     // uploads 폴더에 이미지 저장
-    
+
     destination: function (req, file, cb) {
         // destination 메서드의 역할은 업로드될 파일이 저장되는 디렉토리를 정의하는 것이다.
         // destination의 프로퍼티 값을 함수로 전달하고, 콜백함수는 3개를 받는데, req,file,cb를 받는다.
@@ -23,7 +23,7 @@ const storage = multer.diskStorage({
         //cb의 인자로 1번째는 초기값, 두번째는 파일명이다.
     }
 
-})
+});
 
 const fupload = multer({ storage: storage }).single('file');
 // multer를 사용하여 파일 업로드를 처리하기 위한 설정을 생성하는 부분입니다.
@@ -35,13 +35,21 @@ const fupload = multer({ storage: storage }).single('file');
 /**
  * 파일 업로드 : 파일을 /uploads 폴더에 저장하는 작업
  */
+
 export function upload(req, res) {
 
-    fupload(req, res, err => {
+    /* req.on('close', () => {
+        // 클라이언트 연결이 끊어진 경우
+        console.log('Client has canceled the upload');
+        // 필요한 경우 여기서 추가적인 정리 작업을 수행
+    }); */
+
+    /* fupload(req, res, err => {
+
         //upload에서 image파일 받아서 fupload의 첫번째 매개변수로 전달하여 사용한다.
         //multer에서 만든 데이터를 fupload로 정의
         //fupload는 3개의 매개변수를 가지고 있고, req는 req.file.path등 파일의 정보가 담겨져있다.
-        console.log("파일경로" + req.file.path);
+        // console.log("파일경로" + req.file.path);
         if (err) {
             console.log(err);
         } else {
@@ -49,7 +57,26 @@ export function upload(req, res) {
             // res.json(res.req.file.path);
             res.json(res.req.file.path);
         }
-    })
 
-}
+    }) */
+
+    fupload(req, res, err => {
+        // Multer 업로드 처리 후의 콜백 함수
+        if (err) {
+            console.log(err);
+            return; // 에러가 발생하면 여기서 처리를 중단합니다.
+        }
+
+        // 성공적으로 파일이 업로드되었으면, 그 결과를 클라이언트에 전송합니다.
+        if (req.file) { // 파일 업로드가 성공적으로 완료된 경우
+            // console.log("파일경로" + req.file.path);
+            // res.json({ filePath: req.file.path });
+            res.json(res.req.file.path);
+        } else {
+            // 파일이 업로드되지 않은 경우의 처리
+            res.send('No file uploaded.');
+        }
+    });
+
+};
 

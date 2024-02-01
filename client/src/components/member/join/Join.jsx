@@ -45,7 +45,6 @@ export default function Join() {
     const [validation, setValidation] = useState({ name: '필수 입력 항목입니다.', id: '필수 입력 항목입니다.', pass: '필수 입력 항목입니다.', passcheck: '필수 입력 항목입니다.', nickname: '필수 입력 항목입니다.', email: '이메일 형식에 맞지 않습니다.', echeck: '필수 입력 항목입니다.', eSelf: '필수 입력 항목입니다.', confirm: '', phone: '필수 입력 항목입니다.', terms1: '', terms2: '' });
     // 리캡쳐
     const [captcha, setCaptcha] = useState(null);
-
     // 정규식
     let pattern_num = /[0-9]/;	// 숫자 
     let pattern_eng = /[a-zA-Z]/;	// 문자 
@@ -127,6 +126,7 @@ export default function Join() {
             teRef1.current.focus();
             return false
         }
+        
         if (!checked.terms2) {
             setValidation((validation) => ({ ...validation, terms2: '필수 입력 사항입니다.' }))
             teRef2.current.focus();

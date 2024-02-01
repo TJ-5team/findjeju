@@ -11,10 +11,11 @@ const server = express();
 server.use(cors());
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
-server.use('/uploads', express.static(path.join('uploads')));
+// server.use('/uploads', express.static(path.join('uploads')));
+server.use(express.static(path.join('uploads')));
 server.use('/member', memberRouter);
 server.use('/upload', uploadRouter);
-server.use('/review', reviewRouter)
+server.use('/review', reviewRouter);
 
 server.listen(PORT, () => {
   console.log(`server start --->> ${PORT}`);

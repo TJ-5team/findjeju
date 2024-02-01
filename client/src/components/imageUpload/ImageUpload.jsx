@@ -15,7 +15,7 @@ export default function ImageUpload({ getImage }) {
         getImage(result.data);
       });
 
-  }
+  };
 
   return (
     <>
