@@ -32,7 +32,7 @@ div.replyWrap {
     }
   }
   div.replyBtnWrap {
-    margin-top: 14px;
+    padding: 14px 0;
     text-align: right;
     button {
       margin-left: 14px;
@@ -49,11 +49,37 @@ div.replyWrap {
       font-size: 0px;
       vertical-align: middle;
       background-size: cover;
-      background-image: url("http://localhost:3000/images/detailPage/btn_reply_file.gif");
+      background-image: url("http://127.0.0.1:3000/images/detailPage/btn_reply_file.gif");
       cursor: pointer;
       &::file-selector-button {
         display: none;
       }
+    }
+  }
+  div.replyImageWrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 14px;
+    border-top: 1px solid var(--borderline);
+    div {
+      position: relative;
+      img {
+        width: 90px;
+        height: 90px;
+        object-fit: cover;
+        border: 1px solid var(--borderline);
+      }
+      button.imageRemove{
+        position: absolute;
+        top: 0;
+      }
+    }
+    p {
+      margin-left: 40px;
+      line-height: 1.3;
+      color: var(--fontGray);
+      font-size: 14px;
     }
   }
 }
@@ -70,7 +96,7 @@ div.reviewList {
   border-bottom: 1px solid var(--borderline);
   div.userImg {
     width: 10%;
-    height: 60px;
+    height: 50px;
     img {
       height: 100%;
     }
@@ -79,6 +105,12 @@ div.reviewList {
     margin: 0 20px;
     width: 80%;
     text-align: left;
+    div.reviewImage {
+      width: 250px;
+      img {
+        width: 100%;
+      }
+    }
     div {
       padding: 5px 0;
       text-wrap: wrap;
@@ -92,8 +124,8 @@ div.reviewList {
       }
     }
   }
-  div.likebtnWrap{
-    svg.replyDelete{
+  div.likebtnWrap {
+    svg.replyDelete {
       cursor: pointer;
     }
   }

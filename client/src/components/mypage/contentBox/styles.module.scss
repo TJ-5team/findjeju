@@ -44,12 +44,12 @@ div.contentBox {
       &:first-child {
         border-bottom: 1px solid #e6e6e6;
         a::before {
-          background: url("http://localhost:3000/images/mypage/select.png") 0 0 no-repeat;
+          background: url("http://127.0.0.1:3000/images/mypage/select.png") 0 0 no-repeat;
         }
       }
       &:last-child {
         a::before {
-          background: url("http://localhost:3000/images/mypage/select.png") 0 -60px no-repeat;
+          background: url("http://127.0.0.1:3000/images/mypage/select.png") 0 -60px no-repeat;
         }
         a::after {
           content: "▼";
@@ -103,42 +103,42 @@ div.contentBox {
       &:nth-child(1) {
         a {
           &::before {
-            background: url("http://localhost:3000/images/mypage/icon_active.png") 0 0px no-repeat;
+            background: url("http://127.0.0.1:3000/images/mypage/icon_active.png") 0 0px no-repeat;
           }
         }
       }
       &:nth-child(2) {
         a {
           &::before {
-            background: url("http://localhost:3000/images/mypage/icon_active.png") 0 -65px no-repeat;
+            background: url("http://127.0.0.1:3000/images/mypage/icon_active.png") 0 -65px no-repeat;
           }
         }
       }
       &:nth-child(3) {
         a {
           &::before {
-            background: url("http://localhost:3000/images/mypage/icon_active.png") 0 -130px no-repeat;
+            background: url("http://127.0.0.1:3000/images/mypage/icon_active.png") 0 -130px no-repeat;
           }
         }
       }
       &:nth-child(4) {
         a {
           &::before {
-            background: url("http://localhost:3000/images/mypage/icon_active.png") 0 -195px no-repeat;
+            background: url("http://127.0.0.1:3000/images/mypage/icon_active.png") 0 -195px no-repeat;
           }
         }
       }
       &:nth-child(5) {
         a {
           &::before {
-            background: url("http://localhost:3000/images/mypage/icon_active.png") 0 -260px no-repeat;
+            background: url("http://127.0.0.1:3000/images/mypage/icon_active.png") 0 -260px no-repeat;
           }
         }
       }
       &:nth-child(6) {
         a {
           &::before {
-            background: url("http://localhost:3000/images/mypage/icon_active.png") 0 -325px no-repeat;
+            background: url("http://127.0.0.1:3000/images/mypage/icon_active.png") 0 -325px no-repeat;
           }
         }
       }

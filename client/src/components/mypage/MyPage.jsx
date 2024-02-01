@@ -14,10 +14,11 @@ export default function MyPage() {
   const params = useParams();
   const wrapRef = useRef(null);
   const userInfo = getUser();
-  const { user } = useSelector(userData);
+  const {user} = useSelector(userData);
 
   useEffect(() => {
 
+    console.log(user);
     if (userInfo.id !== '') {
 
       dispatch(UserData(userInfo));

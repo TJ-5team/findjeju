@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import styles from "./styles.module.css";
 import { HiArrowSmallUp } from "react-icons/hi2";
-import DetailSwiper from "./imgswiper/DetailSwiper";
 import Mapimage from "../Map/Mapimage";
 import TripInfo from "../tripInfo/TripInfo";
 import DetailTitle from "./title/DetailTitle";
@@ -18,6 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import useScroll from "../../hooks/useScroll";
 import { DetailData } from "../../api/detailApi";
 import { getDetailData } from "../../reselector/detailReselector";
+import DetailSwiper from "./imgswiper/DetailSwiper";
 
 export default function DetailInformation() {
   const { y } = useScroll();
@@ -84,9 +84,9 @@ export default function DetailInformation() {
     for (let index = 1; index < 12; index++) {
       if (index < 10) {
         index = '0' + index
-        result.push(<img key={index} src={`http://localhost:3000/images/detailPage/icon_bfreesvc_${index}.png`} alt=""></img>);
+        result.push(<img key={index} src={`http://127.0.0.1:3000/images/detailPage/icon_bfreesvc_${index}.png`} alt=""></img>);
       } else {
-        result.push(<img key={index} src={`http://localhost:3000/images/detailPage/icon_bfreesvc_${index}.png`} alt=""></img>);
+        result.push(<img key={index} src={`http://127.0.0.1:3000/images/detailPage/icon_bfreesvc_${index}.png`} alt=""></img>);
       }
     }
     return result;
@@ -122,7 +122,7 @@ export default function DetailInformation() {
       <div className={`${styles.inner} inner`}>
         {commonInfo && commonInfo.map((commonList) =>
           <div key={commonList.contentid}>
-            <DetailTitle commonList={commonList} detailInfo={detailInfo} />
+            <DetailTitle commonList={commonList} />
             <ul className={y > 313 ? `${styles.tabMenuWrap} ${styles.active}` : styles.tabMenuWrap}>
               {tabMenulist && tabMenulist.map((list, idx) =>
                 <li onClick={(e) => handleActive(e, idx)} className={active === idx ? `${styles.tabMenu} ${styles.active}` : styles.tabMenu} key={idx}>{list}</li>
@@ -149,7 +149,7 @@ export default function DetailInformation() {
         {/* <div>
           <h4 className={styles.titleInfo}>
             <div>
-              <img src="http://localhost:3000/images/detailPage/ico_info.png" alt="" />
+              <img src="http://127.0.0.1:3000/images/detailPage/ico_info.png" alt="" />
               모두의 여행 '무장애여행'
             </div>
           </h4>

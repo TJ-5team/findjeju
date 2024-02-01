@@ -35,7 +35,7 @@ export default function DetailSwiper() {
         {imgDetail === undefined
           ?
           <div className={styles.swiperNoImageWrap}>
-            <img src="http://localhost:3000/images/jeju_island.png" alt="" className={styles.swiperNoImage} />
+            <img src="http://127.0.0.1:3000/images/jeju_island.png" alt="" className={styles.swiperNoImage} />
             {/* <a href='https://kor.pngtree.com/freepng/cute-welcome-to-jeju-island-sticker_8826440.html'>의 PNG 이미지 kor.pngtree.com/</a> */}
           </div>
           : imgDetail.map(list =>
@@ -46,10 +46,10 @@ export default function DetailSwiper() {
       </Swiper>
 
       <button className={`${styles.prevBtn} prevBtn`}>
-        <img src="http://localhost:3000/images/detailPage/btn_prev.png" alt="" />
+        <img src="http://127.0.0.1:3000/images/detailPage/btn_prev.png" alt="" />
       </button>
       <button className={`${styles.nextBtn} nextBtn`}>
-        <img src="http://localhost:3000/images/detailPage/btn_prev.png" alt="" />
+        <img src="http://127.0.0.1:3000/images/detailPage/btn_prev.png" alt="" />
       </button>
 
       {/* Pagination */}

@@ -1,11 +1,11 @@
 .wrap {
-  background-color: var(--bluelight);
-  padding: 50px 0px;
+  background-color: var(--lightGray);
+  padding: 60px 0px 40px;
 }
 
 div.titleWrap {
   display: flex;
-  margin-bottom: 25px;
+  margin-bottom: 16px;
   align-items: center;
   h2.title {
     width: 50%;
@@ -30,7 +30,7 @@ div.titleWrap {
       > div {
         width: 75px;
         height: 75px;
-        background-image: url("http://localhost:3000/images/recommand/icon_area.png");
+        background-image: url("http://127.0.0.1:3000/images/recommand/icon_area.png");
         background-repeat: no-repeat;
         background-size: cover;
         margin-bottom: 10px;
